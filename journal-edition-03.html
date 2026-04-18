@@ -287,19 +287,22 @@
 </head>
 
 <body>
-    <nav class="studio-nav" style="display: none;">
-        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+    <!-- Top Breadcrumbs -->
+    <div class="top-breadcrumbs">
+        <a href="index.html">ARCHIVE</a> <span>/</span> <a href="journal.html">JOURNAL</a> <span>/</span> <a>EDITION 03</a>
+    </div>
+
+    <!-- Mobile Navigation Toggle (Top Right) -->
+    <nav class="studio-nav" style="background: transparent; border: none; justify-content: flex-end;">
+        <button class="menu-toggle" aria-label="Toggle Menu" style="margin-right: var(--spacing-md);">
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-links">
             <a href="shop.html">Store</a>
             <a href="journal.html" class="active">Journal</a>
             <a href="about.html">About</a>
-        </div>
-        <button class="menu-toggle" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-        </button>
-        <div class="nav-action">
-            <button class="btn-archive">Bag (0)</button>
+            <a href="cart.html">Bag</a>
         </div>
     </nav>
 
@@ -345,9 +348,10 @@
             </div>
 
             <div class="sidebar-footer">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="shop.html" class="nav-link">Shop</a>
-                <a href="journal.html" class="nav-link">Archive</a>
+                <a href="shop.html" class="nav-link">Store</a>
+                <a href="journal.html" class="nav-link active">Journal</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="cart.html" class="nav-link">Bag (0)</a>
             </div>
         </aside>
 

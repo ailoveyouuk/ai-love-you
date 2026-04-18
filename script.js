@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ---- Typewriter Animation (Homepage Only) ----
+    const initTypewriter = () => {
+        const target = document.querySelector('.typewriter-text');
+        if (!target) return;
+
+        const text = "MAN, DAUGHTER & MACHINE";
+        let index = 0;
+
+        // Ensure text is clear initially
+        target.innerText = '';
+
+        const type = () => {
+            if (index < text.length) {
+                target.innerText += text.charAt(index);
+                index++;
+                setTimeout(type, 80); // Speed of typing
+            }
+        };
+
+        // Subtle delay before starting
+        setTimeout(type, 500);
+    }
+
+    initTypewriter();
     // ---- Native Scrolling Priority ----
     // Lenis smooth scrolling disabled per user request for fast, snappy native movement.
 
@@ -26,10 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.updateCartDisplay = function () {
-        const globalCartBtns = document.querySelectorAll('.btn-archive, #global-cart-btn');
         const count = window.cartState.reduce((sum, item) => sum + item.quantity, 0);
-        globalCartBtns.forEach(btn => {
-            btn.innerText = `Bag (${count})`;
+        
+        // Update all elements that might show the bag count
+        const cartElements = document.querySelectorAll('.btn-archive, #global-cart-btn, .sidebar-link, .nav-link, .nav-links a');
+        
+        cartElements.forEach(el => {
+            // Check if this element is meant for the Bag/Cart
+            if (el.innerText.includes('Bag') || el.innerText.includes('Archive')) {
+                // Preserving the word "Bag" or "Archive" but updating the count
+                const label = el.innerText.includes('Bag') ? 'Bag' : 'Archive';
+                el.innerText = `${label} (${count})`;
+            }
         });
     }
 

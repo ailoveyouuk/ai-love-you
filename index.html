@@ -12,27 +12,35 @@
 </head>
 
 <body>
-    <nav class="studio-nav">
-        <!-- Replaced text nav-brand with the handwritten logo image -->
-        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+    <!-- Tucked Sidebar Navigation for Homepage -->
+    <nav class="studio-sidebar-nav sidebar-tucked">
+        <a href="shop.html" class="sidebar-link">Store</a>
+        <a href="journal.html" class="sidebar-link">Journal</a>
+        <a href="about.html" class="sidebar-link">About</a>
+        <a href="cart.html" class="sidebar-link">Bag (0)</a>
+    </nav>
+
+    <!-- Mobile Navigation Toggle (Top Right) -->
+    <nav class="studio-nav" style="background: transparent; border: none; justify-content: flex-end;">
+        <button class="menu-toggle" aria-label="Toggle Menu" style="margin-right: var(--spacing-md);">
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-links">
             <a href="shop.html">Store</a>
             <a href="journal.html">Journal</a>
             <a href="about.html">About</a>
-        </div>
-        <button class="menu-toggle" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-        </button>
-        <div class="nav-action">
-            <button class="btn-archive" id="global-cart-btn">Bag (0)</button>
+            <a href="cart.html">Bag</a>
         </div>
     </nav>
 
     <main class="studio-main">
-        <header class="studio-header">
-            <h1 class="headline-massive reveal-text"><span>Studio<br>Edition.</span></h1>
-            <p class="sub-headline">British Workshop meets Modern Tech Studio. Archiving the intersection of art and process.</p>
+        <header class="studio-header" style="min-height: 40vh; display: flex; flex-direction: column; justify-content: center;">
+            <h1 class="headline-massive typewriter-container">
+                <span class="typewriter-text"></span><span class="typewriter-cursor"></span>
+            </h1>
+            <img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You Signature" class="signature-logo-home">
+            <p class="sub-headline" style="margin-top: var(--spacing-lg);">British Workshop meets Modern Tech Studio. Archiving the intersection of art and process.</p>
         </header>
 
 

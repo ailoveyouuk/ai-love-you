@@ -79,19 +79,30 @@
 </head>
 
 <body>
-    <nav class="studio-nav">
-        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+    <!-- Standard Sidebar Navigation -->
+    <nav class="studio-sidebar-nav">
+        <a href="shop.html" class="sidebar-link">Store</a>
+        <a href="journal.html" class="sidebar-link">Journal</a>
+        <a href="about.html" class="sidebar-link active">About</a>
+        <a href="cart.html" class="sidebar-link">Bag (0)</a>
+    </nav>
+
+    <!-- Top Breadcrumbs -->
+    <div class="top-breadcrumbs">
+        <a href="index.html">ARCHIVE</a> <span>/</span> <a>ABOUT</a>
+    </div>
+
+    <!-- Mobile Navigation Toggle (Top Right) -->
+    <nav class="studio-nav" style="background: transparent; border: none; justify-content: flex-end;">
+        <button class="menu-toggle" aria-label="Toggle Menu" style="margin-right: var(--spacing-md);">
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-links">
             <a href="shop.html">Store</a>
             <a href="journal.html">Journal</a>
             <a href="about.html" class="active">About</a>
-        </div>
-        <button class="menu-toggle" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-        </button>
-        <div class="nav-action">
-            <button class="btn-archive" id="global-cart-btn">Bag (0)</button>
+            <a href="cart.html">Bag</a>
         </div>
     </nav>
 

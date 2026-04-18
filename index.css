@@ -28,6 +28,19 @@
   }
   
   --nav-height: 80px;
+  --sidebar-width: 250px;
+}
+
+/* Scrollbar styling for a cleaner look */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
 }
 
 /* Base Styles */
@@ -66,6 +79,28 @@ h1, h2, h3, h4 {
   color: var(--text-color);
   letter-spacing: -0.04em;
   text-transform: uppercase;
+}
+
+.typewriter-headline {
+    font-size: clamp(3.5rem, 12vw, 9rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    margin-bottom: 1.5rem;
+    color: var(--carbon-black);
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.typewriter-text::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 0.8em;
+    background-color: var(--accent-color);
+    margin-left: 5px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
 }
 
 .headline {
@@ -381,6 +416,138 @@ h1, h2, h3, h4 {
   transform: translateY(110%);
   will-change: transform;
   transform-origin: bottom;
+  opacity: 0; /* Default hidden until GSAP or Script reveals it */
+}
+
+/* Ensure typewriter elements are visible but empty initially */
+.typewriter-text {
+  opacity: 1 !important;
+  transform: none !important;
+  display: inline-block;
+  min-height: 1.1em;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 0.1em;
+  height: 1em;
+  background-color: var(--accent-color);
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Sidebar Navigation */
+.studio-sidebar-nav {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  left: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  z-index: 2000;
+  pointer-events: all;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tucked state for homepage hero */
+.sidebar-tucked {
+  bottom: var(--spacing-lg);
+  left: var(--spacing-lg);
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: var(--ink-gray);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  display: block;
+  opacity: 0.6;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  color: var(--text-color);
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+.sidebar-link.active {
+  color: var(--accent-color);
+}
+
+/* Top Breadcrumbs */
+.top-breadcrumbs {
+  position: fixed;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 2000;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  pointer-events: all;
+}
+
+.top-breadcrumbs a {
+  text-decoration: none;
+  color: var(--ink-gray);
+  transition: color 0.3s;
+}
+
+.top-breadcrumbs a:hover {
+  color: var(--text-color);
+}
+
+.top-breadcrumbs span {
+  color: var(--border-color);
+}
+
+/* Signature Logo for Homepage */
+.signature-logo-home {
+  height: clamp(60px, 10vw, 120px);
+  width: auto;
+  margin-top: calc(var(--spacing-md) * -1);
+  opacity: 0.8;
+  display: block;
+}
+
+/* Navigation Overhaul Logic */
+.studio-sidebar-nav {
+    display: none; /* Mobile first */
+}
+
+@media (min-width: 1025px) {
+    .studio-sidebar-nav {
+        display: flex;
+    }
+    
+    /* Hide top nav on desktop for archival sidebar style */
+    .studio-nav {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1024px) {
+  .studio-sidebar-nav {
+    display: none; /* Mobile still uses top toggle */
+  }
+  
+  .top-breadcrumbs {
+    top: 20px;
+    left: 20px;
+  }
 }
 
 .badge {
