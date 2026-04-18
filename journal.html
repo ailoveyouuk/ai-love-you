@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal & Archive — AI Love You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Global Five List View Styling */
+        .global-five-list {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .global-five-row {
+            display: grid;
+            grid-template-columns: 200px 1fr 250px 120px;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--carbon-black);
+            transition: background 0.3s ease;
+            align-items: center;
+        }
+        .global-five-row:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        .global-five-row .city {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .global-five-row .activity {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+        }
+        .global-five-row .timeline {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--ink-gray);
+        }
+        /* Search Highlighting */
+        .highlight {
+            background: rgba(255, 77, 0, 0.15); /* Subtle Studio Orange glow */
+            color: #FF4D00; /* AI Love You Orange */
+            font-weight: 800;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .search-suggestions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .suggest-tag {
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-gray);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .suggest-tag:hover {
+            color: var(--accent-color);
+        }
+
+        .period-filter {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .period-select {
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--carbon-black);
+            padding: 0.5rem 0;
+            cursor: pointer;
+            outline: none;
+        }
+
+        @media (max-width: 1024px) {
+            .global-five-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                padding: 1.5rem 0;
+            }
+            .global-five-row .edition-label {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+        }
+
+        /* Journal Card Refinements */
+        .journal-card div:first-child:not(.category-badge) {
+            background: #000;
+        }
+        .journal-card:hover {
+            opacity: 1;
+        }
+        .journal-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            filter: grayscale(1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .journal-card:hover img {
+            opacity: 1;
+            filter: grayscale(0);
+            transform: scale(1.05);
+        }
+        .edition-pill {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border: 1px solid #FF4D00; /* AI Love You Orange */
+            color: #FF4D00;
+            border-radius: 50px;
+            margin-bottom: 0.8rem;
+            line-height: 1;
+        }
+        .journal-card h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="studio-nav">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html" class="active">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive">Bag (0)</button>
+        </div>
+    </nav>
+
+    <main class="studio-main">
+        <header class="studio-header">
+            <h1 class="headline" style="font-size: clamp(4rem, 10vw, 8.5rem);">JOURNAL.</h1>
+        </header>
+
+        <!-- Search & Tag Filtering -->
+        <section class="journal-controls">
+            <div class="search-bar">
+                <input type="text" id="journal-search" class="search-input" placeholder="Search the archive (e.g. 'Leica', 'Tokyo')..."
+                    autocomplete="off">
+                <div class="search-suggestions" id="search-suggestions">
+                    <span style="font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--carbon-black); font-weight: 700; margin-right: 0.5rem;">TRENDING TAGS:</span>
+                    <span class="suggest-tag">#Craftsmanship</span>
+                    <span class="suggest-tag">#Horology</span>
+                    <span class="suggest-tag">#Minimalism</span>
+                    <span class="suggest-tag">#Japan</span>
+                    <span class="suggest-tag">#April 2026</span>
+                </div>
+                <div class="period-filter">
+                    <span style="font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-gray); font-weight: 700;">FILTER BY PERIOD:</span>
+                    <select id="period-select" class="period-select">
+                        <option value="all">ALL TIME</option>
+                    </select>
+                </div>
+            </div>
+            <div class="journal-tags" id="journal-tags-container">
+                <button class="tag-btn active" data-filter="all">All Entries</button>
+                <button class="tag-btn" data-filter="movies">Movies</button>
+                <button class="tag-btn" data-filter="music">Music</button>
+                <button class="tag-btn" data-filter="products">Products</button>
+                <button class="tag-btn" data-filter="design">Design</button>
+                <button class="tag-btn" data-filter="architecture">Architecture</button>
+                <button class="tag-btn" data-filter="style">Style & Fashion</button>
+                <button class="tag-btn" data-filter="global-five">The Global Five</button>
+            </div>
+        </section>
+
+        <!-- Journal Feed Grid -->
+        <section class="journal-grid" id="journal-feed">
+            <!-- Edition 06: Tomorrow's Textures -->
+            <a href="journal-edition-06.html" class="journal-card" data-tags="RetroFuturism, Brutalism, BiophilicDesign, AnalogAcoustics, JapaneseKogu, SoftArmor, Dune2, TactileLiving, ModernBrutalism, NeoNoir"
+                data-title="edition 06: tomorrow's textures">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="https://static.dezeen.com/uploads/2022/05/house-of-concrete-experiments-samira-rathod-design-atelier-india-residential_dezeen_2364_hero2.jpg" alt="Tomorrow's Textures">
+                </div>
+                <div>
+                    <span class="edition-pill">Edition 06</span>
+                    <h3>Tomorrow's Textures</h3>
+                    <div class="meta"><span>24 Apr 2026</span><span>45 Min Read</span></div>
+                    <p>The Pull of the Tactile: Exploring the resurgence of the physical, from the brutalist sanctuaries of Samira Rathod to the 'Soft Armour' of neo-noir fashion.</p>
+                </div>
+                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
+                    <span>#RetroFuturism</span><span>#Brutalism</span><span>#BiophilicDesign</span><span>#AnalogAcoustics</span><span>#JapaneseKogu</span><span>#SoftArmor</span>
+                </div>
+            </a>
+
+            <!-- Edition 05: The Aesthetics of Impermanence -->
+            <a href="journal-edition-05.html" class="journal-card" data-tags="WabiSabi, AnalogueDecay, Architecture, RawDenim, Cinematography, Espresso"
+                data-title="edition 05: the aesthetics of impermanence">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-05/zeitz_mocaa.jpg" alt="The Aesthetics of Impermanence">
+                </div>
+                <div>
+                    <span class="edition-pill">Edition 05</span>
+                    <h3>The Aesthetics of Impermanence</h3>
+                    <div class="meta"><span>21 Apr 2026</span><span>30 Min Read</span></div>
+                    <p>Evidence of Time: Exploring the beauty of decay, from the lived-in futures of Tarkovsky to the mechanical romance of the E61.</p>
+                </div>
+                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
+                    <span>#WabiSabi</span><span>#AnalogueDecay</span><span>#Architecture</span><span>#RawDenim</span><span>#Cinematography</span><span>#Espresso</span>
+                </div>
+            </a>
+
+            <!-- Edition 04: The Architecture of Light -->
+            <a href="journal-edition-04.html" class="journal-card" data-tags="LightingDesign, Cinematography, BladeRunner2049, DaftPunk, TadaoAndo, Neon, Akari, Cyberpunk, RogerDeakins, Brutalism"
+                data-title="edition 04: the architecture of light">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-04/blade_runner_2049_orig.jpg" alt="The Architecture of Light">
+                </div>
+                <div>
+                    <span class="edition-pill">Edition 04</span>
+                    <h3>The Architecture of Light</h3>
+                    <div class="meta"><span>18 Apr 2026</span><span>30 Min Read</span></div>
+                    <p>Sculpting with Photons: Exploring the atmospheric power of light in cinema, architecture, and technology.</p>
+                </div>
+                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
+                    <span>#LightingDesign</span><span>#Cinematography</span><span>#BladeRunner2049</span><span>#DaftPunk</span><span>#TadaoAndo</span><span>#Neon</span><span>#Akari</span><span>#Cyberpunk</span><span>#RogerDeakins</span><span>#Brutalism</span>
+                </div>
+            </a>
+
+            <!-- Edition 03: The Alchemy of Craft -->
+            <a href="journal-edition-03.html" class="journal-card" data-tags="Craftsmanship, FolkHorror, Jazz, Horology, Zumthor, FellowCoffee, MechanicalMovement, SteveMcQueen, Alchemy, Makers"
+                data-title="edition 03: the alchemy of craft">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-03/the_witch_hd.jpg" alt="The Alchemy of Craft">
+                </div>
+                <div>
+                    <span class="edition-pill">Edition 03</span>
+                    <h3>The Alchemy of Craft</h3>
+                    <div class="meta"><span>15 Apr 2026</span><span>30 Min Read</span></div>
+                    <p>Celebration of the 'makers': From Folk Horror's tactile terror to the improvisational mastery of Jazz and Peter Zumthor's sensory stone.</p>
+                </div>
+                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
+                    <span>#Craftsmanship</span><span>#FolkHorror</span><span>#Jazz</span><span>#Horology</span><span>#Zumthor</span><span>#FellowCoffee</span><span>#MechanicalMovement</span><span>#SteveMcQueen</span><span>#Alchemy</span><span>#Makers</span>
+                </div>
+            </a>
+
+            <!-- New Journal Edition 02 Card -->
+            <a href="journal-edition-02.html" class="journal-card" data-tags="Minimalism, DieterRams, Barragán, Silence, JonathanGlazer, Functionalism, ZoneOfInterest, SnowPeak, WongKarWai, AcousticAbsence"
+                data-title="edition 02: the geometry of silence">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-02/zone_of_interest_new.jpg" alt="The Geometry of Silence">
+                </div>
+                <div>
+                    <span class="edition-pill">Edition 02</span>
+                    <h3>The Geometry of Silence</h3>
+                    <div class="meta"><span>12 Apr 2026</span><span>30 Min Read</span></div>
+                    <p>Reduction to reveal essence: Exploring Jonathan Glazer’s cinematic walls, Dieter Rams’ legacy, and the spiritual stillness of Barragán.</p>
+                </div>
+                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
+                    <span>#Minimalism</span><span>#DieterRams</span><span>#Barragán</span><span>#Silence</span><span>#JonathanGlazer</span><span>#Functionalism</span><span>#ZoneOfInterest</span><span>#SnowPeak</span><span>#WongKarWai</span><span>#AcousticAbsence</span>
+                </div>
+            </a>
+
+            <!-- New Journal Edition 01 Card -->
+            <a href="journal-edition-01.html" class="journal-card" data-tags="Analogue, Haptics, WimWenders, RoomSound, SpecialtyCoffee, JapaneseDesign, TropicalBrutalism, Workwear, TactileLiving, SlowLiving"
+                data-title="edition 01: analogue precision & tactile living">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-01/studio_header_orig.jpg" alt="Analogue Precision">
+                </div>
+                <div>
+                    <span class="edition-pill">Edition 01</span>
+                    <h3>Analogue Precision & Tactile Living</h3>
+                    <div class="meta"><span>09 Apr 2026</span><span>30 Min Read</span></div>
+                    <p>Why we choose the difficult path: Exploring tactile haptics, room sound acoustics, and brutalist sanctuaries.</p>
+                </div>
+                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
+                    <span>#Analogue</span><span>#Haptics</span><span>#WimWenders</span><span>#RoomSound</span><span>#SpecialtyCoffee</span><span>#JapaneseDesign</span><span>#TropicalBrutalism</span><span>#Workwear</span><span>#TactileLiving</span><span>#SlowLiving</span>
+                </div>
+            </a>
+        </section>
+
+        <section class="about-footer" style="margin-top: 6rem;">
+            <div class="marquee">
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior
+                    written
+                    permission.</span>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="support.html">Support & Legal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/journals/journalData.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('journal-search');
+            const filterBtns = document.querySelectorAll('.tag-btn');
+            const feedContainer = document.getElementById('journal-feed');
+            const periodSelect = document.getElementById('period-select');
+            
+            // Cache the hardcoded Edition Cards
+            const editionCardsHTML = feedContainer.innerHTML;
+
+            // Populate Period Select Dynamically
+            function populatePeriods() {
+                if (!window.journalData) return;
+                const periods = [...new Set(window.journalData.map(s => s.publishDate))];
+                periods.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p;
+                    opt.innerText = p.toUpperCase();
+                    periodSelect.appendChild(opt);
+                });
+            }
+            populatePeriods();
+
+            function highlightText(text, term) {
+                if (!text || typeof text !== 'string') return '';
+                if (!term) return text;
+                const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                return text.replace(regex, '<span class="highlight">$1</span>');
+            }
+
+            function renderStories(filter, searchTerm) {
+                if (!window.journalData) {
+                    console.error("AI Love You: Journal Data not found.");
+                    feedContainer.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 4rem;">Archive data is currently loading...</p>';
+                    return;
+                }
+
+                feedContainer.innerHTML = '';
+                
+                const filteredStories = window.journalData.filter(story => {
+                    const matchesTag = filter === 'all' || story.category === filter;
+                    
+                    // Period Filter Check
+                    const selectedPeriod = periodSelect.value;
+                    const matchesPeriod = selectedPeriod === 'all' || story.publishDate === selectedPeriod;
+
+                    if (!searchTerm) return matchesTag && matchesPeriod;
+
+                    // Deep Search Logic (Case-Insensitive & Null-Safe)
+                    const s = searchTerm.toLowerCase();
+                    
+                    const inTitle = (story.title || "").toLowerCase().includes(s);
+                    const inSubtitle = (story.subtitle || "").toLowerCase().includes(s);
+                    const inEvent = (story.event || "").toLowerCase().includes(s);
+                    const inCity = (story.city || "").toLowerCase().includes(s);
+                    const inEdition = (story.edition || "").toLowerCase().includes(s);
+                    const inDate = (story.publishDate || "").toLowerCase().includes(s);
+                    const inKeywords = story.keywords && story.keywords.some(k => k.toLowerCase().includes(s));
+                    const inCategory = (story.category || "").toLowerCase().includes(s);
+
+                    const matchesSearch = (inTitle || inSubtitle || inEvent || inCity || inEdition || inDate || inKeywords || inCategory);
+                    
+                    return matchesTag && matchesSearch && matchesPeriod;
+                });
+
+                if (filter === 'global-five') {
+                    const listContainer = document.createElement('div');
+                    listContainer.className = 'global-five-list';
+                    
+                    // Header for the list
+                    const header = document.createElement('div');
+                    header.className = 'global-five-row';
+                    header.style.borderTop = '1px solid var(--border-color)';
+                    header.style.opacity = '0.4';
+                    header.style.pointerEvents = 'none';
+                    header.innerHTML = `
+                        <div class="city">LOCATION</div>
+                        <div class="activity">CURATED ACTIVITY</div>
+                        <div class="timeline">TIMELINE</div>
+                        <div class="edition-label">SOURCE</div>
+                    `;
+                    listContainer.appendChild(header);
+
+                    filteredStories.forEach(story => {
+                        const row = document.createElement('a');
+                        row.href = story.link;
+                        row.className = 'global-five-row';
+                        row.innerHTML = `
+                            <div class="city">${highlightText(story.city, searchTerm)}</div>
+                            <div class="activity">${highlightText(story.event, searchTerm)}</div>
+                            <div class="timeline">${highlightText(story.dateTime, searchTerm)}</div>
+                            <div class="edition-label">${highlightText(story.edition, searchTerm)}</div>
+                        `;
+                        listContainer.appendChild(row);
+                    });
+                    feedContainer.appendChild(listContainer);
+                } else {
+                    filteredStories.forEach(story => {
+                        const card = document.createElement('a');
+                        card.href = story.link;
+                        card.className = 'journal-card story-mode-card';
+                        card.innerHTML = `
+                            <div class="category-badge" style="font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--accent-color); margin-bottom: 0.5rem; text-transform: uppercase;">
+                                ${highlightText(story.category, searchTerm)} // ${highlightText(story.edition, searchTerm)}
+                            </div>
+                            ${story.image ? `
+                            <div style="width: 100%; aspect-ratio: 16/9; background: #eee; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                                <img src="${story.image}" alt="${story.title || 'Journal Archive'}"
+                                    style="width: 100%; height: 100%; object-fit: cover; opacity: 1;">
+                            </div>
+                            ` : '<div style="margin-bottom: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;"></div>'}
+                            <div>
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; line-height: 1.2;">${highlightText(story.title || story.event, searchTerm)}</h3>
+                                <div class="meta" style="margin-bottom: 1rem;"><span>${highlightText(story.duration || story.dateTime, searchTerm)}</span></div>
+                                <p style="font-size: 0.9rem; color: var(--ink-gray); line-height: 1.5;">${highlightText(story.subtitle || story.city, searchTerm)}</p>
+                            </div>
+                        `;
+                        feedContainer.appendChild(card);
+                    });
+                }
+
+                // Empty State Handler
+                if (filteredStories.length === 0) {
+                    feedContainer.innerHTML = `<p style="text-align: center; grid-column: 1/-1; padding: 6rem 0; color: var(--ink-gray);">No archival matches found for "${searchTerm}". Try searching by department, brand, or location.</p>`;
+                }
+            }
+
+            // Bind Search Suggestions
+            document.querySelectorAll('.suggest-tag').forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const query = tag.innerText.replace('#', '').trim();
+                    searchInput.value = query;
+                    applyFilters();
+                });
+            });
+
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const activeBtn = document.querySelector('.tag-btn.active');
+                const activeTag = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
+
+                if (activeTag === 'all' && !searchTerm) {
+                    // Show standard Edition Cards
+                    feedContainer.innerHTML = editionCardsHTML;
+                } else {
+                    // Show Collated Story Cards
+                    renderStories(activeTag, searchTerm);
+                }
+            }
+
+            // Bind Search
+            searchInput.addEventListener('input', applyFilters);
+
+            // Bind Period Select
+            periodSelect.addEventListener('change', applyFilters);
+
+            // Bind Tag Buttons
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                    applyFilters();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

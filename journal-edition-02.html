@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edition 02: The Geometry of Silence — AI Love You Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=La+Belle+Aurore&family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+    <style>
+        :root {
+            --journal-bg: #ffffff;
+            --journal-text: #000000;
+            --accent-color: #ff5e00; /* Neon Orange */
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--journal-text);
+            overflow-x: hidden;
+        }
+
+        .journal-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .journal-sidebar {
+            border-right: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 4rem;
+        }
+
+        .nav-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--ink-gray);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-link.active {
+            color: #ff5e00;
+            font-weight: 700;
+            padding-left: 1rem;
+            border-left: 2px solid #ff5e00;
+        }
+
+        .nav-subtitle {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-gray);
+            margin-top: 0.25rem;
+            padding-left: 0;
+            transition: all 0.3s ease;
+            line-height: 1.2;
+        }
+
+        .nav-link.active + .nav-subtitle {
+            color: #ff5e00;
+            opacity: 0.8;
+        }
+
+        /* Content Area */
+        .journal-content {
+            padding: 8rem 8% 10rem 8%;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .edition-header {
+            margin-bottom: 8rem;
+        }
+
+        .edition-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #FF4D00;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .edition-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: var(--ink-gray);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .meta-primary {
+            display: flex;
+            gap: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .meta-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .meta-tags span {
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meta-tags span:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .section-container {
+            margin-bottom: 12rem;
+            scroll-margin-top: 5rem;
+        }
+
+        .dept-label {
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #FF4D00;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        h2.section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .lead-text {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1250px;
+        }
+
+        .body-text p {
+            margin-bottom: 2rem;
+        }
+
+        .body-text blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--journal-text);
+        }
+
+        .media-container {
+            margin: 4rem auto;
+            width: 100%;
+            max-width: 1250px;
+        }
+
+        .media-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .caption {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            color: var(--ink-gray);
+            margin-top: 1rem;
+            display: block;
+            text-align: right;
+        }
+
+        /* Shortlist / Global Five Styling */
+        .shortlist-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .shortlist-meta h4 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .shortlist-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .shortlist-content p {
+            font-size: 0.95rem;
+            color: var(--ink-gray);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .journal-layout {
+                grid-template-columns: 1fr;
+                padding-top: var(--nav-height) !important;
+            }
+
+            .journal-sidebar {
+                display: none;
+            }
+
+            .studio-nav {
+                display: flex !important;
+            }
+
+            h1 {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            h2.section-title {
+                font-size: clamp(1.8rem, 6vw, 3rem);
+            }
+
+            .shortlist-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .journal-content {
+                padding: var(--spacing-md) !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="studio-nav" style="display: none;">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html" class="active">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive">Bag (0)</button>
+        </div>
+    </nav>
+
+    <div class="journal-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="journal-sidebar">
+            <div class="sidebar-top">
+                <a href="journal.html" class="nav-link" style="font-weight: 700;">← BACK TO ARCHIVE</a>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#editor-note" class="nav-link active">Editor's Note</a>
+                        <span class="nav-subtitle">The Architecture of Absence</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#movies" class="nav-link">I. Movies</a>
+                        <span class="nav-subtitle">Structural Depth</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#music" class="nav-link">II. Music</a>
+                        <span class="nav-subtitle">Sonic Breath</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#products" class="nav-link">III. Products</a>
+                        <span class="nav-subtitle">Titanium Engineering</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#design" class="nav-link">IV. Design</a>
+                        <span class="nav-subtitle">Dieter Rams Manifesto</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#architecture" class="nav-link">V. Architecture</a>
+                        <span class="nav-subtitle">Serenity of the Soul</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#style" class="nav-link">VI. Style & Fashion</a>
+                        <span class="nav-subtitle">Tailored Restraint</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#shortlist" class="nav-link">VII. Global Five</a>
+                        <span class="nav-subtitle">MNC, UK — STO, SE — CDMX, MX — TYO, JP — SYD, AU</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="journal.html" class="nav-link">Archive</a>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="journal-content">
+            <header class="edition-header">
+                <span class="edition-label">THE JOURNAL ARCHIVE // 02</span>
+                <h1>The<br>Geometry<br>of Silence</h1>
+                <div class="edition-meta">
+                    <div class="meta-primary">
+                        <span>Published: 12 April 2026</span>
+                        <span>30 Min Read</span>
+                    </div>
+                    <div class="meta-tags">
+                        <span>#Minimalism</span><span>#DieterRams</span><span>#Barragán</span><span>#Silence</span><span>#JonathanGlazer</span><span>#Functionalism</span><span>#ZoneOfInterest</span><span>#SnowPeak</span><span>#WongKarWai</span><span>#AcousticAbsence</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Editor's Note -->
+            <section id="editor-note" class="section-container">
+                <span class="dept-label">Editor's Note</span>
+                <h2 class="section-title">The Architecture of Absence</h2>
+                <div class="body-text">
+                    <p>In our inaugural edition, we explored the haptic; the physical "push back" of the world. Today, we shift our focus to the inverse: the power of what is left out. We live in an era of maximalist noise, where every digital interface and urban corner competes for our cognitive bandwidth. The second edition of the <em>AI Love You Journal</em>, titled "The Geometry of Silence," is a study in the deliberate reduction of noise to reveal the fundamental essence of a subject.</p>
+                    <p>This theme manifested itself naturally as we curated these pieces. You will find it in our cinematic deep dive, where we contrast the unsettling, off-screen domesticity of Jonathan Glazer’s <em>The Zone of Interest</em> with the absurdist, structured glass-and-steel maze of Jacques Tati’s <em>Playtime</em>. Both films use architecture and sound to tell stories about what remains unseen and unheard, proving that silence is often the loudest tool in a director's arsenal.</p>
+                    <p>In music, we look at the return of Beth Gibbons. Her latest work, <em>Lives Outgrown</em>, is a masterclass in sparse, haunting arrangements that rely on the breath between the notes. We pair this with a retrospective on the Bristol sound (specifically Portishead’s <em>Dummy</em>) to understand how "trip-hop" utilised empty space to create atmospheres of profound emotional weight.</p>
+                    <p>Our design and product spotlights lean into the ultimate philosopher of "less but better," Dieter Rams. We examine the skeletal beauty of his work for Braun, which remains the gold standard for honest, unobtrusive design. This ethos is echoed in our look at Snow Peak’s titanium coffee gear; products that use material science to strip away unnecessary weight, leaving only the essential tools for a ritual in the wild.</p>
+                    <p>In architecture, we travel to Mexico City to experience the quiet brilliance of Luis Barragán. His work is a testament to how light, shadow, and a single solid plane of colour can create a space of spiritual stillness. Finally, in our style section, we analyse the mid-century silhouette of Wong Kar-wai’s <em>In the Mood for Love</em>, where the unspoken tension of the narrative is carried entirely by the impeccable, rigid tailoring of the costumes.</p>
+                    <p>"The Geometry of Silence" is not about emptiness. It is about the clarity that comes when we remove the superfluous. It is about the strength found in a single line, a silent room, or a perfectly balanced cup.</p>
+                    <p>Enjoy the issue.</p>
+                    <div class="editor-signature-block">
+                        <span class="signature-name">Lewis McKinnon</span>
+                        <span class="signature-title">// Founder</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- I. Movies -->
+            <section id="movies" class="section-container">
+                <span class="dept-label">[I. Movies] Structural Depth</span>
+                <h2 class="section-title">The Wall and the Void</h2>
+                <p class="lead-text">From the horrifying domesticity of Jonathan Glazer to the structural comedy of Jacques Tati, we explore how cinema uses space.</p>
+                
+                <div class="body-text">
+                    <p>Cinema is traditionally a medium of action. We expect to see the drama unfold directly before our eyes. Yet, some of the most profound cinematic experiences occur when the camera refuses to look at the primary event, focusing instead on the geometry surrounding it. Jonathan Glazer’s <a href="https://a24films.com/films/the-zone-of-interest" target="_blank"><em>The Zone of Interest</em></a> (2023) is perhaps the most chilling modern example of this "absentee" storytelling.</p>
+                    <p>The film depicts the domestic life of Rudolf Höss, the commandant of Auschwitz, and his wife Hedwig. We see them gardening, hosting pool parties, and fretting over household chores. The horror is entirely off-screen, manifested through a constant, low-frequency industrial hum and the distant, harrowing sounds of the camp. Glazer uses the physical wall of the garden as a geometric barrier to empathy. As critic David Rooney noted for <em>The Hollywood Reporter</em>, the film is "a devastating study of the banality of evil," achieved specifically through its cold, architectural detachment.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/zone_of_interest_new.jpg" alt="The Zone of Interest">
+                    <span class="caption">The unsettlingly manicured garden of the Höss family, where the atrocities of war remain structurally hidden beyond the wall. Source: A24.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>To understand the roots of this structural obsession, we must look back to Jacques Tati’s <a href="https://www.criterion.com/films/790-playtime" target="_blank"><em>Playtime</em></a> (1967). Tati built "Tativille" (a massive, high-budget set of glass and steel) to satirise the dehumanising nature of modern architecture. Unlike Glazer’s horror, Tati finds absurdist comedy in the void. Characters become lost in reflections; doors that appear open are actually panes of glass.</p>
+                    <p>While <em>Playtime</em> is a visual marvel, its true genius lies in its sound design. Tati stripped away natural dialogue, replacing it with hyper-articulated foley: the squeak of a designer chair, the hum of an air conditioner, the clack of heels on linoleum. As film theorist Noël Burch observed, Tati’s world is one where "objects speak louder than people."</p>
+                    <p>Both films use the "geometry of silence" to force a confrontation with our environment. Glazer uses space to show how easily we can build a wall against reality; Tati uses it to show how easily we can be trapped by our own designs. In both cases, the architecture is the protagonist, and the silence is the script.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/playtime_new.jpg" alt="Playtime">
+                    <span class="caption">Monsieur Hulot navigates the transparent, geometric maze of Jacques Tati's modern metropolis. Source: Criterion Collection.</span>
+                </div>
+            </section>
+
+            <!-- II. Music -->
+            <section id="music" class="section-container">
+                <span class="dept-label">[II. Music] Sonic Breath</span>
+                <h2 class="section-title">The Weight of the Breath</h2>
+                <p class="lead-text">Beth Gibbons and the enduring haunting of the Bristol sound prove that the powerful instrument is the space between the notes.</p>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/dummy_new.jpg" alt="Portishead Dummy">
+                    <span class="caption">The cinematic, blue-hued atmosphere that defined Portishead's landmark debut, Dummy. Source: Go! Beat / Portishead.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>In the early 90s, the city of Bristol birthed a sound that was less about rhythm and more about atmosphere. It was dubbed "trip-hop," a label the artists themselves largely detested, but it accurately captured the genre's hazy, downtempo DNA. At the heart of this was Portishead’s <a href="https://www.portishead.co.uk" target="_blank"><em>Dummy</em></a> (1994). The album didn't just feature Beth Gibbons’ haunting vocals; it featured a cavernous, crackling silence.</p>
+                    <p>Fast-forward to 2024, and Beth Gibbons’ solo return with <em>Lives Outgrown</em> feels like the spiritual conclusion to that journey. The album is stripped of the scratching and heavy bass of her youth, replaced by woody, organic arrangements that sound like they were recorded in an ancient forest. The silence here is no longer a stylistic choice; it is a reflection of mortality.</p>
+                    <p>"Gibbons uses her voice as a fraying thread," wrote Laura Snapes for <em>The Guardian</em>. "It’s a record that understands the profound weight of a single, unadorned note." On tracks like "Floating on a Moment," the music frequently drops away entirely, leaving only Gibbons’ vibrato and the ghost of a rhythm.</p>
+                    <p>This mastery of the "breath" is what connects the Bristol sound to the modern avant-garde. It is the understanding that music is not a wall of sound, but a series of invitations. By leaving space, Gibbons and her contemporaries allow the listener to step into the song, providing the emotional resonance that a louder, more crowded production would simply drown out.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/lives_outgrown_new.jpg" alt="Lives Outgrown">
+                    <span class="caption">The intricate, visceral cover art for Beth Gibbons' reflective masterpiece. Source: Domino Recording Co.</span>
+                </div>
+            </section>
+
+            <!-- III. Products -->
+            <section id="products" class="section-container">
+                <span class="dept-label">[III. Products] Titanium Engineering</span>
+                <h2 class="section-title">Titanium Rituals: Snow Peak’s Essential Gear</h2>
+                <div class="body-text">
+                    <p><a href="https://www.snowpeak.com" target="_blank">Snow Peak</a> is often referred to as the "Apple of the outdoors." Based in the Sanjo City region of Niigata Prefecture (a place famed for its metalworking heritage) the brand has built a cult following by applying aerospace-grade engineering to camping equipment. For the coffee enthusiast, Snow Peak represents the ultimate reduction of the ritual: removing the weight of the city to focus on the brew.</p>
+                    <p>Focusing exclusively on dry equipment, their titanium French Press and "Kanpai" bottles are masterpieces of functional design. Titanium is notoriously difficult to work with, but Snow Peak’s craftsmen have mastered the art of welding and shaping it into double-walled vessels that are incredibly strong yet lighter than air.</p>
+                    <p>"Snow Peak gear doesn't just work well; it feels essential," says outdoor gear reviewer Andrew Skurka. "Their coffee gear is about stripping away everything except the heat and the bean. It’s functionalism at its most poetic."</p>
+                </div>
+            </section>
+
+            <!-- IV. Design -->
+            <section id="design" class="section-container">
+                <span class="dept-label">[IV. Design] Dieter Rams Manifesto</span>
+                <h2 class="section-title">The Rams Ethos: Less But Better</h2>
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/snow_peak.jpg" alt="Snow Peak">
+                    <span class="caption">The Snow Peak titanium aesthetic—a masterclass in material strength and minimal weight. Source: Snow Peak.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>If you own an iPhone, you own a piece of Dieter Rams’ legacy. Jony Ive’s work at Apple was a direct homage to the <a href="https://www.vitsoe.com/gb/about/dieter-rams" target="_blank">"Less but Better"</a> (<em>Weniger, aber besser</em>) philosophy Rams established during his tenure at Braun. Rams didn't just design radios and record players; he designed a manifesto for an honest world.</p>
+                </div>
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/braun_sk4_new.jpg" alt="Braun SK4">
+                    <span class="caption">The Braun SK4 record player, famously dubbed "Snow White's Coffin," designed by Dieter Rams and Hans Gugelot (1956). Source: Vitsœ / Braun Archive.</span>
+                </div>
+                <div class="body-text">
+                    <p>The Braun SK4 is the definitive Rams object. It replaced the bulky, ornate wooden cabinets of the 1950s with a sleek white metal casing and a transparent plexiglass lid. It was honest about its function and unobtrusive in its presence.</p>
+                    <p>"Rams taught us that good design is as little design as possible," says design critic Alice Rawsthorn. "He removed the ego from the object, allowing it to serve the user without shouting for attention." In our noise-saturated world, the Rams ethos is more than an aesthetic; it is a necessary form of digital and physical hygiene.</p>
+                </div>
+            </section>
+
+            <!-- V. Architecture -->
+            <section id="architecture" class="section-container">
+                <span class="dept-label">[V. Architecture] Serenity of the Soul</span>
+                <h2 class="section-title">The Stillness of Barragán</h2>
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/casa_barragan_new.jpg" alt="Casa Barragan">
+                    <span class="caption">The play of light and shadow against the iconic solid walls of Casa Luis Barragán in Mexico City. Source: Casa Luis Barragán Archive.</span>
+                </div>
+                <div class="body-text">
+                    <p>Luis Barragán’s architecture is often described as "emotional minimalism." While his European contemporaries were obsessed with the "machine for living," Barragán was focused on the "serenity of the soul." His own home and studio in Mexico City is a UNESCO World Heritage site and a temple to the geometry of silence.</p>
+                    <p>Barragán used thick, solid walls to block out the chaos of the city, creating internal courtyards where the only movement is the play of light. He famously used vibrant pinks, yellows, and oranges; not as decoration, but as structural elements that change throughout the day as the sun moves.</p>
+                    <p>"His work is about the interior life," says architect Tadao Ando. "Barragán understood that a house is not a place to show off, but a place to hide and reflect. He used silence as a building material."</p>
+                </div>
+            </section>
+
+            <!-- VI. Style -->
+            <section id="style" class="section-container">
+                <span class="dept-label">[VI. Style & Fashion] Tailored Restraint</span>
+                <h2 class="section-title">The Tailored Silence</h2>
+                <div class="body-text">
+                    <p>In Wong Kar-wai’s <a href="https://www.criterion.com/films/198-in-the-mood-for-love" target="_blank"><em>In the Mood for Love</em></a> (2000), the two protagonists rarely touch and almost never speak of their feelings. Instead, the narrative tension is held within the rigid, mid-century silhouettes of their clothing. Tony Leung’s flawlessly tailored suits and Maggie Cheung’s high-collared, floral <em>qipaos</em> act as beautiful, stylish armours.</p>
+                    <p>The costumes, designed by William Chang, are masterpieces of structured silence. The rigidity of the <em>qipao</em> collar dictates Maggie Cheung’s posture, making her every movement a study in restraint. As fashion historian Valerie Steele noted, "The clothes in this film don't just dress the characters; they contain them."</p>
+                    <p>This is style at its most potent: when the garment says everything the character cannot. It is the fashion equivalent of a Barragán wall or a Rams radio; a perfect, silent line that defines the entire experience.</p>
+                </div>
+                <div class="media-container">
+                    <img src="assets/journals/edition-02/itmfl_new.jpg" alt="In the Mood for Love">
+                    <span class="caption">Tony Leung and Maggie Cheung in the claustrophobic, impeccably styled corridors of 1960s Hong Kong. Source: Jet Tone / Criterion Collection.</span>
+                </div>
+            </section>
+
+            <!-- VII. Global Five -->
+            <section id="shortlist" class="section-container">
+                <span class="dept-label">[VII. The Global Five]</span>
+                <h2 class="section-title">JOURNAL SHORTLIST</h2>
+                
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Manchester, UK</h4>
+                        <span>12 – 20 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>Beyond the Surface (Exhibition at The Whitworth)</h3>
+                        <p>This curated exhibition explores the minimalist movement in British textile design, highlighting how local artists used industrial materials to create works of profound stillness. Featuring rare archives from the 1960s, the show demonstrates the enduring influence of the "North-west aesthetic" on global minimalism. A must-visit for those interested in the intersection of industrial heritage and contemporary art. <a href="https://www.whitworth.manchester.ac.uk/" target="_blank">whitworth.manchester.ac.uk</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Stockholm, SE</h4>
+                        <span>13 – 30 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>The Sound of Architecture</h3>
+                        <p>An immersive acoustic exhibition at Sweden’s national centre for architecture and design. Visitors are invited to experience "silent rooms" designed by leading Scandinavian architects, exploring how acoustic engineering can be used to combat urban noise pollution. The event features live demonstrations of haptic sound technology and talks from world-renowned acoustic designers. <a href="https://arkdes.se" target="_blank">arkdes.se</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Mexico City, MX</h4>
+                        <span>14 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>Barragán Night Lates</h3>
+                        <p>A rare opportunity to experience Casa Luis Barragán after dark. This exclusive evening tour focuses on the interplay of artificial light and the iconic solid-colour walls, offering a completely different perspective on the "geometry of silence." The evening includes a silent meditation session in the studio and a curated tasting of traditional Mexican spirits. <a href="http://www.casaluisbarragan.org" target="_blank">casaluisbarragan.org</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Tokyo, JP</h4>
+                        <span>15 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>The Art of the Pour (Kappo Ryu Ritual)</h3>
+                        <p>A masterclass in the traditional Japanese "Kappo Ryu" coffee ritual, utilising the precise dry-goods engineering we explored in this edition. Set within the stunning Kengo Kuma-designed Nezu Museum, this session focuses on the meditative aspects of the pour-over process, emphasising the "geometry of the flow." Participants will learn the intricate techniques behind Snow Peak equipment from a master barista. <a href="https://www.nezu-muse.or.jp" target="_blank">nezu-muse.or.jp</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Sydney, AU</h4>
+                        <span>12 – 19 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>Sydney Design Week – Minimalist Futures</h3>
+                        <p>As part of Sydney Design Week, this keynote exhibition focuses on the future of circular, minimalist design in the Southern Hemisphere. Highlighting the work of young Australian designers who are stripping away plastic waste to create essential, durable household objects. The show features a "Dieter Rams retrospective" section, linking European heritage to modern Pacific innovation. <a href="https://www.maas.museum/powerhouse-museum/" target="_blank">maas.museum</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <footer style="margin-top: 10rem; border-top: 1px solid var(--border-color); padding-top: 4rem; text-align: center;">
+                <p style="font-family: var(--font-display); font-size: 0.7rem; color: var(--ink-gray); letter-spacing: 0.2em;">THE LAST WORD: ARCHIVE UPDATED EVERY 72 HOURS.</p>
+            </footer>
+            <div class="editorial-disclaimer" style="margin-top: 8rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.05); opacity: 0.5; font-size: 0.7rem; font-family: var(--font-display); letter-spacing: 0.05em; line-height: 1.6;">
+                AILY Editorial is independent. We received no products or financial affiliation for the items featured in this archive unless explicitly specified.
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Scroll Spy Logic
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section-container');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initial state
+        updateScrollSpy();
+
+        // Initialize Dynamic Sidebar Products
+        if (window.renderFeaturedProductsInJournal) {
+            window.renderFeaturedProductsInJournal(["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence"]);
+        }
+    </script>
+</body>
+
+</html>

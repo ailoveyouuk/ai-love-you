@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio & Legal Support — AI Love You Studio Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .support-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            min-height: 70vh;
+            border-top: 1px solid var(--text-color);
+        }
+
+        /* Support Nav (Left) */
+        .support-nav {
+            padding-top: var(--spacing-md);
+            border-right: 1px solid var(--text-color);
+            position: sticky;
+            top: 100px;
+            align-self: start;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .support-nav button {
+            background: none;
+            border: none;
+            color: var(--ink-gray);
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: none;
+            /* Uses custom cursor */
+            padding: 0.5rem 0;
+            transition: color 0.2s, transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .support-nav button:hover,
+        .support-nav button.active {
+            color: var(--text-color);
+            transform: translateX(10px);
+        }
+
+        .support-nav button.active {
+            font-weight: 700;
+        }
+
+        /* Support Content (Right) */
+        .support-content {
+            padding-top: var(--spacing-md);
+            max-width: 800px;
+        }
+
+        .support-section {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .support-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .support-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            text-transform: uppercase;
+        }
+
+        .support-section h3 {
+            font-size: 1.25rem;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+            font-family: var(--font-body);
+        }
+
+        .support-section p,
+        .support-section ul {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--ink-gray);
+            margin-bottom: 1rem;
+        }
+
+        .support-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .support-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .support-section .meta-date {
+            font-family: monospace;
+            font-size: 0.85rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-lg);
+            display: block;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 768px) {
+            .support-layout {
+                grid-template-columns: 1fr;
+                border-top: none;
+            }
+
+            .support-nav {
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--text-color);
+                padding-bottom: var(--spacing-md);
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .support-nav button {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                background: rgba(14, 14, 16, 0.05);
+                border-radius: 20px;
+            }
+
+            .support-nav button:hover,
+            .support-nav button.active {
+                transform: none;
+                background: var(--text-color);
+                color: var(--bg-color);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="studio-nav">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive">Bag (0)</button>
+        </div>
+    </nav>
+
+    <main class="studio-main">
+        <header class="studio-header" style="margin-bottom: var(--spacing-md);">
+            <h1 class="headline">STUDIO SUPPORT.</h1>
+        </header>
+
+        <section class="support-layout">
+            <!-- Navigation -->
+            <div class="support-nav">
+                <button class="support-link active" data-target="shipping">Shipping & Returns</button>
+                <button class="support-link" data-target="faq">FAQs</button>
+                <button class="support-link" data-target="terms">Terms & Conds</button>
+                <button class="support-link" data-target="privacy">Privacy Policy</button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="support-content">
+
+                <!-- Shipping & Returns -->
+                <div id="shipping" class="support-section active">
+                    <h2>Shipping & Returns</h2>
+
+                    <h3>UK Shipping</h3>
+                    <p>We ship to all UK addresses via Royal Mail or a trusted courier.</p>
+                    <ul>
+                        <li><strong>Processing Time:</strong> Most items are made to order and dispatched within 1-2
+                            working days.</li>
+                        <li><strong>Delivery Time:</strong> Once dispatched, UK delivery typically takes 1–3 working
+                            days.</li>
+                        <li><strong>Shipping Cost:</strong> Free for all UK print orders. For larger hardware goods,
+                            specific shipping terms will be on the product page.</li>
+                    </ul>
+
+                    <h3>International Shipping</h3>
+                    <p>Yes, we ship worldwide.</p>
+                    <ul>
+                        <li><strong>Processing Time:</strong> Orders are made and dispatched within 1-2 working days.
+                        </li>
+                        <li><strong>Delivery Time:</strong> Allow 5–10 working days from dispatch.</li>
+                        <li><strong>Customs & Duties:</strong> Buyer’s responsibility for any import duties/taxes.</li>
+                        <li><strong>Shipping Cost:</strong> From GBP 5.99, calculated at checkout.</li>
+                    </ul>
+
+                    <h3>Returns & Exchanges</h3>
+                    <p>We want you to love what you order — every piece is made with care.</p>
+                    <ul>
+                        <li><strong>Personalised Items:</strong> Non-returnable unless damaged or incorrect.</li>
+                        <li><strong>Damaged Items:</strong> Contact lewis@ailoveyou.uk within 14 days with photos. We'll
+                            replace or refund.</li>
+                        <li><strong>Standard Items:</strong> Return within 14 days of delivery if unused and in original
+                            packaging. Return postage is the buyer's responsibility.</li>
+                    </ul>
+                </div>
+
+                <!-- FAQs -->
+                <div id="faq" class="support-section">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <h3>Where are your products made?</h3>
+                    <p>All of our products are designed and produced in the UK. Our current range focuses on art prints,
+                        alongside a growing selection of small-batch designed goods combining algorithmic design and
+                        tactile finishing.</p>
+
+                    <h3>How long will it take to receive my order?</h3>
+                    <p>Most items are dispatched within 1–2 working days. UK shipping takes an additional 1–3 days. Need
+                        it urgently? Contact us.</p>
+
+                    <h3>What inks and papers do you use for your prints?</h3>
+                    <p>Our art prints are produced using Epson Claria 6-color pigment and dye-based inks. We utilise
+                        Epson Archival Matte, Premium Semigloss, and Premium Glossy papers depending on the specific
+                        series aesthetic.</p>
+
+                    <h3>How long will the prints last?</h3>
+                    <p>When displayed and stored correctly, our prints are made to last indefinitely in archival
+                        storage, and up to 150-180 years behind UV-filtered glass on display.</p>
+
+                    <h3>How are items packaged?</h3>
+                    <p>We pack with care. Prints A3+, A3, A4, A5 are shipped flat in rigid, protective mailers with
+                        corner reinforcement and acid-free interleaving tissue.</p>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div id="terms" class="support-section">
+                    <h2>Terms & Conditions</h2>
+                    <span class="meta-date">Last Updated: 27 October 2025</span>
+
+                    <h3>1. About Us</h3>
+                    <p>AI Love You is a UK-based studio offering high-quality editions and physical goods. Our website
+                        is www.ailoveyou.uk.</p>
+
+                    <h3>2. Pricing & Payment</h3>
+                    <p>All prices are listed in GBP (£) and include VAT (if applicable). We accept payment via secure
+                        processors including Stripe and PayPal.</p>
+
+                    <h3>3. Intellectual Property</h3>
+                    <p>All designs, images, algorithms, logos, and text on this website and in physical products are the
+                        intellectual property of AI Love You and may not be reproduced, copied, or used without written
+                        permission.</p>
+
+                    <h3>4. Liability</h3>
+                    <p>We do our absolute best to ensure our goods are high-quality. We are not liable for indirect or
+                        consequential losses arising from the use of our products.</p>
+
+                    <h3>5. Governing Law</h3>
+                    <p>These terms are governed by the laws of England and Wales.</p>
+                </div>
+
+                <!-- Privacy Policy -->
+                <div id="privacy" class="support-section">
+                    <h2>Privacy Policy</h2>
+                    <span class="meta-date">Last Updated: 27 October 2025</span>
+
+                    <h3>1. Information We Collect</h3>
+                    <p>We may collect your name, email address, delivery address, phone number, and purchase history.
+                        Payment information is securely handled via processors (Stripe/PayPal); we never store your card
+                        details.</p>
+
+                    <h3>2. How We Use Your Information</h3>
+                    <p>To process and deliver orders, respond to inquiries, and provide brand updates (only with
+                        consent).</p>
+
+                    <h3>3. Sharing Your Data</h3>
+                    <p>We do not sell, trade, or rent your data. We share only with necessary payment providers,
+                        delivery partners (e.g., Royal Mail), and legal authorities if required by law.</p>
+
+                    <h3>4. Your Rights</h3>
+                    <p>Under UK data protection laws, you can access the data we hold, request deletions, and withdraw
+                        marketing consent at any time by emailing lewis@ailoveyou.uk.</p>
+
+                    <h3>5. Storage & Cookies</h3>
+                    <p>Your data is stored securely. We use essential cookies to improve your browsing experience.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Dynamic Sub-Footer -->
+        <section class="about-footer">
+            <div class="marquee">
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
+                        SUPPORT</a> //</span>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior
+                    written
+                    permission.</span>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="support.html">Support & Legal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Support Tab Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.support-link');
+            const sections = document.querySelectorAll('.support-section');
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Remove active from all
+                    links.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    // Add active to clicked
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+
+                    // On mobile, scroll up slightly to content
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('.support-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

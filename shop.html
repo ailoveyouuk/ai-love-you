@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive Shop — AI Love You Studio Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav class="studio-nav">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html" class="active">Store</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive">Bag (0)</button>
+        </div>
+    </nav>
+
+    <main class="studio-main" id="v2-test">
+        <header class="studio-header">
+            <h1 class="headline">THE STUDIO STORE.</h1>
+            <p class="sub-headline">Limited-edition art prints. Sorted by conceptual series.</p>
+            <p
+                style="font-family: monospace; font-size: 0.85rem; color: var(--ink-gray); margin-top: var(--spacing-sm); text-transform: uppercase;">
+                Free UK Shipping on prints // Dispatched strictly in 1-2 days.</p>
+        </header>
+
+        <!-- Shop Navigation -->
+        <section class="shop-nav-section">
+            <div class="category-nav" id="categoryNav">
+                <!-- Dynamically populated: ART PRINTS, COFFEE, etc. -->
+            </div>
+            
+            <div class="shop-filters" id="subFilterNav">
+                <!-- Dynamically populated: Series or Types based on category -->
+            </div>
+
+            <div class="search-container" style="position: relative; margin-top: var(--spacing-md); margin-bottom: var(--spacing-xl);">
+                <input type="text" id="productSearch" placeholder="SEARCH BY TAG, SERIES, OR TITLE..." 
+                       style="width: 100%; padding: 1.2rem; background: var(--panel-bg); border: 1px solid var(--border-color); font-family: var(--font-body); font-size: 0.9rem; letter-spacing: 0.05em; outline: none; transition: border-color 0.3s; text-transform: uppercase;">
+            </div>
+        </section>
+
+        <!-- Product Grid Container -->
+        <section class="shop-grid" id="productGrid">
+            <!-- Dynamically populated via JS -->
+        </section>
+
+        <section class="about-footer">
+            <div class="marquee">
+                <span>// PRINTS DESIGNED AND MADE IN THE UK // EPSON CLARIA INKS // ARCHIVAL PAPER //</span>
+                <span>// PRINTS DESIGNED AND MADE IN THE UK // EPSON CLARIA INKS // ARCHIVAL PAPER //</span>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 AI Love You. Archival Studio.</span>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="support.html">Support & Legal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Load Local DB -->
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

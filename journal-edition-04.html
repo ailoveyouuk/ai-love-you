@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edition 04: The Architecture of Light — AI Love You Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=La+Belle+Aurore&family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+    <style>
+        :root {
+            --journal-bg: #ffffff;
+            --journal-text: #000000;
+            --accent-color: #ff5e00; /* Neon Orange */
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--journal-text);
+            overflow-x: hidden;
+        }
+
+        .journal-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .journal-sidebar {
+            border-right: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 4rem;
+        }
+
+        .nav-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--ink-gray);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-link.active {
+            color: #ff5e00;
+            font-weight: 700;
+            padding-left: 1rem;
+            border-left: 2px solid #ff5e00;
+        }
+
+        .nav-subtitle {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-gray);
+            margin-top: 0.25rem;
+            padding-left: 0;
+            transition: all 0.3s ease;
+            line-height: 1.2;
+        }
+
+        .nav-link.active + .nav-subtitle {
+            color: #ff5e00;
+            opacity: 0.8;
+        }
+
+        /* Content Area */
+        .journal-content {
+            padding: 8rem 8% 10rem 8%;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .edition-header {
+            margin-bottom: 8rem;
+        }
+
+        .edition-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #FF4D00;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .edition-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: var(--ink-gray);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .meta-primary {
+            display: flex;
+            gap: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .meta-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .meta-tags span {
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meta-tags span:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .section-container {
+            margin-bottom: 12rem;
+            scroll-margin-top: 5rem;
+        }
+
+        .dept-label {
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #FF4D00;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        h2.section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .lead-text {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1250px;
+        }
+
+        .body-text p {
+            margin-bottom: 2rem;
+        }
+
+        .body-text blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--journal-text);
+        }
+
+        .media-container {
+            margin: 4rem auto;
+            width: 100%;
+            max-width: 1250px;
+        }
+
+        .media-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .caption {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            color: var(--ink-gray);
+            margin-top: 1rem;
+            display: block;
+            text-align: right;
+        }
+
+        /* Shortlist / Global Five Styling */
+        .shortlist-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .shortlist-meta h4 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .shortlist-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .shortlist-content p {
+            font-size: 0.95rem;
+            color: var(--ink-gray);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .journal-layout {
+                grid-template-columns: 1fr;
+                padding-top: var(--nav-height) !important;
+            }
+
+            .journal-sidebar {
+                display: none;
+            }
+
+            .studio-nav {
+                display: flex !important;
+            }
+
+            h1 {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            h2.section-title {
+                font-size: clamp(1.8rem, 6vw, 3rem);
+            }
+
+            .shortlist-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .journal-content {
+                padding: var(--spacing-md) !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="studio-nav" style="display: none;">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html" class="active">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive">Bag (0)</button>
+        </div>
+    </nav>
+
+    <div class="journal-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="journal-sidebar">
+            <div class="sidebar-top">
+                <a href="journal.html" class="nav-link" style="font-weight: 700;">← BACK TO ARCHIVE</a>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#editor-note" class="nav-link active">Editor's Note</a>
+                        <span class="nav-subtitle">Sculpting with Photons</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#movies" class="nav-link">I. Movies</a>
+                        <span class="nav-subtitle">The Shape of Light</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#music" class="nav-link">II. Music</a>
+                        <span class="nav-subtitle">Synths and Shadows</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#products" class="nav-link">III. Products</a>
+                        <span class="nav-subtitle">Woven Photons</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#design" class="nav-link">IV. Design</a>
+                        <span class="nav-subtitle">The Noble Gas</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#architecture" class="nav-link">V. Architecture</a>
+                        <span class="nav-subtitle">Tadao Ando</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#style" class="nav-link">VI. Style & Fashion</a>
+                        <span class="nav-subtitle">The Reflective Edge</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#shortlist" class="nav-link">VII. Global Five</a>
+                        <span class="nav-subtitle">LDN, UK — TYO, JP — PAR, FR — NYC, USA — HBT, AU</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="journal.html" class="nav-link">Archive</a>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="journal-content">
+            <header class="edition-header">
+                <span class="edition-label">THE JOURNAL ARCHIVE // 04</span>
+                <h1>The<br>Architecture<br>of Light</h1>
+                <div class="edition-meta">
+                    <div class="meta-primary">
+                        <span>Published: 18 April 2026</span>
+                        <span>30 Min Read</span>
+                    </div>
+                    <div class="meta-tags">
+                        <span>#LightingDesign</span><span>#Cinematography</span><span>#BladeRunner2049</span><span>#DaftPunk</span><span>#TadaoAndo</span><span>#Neon</span><span>#Akari</span><span>#Cyberpunk</span><span>#RogerDeakins</span><span>#Brutalism</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Editor's Note -->
+            <section id="editor-note" class="section-container">
+                <span class="dept-label">Editor's Note</span>
+                <h2 class="section-title">Sculpting with Photons</h2>
+                <div class="body-text">
+                    <p>We are, at our core, heliotropic creatures. Our circadian rhythms, our psychological well-being, and our spatial awareness are entirely governed by the presence or absence of light. In our previous editions, we have concerned ourselves heavily with the tangible; the heavy board-formed concrete, the hand-hewn wood, the ticking mechanical gear. But there is a parallel, perhaps more potent alchemy in design that relies on something entirely weightless.</p>
+                    <p>Edition 04, titled "The Architecture of Light," is a study in how illumination dictates our emotional and spatial realities. Light is the ultimate editor of the human experience; it decides exactly what we are permitted to see and, crucially, what remains hidden. It is not merely a utility; it is a structural material as vital to a room as the bricks that hold up the walls.</p>
+                    <p>In cinema, we explore the extremes of exposure. We contrast the painstakingly achieved, candlelit naturalism of Stanley Kubrick’s <em>Barry Lyndon</em> (shot with ultra-fast lenses originally designed for NASA) with the hyper-synthetic, neon-drenched volumes of Roger Deakins’ work on <em>Blade Runner 2049</em>. Both films prove that the narrative is not just in the script; it is written directly into the light.</p>
+                    <p>Our music section traces the evolution of the performance spectacle, from the ambient, generative glow of Brian Eno’s installations to the blinding, architectural LED monoliths of Daft Punk’s <em>Alive 2007</em>. These are moments where stagecraft and sound become one.</p>
+                    <p>In product and design, we celebrate the enduring soul of the analogue. We look at Isamu Noguchi’s Akari Light Sculptures, which transform harsh electricity into a warm, organic glow through the magic of Gifu paper. We pair this with a look at the "Neon Renaissance," examining the master glass-benders who are keeping the craft of the noble gas alive in an era of flat, soulless LED screens.</p>
+                    <p>In architecture, we experience the profound, spiritual silence of Tadao Ando’s Church of the Light. And in style, we analyse the rise of technical, reflective fabrics; garments engineered to interact dynamically with the artificial light of the nocturnal city.</p>
+                    <p>"The Architecture of Light" is a reminder that the atmosphere of a room, the tension of a film, or the silhouette of a garment is defined not just by its physical boundaries, but by how it chooses to let the light in.</p>
+                    <p>Enjoy the issue.</p>
+                    <div class="editor-signature-block">
+                        <span class="signature-name">Lewis McKinnon</span>
+                        <span class="signature-title">// Founder</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- I. Movies -->
+            <section id="movies" class="section-container">
+                <span class="dept-label">[I. Movies] The Shape of Light</span>
+                <h2 class="section-title">From Candlewax to Neon</h2>
+                <p class="lead-text">Why the cinematographer is the true architect of the cinematic universe, balancing the warmth of the past with the synthetic glow of the future.</p>
+                
+                <div class="body-text">
+                    <p>To truly understand the narrative power of light in cinema, one must look at the extremes of the medium. The cinematographer’s job is not simply to ensure the exposure is correct; their job is to paint the psychological state of the film using photons. On one end of this spectrum is Stanley Kubrick’s <em>Barry Lyndon</em> (1975). Obsessed with recreating the authentic, unvarnished visual texture of the 18th century, Kubrick and his cinematographer, John Alcott, made a radical decision: they refused to use electric lighting for the film's intimate interior night scenes.</p>
+                    <p>Instead, they embarked on an astonishing technical feat. They acquired three ultra-fast 50mm f/0.7 lenses, originally developed by Carl Zeiss for NASA to photograph the dark side of the moon during the Apollo missions. These lenses had to be heavily modified to fit a standard Mitchell BNC camera. The result is a film illuminated entirely by the flickering, low-temperature warmth of multiple beeswax candles.</p>
+                    <p>The darkness in <em>Barry Lyndon</em> feels incredibly heavy and encroaching, constantly threatening to swallow the characters whole. The actors' faces are painted in a soft, trembling amber that cannot be replicated by synthetic gels. It is an aesthetic of survival, a reminder of an era where light was a precious, finite, and expensive resource. "Kubrick transformed the cinema screen into a living oil painting," says film historian Alexander Walker.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-04/blade_runner_2049_orig.jpg" alt="Blade Runner 2049">
+                    <span class="caption">The synthetic, neon-drenched atmosphere crafted by Roger Deakins, defining the modern sci-fi aesthetic. Source: Alcon Entertainment.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>Today, we see this journey reach its neon zenith in the cinematography of Roger Deakins, specifically in <a href="https://www.warnerbros.com/movies/blade-runner-2049" target="_blank"><em>Blade Runner 2049</em></a> (2017). Here, light is no longer just an illuminant, but a tactile, geometric volume. Deakins used massive, custom-built LED arrays and intense gels to bathe brutalist concrete sets in toxic oranges and sterile blues.</p>
+                    <p>The lighting in <em>2049</em> doesn't just illuminate the actors; it actively alienates them. Consider the sequence set in the irradiated ruins of Las Vegas. Deakins blanketed the set in deep smog and blasted it with a monochromatic orange light. It is beautiful, but it is deeply hostile. As critic Matt Zoller Seitz noted, "The neon doesn't warm the characters; it exposes them. It flattens them against the overwhelming scale of the world."</p>
+                    <p>Where <em>Barry Lyndon</em> uses light to draw people together around a fragile flame, creating a false sense of intimacy, <em>Blade Runner 2049</em> uses it to isolate them in a vast, uncaring, and chemically polluted metropolis. In both cases, the light is the primary narrator, telling a story of human connection or the total lack thereof.</p>
+                </div>
+            </section>
+
+            <!-- II. Music -->
+            <section id="music" class="section-container">
+                <span class="dept-label">[II. Music] Synths and Shadows</span>
+                <h2 class="section-title">The Architecture of the Stage</h2>
+                <p class="lead-text">How electronic music transitioned from the underground shadows to blinding, stadium-sized LED monoliths.</p>
+
+                <div class="body-text">
+                    <p>For decades, live music was a purely auditory experience supplemented by a few rudimentary spotlights. The lights existed simply so the audience could see the human beings playing the instruments. However, with the rise of electronic music (where the "performers" are often stationary figures hunched over synthesisers and laptops) the lighting design had to evolve. It shifted from a supporting role into the primary visual protagonist of the show.</p>
+                    <p>How did electronic music move from the basement to the cathedral? The landmark was the architectural stage design of <a href="https://consequence.net/" target="_blank">Daft Punk’s <em>Alive 2007</em></a> tour. The duo performed inside a massive, pulsating aluminium pyramid mapped with high-density LEDs, flanked by towering triangular matrices. The genius of the show was its absolute synchronicity. The lighting was entirely tied via MIDI and timecode to the music. When the bass dropped, the pyramid didn't just light up; it exploded in blinding, structural white light.</p>
+                    <p>"It wasn't a concert; it was a close encounter of the third kind," wrote music journalist Simon Reynolds. The <em>Alive 2007</em> pyramid proved that electronic music didn't need a charismatic, mic-swinging frontman if the architecture of the stage itself was charismatic. Daft Punk turned light into a percussive instrument, paving the way for the stadium-sized LED monoliths that define modern festivals today.</p>
+                </div>
+                <div class="media-container">
+                    <img src="assets/journals/edition-04/daft_punk_alive_orig.jpg" alt="Daft Punk Alive 2007">
+                    <span class="caption">The legendary LED pyramid stage from Daft Punk's Alive 2007 tour, where light and audio engineering became indistinguishable. Source: Daft Punk Archive / Wikia.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>Contrast this aggressive sensory overload with the work of ambient pioneer Brian Eno. Eno’s audio-visual installations, such as his "Light Boxes," use slow-fading LED systems to create environments of profound, almost religious calm. The light shifts imperceptibly over hours, mirroring his infinite, ambient soundscapes.</p>
+                    <p>Where Daft Punk used light as a shot of adrenaline, commanding the audience to dance, Eno uses it as a sedative, inviting them to meditate. Both approaches represent the pinnacle of modern stagecraft, proving that the architecture of the stage is not just about what is seen, but about the emotional frequency of the photons being emitted.</p>
+                </div>
+            </section>
+
+            <!-- III. Products -->
+            <section id="products" class="section-container">
+                <span class="dept-label">[III. Products] Woven Photons</span>
+                <h2 class="section-title">The Akari Light Sculpture</h2>
+                <p class="lead-text">How Isamu Noguchi married traditional Japanese papercraft with modern electricity to create the ultimate interior ambience.</p>
+
+                <div class="body-text">
+                    <p>The true genius of the Akari, however, lies in its interaction with electricity. The <em>washi</em> paper acts as an "analogue filter." It takes the harsh, clinical, directional light of a modern bulb and scatters it, softening it into a warm, omnidirectional glow.</p>
+                    <p>"The light of Akari is like the light of the sun filtered through the paper of a shoji screen," Noguchi famously stated. By marrying the weightless photon with the ancient heritage of Gifu, Noguchi created a product that doesn't just light a room; it sculpts the atmosphere.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-04/noguchi_akari_orig.png" alt="Noguchi Akari">
+                    <span class="caption">The gentle, diffuse glow of an Akari washi paper light sculpture—a masterclass in softening modern electricity. Source: JACCC / The Noguchi Museum.</span>
+                </div>
+            </section>
+
+            <!-- IV. Design -->
+            <section id="design" class="section-container">
+                <span class="dept-label">[IV. Design] The Noble Gas</span>
+                <h2 class="section-title">The Neon Renaissance</h2>
+                <div class="body-text">
+                    <p>Walk down any major high street in the world today, and you are immediately bombarded by the flat, blinding glare of high-definition LED billboards. They are hyper-efficient, instantly programmable, and entirely devoid of soul. It is precisely because of this sterile, frictionless efficiency that the design world is experiencing a passionate, analogue renaissance of authentic neon.</p>
+                    <p>Neon is an incredibly difficult, stubborn, and unforgiving medium. It cannot be 3D printed or automated. It requires a master glass-bender to heat straight lengths of glass tubing over a ribbon burner, reaching temperatures of 800 degrees Celsius. The glass must be swiftly and accurately bent by hand into typography or shapes before it cools and shatters.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-04/neon_archive_orig.jpg" alt="Neon Archive">
+                    <span class="caption">The undeniable, electric buzz of authentic, hand-bent neon gas tubes inside London's legendary God's Own Junkyard. Source: God's Own Junkyard.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>Once the shape is formed, electrodes are welded to the ends, and the tube is bombarded with high voltage to burn off impurities. Finally, it is pumped full of noble gases; pure neon for a fiery red, or argon mixed with a drop of mercury for a vivid blue. When electrified, the gas becomes a glowing plasma.</p>
+                    <p>It buzzes with a distinct, low-frequency hum. It flickers slightly. It has a physical, three-dimensional depth that a flat LED strip simply can never replicate. "Neon has a warmth and an undeniable physical presence," says Chris Bracey, the late founder of God's Own Junkyard. "It is literally drawing with light in three dimensions. An LED sign tells you a commercial message; a neon sign tells you a story about human effort."</p>
+                </div>
+            </section>
+
+            <!-- V. Architecture -->
+            <section id="architecture" class="section-container">
+                <span class="dept-label">[V. Architecture] Tadao Ando</span>
+                <h2 class="section-title">The Divine Aperture</h2>
+                <div class="body-text">
+                    <p>The Pritzker Prize-winning Tadao Ando is globally celebrated for his absolute mastery of board-formed concrete. His buildings are often described as heavy fortresses. However, Ando’s true primary medium is the light that interacts with the concrete. This philosophy reaches its absolute zenith in his masterpiece, the <a href="https://commons.wikimedia.org/wiki/File:Church_of_Light.JPG" target="_blank">Church of the Light</a> (1989), located outside Osaka.</p>
+                    <p>Built on a strict budget, the church is a simple concrete box, devoid of traditional ornamentation. The altar wall, however, is pierced by a massive cruciform cut. When the congregation sits in the total darkness of the interior, their attention is drawn to this singular aperture.</p>
+                    <p>As the sun moves across the sky, the blinding cross of light travels across the floor and walls, shifting the geometry of the room. Ando uses the total deprivation of light to make the singular introduction of it feel like a profound, spiritual event. He proves that architecture isn't about the walls you build; it's about the holes you leave in them.</p>
+                </div>
+            </section>
+
+            <!-- VI. Style -->
+            <section id="style" class="section-container">
+                <span class="dept-label">[VI. Style & Fashion] The Reflective Edge</span>
+                <h2 class="section-title">Cyberpunk Couture</h2>
+                <div class="body-text">
+                    <p>Historically, fashion was designed for daylight. But the rise of "tech-wear" has birthed a radically new category of style: garments specifically engineered to interact with the artificial light of the nocturnal city. This is style as urban survivalism.</p>
+                    <p>Massimo Osti, the founder of Stone Island, was the pioneer here. He began coating fabrics with thousands of microscopic glass spheres to create his famous "Liquid Reflective" jackets. In standard daylight, these garments appear as muted matte tones. But under the sudden flash of a camera or the sweep of a car's headlights, they ignite into a blinding, iridescent silver glow.</p>
+                    <p>This is style at its most reactive. As designer Errolson Hugh of <a href="https://acrnm.com" target="_blank">Acronym</a> observed, "In the modern city, light is a chaotic material. Your clothes should be able to negotiate with it." The reflective edge is about visibility as performance, a stylistic acknowledgement of our artificial, neon-drenched environment.</p>
+                </div>
+            </section>
+
+            <!-- VII. Global Five -->
+            <section id="shortlist" class="section-container">
+                <span class="dept-label">[VII. The Global Five]</span>
+                <h2 class="section-title">JOURNAL SHORTLIST</h2>
+                
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>London, UK</h4>
+                        <span>18 APR – 30 MAY 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>The Weather Project Retrospective (Tate Modern)</h3>
+                        <p>Icelandic-Danish artist Olafur Eliasson returns to the Turbine Hall with a landmark retrospective. The centrepiece is a massive, artificial sun composed of hundreds of mono-frequency lamps. It is an immersive manipulation of light, mist, and mirrors that challenges the viewer's perception of the horizon and the nature of the atmospheric environment. <a href="https://www.tate.org.uk" target="_blank">tate.org.uk</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Tokyo, Japan</h4>
+                        <span>Ongoing</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>teamLab Borderless – The New Light</h3>
+                        <p>A permanent installation at Tokyo’s Azabudai Hills. Digital light art rendered in millions of programmed LEDs, where the boundary between visitor and artwork is completely dissolved. The space uses advanced light-mapping and motion sensors to create a world that reacts dynamically to the user's presence. <a href="https://www.teamlab.art/e/borderless-azabudai/" target="_blank">teamlab.art</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Paris, France</h4>
+                        <span>19 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>La Nuit de la Lumière (Centre Pompidou)</h3>
+                        <p>A city-wide all-night arts festival dedicated to neon and kinetic light sculpture. The Centre Pompidou’s industrial exterior becomes a canvas for massive projection mapping experiments that highlight the building’s skeletal architecture. Includes late-night talks from light-painting pioneers and neon glass-bending workshops. <a href="https://www.centrepompidou.fr" target="_blank">centrepompidou.fr</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>New York City, USA</h4>
+                        <span>18 APR – 25 MAY 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>James Turrell – The Geometry of Perception</h3>
+                        <p>A site-specific "Skyspace" retrospective at MoMA PS1. James Turrell uses precise architectural apertures to turn the sky itself into a framed, luminous canvas. The exhibition explores Turrell's philosophy of "visual light," forcing the viewer to confront the limits of their own perception in rooms designed for sensory clarity. <a href="https://www.moma.org/ps1" target="_blank">moma.org/ps1</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Hobart, Australia</h4>
+                        <span>20–21 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>The Dark Mofo Preview Sessions (MONA)</h3>
+                        <p>An exclusive preview of Hobart's legendary winter festival. This session explores the psychological contrast between extreme light and absolute darkness. Featuring a sensory-deprivation experiment set in the museum’s subterranean galleries, where participants are led through a series of lightless chambers to experience the "Architecture of the Void." <a href="https://darkmofo.net.au" target="_blank">darkmofo.net.au</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <footer style="margin-top: 10rem; border-top: 1px solid var(--border-color); padding-top: 4rem; text-align: center;">
+                <p style="font-family: var(--font-display); font-size: 0.7rem; color: var(--ink-gray); letter-spacing: 0.2em;">THE LAST WORD: ARCHIVE UPDATED EVERY 72 HOURS. SCULPTING WITH PHOTONS SINCE 2026.</p>
+            </footer>
+            <div class="editorial-disclaimer" style="margin-top: 8rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.05); opacity: 0.5; font-size: 0.7rem; font-family: var(--font-display); letter-spacing: 0.05em; line-height: 1.6;">
+                AILY Editorial is independent. We received no products or financial affiliation for the items featured in this archive unless explicitly specified.
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Scroll Spy Logic
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section-container');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initial state
+        updateScrollSpy();
+
+        // Initialize Dynamic Sidebar Products
+        if (window.renderFeaturedProductsInJournal) {
+            window.renderFeaturedProductsInJournal(["LightingDesign", "Cinematography", "BladeRunner2049", "DaftPunk", "TadaoAndo", "Neon", "Akari", "Cyberpunk", "RogerDeakins", "Brutalism"]);
+        }
+    </script>
+</body>
+
+</html>

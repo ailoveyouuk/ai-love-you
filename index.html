@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Love You — Studio Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=La+Belle+Aurore&family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav class="studio-nav">
+        <!-- Replaced text nav-brand with the handwritten logo image -->
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive" id="global-cart-btn">Bag (0)</button>
+        </div>
+    </nav>
+
+    <main class="studio-main">
+        <header class="studio-header">
+            <h1 class="headline-massive reveal-text"><span>Studio<br>Edition.</span></h1>
+            <p class="sub-headline">British Workshop meets Modern Tech Studio. Archiving the intersection of art and process.</p>
+        </header>
+
+
+
+        <!-- Breakout image (Band 2) -->
+        <section class="akaru-section-full">
+             <div class="akaru-block-img" style="height: 80vh;" onclick="window.location.href='product.html?id=flow-ink-reverie'">
+                 <div class="img-mask"></div>
+                 <div class="akaru-bg" style="background-image: url('assets/products/flow-base.jpg')"></div>
+             </div>
+             <div class="akaru-content" style="padding: var(--spacing-lg);">
+                 <span class="badge">Print Edition</span>
+                 <h2 class="reveal-text"><span>Flow (Ink Reverie)</span></h2>
+             </div>
+        </section>
+
+        <!-- Band 3: Process & Editorial -->
+        <section class="akaru-section">
+            <article class="akaru-block" onclick="window.location.href='about.html'">
+                <div class="akaru-content">
+                    <span class="badge">Studio Process</span>
+                    <h2 class="reveal-text"><span>Man, Daughter & Machine</span></h2>
+                    <p>The AI Love You Origin Story →</p>
+                </div>
+                <div class="akaru-block-img offset-down" style="height: 500px;">
+                    <div class="img-mask"></div>
+                    <div class="akaru-bg" style="background-image: url('assets/journal_process_mockup_1772732957507.png')"></div>
+                </div>
+            </article>
+
+            <article class="akaru-block offset-up" onclick="window.location.href='journal-edition-03.html'">
+                <div class="akaru-block-img" style="height: 600px;">
+                    <div class="img-mask"></div>
+                    <div class="akaru-bg" style="background-image: url('assets/journals/edition-03/the_witch_hd.jpg')"></div>
+                </div>
+                <div class="akaru-content">
+                     <span class="badge" style="color: var(--accent-color); border-color: var(--accent-color);">Latest Journal</span>
+                     <h2 class="reveal-text"><span>Edition 03: The Alchemy of Craft</span></h2>
+                     <p>Mechanical Horology, Peter Zumthor, & Folk Horror.</p>
+                     <p style="margin-top: 1rem; text-decoration: underline; font-size: 0.8rem;">Read Article</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="about-footer">
+            <div class="marquee">
+                <span>// STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL
+                    //</span>
+                <span>// STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL
+                    //</span>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 AI Love You. Archival Studio.</span>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="support.html">Support & Legal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Animation Dependencies -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

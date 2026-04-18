@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — AI Love You Studio Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--ink-gray);
+        }
+
+        .about-text p {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .about-text p.lead {
+            font-size: 1.75rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .about-signoff {
+            margin-top: var(--spacing-lg);
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+            background-color: var(--ink-gray);
+            background-image: url('assets/journal_process_mockup_1772732957507.png');
+            /* Reusing process image as placeholder */
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius);
+            mix-blend-mode: multiply;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .about-image {
+                mix-blend-mode: screen;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .about-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                min-height: 400px;
+                order: -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="studio-nav">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html" class="active">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive" id="global-cart-btn">Bag (0)</button>
+        </div>
+    </nav>
+
+    <main class="studio-main">
+        <header class="studio-header">
+            <h1 class="headline">MAN, DAUGHTER & MACHINE.</h1>
+        </header>
+
+        <section class="about-layout">
+            <div class="about-text">
+                <p class="lead">At AI Love You, we blend the precision of digital technologies with the warmth of human
+                    creativity to create art prints and small-batch physical products with character, permanence, and
+                    purpose.</p>
+
+                <h2>Digital Design. Physical Creation.</h2>
+                <p>We are a small, independent father-and-daughter studio exploring how AI-assisted design, digital
+                    tools, and traditional finishing can come together to create distinctive art prints and thoughtfully
+                    made physical goods.</p>
+                <p>From our origins in Lincolnshire, our studio is now at home in Denton, Northamptonshire. We believe
+                    it is possible to embrace technological innovation while still creating tactile, lasting objects
+                    with real character — from art prints to small-batch goods designed to be used, kept, and
+                    appreciated over time.</p>
+                <p>From generative design to handcrafted finishing, every piece we create is personal, meaningful, and
+                    made to last.</p>
+
+                <div class="about-signoff">
+                    Lewis & Eleonora McKinnon | Founders
+                </div>
+            </div>
+
+            <div class="about-image-container">
+                <div class="about-image"></div>
+            </div>
+        </section>
+
+        <!-- Process Specifications -->
+        <section class="process-grid-section">
+            <h2 class="section-title-sm">Studio Capabilities & Process</h2>
+            <div class="process-grid">
+                <div class="process-card">
+                    <span class="process-number">01</span>
+                    <h3>Drafting & CAD</h3>
+                    <p>From initial sketches to precise 3D modeling, every piece begins with meticulous digital
+                        architecture and design.</p>
+                </div>
+                <div class="process-card">
+                    <span class="process-number">02</span>
+                    <h3>Archival Printing</h3>
+                    <p>Utilizing Epson Claria 6-color systems and premium substrates engineered for incredible color
+                        gamut and longevity.</p>
+                </div>
+                <div class="process-card">
+                    <span class="process-number">03</span>
+                    <h3>3D Fabrication</h3>
+                    <p>Advanced additive manufacturing techniques to realize complex geometries and functional hardware
+                        in physical space.</p>
+                </div>
+                <div class="process-card">
+                    <span class="process-number">04</span>
+                    <h3>Laser Profiling</h3>
+                    <p>Precision cutting and engraving across various materials, transforming digital vectors into
+                        tactile, tangible objects.</p>
+                </div>
+                <div class="process-card">
+                    <span class="process-number">05</span>
+                    <h3>Quality & Finish</h3>
+                    <p>Rigorous inspection and hand-finishing processes to ensure every physical component meets our
+                        exacting studio standards.</p>
+                </div>
+                <div class="process-card">
+                    <span class="process-number">06</span>
+                    <h3>Studio & Packaging</h3>
+                    <p>Hand-packed in Northamptonshire. We consider the careful unboxing experience and protection as
+                        vital as the work itself.</p>
+                    <div class="coordinate-card">
+                        <span class="coord-label">Location: Denton, UK</span>
+                        <span class="coord-value">52°14'06.0"N 0°45'00.0"W</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-footer">
+            <div class="marquee">
+                <span>// STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL
+                    //</span>
+                <span>// STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL
+                    //</span>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior
+                    written
+                    permission.</span>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="support.html">Support & Legal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Love You — Bag</title>
+    <link href="index.css" rel="stylesheet">
+    <style>
+        .cart-container {
+            padding: calc(var(--nav-height) + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        .cart-header {
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .cart-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-image {
+            width: 120px;
+            height: 150px;
+            object-fit: contain;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .cart-item-details {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .cart-item-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .cart-item-variant {
+            color: var(--ink-gray);
+            font-size: 0.9rem;
+            margin-bottom: auto;
+        }
+
+        .cart-item-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--spacing-sm);
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .qty-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            color: var(--text-color);
+            font-family: inherit;
+        }
+
+        .qty-btn:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--ink-gray);
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+            margin-top: var(--spacing-xs);
+            align-self: flex-start;
+        }
+
+        .remove-btn:hover {
+            color: var(--text-color);
+        }
+
+        .cart-summary {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 2px solid var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--spacing-sm);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            font-size: 1.1rem;
+        }
+
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: var(--spacing-sm);
+        }
+
+        .btn-checkout {
+            margin-top: var(--spacing-md);
+            padding: 1rem 3rem;
+            background: var(--text-color);
+            color: var(--bg-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            width: 300px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .btn-checkout:hover {
+            opacity: 0.8;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            color: var(--ink-gray);
+        }
+
+        @media (max-width: 600px) {
+            .cart-item {
+                flex-direction: column;
+            }
+
+            .cart-item-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .cart-summary {
+                align-items: stretch;
+            }
+
+            .summary-row,
+            .btn-checkout {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="studio-nav">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive active" id="global-cart-btn">Bag (0)</button>
+        </div>
+    </nav>
+
+    <main class="cart-container">
+        <header class="cart-header">
+            <h1 class="cart-title">Your Bag</h1>
+        </header>
+
+        <div id="cart-content">
+            <!-- Rendered via JS -->
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartContent = document.getElementById('cart-content');
+
+            function renderCart() {
+                const cartState = JSON.parse(localStorage.getItem('aily_cart_items')) || [];
+
+                if (cartState.length === 0) {
+                    cartContent.innerHTML = `
+                        <div class="empty-state">
+                            <p>Your bag is currently empty.</p>
+                            <br>
+                            <a href="shop.html" style="color: var(--accent-color);">Continue Shopping</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let itemsHtml = '<div class="cart-items">';
+                let subtotal = 0;
+
+                cartState.forEach((item, index) => {
+                    // Filter out legacy unpriced items
+                    const price = item.price || 0;
+                    const itemTotal = price * item.quantity;
+                    subtotal += itemTotal;
+
+                    itemsHtml += `
+                        <div class="cart-item">
+                            ${item.image ? `<img src="${item.image}" alt="${item.title}" class="cart-item-image">` : `<div class="cart-item-image" style="display:flex;align-items:center;justify-content:center;color:var(--ink-gray);font-size:0.8rem;">No Image</div>`}
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-title">${item.title}</h3>
+                                <span class="cart-item-variant">${item.variant}</span>
+                                <button class="remove-btn" data-index="${index}">Remove</button>
+                                
+                                <div class="cart-item-price-row">
+                                    <div class="qty-controls">
+                                        <button class="qty-btn minus" data-index="${index}">-</button>
+                                        <span>${item.quantity}</span>
+                                        <button class="qty-btn plus" data-index="${index}">+</button>
+                                    </div>
+                                    <span>£${itemTotal.toFixed(2)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                itemsHtml += '</div>';
+
+                const summaryHtml = `
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>£${subtotal.toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span>Calculated at checkout</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span>£${subtotal.toFixed(2)}</span>
+                        </div>
+                        <button class="btn-checkout" onclick="alert('Checkout simulator\\n\\nTotal: £${subtotal.toFixed(2)}\\nThis is a demo store.')">Proceed to Checkout</button>
+                    </div>
+                `;
+
+                cartContent.innerHTML = itemsHtml + summaryHtml;
+
+                // Bind events
+                document.querySelectorAll('.qty-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idx = e.target.getAttribute('data-index');
+                        const isPlus = e.target.classList.contains('plus');
+                        if (isPlus) {
+                            cartState[idx].quantity++;
+                        } else {
+                            if (cartState[idx].quantity > 1) {
+                                cartState[idx].quantity--;
+                            }
+                        }
+                        localStorage.setItem('aily_cart_items', JSON.stringify(cartState));
+                        window.cartState = cartState;
+                        renderCart();
+                        if (typeof window.updateCartDisplay === 'function') window.updateCartDisplay();
+                    });
+                });
+
+                document.querySelectorAll('.remove-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idx = e.target.getAttribute('data-index');
+                        cartState.splice(idx, 1);
+                        localStorage.setItem('aily_cart_items', JSON.stringify(cartState));
+                        window.cartState = cartState;
+                        renderCart();
+                        if (typeof window.updateCartDisplay === 'function') window.updateCartDisplay();
+                    });
+                });
+            }
+
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>

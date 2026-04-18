@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edition 03: The Alchemy of Craft — AI Love You Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=La+Belle+Aurore&family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+    <style>
+        :root {
+            --journal-bg: #ffffff;
+            --journal-text: #000000;
+            --accent-color: #ff5e00; /* Neon Orange */
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--journal-text);
+            overflow-x: hidden;
+        }
+
+        .journal-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .journal-sidebar {
+            border-right: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 4rem;
+        }
+
+        .nav-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--ink-gray);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-link.active {
+            color: #ff5e00;
+            font-weight: 700;
+            padding-left: 1rem;
+            border-left: 2px solid #ff5e00;
+        }
+
+        .nav-subtitle {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-gray);
+            margin-top: 0.25rem;
+            padding-left: 0;
+            transition: all 0.3s ease;
+            line-height: 1.2;
+        }
+
+        .nav-link.active + .nav-subtitle {
+            color: #ff5e00;
+            opacity: 0.8;
+        }
+
+        /* Content Area */
+        .journal-content {
+            padding: 8rem 8% 10rem 8%;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .edition-header {
+            margin-bottom: 8rem;
+        }
+
+        .edition-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #FF4D00;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .edition-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: var(--ink-gray);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .meta-primary {
+            display: flex;
+            gap: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .meta-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .meta-tags span {
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meta-tags span:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .section-container {
+            margin-bottom: 12rem;
+            scroll-margin-top: 5rem;
+        }
+
+        .dept-label {
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #FF4D00;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        h2.section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .lead-text {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1250px;
+        }
+
+        .body-text p {
+            margin-bottom: 2rem;
+        }
+
+        .body-text blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--journal-text);
+        }
+
+        .media-container {
+            margin: 4rem auto;
+            width: 100%;
+            max-width: 1250px;
+        }
+
+        .media-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .caption {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            color: var(--ink-gray);
+            margin-top: 1rem;
+            display: block;
+            text-align: right;
+        }
+
+        /* Shortlist / Global Five Styling */
+        .shortlist-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .shortlist-meta h4 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .shortlist-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .shortlist-content p {
+            font-size: 0.95rem;
+            color: var(--ink-gray);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .journal-layout {
+                grid-template-columns: 1fr;
+                padding-top: var(--nav-height) !important;
+            }
+
+            .journal-sidebar {
+                display: none;
+            }
+
+            .studio-nav {
+                display: flex !important;
+            }
+
+            h1 {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            h2.section-title {
+                font-size: clamp(1.8rem, 6vw, 3rem);
+            }
+
+            .shortlist-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .journal-content {
+                padding: var(--spacing-md) !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="studio-nav" style="display: none;">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html" class="active">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive">Bag (0)</button>
+        </div>
+    </nav>
+
+    <div class="journal-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="journal-sidebar">
+            <div class="sidebar-top">
+                <a href="journal.html" class="nav-link" style="font-weight: 700;">← BACK TO ARCHIVE</a>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#editor-note" class="nav-link active">Editor's Note</a>
+                        <span class="nav-subtitle">The Soul of the Machine</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#movies" class="nav-link">I. Movies</a>
+                        <span class="nav-subtitle">Folk Dread</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#music" class="nav-link">II. Music</a>
+                        <span class="nav-subtitle">Improvised Moment</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#products" class="nav-link">III. Products</a>
+                        <span class="nav-subtitle">Laboratory Precision</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#design" class="nav-link">IV. Design</a>
+                        <span class="nav-subtitle">Kinetic Art</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#architecture" class="nav-link">V. Architecture</a>
+                        <span class="nav-subtitle">Material Honesty</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#style" class="nav-link">VI. Style & Fashion</a>
+                        <span class="nav-subtitle">Narrative Accessory</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#shortlist" class="nav-link">VII. Global Five</a>
+                        <span class="nav-subtitle">EDI, UK — BSL, CH — NO, USA — CPH, DK — REY, IS</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="journal.html" class="nav-link">Archive</a>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="journal-content">
+            <header class="edition-header">
+                <span class="edition-label">THE JOURNAL ARCHIVE // 03</span>
+                <h1>The<br>Alchemy<br>of Craft</h1>
+                <div class="edition-meta">
+                    <div class="meta-primary">
+                        <span>Published: 15 April 2026</span>
+                        <span>30 Min Read</span>
+                    </div>
+                    <div class="meta-tags">
+                        <span>#Craftsmanship</span><span>#FolkHorror</span><span>#Jazz</span><span>#Horology</span><span>#Zumthor</span><span>#FellowCoffee</span><span>#MechanicalMovement</span><span>#SteveMcQueen</span><span>#Alchemy</span><span>#Makers</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Editor's Note -->
+            <section id="editor-note" class="section-container">
+                <span class="dept-label">Editor's Note</span>
+                <h2 class="section-title">The Soul of the Machine</h2>
+                <div class="body-text">
+                    <p>In our previous explorations, we have touched upon the weight of routine and the geometry of silence. Today, for our third edition, we arrive at the heart of the "AI Love You" ethos: The Alchemy of Craft. In an age where generative models can conjure imagery and text in milliseconds, what is the value of the slow build? What happens to our relationship with objects when we understand the sweat, the history, and the specific, mechanical failures that make them human?</p>
+                    <p>This issue is an ode to the "makers"; those who refuse the path of least resistance. You will see this in our look at the resurgence of Folk Horror in cinema. We examine how Robert Eggers’ <em>The Witch</em> and Robin Hardy’s <em>The Wicker Man</em> utilise the tactile textures of wood, grain, and ancient ritual to create a fear that feels earned, rooted in the earth rather than the digital jump-scare.</p>
+                    <p>In music, we pivot to the improvisational mastery of jazz. We look at Kamasi Washington’s sprawling modern epics and contrast them with the lightning-in-a-bottle recording of Miles Davis’s <em>Kind of Blue</em>. These are not quantised recordings; they are the sound of human beings listening to one another in real-time, capturing a moment that can never be replicated by an algorithm.</p>
+                    <p>Our design and product spotlights delve into the world of horology and heritage tools. We examine the skeletal beauty of the mechanical watch (a device that keeps time through a series of physical tensions and releases) and celebrate the "dry" engineering of Fellow, whose coffee hardware brings laboratory-grade precision to the domestic kitchen.</p>
+                    <p>In architecture, we explore the concept of "Material Honesty" through the work of Peter Zumthor. His buildings, particularly the Therme Vals, are not just structures; they are sensory experiences where the weight of the stone and the temperature of the water are the primary architects. Finally, in style, we look at the cinematic history of the "Timepiece"; how watches in films like <em>Interstellar</em> and <em>Le Mans</em> are more than accessories; they are conduits of memory and high-stakes performance.</p>
+                    <p>"The Alchemy of Craft" is about the transformation of raw material into something spiritual through the application of human time. It is a reminder that while AI can simulate the result, only craft can provide the soul.</p>
+                    <p>Enjoy the issue.</p>
+                    <div class="editor-signature-block">
+                        <span class="signature-name">Lewis McKinnon</span>
+                        <span class="signature-title">// Founder</span>
+                    </div>
+                </div>
+
+                <div class="editorial-disclaimer" style="margin-top: 8rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.05); opacity: 0.5; font-size: 0.7rem; font-family: var(--font-display); letter-spacing: 0.05em; line-height: 1.6;">
+                    AILY Editorial is independent. We received no products or financial affiliation for the items featured in this archive unless explicitly specified.
+                </div>
+            </section>
+
+            <!-- I. Movies -->
+            <section id="movies" class="section-container">
+                <span class="dept-label">[I. Movies] Folk Dread</span>
+                <h2 class="section-title">The Texture of Terror: The Folk Horror Revival</h2>
+                <p>The "New Folk Horror" isn't about jump scares; it's about the texture of the soil. From the board-formed concrete of <a href="https://a24films.com/films/the-witch" target="_blank">Robert Eggers’ <em>The Witch</em></a> to the hand-hewn wood of the Folk Revival, we explore why cinema is returning to the earth.</p>
+                
+                <div class="body-text">
+                    <p>Modern horror has spent much of the last decade trapped in the digital realm; found footage, haunted social media feeds, and CGI-heavy spectres. However, a significant counter-current has emerged, dragging the genre back to the damp, unforgiving earth. This is the Folk Horror revival. It is a cinema of isolation, ancient tradition, and, most importantly, tactile reality.</p>
+                    <p>Robert Eggers’ <a href="https://a24films.com/films/the-witch" target="_blank"><em>The Witch</em></a> (2015) is the definitive text of this movement. Eggers’ obsession with historical accuracy (building sets with period-correct tools and using only natural light) creates a film that you can practically smell. The horror doesn't come from a masked killer, but from the grain of the wood, the thickness of the wool, and the oppressive silence of the New England wilderness. As Mark Kermode noted, "It is a film that feels less like a movie and more like a recovered artefact."</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-03/the_witch_hd.jpg" alt="The Witch">
+                    <span class="caption">Anya Taylor-Joy in The Witch (2015). Meticulous historical accuracy and hand-hewn production design. Source: A24.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>To understand the lineage of this dread, we must return to the "Unholy Trinity" of British Folk Horror, specifically Robin Hardy’s <a href="https://www.bfi.org.uk/news/where-begin-folk-horror" target="_blank"><em>The Wicker Man</em></a> (1973). Here, the alchemy of craft is literal. The film builds towards a climactic ritual that is as much an architectural feat as a pagan sacrifice. The horror lies in the community’s collective commitment to the old ways; a commitment expressed through costume, song, and the construction of the titular giant.</p>
+                    <p>Both films reject the frictionless jump-scare in favour of a slow-burn atmospheric pressure. They suggest that the past is never truly gone; it is buried in the soil, waiting for us to dig it up. By focusing on the material reality of these ancient worlds, Eggers and Hardy create a fear that is heavy, physical, and profoundly enduring.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-03/wicker_man_hd.jpg" alt="The Wicker Man">
+                    <span class="caption">The towering construction of the Wicker Man—the ultimate symbol of communal craft and ritual. Source: BFI / British Lion Films.</span>
+                </div>
+            </section>
+
+            <!-- II. Music -->
+            <section id="music" class="section-container">
+                <span class="dept-label">[II. Music] Improvised Moment</span>
+                <h2 class="section-title">The Improvised Moment: Jazz and the Art of Listening</h2>
+                <p>Improvisation is the ultimate form of presence. We look at <a href="https://www.kamasiwashington.com" target="_blank">Kamasi Washington</a> and how his cosmic jazz revival mirrors the modal explorations of <a href="https://www.milesdavis.com" target="_blank">Miles Davis</a>, where the most important note is the one you didn't see coming.</p>
+
+                <div class="body-text">
+                    <p>In a music industry increasingly defined by "Autotune" and "Snap-to-Grid" production, Jazz remains the ultimate bastion of the unscripted. It is the alchemy of a group of musicians transforming a simple melody into a complex emotional journey through sheer collective intuition. It is the sound of craft in its most fluid state.</p>
+                    <p>Kamasi Washington’s <a href="https://www.kamasiwashington.com" target="_blank"><em>Fearless Movement</em></a> (2024) is a testament to the modern power of this genre. Washington’s music is maximalist and epic, yet it never feels programmed. You can hear the individual fingerprints of the musicians; the specific vibrato of the saxophone, the slightly "behind the beat" feel of the drums. It is a record that breathes.</p>
+                </div>
+
+                <div class="media-container">
+                    <img src="assets/journals/edition-03/kamasi_hd.jpg" alt="Kamasi Washington">
+                    <span class="caption">The powerful album art for Kamasi Washington's Fearless Movement (2024). Source: Young / Kamasi Washington.</span>
+                </div>
+
+                <div class="body-text">
+                    <p>We contrast this with the most famous jazz recording of all time: Miles Davis’s <em>Kind of Blue</em> (1959). Recorded in just two sessions with almost no rehearsal, the album is a miracle of spontaneous craft. Davis gave the musicians sketches of melodies rather than full scores, forcing them to listen to one another with a heightened, almost telepathic intensity.</p>
+                    <p>"It’s the sound of people thinking out loud," wrote Fred Kaplan in <em>Slate</em>. The imperfections (the slight squeak of a reed, the resonance of the room) are what give the album its eternal life. It is a reminder that in the search for perfection, we often lose the truth. Jazz is the craft of finding the truth in the moment.</p>
+                </div>
+            </section>
+
+            <!-- III. Products -->
+            <section id="products" class="section-container">
+                <span class="dept-label">[III. Products] Laboratory Precision</span>
+                <h2 class="section-title">Precision in the Pour: The Fellow Aesthetic</h2>
+                <div class="body-text">
+                    <p>If Japan represents the minimalist geometry of coffee, San Francisco’s Fellow represents the high-tech alchemy of the ritual. Fellow has managed to do something rare: create products that look like modern art but perform like laboratory instruments. Their focus is on "dry" equipment (kettles, grinders, and canisters) that prioritise the user's sensory experience.</p>
+                </div>
+                <div class="media-container">
+                    <img src="assets/journals/edition-03/stagg_ekg_hd.webp" alt="Fellow Stagg EKG">
+                    <p>The home barista movement has found its holy grail in the <a href="https://fellowproducts.com" target="_blank">Fellow Stagg EKG</a>. Precision temperature control meets a counterbalanced gooseneck spout, making the pour an act of architectural engineering.</p>
+                    <span class="caption">The Fellow Stagg EKG Kettle—a definitive blend of counterbalanced ergonomics and digital precision. Source: Fellow Products.</span>
+                </div>
+                <div class="body-text">
+                    <p>The Stagg EKG electric kettle is the brand’s flagship. Its defining feature (besides the PID-controlled temperature accuracy) is the counterbalanced handle. It is designed to shift the centre of gravity back towards your hand, allowing for a slower, more controlled pour without strain.</p>
+                    <p>"Fellow understands that coffee is a hobby of variables," says gear expert Brian Beyke. "By making the equipment more precise, they allow the user to focus on the craft of the extraction." Their Ode Grinder follows the same logic, stripping away the "all-purpose" clutter to focus entirely on the brewed coffee experience.</p>
+                </div>
+            </section>
+
+            <!-- IV. Design -->
+            <section id="design" class="section-container">
+                <span class="dept-label">[IV. Design] Kinetic Art</span>
+                <h2 class="section-title">The Ticking Heart: The Revival of Mechanical Horology</h2>
+                <div class="body-text">
+                    <p>A mechanical watch is a redundant object. Your phone keeps better time; your smartwatch tracks your heart rate. And yet, the industry is booming. Why? Because a mechanical watch is a miracle of micro-engineering; a tiny, ticking ecosystem of springs, gears, and levers that requires no battery, only the movement of your wrist or a daily wind.</p>
+                    <p>The appeal is purely haptic. To wind a watch is to engage in a direct dialogue with the machine. You feel the resistance of the mainspring; you hear the rapid "heartbeat" of the escapement. It is the alchemy of craft at its most concentrated.</p>
+                    <p>"A mechanical watch is an emotional purchase," says Wei Koh, founder of <em>The Rake</em>. "It is a connection to a lineage of watchmaking that stretches back centuries. It is an object that can be passed down, unlike a piece of disposable tech." In the face of planned obsolescence, the mechanical watch is a defiant statement of permanence.</p>
+                </div>
+                <div class="media-container">
+                    <img src="assets/journals/edition-03/watch_movement_hd.jpg" alt="Watch Movement">
+                    <span class="caption">Micro-engineering as a form of kinetic art. A high-resolution look into mechanical movement. Source: Sinn / F.P. Journe Archive.</span>
+                </div>
+            </section>
+
+            <!-- V. Architecture -->
+            <section id="architecture" class="section-container">
+                <span class="dept-label">[V. Architecture] Material Honesty</span>
+                <h2 class="section-title">Peter Zumthor and the Sensory Stone</h2>
+                <div class="media-container">
+                    <img src="assets/journals/edition-03/therme_vals_hd.jpg" alt="Therme Vals">
+                    <span class="caption">The monolithic quartzite interiors of the Therme Vals—where material honesty is the primary architect. Source: 7132 Therme / Peter Zumthor.</span>
+                </div>
+                <div class="body-text">
+                    <p>Peter Zumthor is the monk of modern architecture. He takes very few commissions, works from a remote village in the Swiss Alps, and is obsessed with the "presence" of materials. His most famous work, the Therme Vals, is the ultimate example of material honesty.</p>
+                    <p>Built from 60,000 slabs of local quartzite, the spa is carved into the mountainside. Zumthor doesn't use the stone as a facade; he uses it as a structural truth. The building is designed to be experienced through the senses: the sound of water echoing off the stone, the smell of the minerals, the tactile sensation of the rock against your skin.</p>
+                    <p>"Zumthor’s buildings are about silence and light," says critic Rowan Moore. "He creates spaces that force you to be present." By stripping away the ego of modern "starchitecture," Zumthor allows the raw materials to speak, creating a space of profound, elemental craft.</p>
+                </div>
+            </section>
+
+            <!-- VI. Style -->
+            <section id="style" class="section-container">
+                <span class="dept-label">[VI. Style & Fashion] Narrative Accessory</span>
+                <h2 class="section-title">The Cinematic Watch</h2>
+                <div class="body-text">
+                    <p>In cinema, a watch is rarely just a tool for telling the time. It is a narrative device; a symbol of high-stakes performance, a conduit for memory, or a mark of character. Consider the TAG Heuer Monaco on Steve McQueen's wrist in <em>Le Mans</em> (1971). The watch’s square case and avant-garde design perfectly captured the "cool under pressure" persona of the racing driver.</p>
+                    <p>More recently, in Christopher Nolan’s <em>Interstellar</em> (2014), a Hamilton watch (the 'Murph') becomes the literal bridge between dimensions. The watch is the vessel for the protagonist's data, transmitted through time via the Morse code ticking of the second hand.</p>
+                    <p>Style in these films is not about the latest trend; it is about the "Alchemy of Craft"; how a physical object can carry the weight of a story. A well-chosen watch in a film tells the audience exactly who the character is before they even speak. It is the ultimate expression of character-driven style.</p>
+                </div>
+                <div class="media-container">
+                    <img src="assets/journals/edition-03/mcqueen_hd.jpg" alt="Steve McQueen">
+                    <span class="caption">Steve McQueen in Le Mans (1971), cementing the TAG Heuer Monaco as a cinematic and horological icon. Source: Cinema Retro / TAG Heuer.</span>
+                </div>
+            </section>
+
+            <!-- VII. Global Five -->
+            <section id="shortlist" class="section-container">
+                <span class="dept-label">[VII. The Global Five]</span>
+                <h2 class="section-title">JOURNAL SHORTLIST</h2>
+                
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Edinburgh, UK</h4>
+                        <span>15 – 30 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>The Craft of the Grain (Exhibition at the Dovecot Studios)</h3>
+                        <p>This exhibition celebrates the resurgence of traditional woodcraft and tapestry in contemporary Scottish art. Highlighting the work of artisans who utilise hand-hewn techniques to create furniture and textiles that reflect the rugged landscape of the Highlands. The show includes live weaving demonstrations and a workshop on traditional "dry-stone" walling techniques. <a href="https://dovecotstudios.com/" target="_blank">dovecotstudios.com</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Basel, CH</h4>
+                        <span>16 – 20 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>Time Evolved – A Horological Journey</h3>
+                        <p>An exclusive look into the archives of mechanical watchmaking. This one-day event features "master-watchmaker" sessions where visitors can observe the delicate assembly of a grand complication movement under a microscope. The event explores the history of Swiss craft and its survival in the digital age. <a href="https://www.patek.com/en/company/patek-philippe-museum" target="_blank">patek.com</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>New Orleans, US</h4>
+                        <span>16 – 19 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>French Quarter Festival – Jazz Finale</h3>
+                        <p>The finale of one of the world's greatest free music festivals. This weekend features a primary spotlight on the "improvisational craft" of New Orleans brass bands and contemporary jazz ensembles. Expect unscripted street performances and legendary late-night jam sessions in the city's historic jazz clubs. <a href="https://frenchquarterfest.org/" target="_blank">frenchquarterfest.org</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Copenhagen, DK</h4>
+                        <span>17 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>The Hygge of Coffee (Design Workshop)</h3>
+                        <p>A collaboration between Danish design house HAY and specialty coffee roasters. This workshop focuses on the "design of the ritual," exploring how the ergonomics of products (like Fellow and Kinto) contribute to the atmosphere of a space. Includes a comparative tasting and a lecture on "Functionalist Aesthetics in the Domestic Kitchen." <a href="https://hay.dk/" target="_blank">hay.dk</a></p>
+                    </div>
+                </div>
+
+                <div class="shortlist-item">
+                    <div class="shortlist-meta">
+                        <h4>Reykjavík, IS</h4>
+                        <span>18 APR 2026</span>
+                    </div>
+                    <div class="shortlist-content">
+                        <h3>Brutalism and the Landscape (Architectural Walk)</h3>
+                        <p>A guided architectural walking tour exploring Reykjavík’s unique relationship with concrete and raw stone. The tour highlights the work of Guðjón Samúelsson and modern Nordic Brutalists, focusing on how these heavy, monolithic structures are designed to withstand the Arctic environment through pure material strength. <a href="https://visitreykjavik.is/" target="_blank">visitreykjavik.is</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <footer style="margin-top: 10rem; border-top: 1px solid var(--border-color); padding-top: 4rem; text-align: center;">
+                <p style="font-family: var(--font-display); font-size: 0.7rem; color: var(--ink-gray); letter-spacing: 0.2em;">THE LAST WORD: THE NEXT EDITION OF THE AI LOVE YOU JOURNAL WILL BE PUBLISHED IN THREE DAYS.</p>
+            </footer>
+            <div class="editorial-disclaimer" style="margin-top: 8rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.05); opacity: 0.5; font-size: 0.7rem; font-family: var(--font-display); letter-spacing: 0.05em; line-height: 1.6;">
+                AILY Editorial is independent. We received no products or financial affiliation for the items featured in this archive unless explicitly specified.
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Scroll Spy Logic
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section-container');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initial state
+        updateScrollSpy();
+
+        // Initialize Dynamic Sidebar Products
+        if (window.renderFeaturedProductsInJournal) {
+            window.renderFeaturedProductsInJournal(["Craftsmanship", "FolkHorror", "Jazz", "Horology", "Zumthor", "FellowCoffee", "MechanicalMovement", "SteveMcQueen", "Alchemy", "Makers"]);
+        }
+    </script>
+</body>
+
+</html>

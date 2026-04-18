@@ -1,0 +1,8 @@
+.DS_Store
+.gemini/
+.agents/
+node_modules/
+*.log
+aily-website-backup.zip
+mobilebasic/
+assets/products/Prints/

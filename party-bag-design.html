@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Pop Demon Hunters Party Bag Design</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        :root {
+            --primary-bg: #ffffff;
+            --text-color: #333;
+            --accent-color: #ff69b4; /* K-Pop Pink */
+            --secondary-accent: #00ced1; /* K-Pop Blue */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        .controls {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-print {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-print:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+
+        /* Bag Container */
+        .bag-preview {
+            width: 5.5in;
+            height: 8.5in;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0.5in;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .birthday-text {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Print Media Queries */
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+            }
+
+            .controls {
+                display: none;
+            }
+
+            .bag-preview {
+                border: none;
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Ensure image prints well */
+            img {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Info section */
+        .info {
+            max-width: 600px;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <span>Ready to test the print?</span>
+        <button class="btn-print" onclick="window.print()">Print Design</button>
+    </div>
+
+    <!-- The actual bag design -->
+    <div class="bag-preview">
+        <div class="logo-container">
+            <img src="k-pop-demon-hunters-logo.png" alt="K Pop Demon Hunters Logo">
+        </div>
+        <!-- You can uncomment this if you want to add a name manually later -->
+        <!-- <div class="birthday-text">Happy 6th Birthday!</div> -->
+    </div>
+
+    <div class="info">
+        <p><strong>Pro-Tip:</strong> Use the "Scale" setting in your printer dialog to adjust the logo size perfectly for your specific bags. This design is centered and optimized for standard white paper party bags.</p>
+    </div>
+
+</body>
+</html>

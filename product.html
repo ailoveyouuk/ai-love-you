@@ -1,0 +1,507 @@
+<!-- 
+  AI LOVE YOU — MASTER PRODUCT TEMPLATE 
+  Standardized: April 2026
+  
+  ARCHITECTURE:
+  - This file is a data-driven rendering engine.
+  - It consumes product metadata from 'products.js' via the 'id' URL parameter.
+  - Styles are governed globally by 'index.css' for architectural consistency.
+  
+  VERTICAL RHYTHM STANDARDS:
+  - 100px top-buffer for fixed-nav clearance.
+  - 20px buffer below intro text for the navigation pill.
+  - Standardized 150px gap from interaction cues to the image grid.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Love You — The Studio Store</title>
+    <link href="index.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="products.js"></script>
+    <script src="assets/journals/journalData.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <nav class="studio-nav">
+        <a href="index.html" class="nav-brand-link"><img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You" class="nav-logo"></a>
+        <div class="nav-links">
+            <a href="shop.html" class="active">Store</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-action">
+            <button class="btn-archive" id="global-cart-btn">Bag (0)</button>
+        </div>
+    </nav>
+
+    <main class="pdp-container" id="pdp-target">
+        <!-- Rendered via JS -->
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const target = document.getElementById('pdp-target');
+
+            if (!productId || typeof products === 'undefined') {
+                target.innerHTML = '<h2>Edition not found.</h2><a href="shop.html" style="color:var(--accent-color);">Return to Store</a>';
+                return;
+            }
+
+            const product = products.find(p => p.id === productId);
+
+            if (!product) {
+                target.innerHTML = '<h2>Edition not found.</h2><a href="shop.html" style="color:var(--accent-color);">Return to Store</a>';
+                return;
+            }
+
+            // State for variants
+            let activeDesignVariantIndex = 0;
+            let currentDesignVariant = product.designVariants ? product.designVariants[activeDesignVariantIndex] : null;
+            let images = currentDesignVariant ? currentDesignVariant.images : (product.images && product.images.length > 0 ? product.images : [product.image]);
+
+            // ---- Helper Functions ----
+
+            function renderPurchaseBlock(prod, activeIndex, suffix) {
+                const priceVariants = prod.priceVariants || { "A3+": 45 };
+                const firstPrice = Object.values(priceVariants)[0];
+                return `
+                    <div class="pdp-purchase-block" id="purchase-block-${suffix}">
+                        ${prod.designVariants ? `
+                            <div class="pdp-purchase-row">
+                                <span class="pdp-purchase-label">Edition</span>
+                                <div class="pdp-variants design-selector">
+                                    ${prod.designVariants.map((dv, i) => 
+                                        `<button class="variant-pill-subtle ${i === activeIndex ? 'active' : ''}" data-design-index="${i}">${dv.name}</button>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <div class="pdp-purchase-row">
+                            <span class="pdp-purchase-label">Format</span>
+                            <div class="pdp-variants size-selector">
+                                ${Object.keys(priceVariants).map((key, i) => 
+                                    `<button class="variant-pill-subtle ${i === 0 ? 'active' : ''}" data-price="${priceVariants[key]}">${key}</button>`
+                                ).join('')}
+                            </div>
+                        </div>
+
+                        <div class="pdp-purchase-row">
+                            <span class="pdp-purchase-label">Quantity</span>
+                            <div class="pdp-qty-selector">
+                                <button class="pdp-qty-btn minus" aria-label="Decrease quantity">−</button>
+                                <span class="pdp-qty-display">1</span>
+                                <button class="pdp-qty-btn plus" aria-label="Increase quantity">+</button>
+                            </div>
+                        </div>
+
+                        <div class="pdp-purchase-row">
+                            <div class="pdp-price price-display" style="font-size: 3.5rem; font-weight: 800; margin: 0; color: var(--text-color); letter-spacing: -0.05em;">£${firstPrice}</div>
+                        </div>
+
+                        <button class="btn-pill-red pdp-add-btn" data-id="${prod.id}" style="width: 100%;">Add to Bag</button>
+                    </div>
+                `;
+            }
+
+            const renderShowcaseGrid = () => {
+                const gridContainer = document.getElementById('variant-showcase-container');
+                if (!gridContainer) return;
+                
+                // Map to the sequence (Artwork | Wall Mounted | Size Comparison)
+                const slots = [
+                    { img: images[0] || product.image, label: 'Base Artwork' },
+                    { img: images[1] || images[0] || product.image, label: 'Wall Mounted' },
+                    { img: images[2] || images[0] || product.image, label: 'Size Comparison' }
+                ];
+
+                const hasVariants = product.designVariants && product.designVariants.length > 1;
+                
+                // Row 1: The Images
+                const imagesHtml = slots.map((slot, i) => `
+                    <div class="pdp-variant-frame">
+                        <div class="pdp-variant-img-box" style="padding: 0; background: transparent; border: none; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; width: 100%;">
+                            <img src="${slot.img}" alt="${slot.label}" 
+                                 style="width: 100%; height: 100%; object-fit: contain; padding: 2rem; background: var(--bg-color);">
+                        </div>
+                    </div>
+                `).join('');
+
+                // Row 2: The Pills (Only if variants exist)
+                const pillsHtml = hasVariants ? slots.map((slot, i) => `
+                    <div class="pdp-grid-pill-nav">
+                        ${product.designVariants.map((dv, dvIdx) => `
+                            <button class="pdp-grid-pill ${dvIdx === activeDesignVariantIndex ? 'active' : ''}" 
+                                    onclick="window.selectVariantGlobal(${dvIdx})">
+                                ${dv.name}
+                            </button>
+                        `).join('')}
+                    </div>
+                `).join('') : '';
+
+                // Update container row layout based on content
+                gridContainer.style.gridTemplateRows = hasVariants ? 'auto auto' : '1fr';
+                gridContainer.innerHTML = imagesHtml + pillsHtml;
+            };
+
+            window.selectVariantGlobal = (index) => {
+                const designSelectors = document.querySelectorAll('.design-selector .variant-pill-subtle');
+                const firstSelectorMatch = Array.from(designSelectors).find(btn => parseInt(btn.getAttribute('data-design-index')) === index);
+                if (firstSelectorMatch) firstSelectorMatch.click();
+            };
+
+            const attachEventListeners = () => {
+                const allPriceDisplays = document.querySelectorAll('.price-display');
+                
+                // Sync Size Selectors
+                const sizeSelectors = document.querySelectorAll('.size-selector');
+                sizeSelectors.forEach(container => {
+                    const btns = container.querySelectorAll('.variant-pill-subtle');
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const activeSizeBtn = btn;
+                            let selectedPrice = activeSizeBtn ? activeSizeBtn.getAttribute('data-price') : (Object.values(product.priceVariants || { "A3+": 45 })[0]);
+                            const selectedSize = activeSizeBtn ? activeSizeBtn.innerText : 'Unknown';
+                             
+                            document.querySelectorAll('.size-selector .variant-pill-subtle').forEach(b => {
+                                if (b.innerText === selectedSize) b.classList.add('active');
+                                else b.classList.remove('active');
+                            });
+                             
+                            updatePriceDisplays(selectedPrice);
+                        });
+                    });
+                });
+
+                // Quantity Logic
+                let selectedQuantity = 1;
+                const updatePriceDisplays = (unitPrice) => {
+                    const total = (parseFloat(unitPrice) * selectedQuantity);
+                    allPriceDisplays.forEach(pd => pd.innerText = '£' + total);
+                };
+
+                document.querySelectorAll('.pdp-qty-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const isPlus = btn.classList.contains('plus');
+                        if (isPlus) {
+                            selectedQuantity++;
+                        } else {
+                            if (selectedQuantity > 1) selectedQuantity--;
+                        }
+                         
+                        document.querySelectorAll('.pdp-qty-display').forEach(d => d.innerText = selectedQuantity);
+                         
+                        const activeSizeBtn = document.querySelector('.size-selector .variant-pill-subtle.active');
+                        const unitPrice = activeSizeBtn ? activeSizeBtn.getAttribute('data-price') : (Object.values(product.priceVariants || { "A3+": 45 })[0]);
+                        updatePriceDisplays(unitPrice);
+                    });
+                });
+
+                // Sync Design Selectors
+                const designSelectors = document.querySelectorAll('.design-selector');
+                designSelectors.forEach(container => {
+                    const btns = container.querySelectorAll('.variant-pill-subtle');
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const idx = parseInt(btn.getAttribute('data-design-index'));
+                            if (idx === activeDesignVariantIndex) return;
+
+                            activeDesignVariantIndex = idx;
+                            currentDesignVariant = product.designVariants[idx];
+                            images = currentDesignVariant.images;
+                            
+                            document.querySelectorAll('.design-selector .variant-pill-subtle').forEach(b => {
+                                if (parseInt(b.getAttribute('data-design-index')) === idx) b.classList.add('active');
+                                else b.classList.remove('active');
+                            });
+
+                            const gridContainer = document.getElementById('variant-showcase-container');
+                            if (gridContainer) {
+                                gsap.to(gridContainer, {
+                                    opacity: 0,
+                                    duration: 0.3,
+                                    onComplete: () => {
+                                        renderShowcaseGrid();
+                                        gsap.to(gridContainer, { opacity: 1, duration: 0.4 });
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+
+                // Add to Bag (All Buttons)
+                document.querySelectorAll('.pdp-add-btn').forEach(addBtn => {
+                    addBtn.addEventListener('click', () => {
+                        const activeSizeBtn = document.querySelector('.size-selector .variant-pill-subtle.active');
+                        const activeDesignBtn = document.querySelector('.design-selector .variant-pill-subtle.active');
+                        
+                        const sizeVariant = activeSizeBtn ? activeSizeBtn.innerText : 'Default';
+                        const designVariantName = activeDesignBtn ? activeDesignBtn.innerText : '';
+                        const variantString = designVariantName ? `${designVariantName} Edition - ${sizeVariant}` : sizeVariant;
+                        
+                        const price = activeSizeBtn ? activeSizeBtn.getAttribute('data-price') : (Object.values(product.priceVariants)[0]);
+                        const coverImg = images[0];
+
+                        if (typeof window.addToArchiveFeedback === 'function') {
+                            window.addToArchiveFeedback(addBtn, {
+                                id: product.id,
+                                title: product.title,
+                                variant: variantString,
+                                price: parseFloat(price),
+                                image: coverImg,
+                                quantity: selectedQuantity
+                            });
+                        }
+                    });
+                });
+                
+                const scrollBtn = document.getElementById('scroll-to-gallery');
+                if (scrollBtn) {
+                    scrollBtn.addEventListener('click', () => {
+                        const gallery = document.getElementById('variant-showcase-container');
+                        if (gallery) gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
+                }
+            };
+
+            const renderSimilarProducts = (currentProd) => {
+                const similarGrid = document.getElementById('similar-grid');
+                if (!similarGrid) return;
+
+                const scoredProducts = products
+                    .filter(p => p.id !== currentProd.id)
+                    .map(p => {
+                        let score = 0;
+                        if (p.series === currentProd.series) score += 10;
+                        if (p.category === currentProd.category) score += 5;
+                        if (p.tags && currentProd.tags) {
+                            const shared = p.tags.filter(t => currentProd.tags.includes(t));
+                            score += shared.length;
+                        }
+                        return { ...p, score };
+                    })
+                    .sort((a, b) => b.score - a.score)
+                    .slice(0, 4);
+
+                similarGrid.innerHTML = scoredProducts.map(p => `
+                    <article class="pdp-related-card" onclick="window.location.href='product.html?id=${p.id}'">
+                        <div class="pdp-related-image-container">
+                            <img src="${p.images ? p.images[0] : p.image}" alt="${p.title}" class="pdp-related-image" loading="lazy">
+                        </div>
+                        <div class="pdp-related-info">
+                            <span class="pdp-related-series">${p.series}</span>
+                            <h4 class="pdp-related-name">${p.title}</h4>
+                        </div>
+                    </article>
+                `).join('');
+            };
+
+            const renderUI = () => {
+                const headerHtml = `
+                    <section class="pdp-split-header">
+                        <div class="pdp-header-left">
+                            <nav class="pdp-breadcrumbs">
+                                <a href="shop.html">Store</a>
+                                <span>/</span>
+                                <a href="shop.html?category=${product.category}">${product.category.toUpperCase()}</a>
+                                <span>/</span>
+                                <a href="shop.html?category=${product.category}&sub=${product.series}">${product.series.toUpperCase()}</a>
+                            </nav>
+                            <h1 class="pdp-akaru-title">${product.title}</h1>
+                            <div style="margin-bottom: 0.5rem;">
+                                <span class="pdp-akaru-series">${product.series}</span>
+                                <span style="font-size: 1.4rem; color: var(--ink-gray); vertical-align: middle; margin: 0 0.5rem;">/</span>
+                                <span class="pdp-akaru-series" style="color: var(--text-color); opacity: 0.8; letter-spacing: 0.05em;">BY AI LOVE YOU</span>
+                            </div>
+                            <div class="pdp-header-intro">
+                                ${product.metadata ? product.metadata.introText : product.description}
+                            </div>
+                            
+                            <div class="pdp-scroll-cta">
+                                <div class="scroll-pill-nav" id="scroll-to-gallery">
+                                    PRODUCT DETAILS
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pdp-header-right">
+                            ${renderPurchaseBlock(product, activeDesignVariantIndex, 'top')}
+                        </div>
+                    </section>
+                `;
+
+                const showcaseHtml = `
+                    <section class="pdp-variant-showcase" id="variant-showcase-container">
+                        <!-- Grid items rendered by renderShowcaseGrid -->
+                    </section>
+                `;
+
+                const mainContentHtml = `
+                    <section class="pdp-main-grid" style="border-bottom: 1px solid var(--border-color);">
+                        <div class="pdp-content-left" style="padding-bottom: 0;">
+                            <div class="pdp-section-subhead">CONCEPT & SERIES THEME</div>
+                            <div class="pdp-section-body" style="line-height: 1.5; margin-bottom: var(--spacing-md);">
+                                ${product.metadata ? product.metadata.conceptDesc : product.description}
+                            </div>
+
+                            <div class="pdp-section-subhead">WHY YOU WILL LOVE IT</div>
+                            <div class="pdp-section-body" style="margin-bottom: var(--spacing-md);">
+                                ${product.metadata ? product.metadata.whyLoveIt : ''}
+                            </div>
+                            
+                            <div class="pdp-section-subhead" style="margin-top: var(--spacing-lg);">PRODUCT DETAILS & SHIPPING</div>
+                            <div class="pdp-nested-metadata-grid">
+                                <div class="pdp-details-card-nested">
+                                    <h4>Available Sizes (${product.orientation || 'Landscape'})</h4>
+                                    <p>${product.metadata ? product.metadata.specs.sizes : 'Standard sizes available'}</p>
+                                    <h4 style="margin-top: var(--spacing-md);">Paper</h4>
+                                    <p>${product.metadata ? product.metadata.specs.paper : 'Premium paper stock'}</p>
+                                </div>
+                                <div class="pdp-details-card-nested">
+                                    <h4>Ink & Longevity</h4>
+                                    <p>Printed using pigment & dye-based Epson Claria inks.</p>
+                                    <p style="margin-top: var(--spacing-sm);">Display life ≈ ${product.metadata ? product.metadata.specs.longevityDisplay : '150–180 years'} behind UV-glass</p>
+                                    <p>${product.metadata ? product.metadata.specs.longevityArchival : 'Over 200 years'} in archival storage</p>
+                                    <p style="font-size: 0.65rem; opacity: 0.6; margin-top: var(--spacing-sm); line-height: 1.4;">${product.metadata ? product.metadata.specs.longevitySource : ''}</p>
+                                </div>
+                                <div class="pdp-details-card-nested" style="border-right: none;">
+                                    <h4>Packaging</h4>
+                                    <p>${product.metadata ? product.metadata.specs.packaging : 'Shipped in protective packaging.'}</p>
+                                    <h4 style="margin-top: var(--spacing-md);">Shipping</h4>
+                                    <p>${product.metadata ? product.metadata.specs.shipping : 'Calculated at checkout.'}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pdp-content-right" style="padding-bottom: var(--spacing-xl); display: flex; flex-direction: column;">
+                            <div class="pdp-purchase-block" style="border: none; padding: 0; flex: 1; display: flex; flex-direction: column;">
+                                ${product.designVariants ? `
+                                    <div class="pdp-purchase-row">
+                                        <span class="pdp-purchase-label">Edition</span>
+                                        <div class="pdp-variants design-selector">
+                                            ${product.designVariants.map((dv, i) => 
+                                                `<button class="variant-pill-subtle ${i === activeDesignVariantIndex ? 'active' : ''}" data-design-index="${i}">${dv.name}</button>`
+                                            ).join('')}
+                                        </div>
+                                    </div>
+                                ` : ''}
+
+                                <div class="pdp-purchase-row">
+                                    <span class="pdp-purchase-label">Format</span>
+                                    <div class="pdp-variants size-selector">
+                                        ${Object.keys(product.priceVariants || { "A3+": 45 }).map((key, i) => 
+                                            `<button class="variant-pill-subtle ${i === 0 ? 'active' : ''}" data-price="${product.priceVariants[key]}">${key}</button>`
+                                        ).join('')}
+                                    </div>
+                                </div>
+
+                                <div class="pdp-purchase-row">
+                                    <span class="pdp-purchase-label">Quantity</span>
+                                    <div class="pdp-qty-selector">
+                                        <button class="pdp-qty-btn minus" aria-label="Decrease quantity">−</button>
+                                        <span class="pdp-qty-display">1</span>
+                                        <button class="pdp-qty-btn plus" aria-label="Increase quantity">+</button>
+                                    </div>
+                                </div>
+
+                                <div class="pdp-purchase-row">
+                                    <div class="price-display" style="font-size: 3.5rem; font-weight: 800; color: var(--text-color); margin-bottom: 0; letter-spacing: -0.05em;">£${Object.values(product.priceVariants || { "A3+": 45 })[0]}</div>
+                                </div>
+
+                                <button class="btn-pill-red pdp-add-btn" data-id="${product.id}" style="width: 100%;">Add to Bag</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="pdp-akaru-similar" style="width: calc(100% - 40px); margin: 0 auto; padding: calc(var(--spacing-xxl) / 2) 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                        <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.75rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem;">WE ALSO THINK YOU WILL LOVE</h3>
+                        <div class="similar-grid-mini" id="similar-grid"></div>
+                    </section>
+
+                    <section id="pdp-archive-sync" class="pdp-akaru-similar" style="width: calc(100% - 40px); margin: 0 auto; padding: calc(var(--spacing-xxl) / 2) 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: none;">
+                        <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.75rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem;">FROM THE ARCHIVE</h3>
+                        <div class="similar-grid-mini" id="archive-sync-grid"></div>
+                    </section>
+                `;
+
+                target.innerHTML = headerHtml + showcaseHtml + mainContentHtml;
+                renderShowcaseGrid();
+                attachEventListeners();
+                renderSimilarProducts(product);
+                renderArchiveSync(product);
+            };
+
+            const renderArchiveSync = (product) => {
+                const container = document.getElementById('pdp-archive-sync');
+                const grid = document.getElementById('archive-sync-grid');
+                if (!container || !grid || !product.archiveTags) return;
+
+                // Find matching journal entries using journalData.js (global object)
+                if (typeof journalData === 'undefined') return;
+
+                const matches = journalData.filter(entry => 
+                    entry.category !== 'global-five' && 
+                    entry.keywords.some(tag => product.archiveTags.includes(tag))
+                ).sort(() => 0.5 - Math.random()).slice(0, 4);
+
+                if (matches.length > 0) {
+                    container.style.display = 'block';
+                    grid.innerHTML = matches.map(entry => `
+                        <article class="pdp-related-card is-archive" onclick="window.location.href='${entry.link}'">
+                            <div class="pdp-related-image-container">
+                                <img src="${entry.image}" alt="${entry.title}" class="pdp-related-image" loading="lazy" style="filter: grayscale(1); transition: filter 0.3s ease;">
+                            </div>
+                            <div class="pdp-related-info">
+                                <span class="pdp-related-series">${entry.edition} // ${entry.category}</span>
+                                <h4 class="pdp-related-name">${entry.title}</h4>
+                            </div>
+                        </article>
+                    `).join('');
+
+                    // Add hover effect fix to grayscale
+                    grid.querySelectorAll('.pdp-related-card').forEach(card => {
+                        card.addEventListener('mouseover', () => {
+                            card.querySelector('img').style.filter = 'grayscale(0)';
+                        });
+                        card.addEventListener('mouseout', () => {
+                            card.querySelector('img').style.filter = 'grayscale(1)';
+                        });
+                    });
+                }
+            };
+
+            renderUI();
+        });
+    </script>
+
+    <!-- Consistent Footer -->
+    <section class="about-footer" style="padding: var(--spacing-lg) var(--spacing-md);">
+        <div class="marquee" style="font-size: 2rem; opacity: 0.1;">
+            <span>// PRINTS DESIGNED AND MADE IN THE UK // EPSON CLARIA INKS // ARCHIVAL PAPER //</span>
+            <span>// PRINTS DESIGNED AND MADE IN THE UK // EPSON CLARIA INKS // ARCHIVAL PAPER //</span>
+        </div>
+        <div class="footer-bottom" style="margin-top: var(--spacing-lg);">
+            <span>&copy; 2026 AI Love You. Archival Studio.</span>
+            <div class="footer-links">
+                <a href="contact.html">Contact</a>
+                <a href="support.html">Support & Legal</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
