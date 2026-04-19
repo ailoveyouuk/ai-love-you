@@ -413,15 +413,23 @@
                                     PRODUCT DETAILS
                                 </div>
                             </div>
+
+                            <!-- Mobile/Tablet Commerce Injection Target -->
+                            <div id="pdp-mobile-commerce" class="pdp-mobile-commerce"></div>
                         </div>
                     </section>
                 `;
 
-                // Inject dynamic purchase block into the sidebar container
+                // Inject dynamic purchase block into both targets
                 const sidebarContainer = document.getElementById('pdp-sidebar-commerce');
-                if (sidebarContainer) {
-                    sidebarContainer.innerHTML = renderPurchaseBlock(product, activeDesignVariantIndex, 'sidebar');
-                }
+                const mobileContainer = document.getElementById('pdp-mobile-commerce');
+                
+                const purchaseHtml = renderPurchaseBlock(product, activeDesignVariantIndex, 'main');
+
+                if (sidebarContainer) sidebarContainer.innerHTML = purchaseHtml;
+                
+                // On mobile we wait for the header HTML to be injected below
+                // so we handle the mobile container after target.innerHTML is set.
 
                 const showcaseHtml = `
                     <section class="pdp-variant-showcase" id="variant-showcase-container">
@@ -480,6 +488,13 @@
                 `;
 
                 target.innerHTML = headerHtml + showcaseHtml + mainContentHtml;
+                
+                // Inject into mobile container now that it exists in DOM
+                const mobileContainer = document.getElementById('pdp-mobile-commerce');
+                if (mobileContainer) {
+                    mobileContainer.innerHTML = purchaseHtml;
+                }
+
                 renderShowcaseGrid();
                 attachEventListeners();
                 renderSimilarProducts(product);
