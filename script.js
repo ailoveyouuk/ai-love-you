@@ -526,21 +526,56 @@ window.renderFeaturedProductsInJournal = function (keywords = []) {
             `;
     }
 }
-// Journal Navigation GSAP Accordion System
+// Journal Navigation GSAP Accordion System & Mobile TOC
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section-container, .journal-content section[id], #editor-note');
-    const navLinks = document.querySelectorAll('.nav-link');
+    let navLinks = document.querySelectorAll('.nav-link');
     
     // Only initialize if we're on a journal edition page
     if (sections.length === 0 || navLinks.length === 0) return;
 
-    // Set initial states for GSAP
-    gsap.set('.nav-item .nav-subtitle', { height: 0, opacity: 0, marginTop: 0 });
+    // ---- Create Mobile TOC ----
+    const editionNavDesktop = document.querySelector('.edition-nav');
+    const journalContent = document.querySelector('.journal-content');
+    
+    if (editionNavDesktop && journalContent) {
+        const mobileNavWrapper = document.createElement('nav');
+        mobileNavWrapper.className = 'edition-nav-mobile';
+        
+        // Clone links from desktop
+        const desktopLinks = editionNavDesktop.querySelectorAll('.nav-link');
+        desktopLinks.forEach(link => {
+            const clone = link.cloneNode(true);
+            clone.classList.remove('active'); // active state handled by scroll listener
+            mobileNavWrapper.appendChild(clone);
+            
+            clone.addEventListener('click', (e) => {
+                // Scroll behavior is handled natively by href="#id"
+            });
+        });
+        
+        // Insert right beneath the global breadcrumb header if it exists, else at top
+        const breadcrumbHeader = document.querySelector('.sticky-breadcrumb-header');
+        if (breadcrumbHeader) {
+            breadcrumbHeader.insertAdjacentElement('afterend', mobileNavWrapper);
+        } else {
+            journalContent.insertBefore(mobileNavWrapper, journalContent.firstChild);
+        }
+        
+        // Update navLinks NodeList to include the newly created mobile links
+        navLinks = document.querySelectorAll('.nav-link');
+    }
+    // ----------------------------
 
-    // Open the one that starts active immediately
-    const initialActive = document.querySelector('.nav-link.active + .nav-subtitle');
-    if (initialActive) {
-        gsap.set(initialActive, { height: 'auto', opacity: 0.8, marginTop: "0.25rem" });
+    // Set initial states for GSAP (Desktop only subtitles)
+    if (typeof gsap !== 'undefined') {
+        gsap.set('.nav-item .nav-subtitle', { height: 0, opacity: 0, marginTop: 0 });
+
+        // Open the one that starts active immediately
+        const initialActive = document.querySelector('.nav-link.active + .nav-subtitle');
+        if (initialActive) {
+            gsap.set(initialActive, { height: 'auto', opacity: 0.8, marginTop: "0.25rem" });
+        }
     }
 
     let currentActiveLinkId = null;
@@ -557,12 +592,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // If no section is reached yet, assume the first one
         if (!currentSectionId && sections[0]) {
             currentSectionId = sections[0].getAttribute('id');
         }
 
-        // Only trigger animations if the section actually changes
         if (currentSectionId && currentSectionId !== currentActiveLinkId) {
             currentActiveLinkId = currentSectionId;
 
@@ -573,8 +606,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isActiveTarget) {
                     if (!link.classList.contains('active')) {
                         link.classList.add('active');
-                        // Expand with "Spongy" bounce effect
-                        if (subtitle && subtitle.classList.contains('nav-subtitle')) {
+                        // Expand with "Spongy" bounce effect (Desktop only)
+                        if (subtitle && subtitle.classList.contains('nav-subtitle') && typeof gsap !== 'undefined') {
                             gsap.to(subtitle, {
                                 duration: 0.6,
                                 height: 'auto',
@@ -583,12 +616,18 @@ document.addEventListener('DOMContentLoaded', () => {
                                 ease: "back.out(1.7)"
                             });
                         }
+                        // Center active link in mobile scrolling container
+                        if (link.parentElement && link.parentElement.classList.contains('edition-nav-mobile')) {
+                            const container = link.parentElement;
+                            const scrollLeft = link.offsetLeft - (container.offsetWidth / 2) + (link.offsetWidth / 2);
+                            container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                        }
                     }
                 } else {
                     if (link.classList.contains('active')) {
                         link.classList.remove('active');
-                        // Collapse smoothly
-                        if (subtitle && subtitle.classList.contains('nav-subtitle')) {
+                        // Collapse smoothly (Desktop only)
+                        if (subtitle && subtitle.classList.contains('nav-subtitle') && typeof gsap !== 'undefined') {
                             gsap.to(subtitle, {
                                 duration: 0.4,
                                 height: 0,
@@ -603,3 +642,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
