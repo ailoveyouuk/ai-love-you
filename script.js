@@ -4,15 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.querySelector('.typewriter-text');
         if (!target) return;
 
-        const text = "MAN, DAUGHTER & MACHINE";
+        const text = "MAN.\nDAUGHTER.\n+ MACHINE.";
         let index = 0;
 
         // Ensure text is clear initially
-        target.innerText = '';
+        target.innerHTML = '';
 
         const type = () => {
             if (index < text.length) {
-                target.innerText += text.charAt(index);
+                target.innerHTML += text.charAt(index) === '\n' ? '<br>' : text.charAt(index);
                 index++;
                 setTimeout(type, 80); // Speed of typing
             }
@@ -23,6 +23,79 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initTypewriter();
+
+    // ---- Homepage Grid Logic ----
+    const renderHomeGrids = () => {
+        const storeGrid = document.getElementById('home-store-grid');
+        const journalGrid = document.getElementById('home-journal-grid');
+        
+        if (storeGrid && typeof products !== 'undefined') {
+            const activeProducts = products.filter(p => p.category.toLowerCase() === 'art prints');
+            const dateStr = new Date().toISOString().split('T')[0];
+            let seed = 0;
+            for(let i=0; i<dateStr.length; i++) seed += dateStr.charCodeAt(i);
+            
+            const shuffledProducts = [...activeProducts].sort((a,b) => {
+                const hashA = (seed * a.title.charCodeAt(0)) % 100;
+                const hashB = (seed * b.title.charCodeAt(0)) % 100;
+                return hashA - hashB;
+            });
+            
+            const topProducts = shuffledProducts.slice(0, 6);
+            
+            storeGrid.innerHTML = topProducts.map(p => `
+                <a href="product.html?id=${p.id}" class="pdp-related-card" style="text-decoration: none;">
+                    <div class="pdp-related-image-container">
+                        <img src="${p.images ? p.images[0] : p.image}" alt="${p.title}" class="pdp-related-image" loading="lazy">
+                    </div>
+                    <div class="card-content-wrapper">
+                        <div class="card-pill-orange">${p.category}</div>
+                        <div class="card-title">${p.title}${p.designVariants ? ` (${p.designVariants[0].name})` : ''}</div>
+                        <div class="card-footer">
+                            <span class="card-price">£${Object.values(p.priceVariants || {"Base": "TBD"})[0]}</span>
+                            <span class="card-link">Discover &rarr;</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        if (journalGrid && typeof window.journalData !== 'undefined') {
+            const editionsFound = new Set();
+            const topJournals = [];
+            for (const post of window.journalData) {
+                if (post.category !== 'global-five') {
+                    if (!editionsFound.has(post.edition)) {
+                        editionsFound.add(post.edition);
+                        // Modify link to go to the journal edition page instead of anchor
+                        const parts = post.link.split('#');
+                        const url = parts.length > 0 ? parts[0] : post.link;
+                        topJournals.push({ ...post, link: url });
+                        if (topJournals.length === 6) break;
+                    }
+                }
+            }
+            
+            journalGrid.innerHTML = topJournals.map(j => `
+                <a href="${j.link}" class="pdp-related-card is-archive" style="text-decoration: none;">
+                    <div class="pdp-related-image-container">
+                        <img src="${j.image}" alt="${j.title}" class="pdp-related-image" loading="lazy">
+                    </div>
+                    <div class="card-content-wrapper">
+                        <div class="card-pill-orange">${j.edition || 'JOURNAL'}</div>
+                        <div class="card-title">${j.title}</div>
+                        <div class="card-desc">${j.subtitle}</div>
+                        <div class="card-footer">
+                            <span class="card-price" style="color: var(--ink-gray);">${j.publishDate || ''}</span>
+                            <span class="card-link">Read &rarr;</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+    };
+    
+    renderHomeGrids();
     // ---- Native Scrolling Priority ----
     // Lenis smooth scrolling disabled per user request for fast, snappy native movement.
 
@@ -63,6 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerText = `${label} (${count})`;
             }
         });
+
+        // Update the new Global Bag Icon
+        const globalBagCountBadge = document.querySelector('.bag-count-badge');
+        if (globalBagCountBadge) {
+            globalBagCountBadge.innerText = count;
+        }
     }
 
     // Call once on load to sync between pages
@@ -183,7 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Category Navigation (Top Tier)
         function renderCategoryNav() {
             if (!categoryNav) return;
-            const categories = ['all', ...new Set(products.map(p => p.category))];
+            // HIDDEN per user request: Only showing 'all' and 'art prints' categories
+            const rawCategories = ['all', ...new Set(products.map(p => p.category))];
+            const categories = rawCategories.filter(cat => cat.toLowerCase() === 'all' || cat.toLowerCase() === 'art prints');
             
             categoryNav.innerHTML = categories.map(cat => `
                 <button class="category-btn ${currentCategory === cat ? 'active' : ''}" data-category="${cat}">
@@ -445,3 +526,80 @@ window.renderFeaturedProductsInJournal = function (keywords = []) {
             `;
     }
 }
+// Journal Navigation GSAP Accordion System
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section-container, .journal-content section[id], #editor-note');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Only initialize if we're on a journal edition page
+    if (sections.length === 0 || navLinks.length === 0) return;
+
+    // Set initial states for GSAP
+    gsap.set('.nav-item .nav-subtitle', { height: 0, opacity: 0, marginTop: 0 });
+
+    // Open the one that starts active immediately
+    const initialActive = document.querySelector('.nav-link.active + .nav-subtitle');
+    if (initialActive) {
+        gsap.set(initialActive, { height: 'auto', opacity: 0.8, marginTop: "0.25rem" });
+    }
+
+    let currentActiveLinkId = null;
+
+    window.addEventListener('scroll', () => {
+        let currentSectionId = "";
+
+        // Find the section that we are currently looking at
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            // 200px offset accommodates thick sticky headers
+            if (window.pageYOffset >= sectionTop - 200) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        // If no section is reached yet, assume the first one
+        if (!currentSectionId && sections[0]) {
+            currentSectionId = sections[0].getAttribute('id');
+        }
+
+        // Only trigger animations if the section actually changes
+        if (currentSectionId && currentSectionId !== currentActiveLinkId) {
+            currentActiveLinkId = currentSectionId;
+
+            navLinks.forEach(link => {
+                const subtitle = link.nextElementSibling;
+                const isActiveTarget = link.getAttribute('href') === `#${currentSectionId}`;
+
+                if (isActiveTarget) {
+                    if (!link.classList.contains('active')) {
+                        link.classList.add('active');
+                        // Expand with "Spongy" bounce effect
+                        if (subtitle && subtitle.classList.contains('nav-subtitle')) {
+                            gsap.to(subtitle, {
+                                duration: 0.6,
+                                height: 'auto',
+                                opacity: 0.8,
+                                marginTop: "0.25rem",
+                                ease: "back.out(1.7)"
+                            });
+                        }
+                    }
+                } else {
+                    if (link.classList.contains('active')) {
+                        link.classList.remove('active');
+                        // Collapse smoothly
+                        if (subtitle && subtitle.classList.contains('nav-subtitle')) {
+                            gsap.to(subtitle, {
+                                duration: 0.4,
+                                height: 0,
+                                opacity: 0,
+                                marginTop: 0,
+                                ease: "power2.inOut"
+                            });
+                        }
+                    }
+                }
+            });
+        }
+    });
+});

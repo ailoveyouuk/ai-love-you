@@ -29,29 +29,36 @@
 
 <body>
 
-    <!-- Standard Sidebar Navigation -->
-    <nav class="studio-sidebar-nav">
-        <a href="shop.html" class="sidebar-link active">Store</a>
-        <a href="journal.html" class="sidebar-link">Journal</a>
-        <a href="about.html" class="sidebar-link">About</a>
-        <a href="cart.html" class="sidebar-link">Bag (0)</a>
-    </nav>
+    <div class="studio-layout">
+        <!-- New Standard Sidebar Navigation -->
+        <aside class="studio-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo-container">
+                    <a href="index.html" class="sidebar-logo-link" style="display: block; transition: opacity 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                        <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Signature" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);">
+                    </a>
+                    <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="bag-count-badge">0</span>
+                    </a>
+                </div>
+                <nav class="studio-sidebar-nav">
+                    <a href="shop.html" class="sidebar-link active">Store</a>
+                    <a href="journal.html" class="sidebar-link">Journal</a>
+                    <a href="about.html" class="sidebar-link">About</a>
+                </nav>
+                <div id="pdp-sidebar-commerce" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);"></div>
+            </div>
+            <div class="sidebar-footer"></div>
+        </aside>
 
-    <!-- Mobile Navigation Toggle (Top Right) -->
-    <nav class="studio-nav" style="background: transparent; border: none; justify-content: flex-end;">
-        <button class="menu-toggle" aria-label="Toggle Menu" style="margin-right: var(--spacing-md);">
-            <span></span>
-            <span></span>
-        </button>
-        <div class="nav-links">
-            <a href="shop.html" class="active">Store</a>
-            <a href="journal.html">Journal</a>
-            <a href="about.html">About</a>
-            <a href="cart.html">Bag</a>
-        </div>
-    </nav>
 
-    <main class="pdp-container" id="pdp-target">
+
+    <main class="pdp-container studio-main" id="pdp-target" style="background-color: #ffffff;">
         <!-- Rendered via JS -->
     </main>
 
@@ -81,49 +88,100 @@
 
             // ---- Helper Functions ----
 
+            
             function renderPurchaseBlock(prod, activeIndex, suffix) {
                 const priceVariants = prod.priceVariants || { "A3+": 45 };
                 const firstPrice = Object.values(priceVariants)[0];
                 return `
+                    <style>
+                        .pdp-format-dropdown {
+                            font-family: var(--font-display);
+                            font-size: 0.8rem;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                            color: var(--carbon-black);
+                            background: transparent;
+                            border: 1px solid var(--border-color);
+                            padding: 0.5rem 1rem;
+                            width: 100%;
+                            cursor: pointer;
+                            outline: none;
+                        }
+                        .pdp-commerce-label {
+                            display: block; 
+                            margin-bottom: 1rem; 
+                            font-family: var(--font-display); 
+                            font-size: 0.8rem; 
+                            letter-spacing: 0.1em; 
+                            text-transform: uppercase; 
+                            color: var(--carbon-black); 
+                            font-weight: 700;
+                        }
+                        .btn-bag-pill {
+                            font-family: var(--font-body);
+                            font-size: 0.65rem;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 0.1em;
+                            background: var(--accent-color);
+                            color: #ffffff;
+                            border: 1.5px solid var(--accent-color);
+                            padding: 0.5rem 0.6rem;
+                            border-radius: 12px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            text-align: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 100%;
+                            margin-top: 2rem;
+                        }
+                        .btn-bag-pill:hover {
+                            background: transparent;
+                            color: var(--accent-color);
+                        }
+                    </style>
                     <div class="pdp-purchase-block" id="purchase-block-${suffix}">
                         ${prod.designVariants ? `
-                            <div class="pdp-purchase-row">
-                                <span class="pdp-purchase-label">Edition</span>
-                                <div class="pdp-variants design-selector">
+                            <div class="pdp-purchase-row" style="margin-bottom: 2rem;">
+                                <span class="pdp-commerce-label">Edition</span>
+                                <div class="pdp-variants design-selector" style="display: flex; flex-direction: column; gap: 0.8rem;">
                                     ${prod.designVariants.map((dv, i) => 
-                                        `<button class="variant-pill-subtle ${i === activeIndex ? 'active' : ''}" data-design-index="${i}">${dv.name}</button>`
+                                        `<button class="nav-link ${i === activeIndex ? 'active' : ''} variant-pill-subtle" data-design-index="${i}" style="text-align: left; padding: 0; background: transparent; border: none; cursor: pointer; opacity: 1;">${dv.name}</button>`
                                     ).join('')}
                                 </div>
                             </div>
                         ` : ''}
 
-                        <div class="pdp-purchase-row">
-                            <span class="pdp-purchase-label">Format</span>
+                        <div class="pdp-purchase-row" style="margin-bottom: 2rem;">
+                            <span class="pdp-commerce-label">Format</span>
                             <div class="pdp-variants size-selector">
-                                ${Object.keys(priceVariants).map((key, i) => 
-                                    `<button class="variant-pill-subtle ${i === 0 ? 'active' : ''}" data-price="${priceVariants[key]}">${key}</button>`
-                                ).join('')}
+                                <select class="pdp-format-dropdown">
+                                    ${Object.keys(priceVariants).map((key, i) => 
+                                        `<option value="${key}" data-price="${priceVariants[key]}">${key}</option>`
+                                    ).join('')}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pdp-purchase-row" style="margin-bottom: 2rem;">
+                            <span class="pdp-commerce-label">Quantity</span>
+                            <div class="pdp-qty-selector" style="justify-content: flex-start; display: flex; align-items: center;">
+                                <button class="pdp-qty-btn minus" aria-label="Decrease quantity" style="font-size: 0.9rem; width: 1.5rem; height: 1.5rem; display: flex; align-items: center; justify-content: center; padding: 0;">−</button>
+                                <span class="pdp-qty-display" style="font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; min-width: 2rem; text-align: center;">1</span>
+                                <button class="pdp-qty-btn plus" aria-label="Increase quantity" style="font-size: 0.9rem; width: 1.5rem; height: 1.5rem; display: flex; align-items: center; justify-content: center; padding: 0;">+</button>
                             </div>
                         </div>
 
                         <div class="pdp-purchase-row">
-                            <span class="pdp-purchase-label">Quantity</span>
-                            <div class="pdp-qty-selector">
-                                <button class="pdp-qty-btn minus" aria-label="Decrease quantity">−</button>
-                                <span class="pdp-qty-display">1</span>
-                                <button class="pdp-qty-btn plus" aria-label="Increase quantity">+</button>
-                            </div>
+                            <div class="pdp-price price-display" style="font-size: 3rem; font-weight: 800; margin: 0; color: var(--carbon-black); letter-spacing: -0.02em; font-family: var(--font-body);">£${firstPrice}</div>
                         </div>
 
-                        <div class="pdp-purchase-row">
-                            <div class="pdp-price price-display" style="font-size: 3.5rem; font-weight: 800; margin: 0; color: var(--text-color); letter-spacing: -0.05em;">£${firstPrice}</div>
-                        </div>
-
-                        <button class="btn-pill-red pdp-add-btn" data-id="${prod.id}" style="width: 100%;">Add to Bag</button>
+                        <button class="btn-bag-pill pdp-add-btn" data-id="${prod.id}">Add to Bag</button>
                     </div>
                 `;
             }
-
             const renderShowcaseGrid = () => {
                 const gridContainer = document.getElementById('variant-showcase-container');
                 if (!gridContainer) return;
@@ -135,33 +193,19 @@
                     { img: images[2] || images[0] || product.image, label: 'Size Comparison' }
                 ];
 
-                const hasVariants = product.designVariants && product.designVariants.length > 1;
-                
                 // Row 1: The Images
                 const imagesHtml = slots.map((slot, i) => `
                     <div class="pdp-variant-frame">
                         <div class="pdp-variant-img-box" style="padding: 0; background: transparent; border: none; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; width: 100%;">
                             <img src="${slot.img}" alt="${slot.label}" 
-                                 style="width: 100%; height: 100%; object-fit: contain; padding: 2rem; background: var(--bg-color);">
+                                 style="width: 100%; height: 100%; object-fit: contain; padding: 2rem; background: #ffffff;">
                         </div>
                     </div>
                 `).join('');
 
-                // Row 2: The Pills (Only if variants exist)
-                const pillsHtml = hasVariants ? slots.map((slot, i) => `
-                    <div class="pdp-grid-pill-nav">
-                        ${product.designVariants.map((dv, dvIdx) => `
-                            <button class="pdp-grid-pill ${dvIdx === activeDesignVariantIndex ? 'active' : ''}" 
-                                    onclick="window.selectVariantGlobal(${dvIdx})">
-                                ${dv.name}
-                            </button>
-                        `).join('')}
-                    </div>
-                `).join('') : '';
-
                 // Update container row layout based on content
-                gridContainer.style.gridTemplateRows = hasVariants ? 'auto auto' : '1fr';
-                gridContainer.innerHTML = imagesHtml + pillsHtml;
+                gridContainer.style.gridTemplateRows = '1fr';
+                gridContainer.innerHTML = imagesHtml;
             };
 
             window.selectVariantGlobal = (index) => {
@@ -173,23 +217,17 @@
             const attachEventListeners = () => {
                 const allPriceDisplays = document.querySelectorAll('.price-display');
                 
-                // Sync Size Selectors
-                const sizeSelectors = document.querySelectorAll('.size-selector');
-                sizeSelectors.forEach(container => {
-                    const btns = container.querySelectorAll('.variant-pill-subtle');
-                    btns.forEach(btn => {
-                        btn.addEventListener('click', () => {
-                            const activeSizeBtn = btn;
-                            let selectedPrice = activeSizeBtn ? activeSizeBtn.getAttribute('data-price') : (Object.values(product.priceVariants || { "A3+": 45 })[0]);
-                            const selectedSize = activeSizeBtn ? activeSizeBtn.innerText : 'Unknown';
-                             
-                            document.querySelectorAll('.size-selector .variant-pill-subtle').forEach(b => {
-                                if (b.innerText === selectedSize) b.classList.add('active');
-                                else b.classList.remove('active');
-                            });
-                             
-                            updatePriceDisplays(selectedPrice);
-                        });
+                // Sync Size Selectors (Dropdown)
+                const formatSelects = document.querySelectorAll('.pdp-format-dropdown');
+                formatSelects.forEach(selectBox => {
+                    selectBox.addEventListener('change', (e) => {
+                        const selectedOption = e.target.options[e.target.selectedIndex];
+                        const selectedPrice = selectedOption.getAttribute('data-price');
+                        
+                        // Sync any other copies of this dropdown globally
+                        formatSelects.forEach(s => s.value = e.target.value);
+                        
+                        updatePriceDisplays(selectedPrice);
                     });
                 });
 
@@ -211,8 +249,8 @@
                          
                         document.querySelectorAll('.pdp-qty-display').forEach(d => d.innerText = selectedQuantity);
                          
-                        const activeSizeBtn = document.querySelector('.size-selector .variant-pill-subtle.active');
-                        const unitPrice = activeSizeBtn ? activeSizeBtn.getAttribute('data-price') : (Object.values(product.priceVariants || { "A3+": 45 })[0]);
+                        const formatDropdown = document.querySelector('.pdp-format-dropdown');
+                        const unitPrice = formatDropdown ? formatDropdown.options[formatDropdown.selectedIndex].getAttribute('data-price') : (Object.values(product.priceVariants || { "A3+": 45 })[0]);
                         updatePriceDisplays(unitPrice);
                     });
                 });
@@ -309,9 +347,13 @@
                         <div class="pdp-related-image-container">
                             <img src="${p.images ? p.images[0] : p.image}" alt="${p.title}" class="pdp-related-image" loading="lazy">
                         </div>
-                        <div class="pdp-related-info">
-                            <span class="pdp-related-series">${p.series}</span>
-                            <h4 class="pdp-related-name">${p.title}</h4>
+                        <div class="card-content-wrapper">
+                            <div class="card-pill-orange">${p.category}</div>
+                            <div class="card-title">${p.title}</div>
+                            <div class="card-footer" style="padding-top: 0.5rem; margin-top: auto;">
+                                <span class="card-price">£${Object.values(p.priceVariants || {"Base": "TBD"})[0]}</span>
+                                <span class="card-link">Discover &rarr;</span>
+                            </div>
                         </div>
                     </article>
                 `).join('');
@@ -319,15 +361,15 @@
 
             const renderUI = () => {
                 const headerHtml = `
+                    <header class="sticky-breadcrumb-header">
+                        <nav class="pdp-breadcrumbs" style="display: flex; gap: 0.5rem; color: var(--ink-gray); font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">
+                            <a href="shop.html" style="color: inherit; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">STORE</a> <span style="opacity: 0.5;">//</span> 
+                            <a href="shop.html?category=${product.category}" style="color: inherit; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">${product.category}</a> <span style="opacity: 0.5;">//</span>
+                            <span style="color: var(--text-color); opacity: 0.8;">${product.title}</span>
+                        </nav>
+                    </header>
                     <section class="pdp-split-header">
                         <div class="pdp-header-left">
-                            <nav class="pdp-breadcrumbs">
-                                <a href="shop.html">Store</a>
-                                <span>/</span>
-                                <a href="shop.html?category=${product.category}">${product.category.toUpperCase()}</a>
-                                <span>/</span>
-                                <a href="shop.html?category=${product.category}&sub=${product.series}">${product.series.toUpperCase()}</a>
-                            </nav>
                             <h1 class="pdp-akaru-title">${product.title}</h1>
                             <div style="margin-bottom: 0.5rem;">
                                 <span class="pdp-akaru-series">${product.series}</span>
@@ -344,11 +386,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pdp-header-right">
-                            ${renderPurchaseBlock(product, activeDesignVariantIndex, 'top')}
-                        </div>
                     </section>
                 `;
+
+                // Inject dynamic purchase block into the sidebar container
+                const sidebarContainer = document.getElementById('pdp-sidebar-commerce');
+                if (sidebarContainer) {
+                    sidebarContainer.innerHTML = renderPurchaseBlock(product, activeDesignVariantIndex, 'sidebar');
+                }
 
                 const showcaseHtml = `
                     <section class="pdp-variant-showcase" id="variant-showcase-container">
@@ -357,8 +402,8 @@
                 `;
 
                 const mainContentHtml = `
-                    <section class="pdp-main-grid" style="border-bottom: 1px solid var(--border-color);">
-                        <div class="pdp-content-left" style="padding-bottom: 0;">
+                    <section class="pdp-main-grid">
+                        <div class="pdp-content-left">
                             <div class="pdp-section-subhead">CONCEPT & SERIES THEME</div>
                             <div class="pdp-section-body" style="line-height: 1.5; margin-bottom: var(--spacing-md);">
                                 ${product.metadata ? product.metadata.conceptDesc : product.description}
@@ -392,54 +437,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pdp-content-right" style="padding-bottom: var(--spacing-xl); display: flex; flex-direction: column;">
-                            <div class="pdp-purchase-block" style="border: none; padding: 0; flex: 1; display: flex; flex-direction: column;">
-                                ${product.designVariants ? `
-                                    <div class="pdp-purchase-row">
-                                        <span class="pdp-purchase-label">Edition</span>
-                                        <div class="pdp-variants design-selector">
-                                            ${product.designVariants.map((dv, i) => 
-                                                `<button class="variant-pill-subtle ${i === activeDesignVariantIndex ? 'active' : ''}" data-design-index="${i}">${dv.name}</button>`
-                                            ).join('')}
-                                        </div>
-                                    </div>
-                                ` : ''}
 
-                                <div class="pdp-purchase-row">
-                                    <span class="pdp-purchase-label">Format</span>
-                                    <div class="pdp-variants size-selector">
-                                        ${Object.keys(product.priceVariants || { "A3+": 45 }).map((key, i) => 
-                                            `<button class="variant-pill-subtle ${i === 0 ? 'active' : ''}" data-price="${product.priceVariants[key]}">${key}</button>`
-                                        ).join('')}
-                                    </div>
-                                </div>
-
-                                <div class="pdp-purchase-row">
-                                    <span class="pdp-purchase-label">Quantity</span>
-                                    <div class="pdp-qty-selector">
-                                        <button class="pdp-qty-btn minus" aria-label="Decrease quantity">−</button>
-                                        <span class="pdp-qty-display">1</span>
-                                        <button class="pdp-qty-btn plus" aria-label="Increase quantity">+</button>
-                                    </div>
-                                </div>
-
-                                <div class="pdp-purchase-row">
-                                    <div class="price-display" style="font-size: 3.5rem; font-weight: 800; color: var(--text-color); margin-bottom: 0; letter-spacing: -0.05em;">£${Object.values(product.priceVariants || { "A3+": 45 })[0]}</div>
-                                </div>
-
-                                <button class="btn-pill-red pdp-add-btn" data-id="${product.id}" style="width: 100%;">Add to Bag</button>
-                            </div>
-                        </div>
                     </section>
 
-                    <section class="pdp-akaru-similar" style="width: calc(100% - 40px); margin: 0 auto; padding: calc(var(--spacing-xxl) / 2) 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                        <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.75rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem;">WE ALSO THINK YOU WILL LOVE</h3>
-                        <div class="similar-grid-mini" id="similar-grid"></div>
+                    <section class="pdp-akaru-similar" style="width: 100%; margin: 0 auto; padding: calc(var(--spacing-xxl) / 2) 0; border-bottom: 1px solid rgba(0,0,0,0.05); background: #ffffff;">
+                        <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.85rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem; padding-left: 20px;">WE ALSO THINK YOU WILL LOVE</h3>
+                        <div class="similar-grid-mini" id="similar-grid" style="padding: 0 20px;"></div>
                     </section>
 
-                    <section id="pdp-archive-sync" class="pdp-akaru-similar" style="width: calc(100% - 40px); margin: 0 auto; padding: calc(var(--spacing-xxl) / 2) 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: none;">
-                        <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.75rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem;">FROM THE ARCHIVE</h3>
-                        <div class="similar-grid-mini" id="archive-sync-grid"></div>
+                    <section id="pdp-archive-sync" class="pdp-akaru-similar" style="width: 100%; margin: 0 auto; padding: calc(var(--spacing-xxl) / 2) 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: none; background: #ffffff;">
+                        <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.85rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem; padding-left: 20px;">FROM THE JOURNAL</h3>
+                        <div class="similar-grid-mini" id="archive-sync-grid" style="padding: 0 20px;"></div>
                     </section>
                 `;
 
@@ -448,6 +456,8 @@
                 attachEventListeners();
                 renderSimilarProducts(product);
                 renderArchiveSync(product);
+                
+
             };
 
             const renderArchiveSync = (product) => {
@@ -468,22 +478,27 @@
                     grid.innerHTML = matches.map(entry => `
                         <article class="pdp-related-card is-archive" onclick="window.location.href='${entry.link}'">
                             <div class="pdp-related-image-container">
-                                <img src="${entry.image}" alt="${entry.title}" class="pdp-related-image" loading="lazy" style="filter: grayscale(1); transition: filter 0.3s ease;">
+                                <img src="${entry.image}" alt="${entry.title}" class="pdp-related-image" loading="lazy" style="transition: filter 0.6s ease;">
                             </div>
-                            <div class="pdp-related-info">
-                                <span class="pdp-related-series">${entry.edition} // ${entry.category}</span>
-                                <h4 class="pdp-related-name">${entry.title}</h4>
+                            <div class="card-content-wrapper">
+                                <div class="card-pill-orange">${entry.edition || 'JOURNAL'}</div>
+                                <div class="card-title">${entry.title}</div>
+                                <div class="card-footer" style="padding-top: 0.5rem; margin-top: auto;">
+                                    <span class="card-price" style="color: var(--ink-gray); font-size: 0.75rem;">${entry.category || 'Archive'}</span>
+                                    <span class="card-link">Read &rarr;</span>
+                                </div>
                             </div>
                         </article>
                     `).join('');
 
                     // Add hover effect fix to grayscale
                     grid.querySelectorAll('.pdp-related-card').forEach(card => {
+                        const img = card.querySelector('img');
                         card.addEventListener('mouseover', () => {
-                            card.querySelector('img').style.filter = 'grayscale(0)';
+                            img.style.filter = 'grayscale(0)';
                         });
                         card.addEventListener('mouseout', () => {
-                            card.querySelector('img').style.filter = 'grayscale(1)';
+                            img.style.filter = 'grayscale(1)';
                         });
                     });
                 }
@@ -507,6 +522,7 @@
             </div>
         </div>
     </section>
+</div>
 
 </body>
 

@@ -11,6 +11,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <script src="products.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <style>
         :root {
@@ -22,7 +24,7 @@
         body {
             background-color: var(--journal-bg);
             color: var(--journal-text);
-            overflow-x: hidden;
+            overflow-x: clip;
         }
 
         .journal-layout {
@@ -41,52 +43,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        .nav-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 4rem;
-        }
-
-        .nav-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--ink-gray);
-            font-family: var(--font-display);
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        .nav-link.active {
-            color: #ff5e00;
-            font-weight: 700;
-            padding-left: 1rem;
-            border-left: 2px solid #ff5e00;
-        }
-
-        .nav-subtitle {
-            display: block;
-            font-family: var(--font-display);
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--ink-gray);
-            margin-top: 0.25rem;
-            padding-left: 0;
-            transition: all 0.3s ease;
-            line-height: 1.2;
-        }
-
-        .nav-link.active + .nav-subtitle {
-            color: #ff5e00;
-            opacity: 0.8;
         }
 
         /* Content Area */
@@ -110,13 +66,6 @@
             display: block;
         }
 
-        h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-        }
 
         .edition-meta {
             display: flex;
@@ -287,10 +236,73 @@
 </head>
 
 <body>
-    <!-- Top Breadcrumbs -->
-    <div class="top-breadcrumbs">
-        <a href="index.html">ARCHIVE</a> <span>/</span> <a href="journal.html">JOURNAL</a> <span>/</span> <a>EDITION 02</a>
-    </div>
+    <div class="studio-layout">
+        <!-- New Standard Sidebar Navigation -->
+        <aside class="studio-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo-container">
+                    <a href="index.html" class="sidebar-logo-link aily-brand-logo" style="display: block; transition: opacity 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                        <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Signature" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);">
+                    </a>
+                    <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="bag-count-badge">0</span>
+                    </a>
+                </div>
+                <!-- Site Navigation Overlayed with Edition Context -->
+                <nav class="studio-sidebar-nav" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+                    <a href="shop.html" class="sidebar-link">Store</a>
+                    <a href="journal.html" class="sidebar-link active">Journal</a>
+                    <a href="about.html" class="sidebar-link">About</a>
+                </nav>
+
+                <div class="journal-edition-context">
+                    <nav class="edition-nav">
+                        <ul class="nav-list" style="list-style: none; padding: 0;">
+                            <li class="nav-item">
+                                <a href="#editor-note" class="nav-link active">Editor's Note</a>
+                                <span class="nav-subtitle">The Architecture of Absence</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#movies" class="nav-link">I. Movies</a>
+                                <span class="nav-subtitle">Structural Depth</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#music" class="nav-link">II. Music</a>
+                                <span class="nav-subtitle">Sonic Breath</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#products" class="nav-link">III. Products</a>
+                                <span class="nav-subtitle">Titanium Engineering</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#design" class="nav-link">IV. Design</a>
+                                <span class="nav-subtitle">Dieter Rams Manifesto</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#architecture" class="nav-link">V. Architecture</a>
+                                <span class="nav-subtitle">Serenity of the Soul</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#style" class="nav-link">VI. Style & Fashion</a>
+                                <span class="nav-subtitle">Tailored Restraint</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#shortlist" class="nav-link">VII. Global Five</a>
+                                <span class="nav-subtitle">Collation 02</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="sidebar-footer"></div>
+        </aside>
+
+        
 
     <!-- Mobile Navigation Toggle (Top Right) -->
     <nav class="studio-nav" style="background: transparent; border: none; justify-content: flex-end;">
@@ -306,57 +318,15 @@
         </div>
     </nav>
 
-    <div class="journal-layout">
-        <!-- Sidebar Navigation -->
-        <aside class="journal-sidebar">
-            <div class="sidebar-top">
-                <a href="journal.html" class="nav-link" style="font-weight: 700;">← BACK TO ARCHIVE</a>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#editor-note" class="nav-link active">Editor's Note</a>
-                        <span class="nav-subtitle">The Architecture of Absence</span>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#movies" class="nav-link">I. Movies</a>
-                        <span class="nav-subtitle">Structural Depth</span>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#music" class="nav-link">II. Music</a>
-                        <span class="nav-subtitle">Sonic Breath</span>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#products" class="nav-link">III. Products</a>
-                        <span class="nav-subtitle">Titanium Engineering</span>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#design" class="nav-link">IV. Design</a>
-                        <span class="nav-subtitle">Dieter Rams Manifesto</span>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#architecture" class="nav-link">V. Architecture</a>
-                        <span class="nav-subtitle">Serenity of the Soul</span>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#style" class="nav-link">VI. Style & Fashion</a>
-                        <span class="nav-subtitle">Tailored Restraint</span>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#shortlist" class="nav-link">VII. Global Five</a>
-                        <span class="nav-subtitle">MNC, UK — STO, SE — CDMX, MX — TYO, JP — SYD, AU</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="sidebar-footer">
-                <a href="shop.html" class="nav-link">Store</a>
-                <a href="journal.html" class="nav-link active">Journal</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="cart.html" class="nav-link">Bag (0)</a>
-            </div>
-        </aside>
-
-        <!-- Content Area -->
-        <main class="journal-content">
+    <main class="studio-main">
+        <article class="journal-content">
+            
+        <header class="sticky-breadcrumb-header" style="z-index: 100;">
+            <nav class="pdp-breadcrumbs" style="display: flex; gap: 0.5rem; color: var(--ink-gray); font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">
+                <a href="journal.html" style="color: inherit; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">JOURNAL</a> <span style="opacity: 0.5;">//</span> 
+                <span style="color: var(--text-color); opacity: 0.8;">EDITION 02</span>
+            </nav>
+        </header>
             <header class="edition-header">
                 <span class="edition-label">THE JOURNAL ARCHIVE // 02</span>
                 <h1>The<br>Geometry<br>of Silence</h1>
@@ -572,40 +542,11 @@
             <div class="editorial-disclaimer" style="margin-top: 8rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.05); opacity: 0.5; font-size: 0.7rem; font-family: var(--font-display); letter-spacing: 0.05em; line-height: 1.6;">
                 AILY Editorial is independent. We received no products or financial affiliation for the items featured in this archive unless explicitly specified.
             </div>
-        </main>
-    </div>
+        </article>
+    </main>
+</div>
 
-    <script>
-        // Scroll Spy Logic
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.section-container');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let currentSection = "";
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 150) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Initial state
-        updateScrollSpy();
-
-        // Initialize Dynamic Sidebar Products
-        if (window.renderFeaturedProductsInJournal) {
-            window.renderFeaturedProductsInJournal(["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence"]);
-        }
-    </script>
+    
 </body>
 
 </html>

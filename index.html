@@ -12,13 +12,31 @@
 </head>
 
 <body>
-    <!-- Tucked Sidebar Navigation for Homepage -->
-    <nav class="studio-sidebar-nav sidebar-tucked">
-        <a href="shop.html" class="sidebar-link">Store</a>
-        <a href="journal.html" class="sidebar-link">Journal</a>
-        <a href="about.html" class="sidebar-link">About</a>
-        <a href="cart.html" class="sidebar-link">Bag (0)</a>
-    </nav>
+    <div class="studio-layout">
+        <!-- New Standard Sidebar Navigation -->
+        <aside class="studio-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo-container">
+                    <a href="index.html" class="sidebar-logo-link" style="display: block; transition: opacity 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                        <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Signature" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);">
+                    </a>
+                    <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="bag-count-badge">0</span>
+                    </a>
+                </div>
+                <nav class="studio-sidebar-nav">
+                    <a href="shop.html" class="sidebar-link">Store</a>
+                    <a href="journal.html" class="sidebar-link">Journal</a>
+                    <a href="about.html" class="sidebar-link">About</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer"></div>
+        </aside>
 
     <!-- Mobile Navigation Toggle (Top Right) -->
     <nav class="studio-nav" style="background: transparent; border: none; justify-content: flex-end;">
@@ -40,50 +58,27 @@
                 <span class="typewriter-text"></span><span class="typewriter-cursor"></span>
             </h1>
             <img src="assets/Logo%20Signature%20fill.svg" alt="AI Love You Signature" class="signature-logo-home">
-            <p class="sub-headline" style="margin-top: var(--spacing-lg);">British Workshop meets Modern Tech Studio. Archiving the intersection of art and process.</p>
+            <p class="sub-headline" style="margin-top: var(--spacing-lg); text-align: left;">A British studio exploring the intersection of digital design and tactile creation. We curate bespoke art prints and deep-dive journals for the design-conscious.</p>
         </header>
 
 
 
-        <!-- Breakout image (Band 2) -->
-        <section class="akaru-section-full">
-             <div class="akaru-block-img" style="height: 80vh;" onclick="window.location.href='product.html?id=flow-ink-reverie'">
-                 <div class="img-mask"></div>
-                 <div class="akaru-bg" style="background-image: url('assets/products/flow-base.jpg')"></div>
-             </div>
-             <div class="akaru-content" style="padding: var(--spacing-lg);">
-                 <span class="badge">Print Edition</span>
-                 <h2 class="reveal-text"><span>Flow (Ink Reverie)</span></h2>
-             </div>
+        <!-- Store Framework Grid -->
+        <section style="margin-bottom: var(--spacing-xl);">
+            <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.85rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem;">[I. Store] The Goods</h3>
+            <div class="home-grid" id="home-store-grid">
+                <!-- Dynamically Populated by script.js -->
+            </div>
         </section>
 
-        <!-- Band 3: Process & Editorial -->
-        <section class="akaru-section">
-            <article class="akaru-block" onclick="window.location.href='about.html'">
-                <div class="akaru-content">
-                    <span class="badge">Studio Process</span>
-                    <h2 class="reveal-text"><span>Man, Daughter & Machine</span></h2>
-                    <p>The AI Love You Origin Story →</p>
-                </div>
-                <div class="akaru-block-img offset-down" style="height: 500px;">
-                    <div class="img-mask"></div>
-                    <div class="akaru-bg" style="background-image: url('assets/journal_process_mockup_1772732957507.png')"></div>
-                </div>
-            </article>
-
-            <article class="akaru-block offset-up" onclick="window.location.href='journal-edition-03.html'">
-                <div class="akaru-block-img" style="height: 600px;">
-                    <div class="img-mask"></div>
-                    <div class="akaru-bg" style="background-image: url('assets/journals/edition-03/the_witch_hd.jpg')"></div>
-                </div>
-                <div class="akaru-content">
-                     <span class="badge" style="color: var(--accent-color); border-color: var(--accent-color);">Latest Journal</span>
-                     <h2 class="reveal-text"><span>Edition 03: The Alchemy of Craft</span></h2>
-                     <p>Mechanical Horology, Peter Zumthor, & Folk Horror.</p>
-                     <p style="margin-top: 1rem; text-decoration: underline; font-size: 0.8rem;">Read Article</p>
-                </div>
-            </article>
+        <!-- Journal Framework Grid -->
+        <section style="margin-bottom: var(--spacing-xxl);">
+            <h3 class="pdp-related-title" style="font-family: var(--font-display); font-size: 0.85rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 1.5rem;">[II. Journal] The Archives</h3>
+            <div class="home-grid" id="home-journal-grid">
+                <!-- Dynamically Populated by script.js -->
+            </div>
         </section>
+
 
         <section class="about-footer">
             <div class="marquee">
@@ -101,10 +96,15 @@
             </div>
         </section>
     </main>
+</div>
     <!-- Animation Dependencies -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Content Data -->
+    <script src="assets/journals/journalData.js"></script>
+    <script src="products.js"></script>
+    <!-- Main Script -->
     <script src="script.js"></script>
 </body>
 
