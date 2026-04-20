@@ -531,7 +531,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section-container, .journal-content section[id], #editor-note');
     let navLinks = document.querySelectorAll('.nav-link');
     
-    // Only initialize if we're on a journal edition page
     if (sections.length === 0 || navLinks.length === 0) return;
 
     // ---- Create Mobile Roller Nav ----
@@ -542,7 +541,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileNavWrapper = document.createElement('nav');
         mobileNavWrapper.className = 'edition-nav-mobile';
         
-        // Add Roller Indicator (Subtle dots/icon)
         const indicator = document.createElement('div');
         indicator.className = 'roller-indicator';
         indicator.innerHTML = '<span></span><span></span><span></span>';
@@ -554,7 +552,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const rollerList = document.createElement('div');
         rollerList.className = 'roller-list';
         
-        // Clone links from desktop
         const desktopLinks = editionNavDesktop.querySelectorAll('.nav-link');
         desktopLinks.forEach((link, idx) => {
             const clone = link.cloneNode(true);
@@ -562,16 +559,14 @@ document.addEventListener('DOMContentLoaded', () => {
             clone.setAttribute('data-index', idx);
             rollerList.appendChild(clone);
             
-            // Allow manual click
             clone.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = clone.getAttribute('href').substring(1);
                 const targetEl = document.getElementById(targetId);
                 if (targetEl) {
-                    targetEl.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    window.isScrollingByNav = true;
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => { window.isScrollingByNav = false; }, 1000);
                 }
             });
         });
@@ -585,10 +580,34 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             journalContent.insertBefore(mobileNavWrapper, journalContent.firstChild);
         }
+
+        // --- Roller Touch Interactivity Logic ---
+        let debounceTimer;
+        rollerContainer.addEventListener('scroll', () => {
+            if (window.isScrollingByPage) return;
+            
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const item = rollerList.querySelector('.nav-link');
+                const itemHeight = item ? item.offsetHeight : 19;
+                const scrollPos = rollerContainer.scrollTop;
+                const activeIndex = Math.round(scrollPos / itemHeight);
+                
+                const targetLink = rollerList.querySelector(`[data-index="${activeIndex}"]`);
+                if (targetLink && !targetLink.classList.contains('active')) {
+                    const targetId = targetLink.getAttribute('href').substring(1);
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        window.isScrollingByNav = true;
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        setTimeout(() => { window.isScrollingByNav = false; }, 800);
+                    }
+                }
+            }, 150);
+        });
         
         navLinks = document.querySelectorAll('.nav-link');
     }
-    // ----------------------------
 
     if (typeof gsap !== 'undefined') {
         gsap.set('.nav-item .nav-subtitle', { height: 0, opacity: 0, marginTop: 0 });
@@ -601,6 +620,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentActiveLinkId = null;
 
     window.addEventListener('scroll', () => {
+        if (window.isScrollingByNav) return;
+        window.isScrollingByPage = true;
+
         let currentSectionId = "";
         sections.forEach(section => {
             if (window.pageYOffset >= section.offsetTop - 200) {
@@ -623,27 +645,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!link.classList.contains('active')) {
                         link.classList.add('active');
                         
-                        // Desktop GSAP
                         if (subtitle && subtitle.classList.contains('nav-subtitle') && typeof gsap !== 'undefined') {
                             gsap.to(subtitle, {
                                 duration: 0.6,
-                                height: 'auto',
-                                opacity: 0.8,
-                                marginTop: "0.25rem",
+                                height: 'auto', opacity: 0.8, marginTop: "0.25rem",
                                 ease: "back.out(1.7)"
                             });
                         }
                         
-                        // Mobile Roller Logic: Center the active link vertically
-                        if (link.parentElement && link.parentElement.classList.contains('roller-list')) {
-                            const list = link.parentElement;
-                            const index = parseInt(link.getAttribute('data-index'));
-                            const itemHeight = 32; // 2rem = 32px roughly
-                            // Window height is 96px (6rem). To center, we need offset.
-                            // Offset = (WindowMid) - (ItemTop + ItemMid)
-                            // Offset = 48 - (index * 32 + 16)
-                            const offset = 48 - (index * 32 + 16);
-                            list.style.transform = `translateY(${offset}px)`;
+                        // Sync Roller Position
+                        const rollerContainer = document.querySelector('.roller-container');
+                        const index = parseInt(link.getAttribute('data-index'));
+                        if (rollerContainer && !isNaN(index)) {
+                            const item = rollerContainer.querySelector('.nav-link');
+                            const itemHeight = item ? item.offsetHeight : 19;
+                            rollerContainer.scrollTo({
+                                top: index * itemHeight,
+                                behavior: 'smooth'
+                            });
                         }
                     }
                 } else {
@@ -652,9 +671,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (subtitle && subtitle.classList.contains('nav-subtitle') && typeof gsap !== 'undefined') {
                             gsap.to(subtitle, {
                                 duration: 0.4,
-                                height: 0,
-                                opacity: 0,
-                                marginTop: 0,
+                                height: 0, opacity: 0, marginTop: 0,
                                 ease: "power2.inOut"
                             });
                         }
@@ -662,7 +679,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+        
+        clearTimeout(window.scrollEndTimer);
+        window.scrollEndTimer = setTimeout(() => { window.isScrollingByPage = false; }, 200);
     });
 });
+
 
 
