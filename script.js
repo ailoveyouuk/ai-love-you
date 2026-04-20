@@ -526,7 +526,7 @@ window.renderFeaturedProductsInJournal = function (keywords = []) {
             `;
     }
 }
-// Journal Navigation GSAP Accordion System & Mobile TOC
+// Journal Navigation GSAP Accordion System & Mobile Vertical Roller
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section-container, .journal-content section[id], #editor-note');
     let navLinks = document.querySelectorAll('.nav-link');
@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only initialize if we're on a journal edition page
     if (sections.length === 0 || navLinks.length === 0) return;
 
-    // ---- Create Mobile TOC ----
+    // ---- Create Mobile Roller Nav ----
     const editionNavDesktop = document.querySelector('.edition-nav');
     const journalContent = document.querySelector('.journal-content');
     
@@ -542,19 +542,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileNavWrapper = document.createElement('nav');
         mobileNavWrapper.className = 'edition-nav-mobile';
         
+        // Add Roller Indicator (Subtle dots/icon)
+        const indicator = document.createElement('div');
+        indicator.className = 'roller-indicator';
+        indicator.innerHTML = '<span></span><span></span><span></span>';
+        mobileNavWrapper.appendChild(indicator);
+
+        const rollerContainer = document.createElement('div');
+        rollerContainer.className = 'roller-container';
+        
+        const rollerList = document.createElement('div');
+        rollerList.className = 'roller-list';
+        
         // Clone links from desktop
         const desktopLinks = editionNavDesktop.querySelectorAll('.nav-link');
-        desktopLinks.forEach(link => {
+        desktopLinks.forEach((link, idx) => {
             const clone = link.cloneNode(true);
-            clone.classList.remove('active'); // active state handled by scroll listener
-            mobileNavWrapper.appendChild(clone);
+            clone.classList.remove('active');
+            clone.setAttribute('data-index', idx);
+            rollerList.appendChild(clone);
             
+            // Allow manual click
             clone.addEventListener('click', (e) => {
-                // Scroll behavior is handled natively by href="#id"
+                e.preventDefault();
+                const targetId = clone.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    targetEl.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
         
-        // Insert right beneath the global breadcrumb header if it exists, else at top
+        rollerContainer.appendChild(rollerList);
+        mobileNavWrapper.appendChild(rollerContainer);
+        
         const breadcrumbHeader = document.querySelector('.sticky-breadcrumb-header');
         if (breadcrumbHeader) {
             breadcrumbHeader.insertAdjacentElement('afterend', mobileNavWrapper);
@@ -562,16 +586,12 @@ document.addEventListener('DOMContentLoaded', () => {
             journalContent.insertBefore(mobileNavWrapper, journalContent.firstChild);
         }
         
-        // Update navLinks NodeList to include the newly created mobile links
         navLinks = document.querySelectorAll('.nav-link');
     }
     // ----------------------------
 
-    // Set initial states for GSAP (Desktop only subtitles)
     if (typeof gsap !== 'undefined') {
         gsap.set('.nav-item .nav-subtitle', { height: 0, opacity: 0, marginTop: 0 });
-
-        // Open the one that starts active immediately
         const initialActive = document.querySelector('.nav-link.active + .nav-subtitle');
         if (initialActive) {
             gsap.set(initialActive, { height: 'auto', opacity: 0.8, marginTop: "0.25rem" });
@@ -582,12 +602,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         let currentSectionId = "";
-
-        // Find the section that we are currently looking at
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            // 200px offset accommodates thick sticky headers
-            if (window.pageYOffset >= sectionTop - 200) {
+            if (window.pageYOffset >= section.offsetTop - 200) {
                 currentSectionId = section.getAttribute('id');
             }
         });
@@ -606,7 +622,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isActiveTarget) {
                     if (!link.classList.contains('active')) {
                         link.classList.add('active');
-                        // Expand with "Spongy" bounce effect (Desktop only)
+                        
+                        // Desktop GSAP
                         if (subtitle && subtitle.classList.contains('nav-subtitle') && typeof gsap !== 'undefined') {
                             gsap.to(subtitle, {
                                 duration: 0.6,
@@ -616,17 +633,22 @@ document.addEventListener('DOMContentLoaded', () => {
                                 ease: "back.out(1.7)"
                             });
                         }
-                        // Center active link in mobile scrolling container
-                        if (link.parentElement && link.parentElement.classList.contains('edition-nav-mobile')) {
-                            const container = link.parentElement;
-                            const scrollLeft = link.offsetLeft - (container.offsetWidth / 2) + (link.offsetWidth / 2);
-                            container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                        
+                        // Mobile Roller Logic: Center the active link vertically
+                        if (link.parentElement && link.parentElement.classList.contains('roller-list')) {
+                            const list = link.parentElement;
+                            const index = parseInt(link.getAttribute('data-index'));
+                            const itemHeight = 32; // 2rem = 32px roughly
+                            // Window height is 96px (6rem). To center, we need offset.
+                            // Offset = (WindowMid) - (ItemTop + ItemMid)
+                            // Offset = 48 - (index * 32 + 16)
+                            const offset = 48 - (index * 32 + 16);
+                            list.style.transform = `translateY(${offset}px)`;
                         }
                     }
                 } else {
                     if (link.classList.contains('active')) {
                         link.classList.remove('active');
-                        // Collapse smoothly (Desktop only)
                         if (subtitle && subtitle.classList.contains('nav-subtitle') && typeof gsap !== 'undefined') {
                             gsap.to(subtitle, {
                                 duration: 0.4,
@@ -642,4 +664,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 

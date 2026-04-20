@@ -2305,13 +2305,29 @@ h1, h2, h3, h4 {
   background-color: #ffffff !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  padding-top: 0 !important;
+  padding-top: var(--nav-height) !important; /* Offset for fixed nav */
   max-width: none !important;
 }
 
 body:has(.pdp-container), 
 .pdp-container {
   background-color: #ffffff !important;
+}
+
+@media (max-width: 1024px) {
+  .studio-main {
+      padding-top: var(--nav-height) !important;
+  }
+  
+  /* On journal pages we have both nav AND roller (6rem) */
+  .journal-content {
+      padding-top: calc(var(--nav-height) + 6rem) !important;
+  }
+
+  /* Cushion the landing when navigating to headings */
+  [id] {
+      scroll-margin-top: calc(var(--nav-height) + 8rem);
+  }
 }
 
 .studio-main {
@@ -2839,37 +2855,81 @@ body:has(.pdp-container),
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         z-index: 2000;
-        padding: 0.8rem var(--spacing-md);
+        height: 6rem; /* 3 lines of focus */
+        padding: 0;
         margin-left: calc(var(--spacing-md) * -1);
         margin-right: calc(var(--spacing-md) * -1);
         margin-bottom: var(--spacing-md);
-        overflow-x: auto;
-        white-space: nowrap;
+        overflow: hidden; /* Roller window */
         border-bottom: 1px solid var(--border-color);
-        gap: 1.5rem;
-        scrollbar-width: none;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: calc(100% + (2 * var(--spacing-md))); /* Ensure full bleed */
     }
-    .edition-nav-mobile::-webkit-scrollbar { display: none; }
+
+    .roller-indicator {
+        width: 1.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        opacity: 0.3;
+        border-right: 1px solid var(--border-color);
+        margin-right: 1rem;
+    }
+
+    .roller-indicator span {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--text-color);
+    }
+
+    .roller-container {
+        flex: 1;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+    }
+
+    .roller-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        padding: 2rem 0; /* Buffer for rolling */
+    }
+
     .edition-nav-mobile .nav-link {
         font-family: var(--font-display);
         font-size: 0.75rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-color);
-        opacity: 0.5;
+        opacity: 0.2;
         text-decoration: none;
-        transition: opacity 0.3s;
-        border: none;
-        padding: 0;
-        transform: none;
+        transition: all 0.4s ease;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        filter: blur(2px);
+        transform: scale(0.9);
+        white-space: nowrap;
     }
+
     .edition-nav-mobile .nav-link.active {
         opacity: 1;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--accent-color);
-        border-bottom: 2px solid var(--accent-color);
-        padding-bottom: 0.8rem;
-        margin-bottom: -0.8rem;
+        filter: blur(0);
+        transform: scale(1.1);
+        z-index: 2;
     }
 }
 
