@@ -24,36 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initTypewriter();
 
-    // ---- Homepage Grid Logic ----
+    // ---- 2026 Editorial Orchestration: Home Grid Logic ----
     const renderHomeGrids = () => {
         const storeGrid = document.getElementById('home-store-grid');
         const journalGrid = document.getElementById('home-journal-grid');
         
         if (storeGrid && typeof products !== 'undefined') {
             const activeProducts = products.filter(p => p.category.toLowerCase() === 'art prints');
-            const dateStr = new Date().toISOString().split('T')[0];
-            let seed = 0;
-            for(let i=0; i<dateStr.length; i++) seed += dateStr.charCodeAt(i);
-            
-            const shuffledProducts = [...activeProducts].sort((a,b) => {
-                const hashA = (seed * a.title.charCodeAt(0)) % 100;
-                const hashB = (seed * b.title.charCodeAt(0)) % 100;
-                return hashA - hashB;
-            });
-            
-            const topProducts = shuffledProducts.slice(0, 6);
+            const topProducts = activeProducts.slice(0, 3); // [RECTANGULAR STABILITY] Compact 3-Column Focus
             
             storeGrid.innerHTML = topProducts.map(p => `
-                <a href="product.html?id=${p.id}" class="pdp-related-card" style="text-decoration: none;">
-                    <div class="pdp-related-image-container">
+                <a href="product.html?id=${p.id}" class="pdp-related-card" style="text-decoration: none; border-radius: 0; background: white; border: 1px solid var(--border-color);">
+                    <div class="pdp-related-image-container" style="border-radius: 0; aspect-ratio: 1/1;">
                         <img src="${p.images ? p.images[0] : p.image}" alt="${p.title}" class="pdp-related-image" loading="lazy">
                     </div>
-                    <div class="card-content-wrapper">
-                        <div class="card-pill-orange">${p.category}</div>
-                        <div class="card-title">${p.title}${p.designVariants ? ` (${p.designVariants[0].name})` : ''}</div>
-                        <div class="card-footer">
-                            <span class="card-price">£${Object.values(p.priceVariants || {"Base": "TBD"})[0]}</span>
-                            <span class="card-link">Discover &rarr;</span>
+                    <div class="card-content-wrapper" style="padding: 1.5rem;">
+                        <div class="card-pill-orange" style="background: var(--color-communicator); color: white; font-size: 0.6rem; letter-spacing: 0.2em;">${p.category}</div>
+                        <div class="card-title" style="font-size: 1rem; margin-top: 0.5rem; font-weight: 700;">${p.title}</div>
+                        <div class="card-footer" style="border-top: none; padding-top: 0;">
+                            <span class="card-price" style="font-weight: 500;">£${Object.values(p.priceVariants || {"Base": "TBD"})[0]}</span>
+                            <span class="card-link" style="color: var(--color-action);">MORE &rarr;</span>
                         </div>
                     </div>
                 </a>
@@ -67,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (post.category !== 'global-five') {
                     if (!editionsFound.has(post.edition)) {
                         editionsFound.add(post.edition);
-                        // Modify link to go to the journal edition page instead of anchor
                         const parts = post.link.split('#');
                         const url = parts.length > 0 ? parts[0] : post.link;
                         topJournals.push({ ...post, link: url });
@@ -76,18 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
+            // [GEOMETRIC REDUCTION] Journal cards as Visual Exclamation Marks
             journalGrid.innerHTML = topJournals.map(j => `
-                <a href="${j.link}" class="pdp-related-card is-archive" style="text-decoration: none;">
-                    <div class="pdp-related-image-container">
-                        <img src="${j.image}" alt="${j.title}" class="pdp-related-image" loading="lazy">
+                <a href="${j.link}" class="pdp-related-card is-archive" style="text-decoration: none; border-radius: 0; background: transparent; border: none; padding: 0;">
+                    <div class="pdp-related-image-container" style="border-radius: 0; aspect-ratio: 1.414/1; overflow: hidden; border: 1px solid var(--border-color);">
+                        <img src="${j.image}" alt="${j.title}" class="pdp-related-image" loading="lazy" style="opacity: 0.9; filter: grayscale(1); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
                     </div>
-                    <div class="card-content-wrapper">
-                        <div class="card-pill-orange">${j.edition || 'JOURNAL'}</div>
-                        <div class="card-title">${j.title}</div>
-                        <div class="card-desc">${j.subtitle}</div>
-                        <div class="card-footer">
-                            <span class="card-price" style="color: var(--ink-gray);">${j.publishDate || ''}</span>
-                            <span class="card-link">Read &rarr;</span>
+                    <div class="card-content-wrapper" style="padding: 1.5rem 0;">
+                        <div style="font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-action); margin-bottom: 0.5rem;">${j.edition || 'JOURNAL'}</div>
+                        <div class="card-title" style="font-size: 1.25rem; font-weight: 700; line-height: 1.1;">${j.title}</div>
+                        <div class="card-footer" style="border: none; padding-top: 0.5rem;">
+                            <span class="card-price" style="color: var(--color-anchor); font-size: 0.7rem;">${j.publishDate || ''}</span>
+                            <span class="card-link" style="font-size: 0.7rem;">Read Context &rarr;</span>
                         </div>
                     </div>
                 </a>
@@ -137,10 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update the new Global Bag Icon
-        const globalBagCountBadge = document.querySelector('.bag-count-badge');
-        if (globalBagCountBadge) {
-            globalBagCountBadge.innerText = count;
+        // Update all Global Bag Icons (Desktop and Mobile)
+        const bagBadges = document.querySelectorAll('.bag-count-badge');
+        if (bagBadges.length > 0) {
+            bagBadges.forEach(badge => {
+                badge.innerText = count;
+            });
         }
     }
 
@@ -185,11 +176,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 
-    // ---- GSAP Scroll Animations (Akaru Inspiration) ----
+    // ---- GSAP Scroll Animations (Editorial Orchestration) ----
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Text Reveals
+        // Ensure we start at top for "Impact" phase
+        window.scrollTo(0, 0);
+
+        // Text Reveals (LIFT System: Eye Choreography)
         const revealTexts = document.querySelectorAll('.reveal-text span');
         revealTexts.forEach(text => {
             gsap.to(text, {
@@ -198,7 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     start: "top 95%",
                 },
                 y: "0%",
-                duration: 1,
+                autoAlpha: 1, // Fix for invisible headline
+                duration: 1.2,
                 ease: "power4.out"
             });
         });
@@ -217,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Image Parallax
+        // Image Parallax (Movement & Flow)
         const parallaxImages = document.querySelectorAll('.akaru-bg, .akaru-block-img img');
         parallaxImages.forEach(img => {
             gsap.to(img, {
@@ -227,8 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     end: "bottom top",
                     scrub: true,
                 },
-                y: "15%",
-                scale: 1, // subtle scale down
+                y: "10%", // Reduced for more subtle flow
+                scale: 1,
                 ease: "none"
             });
         });
@@ -267,12 +262,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const categories = rawCategories.filter(cat => cat.toLowerCase() === 'all' || cat.toLowerCase() === 'art prints');
             
             categoryNav.innerHTML = categories.map(cat => `
-                <button class="category-btn ${currentCategory === cat ? 'active' : ''}" data-category="${cat}">
+                <button class="tag-btn ${currentCategory === cat ? 'active' : ''}" data-category="${cat}">
                     ${cat.toUpperCase()}
                 </button>
             `).join('');
 
-            categoryNav.querySelectorAll('.category-btn').forEach(btn => {
+            categoryNav.querySelectorAll('.tag-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentCategory = btn.getAttribute('data-category');
                     currentSubFilter = 'all'; // Reset sub-filter when category changes
@@ -305,15 +300,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             subFilterNav.innerHTML = `
-                <button class="filter-btn ${currentSubFilter === 'all' ? 'active' : ''}" data-sub="all">ALL</button>
+                <button class="tag-btn ${currentSubFilter === 'all' ? 'active' : ''}" data-sub="all">ALL</button>
                 ${subFilters.map(sf => `
-                    <button class="filter-btn ${currentSubFilter === sf ? 'active' : ''}" data-sub="${sf}">
+                    <button class="tag-btn ${currentSubFilter === sf ? 'active' : ''}" data-sub="${sf}">
                         ${sf.toUpperCase()}
                     </button>
                 `).join('')}
             `;
 
-            subFilterNav.querySelectorAll('.filter-btn').forEach(btn => {
+            subFilterNav.querySelectorAll('.tag-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentSubFilter = btn.getAttribute('data-sub');
                     renderSubFilters();
@@ -350,29 +345,78 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             filtered.forEach((product, index) => {
-                const prices = Object.values(product.priceVariants);
-                const minPrice = Math.min(...prices);
+                const prices = Object.entries(product.priceVariants || { "Standard": 45 });
+                const [firstSize, firstPrice] = prices[0];
                 const card = document.createElement('article');
                 card.className = 'product-card';
-                card.style.opacity = '0'; // For GSAP staggered entry
+                card.style.opacity = '0';
                 
                 const imgTarget = product.images ? product.images[0] : product.image;
+                
                 card.innerHTML = `
                     <div class="product-image-container">
                         <a href="product.html?id=${product.id}" style="display:block;">
                             <img src="${imgTarget}" alt="${product.title}" class="product-image" loading="lazy">
                         </a>
-                        <div class="product-actions">
-                            <button class="btn-shop-add" data-id="${product.id}" onclick="window.location.href='product.html?id=${product.id}'">View Edition</button>
-                        </div>
                     </div>
                     <div class="product-info">
                         <span class="product-series">${product.series}</span>
                         <a href="product.html?id=${product.id}" style="color:inherit; text-decoration:none;"><h3 class="product-title">${product.title}</h3></a>
-                        <span class="product-price">from £${minPrice}.00</span>
+                        
+                        <div class="product-commerce-row">
+                            <span class="product-price">from £${firstPrice}.00</span>
+                            <div class="product-grid-actions">
+                                <select class="grid-size-selector" data-id="${product.id}">
+                                    ${prices.map(([size, price]) => `<option value="${size}" data-price="${price}">${size}</option>`).join('')}
+                                </select>
+                                <button class="btn-pill-orange quick-add-btn" 
+                                        data-id="${product.id}" 
+                                        data-title="${product.title}" 
+                                        data-img="${imgTarget}">ADD</button>
+                            </div>
+                        </div>
                     </div>
                 `;
                 productGrid.appendChild(card);
+            });
+
+            // Dynamic Price Updating & Quick Add
+            productGrid.querySelectorAll('.product-card').forEach(card => {
+                const selector = card.querySelector('.grid-size-selector');
+                const priceDisplay = card.querySelector('.product-price');
+                const addBtn = card.querySelector('.quick-add-btn');
+
+                if (selector) {
+                    selector.addEventListener('change', () => {
+                        const selectedOption = selector.options[selector.selectedIndex];
+                        const newPrice = selectedOption.getAttribute('data-price');
+                        priceDisplay.innerText = `£${newPrice}.00`;
+                    });
+                }
+
+                if (addBtn) {
+                    addBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const selectedSize = selector.value;
+                        const selectedPrice = selector.options[selector.selectedIndex].getAttribute('data-price');
+                        
+                        // Construct variant info
+                        const designName = (products.find(p => p.id === addBtn.getAttribute('data-id')).designVariants?.[0]?.name) || '';
+                        const variantString = designName ? `${designName} Edition - ${selectedSize}` : selectedSize;
+
+                        const info = {
+                            id: addBtn.getAttribute('data-id'),
+                            title: addBtn.getAttribute('data-title'),
+                            variant: variantString,
+                            price: parseFloat(selectedPrice),
+                            image: addBtn.getAttribute('data-img'),
+                            quantity: 1
+                        };
+                        if (window.addToArchiveFeedback) {
+                            window.addToArchiveFeedback(addBtn, info);
+                        }
+                    });
+                }
             });
 
             // GSAP Staggered Fade In
@@ -392,7 +436,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 4. Recommendations (Empty State)
         function renderRecommendations() {
-            // Pick 4 products: prioritize current category if possible, else random
             let recs = products.filter(p => p.category === currentCategory && p.id !== 'placeholder');
             if (recs.length < 4) {
                 const otherProducts = products.filter(p => p.category !== currentCategory && p.id !== 'placeholder');
@@ -405,27 +448,82 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div style="grid-column: 1/-1; padding: var(--spacing-xxl) 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: var(--spacing-xl);">
                     <p style="opacity: 0.5; margin-bottom: var(--spacing-md); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">No exact matches found in the archive.</p>
                     <h3 style="margin-bottom: var(--spacing-xl); font-family: var(--font-display); font-size: 2rem;">YOU MIGHT ALSO LIKE</h3>
-                    <div class="shop-grid" style="padding: 0; width: 100%; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="shop-grid-recommendations" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md); width: 100%;">
                         ${recs.map(p => {
-                            const prices = Object.values(p.priceVariants);
-                            const minP = Math.min(...prices);
+                            const prices = Object.entries(p.priceVariants || { "Standard": 45 });
+                            const [fSize, fPrice] = prices[0];
+                            const iTarget = p.images ? p.images[0] : p.image;
+
                             return `
-                                <article class="product-card" onclick="window.location.href='product.html?id=${p.id}'">
+                                <article class="product-card">
                                     <div class="product-image-container">
-                                        <img src="${p.images ? p.images[0] : p.image}" alt="${p.title}" class="product-image" loading="lazy">
+                                        <a href="product.html?id=${p.id}" style="display:block;">
+                                            <img src="${iTarget}" alt="${p.title}" class="product-image" loading="lazy">
+                                        </a>
                                     </div>
                                     <div class="product-info">
                                         <span class="product-series">${p.series}</span>
-                                        <h3 class="product-title">${p.title}</h3>
-                                        <span class="product-price">from £${minP}.00</span>
+                                        <a href="product.html?id=${p.id}" style="color:inherit; text-decoration:none;"><h3 class="product-title">${p.title}</h3></a>
+                                        
+                                        <div class="product-commerce-row">
+                                            <span class="product-price">from £${fPrice}.00</span>
+                                            <div class="product-grid-actions">
+                                                <select class="grid-size-selector" data-id="${p.id}">
+                                                    ${prices.map(([size, price]) => `<option value="${size}" data-price="${price}">${size}</option>`).join('')}
+                                                </select>
+                                                <button class="btn-pill-orange quick-add-btn" 
+                                                        data-id="${p.id}" 
+                                                        data-title="${p.title}" 
+                                                        data-img="${iTarget}">ADD</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </article>
                             `;
                         }).join('')}
                     </div>
-                    <button class="filter-btn" style="margin-top: var(--spacing-xxl); padding: 1rem 2rem;" onclick="window.location.href='shop.html'">View All Editions</button>
+                    <button class="tag-btn" style="margin-top: var(--spacing-xxl); padding: 1rem 2rem;" onclick="window.location.href='shop.html'">View All Editions</button>
                 </div>
             `;
+
+            // Dynamic Price Updating & Quick Add for recommendations
+            productGrid.querySelectorAll('.product-card').forEach(card => {
+                const selector = card.querySelector('.grid-size-selector');
+                const priceDisplay = card.querySelector('.product-price');
+                const addBtn = card.querySelector('.quick-add-btn');
+
+                if (selector) {
+                    selector.addEventListener('change', () => {
+                        const selectedOption = selector.options[selector.selectedIndex];
+                        const newPrice = selectedOption.getAttribute('data-price');
+                        priceDisplay.innerText = `£${newPrice}.00`;
+                    });
+                }
+
+                if (addBtn) {
+                    addBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const selectedSize = selector.value;
+                        const selectedPrice = selector.options[selector.selectedIndex].getAttribute('data-price');
+                        
+                        const targetProduct = products.find(p => p.id === addBtn.getAttribute('data-id'));
+                        const designName = (targetProduct?.designVariants?.[0]?.name) || '';
+                        const variantString = designName ? `${designName} Edition - ${selectedSize}` : selectedSize;
+
+                        const info = {
+                            id: addBtn.getAttribute('data-id'),
+                            title: addBtn.getAttribute('data-title'),
+                            variant: variantString,
+                            price: parseFloat(selectedPrice),
+                            image: addBtn.getAttribute('data-img'),
+                            quantity: 1
+                        };
+                        if (window.addToArchiveFeedback) {
+                            window.addToArchiveFeedback(addBtn, info);
+                        }
+                    });
+                }
+            });
         }
 
         function updateURL() {
@@ -540,6 +638,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (editionNavDesktop && journalContent) {
         const mobileNavWrapper = document.createElement('nav');
         mobileNavWrapper.className = 'edition-nav-mobile';
+        
+        // [MOBILE REFINEMENT] Scroll Indicator
+        const scrollIndicator = document.createElement('div');
+        scrollIndicator.className = 'scroll-roll-indicator';
+        scrollIndicator.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 15l5 5 5-5M7 9l5-5 5 5"/>
+            </svg>
+            <span>Roll</span>
+        `;
+        mobileNavWrapper.appendChild(scrollIndicator);
         
         const indicator = document.createElement('div');
         indicator.className = 'roller-indicator';

@@ -1,42 +1,65 @@
-/* Core Design System */
+/* 2026 Global Schema Systems & Orchestration */
 :root {
-  --bg-color: #EBEAE5; /* Muted Beige / Akaru Light */
-  --text-color: #0E0E0E; /* Deep Charcoal */
-  --ink-gray: #A1A1AA;
-  --panel-bg: transparent;
-  --border-color: rgba(14, 14, 14, 0.15); /* Fine hairlines */
-  --accent-color: #D33F2E; /* Studio Vermilion softened */
+  /* [FUNCTIONAL COLOR MAPPING] 2025 Logic */
+  /* Roles over Decoration: Color follows the logic of the action */
   
+  --color-action: #D33F2E;       /* ROLE: [ACTION TAKER] - Studio Vermilion (Surgical CTA) */
+  --color-communicator: #0E0E0E; /* ROLE: [COMMUNICATOR] - Carbon Black (Headlines/Core Text) */
+  --color-anchor: #A1A1AA;       /* ROLE: [ANCHOR] - Ink Gray (Borders/Dividers/Grounding) */
+  --color-neutral: #EBEAE5;      /* ROLE: [NEUTRAL/REST] - Muted Beige (Supporting Space) */
+  --color-feedback: #D33F2E;     /* ROLE: [FEEDBACK] - Studio Vermilion for alerts/status */
+
+  /* [CMYK CROSS-CALIBRATION] Print-Safe Metadata */
+  /* C:0 M:88 Y:82 K:17 (Vermilion Equivalent for Merchandise) */
+  --print-action: "C0 M88 Y82 K17";
+  --print-communicator: "C0 M0 Y0 K100";
+
+  /* [CORE DNA] Mapping to System Variables */
+  --bg-color: var(--color-neutral);
+  --text-color: var(--color-communicator);
+  --accent-color: var(--color-action);
+  --border-color: rgba(14, 14, 14, 0.15);
+  --red-dot: var(--color-action);
+
+  /* [VERTICAL RHYTHM] Baseline Grid */
+  /* Based on an 8px/12px modular scale for 'Rectangular Stability' */
+  --baseline: 8px;
+  --spacing-xs: calc(var(--baseline) * 1);  /* 8px */
+  --spacing-sm: calc(var(--baseline) * 2);  /* 16px */
+  --spacing-md: calc(var(--baseline) * 4);  /* 32px */
+  --spacing-lg: calc(var(--baseline) * 8);  /* 64px */
+  --spacing-xl: calc(var(--baseline) * 12); /* 96px */
+  --spacing-xxl: calc(var(--baseline) * 16);/* 128px */
+
+  /* [SYMBOLIC INTERACTION] Typography Schema */
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Inter Tight', sans-serif;
   --font-cursive: 'La Belle Aurore', cursive;
 
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
-  --spacing-xxl: 12rem;
+  /* Typographic Micro-Space (Leading/Kerning) */
+  --leading-tight: 1.05;
+  --leading-body: 1.6; /* Comfortable consuming of deep-dive content */
+  --kerning-display: -0.04em;
+  --kerning-meta: 0.15em;
 
-  /* Responsive Spacing Overrides */
+  /* Orchestration UI Constants */
+  --nav-height: 80px;
+  --sidebar-width: 250px;
+
+  /* Responsive Scaling (Stitch Logic: Compact but Confident) */
   @media (max-width: 1024px) {
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2.5rem;
-    --spacing-xl: 3rem; /* Tablet default padding */
-    --spacing-xxl: 5rem;
+    --spacing-md: calc(var(--baseline) * 2.5); /* Tighter for Tablet */
+    --spacing-lg: calc(var(--baseline) * 4);
+    --spacing-xl: calc(var(--baseline) * 6);
     --nav-height: 80px;
   }
 
   @media (max-width: 768px) {
-    --spacing-sm: 0.75rem;
-    --spacing-md: 1.25rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 2rem; /* Mobile default padding */
+    --spacing-md: calc(var(--baseline) * 2); /* Tighter for Mobile */
+    --spacing-lg: calc(var(--baseline) * 3);
+    --spacing-xl: calc(var(--baseline) * 4);
     --nav-height: 70px;
   }
-
-  --nav-height: 80px;
-  --sidebar-width: 250px;
 }
 
 /* Scrollbar styling for a cleaner look */
@@ -68,7 +91,7 @@ body {
   color: var(--text-color);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
+  line-height: var(--leading-body);
   overflow-x: hidden;
 }
 
@@ -81,16 +104,16 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin-bottom: var(--spacing-sm);
-  line-height: 1.1;
+  line-height: var(--leading-tight);
 }
 
 .headline-massive {
   font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 700;
-  line-height: 0.95; /* Increased for better wrapping on mobile */
+  line-height: 0.95;
   margin-bottom: var(--spacing-lg);
   color: var(--text-color);
-  letter-spacing: -0.04em;
+  letter-spacing: var(--kerning-display);
   text-transform: uppercase;
 }
 
@@ -140,9 +163,88 @@ h1, h2, h3, h4 {
   font-family: var(--font-body);
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--kerning-meta);
   font-weight: 600;
   color: var(--text-color);
+}
+
+/* [GESTALT] Grouping Utilities */
+
+/* Connection through Compression: Headline + Body */
+.compressed-stack > * + * {
+  margin-top: 0.25em !important;
+}
+
+/* Focal Highlight: Maximum breathing room for CTAs */
+.isolated-focal {
+  margin: var(--spacing-lg) 0;
+  display: inline-block;
+}
+
+/* [NEURO-DESIGN] Utility Ecosystem */
+
+/* The Red Dot CTA: Surgical focus for maximum CTR */
+.red-dot-cta {
+  background: var(--red-dot);
+  color: white;
+  padding: 1rem 2.5rem;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  border-radius: 0; /* Rectangular Stability */
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.red-dot-cta:hover {
+  transform: translateY(-2px);
+  background: var(--text-color);
+}
+
+/* Geometric Reduction: Clean icons/shapes for mental shortcuts */
+.geometric-reduction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm);
+  background: white;
+  border: 1px solid var(--border-color);
+  aspect-ratio: 1;
+  transition: all 0.3s ease;
+}
+
+.geometric-reduction svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.5;
+}
+
+/* Dynamic Leading Line: Movement & Flow (Triangle Logic) */
+.flow-arrow {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--accent-color);
+  position: relative;
+  vertical-align: middle;
+  margin-left: var(--spacing-sm);
+}
+
+.flow-arrow::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid var(--accent-color);
+  border-top: 1px solid var(--accent-color);
+  transform: rotate(45deg);
 }
 
 /* Global Navigation */
@@ -650,7 +752,8 @@ h1, h2, h3, h4 {
   padding: 0.4rem 0.8rem;
   margin-bottom: var(--spacing-sm);
   border-radius: 50px; /* Akaru rounded pills */
-  color: var(--text-color);
+  color: var(--color-communicator);
+  background: transparent;
 }
 
 .akaru-content h2 {
@@ -726,7 +829,7 @@ h1, h2, h3, h4 {
 .footer-bottom {
   margin-top: var(--spacing-xl);
   font-size: 0.8rem;
-  color: var(--ink-gray);
+  color: var(--color-anchor);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding-bottom: var(--spacing-xl);
@@ -1420,6 +1523,16 @@ h1, h2, h3, h4 {
 }
 
 /* Journal Content Layout Headers */
+.journal-content {
+  padding: 2rem 8% 10rem 8% !important;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.edition-header {
+  margin-bottom: 4rem !important;
+}
+
 .journal-content h1 {
   font-size: clamp(2.2rem, 8vw, 4.2rem);
   font-weight: 800;
@@ -2851,10 +2964,10 @@ body:has(.pdp-container),
     .edition-nav-mobile {
         display: flex;
         position: sticky;
-        top: calc(var(--nav-height) + 2.8rem); /* Below Breadcrumbs */
+        top: calc(var(--nav-height) + 2rem); /* Adjusted for better clearance */
         background: #ffffff;
         z-index: 2000;
-        height: 3rem; /* More discrete height */
+        height: 3rem; 
         padding: 0;
         margin-left: calc(var(--spacing-xl) * -1);
         margin-right: calc(var(--spacing-xl) * -1);
@@ -2865,12 +2978,12 @@ body:has(.pdp-container),
         align-items: center;
         justify-content: flex-start;
         width: calc(100% + (2 * var(--spacing-xl)));
-        padding-left: var(--spacing-md); /* Aligns text start with logo/breadcrumb */
+        padding-left: var(--spacing-md); 
     }
 
     .roller-indicator {
         position: absolute;
-        left: 0.5rem; /* Tucked away to the left of the alignment line */
+        left: 0.5rem; 
         width: 1rem;
         height: 100%;
         display: flex;
@@ -2878,7 +2991,7 @@ body:has(.pdp-container),
         align-items: center;
         justify-content: center;
         gap: 3px;
-        opacity: 0.1;
+        opacity: 0.2; /* Slightly more visible */
         pointer-events: none;
     }
 
@@ -2896,7 +3009,7 @@ body:has(.pdp-container),
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
         scrollbar-width: none;
-        user-select: none; /* Prevent text selection during drag */
+        user-select: none; 
         -webkit-user-select: none;
         mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
         -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
@@ -2908,24 +3021,24 @@ body:has(.pdp-container),
         flex-direction: column;
         align-items: flex-start;
         transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-        padding: 1.25rem 0; /* Vertical buffer */
-        padding-left: 1.5rem; /* Offset for indicator space */
+        padding: 1.25rem 0; 
+        padding-left: 1.5rem; 
     }
 
     .edition-nav-mobile .nav-link {
         font-family: var(--font-display);
-        font-size: 0.65rem;
+        font-size: 0.7rem; /* Slightly larger */
         letter-spacing: 0.05em;
         text-transform: uppercase;
         color: var(--text-color);
-        opacity: 0.15;
+        opacity: 0.45; /* Increased contrast from 0.15 */
         text-decoration: none;
         transition: all 0.4s ease;
-        height: 1.2rem; /* Snapping height */
+        height: 1.2rem; 
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        filter: blur(1px);
+        filter: none; /* Removed blur for readability */
         transform-origin: left center;
         white-space: nowrap;
         scroll-snap-align: center;
@@ -2935,8 +3048,9 @@ body:has(.pdp-container),
         opacity: 1;
         font-weight: 800;
         color: var(--accent-color);
-        filter: blur(0);
+        filter: none;
         z-index: 2;
+        transform: scale(1.05); /* Subtle emphasis */
     }
 }
 
@@ -2951,5 +3065,587 @@ body:has(.pdp-container),
 @media (max-width: 1024px) {
     .pdp-mobile-commerce {
         display: block;
+    }
+}
+/* ----- Archival Design System Extensions (Journal Gold Standard) ----- */
+
+/* Edition Label — Orange uppercase context marker above headlines (journal standard) */
+.edition-label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #FF4D00;
+    margin-bottom: 1rem;
+    display: block;
+    font-weight: 600;
+}
+
+/* Edition Meta — Hairline-separated metadata row */
+.edition-meta {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--ink-gray);
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    flex-wrap: wrap;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+@media (max-width: 640px) {
+    .edition-meta {
+        gap: 1rem;
+        flex-direction: column;
+    }
+}
+
+/* Archival Controls Container - matches .journal-controls */
+.archival-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: var(--spacing-md);
+}
+
+/* Search Bar - Journal Style: border-bottom only, large type, transparent */
+.search-bar {
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--text-color);
+    padding: var(--spacing-sm) 0;
+    font-family: var(--font-display);
+    font-size: clamp(0.85rem, 4vw, 2.22rem);
+    color: var(--text-color);
+    outline: none;
+    transition: opacity 0.3s ease;
+    text-transform: uppercase;
+}
+
+.search-input::placeholder {
+    color: var(--ink-gray);
+    opacity: 0.6;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+    .search-input::placeholder {
+        font-size: 0.65rem;
+        letter-spacing: 0.05em;
+    }
+}
+
+.search-input:focus {
+    opacity: 1;
+    border-bottom-color: #FF4D00;
+}
+
+/* Archival Tags Row — pill buttons matching journal tag-btn */
+.archival-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0;
+}
+
+/* Tag Buttons — Matches journal's exact editorial pill style */
+.tag-btn {
+    background: transparent;
+    border: 1.5px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-btn:hover,
+.tag-btn.active {
+    background: var(--accent-color);
+    color: #ffffff;
+}
+
+/* Edition Pill — Orange bordered context label */
+.edition-pill {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid #FF4D00;
+    color: #FF4D00;
+    border-radius: 50px;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+/* Dept Label — Orange uppercase category marker (journal .dept-label) */
+.dept-label,
+.pdp-dept-label {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #FF4D00;
+    margin-bottom: 1.5rem;
+    display: block;
+    font-weight: 600;
+}
+
+/* === PDP COMMERCE BLOCK — Editorial Redesign for Mobile/Tablet === */
+
+/* Full purchase block wrapper */
+.pdp-commerce-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+}
+
+/* Commerce section label — matching journal dept-label */
+.pdp-commerce-label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-gray);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Edition Selector Buttons — large pill selectors for design variants */
+.pdp-edition-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.pdp-edition-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 2px solid transparent;
+}
+
+.pdp-edition-btn:hover {
+    border-color: var(--text-color);
+    background: rgba(14,14,14,0.02);
+}
+
+.pdp-edition-btn.active {
+    border-left-color: #FF4D00;
+    border-color: var(--text-color);
+    background: rgba(14,14,14,0.03);
+    color: var(--text-color);
+}
+
+.pdp-edition-btn.active::after {
+    content: '✓';
+    font-size: 0.8rem;
+    color: #FF4D00;
+    font-weight: 700;
+}
+
+/* Format Selector — Journal style: borderless except bottom, large type */
+.pdp-format-select-wrapper {
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.pdp-format-select-wrapper::after {
+    content: '↓';
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
+    font-size: 1rem;
+    color: var(--ink-gray);
+    pointer-events: none;
+}
+
+.pdp-format-dropdown {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--text-color);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-color);
+    padding: 0.75rem 0;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    margin-bottom: var(--spacing-md);
+}
+
+.pdp-format-dropdown:focus {
+    border-bottom-color: #FF4D00;
+}
+
+/* Quantity Selector */
+.pdp-qty-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Price Display — large editorial number */
+.pdp-price-display {
+    font-family: var(--font-body);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text-color);
+    line-height: 1;
+    margin: var(--spacing-md) 0;
+}
+
+/* ADD TO BAG — Full-width orange pill, editorial scale */
+.btn-bag-pill,
+.pdp-add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: transparent;
+    border: 1.5px solid #FF4D00;
+    color: #FF4D00;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 1.2rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: var(--spacing-md);
+}
+
+.btn-bag-pill:hover,
+.pdp-add-btn:hover {
+    background: #FF4D00;
+    color: #ffffff;
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(255, 77, 0, 0.2);
+}
+
+/* Inline Orange ADD pill for shop grid cards */
+.btn-pill-orange {
+    background: transparent;
+    border: 1.5px solid #FF4D00;
+    color: #FF4D00;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-pill-orange:hover {
+    background: #FF4D00;
+    color: #ffffff;
+}
+
+/* Shop Grid Commerce Row */
+.product-commerce-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.2rem;
+    gap: var(--spacing-sm);
+    flex-wrap: nowrap;
+}
+
+.product-grid-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.grid-size-selector {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.3rem 0;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+    min-width: 3.5rem;
+}
+
+.grid-size-selector:focus {
+    border-bottom-color: #FF4D00;
+}
+
+/* Mobile commerce block override — displayed below product intro on mobile */
+@media (max-width: 1024px) {
+    .pdp-format-dropdown {
+        font-size: 1.4rem;
+        padding: 1rem 0;
+    }
+    
+    .btn-bag-pill,
+    .pdp-add-btn {
+        font-size: 1.1rem;
+        padding: 1.4rem 2rem;
+        margin-top: var(--spacing-lg);
+    }
+    
+    .pdp-edition-btn {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .pdp-price-display {
+        font-size: clamp(2.8rem, 8vw, 4rem);
+    }
+    
+    .product-commerce-row {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .product-price {
+        font-size: 0.9rem;
+    }
+    
+    .btn-pill-orange {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.6rem;
+    }
+    
+    .grid-size-selector {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .btn-pill-orange {
+        padding: 0.45rem 0.7rem;
+        font-size: 0.55rem;
+    }
+    
+    .grid-size-selector {
+        font-size: 0.55rem;
+    }
+}
+
+/* Search Highlighting */
+.highlight {
+    background: rgba(255, 77, 0, 0.15);
+    color: #FF4D00;
+    font-weight: 800;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* Journal-style search suggestion tags */
+.search-suggestions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.suggest-tag {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-gray);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.suggest-tag:hover {
+    color: #FF4D00;
+}
+
+.period-filter {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.period-select {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-color);
+    padding: 0.5rem 0;
+    cursor: pointer;
+    outline: none;
+}
+
+/* PDP Mobile Commerce Block */
+.pdp-mobile-commerce {
+    display: none;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 1024px) {
+    .pdp-mobile-commerce {
+        display: block;
+    }
+}
+
+/* ---- Mobile Edition Roller (Journal Pages) ---- */
+.edition-nav-mobile {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .edition-nav-mobile {
+        display: flex;
+        position: sticky;
+        top: calc(var(--nav-height) + 2rem);
+        background: #ffffff;
+        z-index: 2000;
+        height: 3rem;
+        padding: 0;
+        margin-left: calc(var(--spacing-xl) * -1);
+        margin-right: calc(var(--spacing-xl) * -1);
+        margin-bottom: var(--spacing-md);
+        overflow: hidden;
+        border-bottom: 1px solid var(--border-color);
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: calc(100% + (2 * var(--spacing-xl)));
+        padding-left: var(--spacing-md);
+    }
+
+    .roller-indicator {
+        position: absolute;
+        left: 0.5rem;
+        width: 1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        opacity: 0.2;
+        pointer-events: none;
+    }
+
+    .roller-indicator span {
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background: var(--text-color);
+    }
+
+    .roller-container {
+        flex: 1;
+        height: 100%;
+        position: relative;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+        user-select: none;
+        -webkit-user-select: none;
+        mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+    }
+    .roller-container::-webkit-scrollbar { display: none; }
+
+    .roller-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        padding: 1.25rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .edition-nav-mobile .nav-link {
+        font-family: var(--font-display);
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--text-color);
+        opacity: 0.45;
+        text-decoration: none;
+        transition: all 0.4s ease;
+        height: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        filter: none;
+        transform-origin: left center;
+        white-space: nowrap;
+        scroll-snap-align: center;
+    }
+
+    .edition-nav-mobile .nav-link.active {
+        opacity: 1;
+        font-weight: 800;
+        color: #FF4D00;
+        filter: none;
+        z-index: 2;
+        transform: scale(1.05);
     }
 }

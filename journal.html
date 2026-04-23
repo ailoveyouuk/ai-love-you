@@ -48,14 +48,6 @@
             font-size: 0.8rem;
             color: var(--ink-gray);
         }
-        /* Search Highlighting */
-        .highlight {
-            background: rgba(255, 77, 0, 0.15); /* Subtle Studio Orange glow */
-            color: #FF4D00; /* AI Love You Orange */
-            font-weight: 800;
-            padding: 0 2px;
-            border-radius: 2px;
-        }
 
         .search-suggestions {
             display: flex;
@@ -115,9 +107,6 @@
         .journal-card div:first-child:not(.category-badge) {
             background: #000;
         }
-        .journal-card:hover {
-            opacity: 1;
-        }
         .journal-card img {
             width: 100%;
             height: 100%;
@@ -131,20 +120,6 @@
             filter: grayscale(0);
             transform: scale(1.05);
         }
-        .edition-pill {
-            display: inline-block;
-            font-family: var(--font-body);
-            font-size: 0.6rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 0.25rem 0.6rem;
-            border: 1px solid #FF4D00; /* AI Love You Orange */
-            color: #FF4D00;
-            border-radius: 50px;
-            margin-bottom: 0.8rem;
-            line-height: 1;
-        }
         .journal-card h3 {
             margin-top: 0;
             font-size: 1.5rem;
@@ -154,6 +129,34 @@
 </head>
 
 <body>
+    <!-- Mobile Navigation Fixed Top Bar -->
+    <nav class="studio-nav">
+        <a href="index.html" class="nav-brand-mobile">
+            <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
+        </a>
+        <div class="nav-actions-mobile">
+            <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag" style="color: var(--text-color); position: relative;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span class="bag-count-badge">0</span>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Full Screen Mobile Overlay -->
+        <div class="nav-links">
+            <a href="shop.html">Store</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
     <div class="studio-layout">
         <!-- New Standard Sidebar Navigation -->
         <aside class="studio-sidebar">
@@ -218,10 +221,10 @@
             <h1 class="headline">JOURNAL.</h1>
         </header>
 
-        <!-- Search & Tag Filtering -->
-        <section class="journal-controls">
+        <!-- Archival Controls -->
+        <section class="archival-controls">
             <div class="search-bar">
-                <input type="text" id="journal-search" class="search-input" placeholder="Search the archive (e.g. 'Leica', 'Tokyo')..."
+                <input type="text" id="journal-search" class="search-input" placeholder="SEARCH THE ARCHIVE (E.G. 'LEICA', 'TOKYO')..."
                     autocomplete="off">
                 <div class="search-suggestions" id="search-suggestions">
                     <span style="font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--carbon-black); font-weight: 700; margin-right: 0.5rem;">TRENDING TAGS:</span>
@@ -238,7 +241,7 @@
                     </select>
                 </div>
             </div>
-            <div class="journal-tags" id="journal-tags-container">
+            <div class="archival-tags" id="journal-tags-container">
                 <button class="tag-btn active" data-filter="all">All Entries</button>
                 <button class="tag-btn" data-filter="movies">Movies</button>
                 <button class="tag-btn" data-filter="music">Music</button>
@@ -252,6 +255,23 @@
 
         <!-- Journal Feed Grid -->
         <section class="journal-grid" id="journal-feed">
+            <!-- Edition 07: Synthetic Nature -->
+            <a href="journal-edition-07.html" class="journal-card" data-tags="SyntheticNature, BioDigital, MaterialEcology, MyceliumArchitecture, FutureHaptics, AlgorithmicOrganicism, Symbiocene"
+                data-title="edition 07: synthetic nature">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-07/tree_one.jpg" alt="Synthetic Nature">
+                </div>
+                <div>
+                    <span class="edition-pill">Edition 07</span>
+                    <h3>Synthetic Nature</h3>
+                    <div class="meta"><span>27 Apr 2026</span><span>90 Min Read</span></div>
+                    <p>The Biological Imperative: Exploring the dawn of the Symbiocene, from living architectural machines to the simulated soul.</p>
+                </div>
+                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
+                    <span>#SyntheticNature</span><span>#BioDigital</span><span>#MaterialEcology</span><span>#MyceliumArchitecture</span><span>#FutureHaptics</span><span>#Symbiocene</span>
+                </div>
+            </a>
+
             <!-- Edition 06: Tomorrow's Textures -->
             <a href="journal-edition-06.html" class="journal-card" data-tags="RetroFuturism, Brutalism, BiophilicDesign, AnalogAcoustics, JapaneseKogu, SoftArmor, Dune2, TactileLiving, ModernBrutalism, NeoNoir"
                 data-title="edition 06: tomorrow's textures">

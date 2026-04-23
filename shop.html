@@ -13,38 +13,7 @@
 </head>
 
 <body>
-    <div class="studio-layout">
-        <!-- New Standard Sidebar Navigation -->
-        <aside class="studio-sidebar">
-            <div class="sidebar-top">
-                <div class="sidebar-logo-container">
-                    <a href="index.html" class="sidebar-logo-link" style="display: block; transition: opacity 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-                        <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Signature" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);">
-                    </a>
-                    <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <path d="M16 10a4 4 0 0 1-8 0"></path>
-                        </svg>
-                        <span class="bag-count-badge">0</span>
-                    </a>
-                </div>
-                <nav class="studio-sidebar-nav">
-                    <a href="shop.html" class="sidebar-link active">Store</a>
-                    <a href="journal.html" class="sidebar-link">Journal</a>
-                    <a href="about.html" class="sidebar-link">About</a>
-                </nav>
-            </div>
-            <div class="sidebar-footer"></div>
-        </aside>
-
-        <!-- Top Breadcrumbs -->
-        
-
-    
-
-        <!-- Mobile Navigation Fixed Top Bar -->
+    <!-- Mobile Navigation Fixed Top Bar -->
     <nav class="studio-nav">
         <a href="index.html" class="nav-brand-mobile">
             <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
@@ -72,28 +41,54 @@
         </div>
     </nav>
 
+    <div class="studio-layout">
+        <!-- New Standard Sidebar Navigation -->
+        <aside class="studio-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo-container">
+                    <a href="index.html" class="sidebar-logo-link" style="display: block; transition: opacity 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                        <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Signature" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);">
+                    </a>
+                    <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="bag-count-badge">0</span>
+                    </a>
+                </div>
+                <nav class="studio-sidebar-nav">
+                    <a href="shop.html" class="sidebar-link active">Store</a>
+                    <a href="journal.html" class="sidebar-link">Journal</a>
+                    <a href="about.html" class="sidebar-link">About</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer"></div>
+        </aside>
+
 <main class="studio-main" id="v2-test">
         <header class="studio-header">
+            <span class="edition-label">THE AI LOVE YOU STUDIO // ARCHIVE STORE</span>
             <h1 class="headline">THE STUDIO STORE.</h1>
-            <p class="sub-headline">Limited-edition art prints. Sorted by conceptual series.</p>
-            <p
-                style="font-family: monospace; font-size: 0.85rem; color: var(--ink-gray); margin-top: var(--spacing-sm); text-transform: uppercase;">
-                Free UK Shipping on prints // Dispatched strictly in 1-2 days.</p>
+            <div class="edition-meta" style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: 1.5rem; display: flex; gap: 3rem; font-family: var(--font-display); font-size: 0.75rem; color: var(--ink-gray); text-transform: uppercase; letter-spacing: 0.1em;">
+                <span>Limited-Edition Art Prints</span>
+                <span>Free UK Shipping</span>
+                <span>Dispatched in 1–2 Days</span>
+            </div>
         </header>
 
-        <!-- Shop Navigation -->
-        <section class="shop-nav-section">
-            <div class="category-nav" id="categoryNav">
-                <!-- Dynamically populated: ART PRINTS, COFFEE, etc. -->
+        <!-- Archival Controls -->
+        <section class="archival-controls">
+            <div class="search-bar">
+                <input type="text" id="productSearch" class="search-input" placeholder="SEARCH THE ARCHIVE (E.G. 'BEAM', 'SERIES 01')..."
+                    autocomplete="off">
             </div>
-            
-            <div class="shop-filters" id="subFilterNav">
-                <!-- Dynamically populated: Series or Types based on category -->
+            <div class="archival-tags" id="categoryNav">
+                <!-- Dynamically populated via script.js -->
             </div>
-
-            <div class="search-container" style="position: relative; margin-top: var(--spacing-md); margin-bottom: var(--spacing-xl);">
-                <input type="text" id="productSearch" placeholder="SEARCH BY TAG, SERIES, OR TITLE..." 
-                       style="width: 100%; padding: 1.2rem; background: var(--panel-bg); border: 1px solid var(--border-color); font-family: var(--font-body); font-size: 0.9rem; letter-spacing: 0.05em; outline: none; transition: border-color 0.3s; text-transform: uppercase;">
+            <div class="archival-sub-tags" id="subFilterNav" style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <!-- Dynamically populated based on category -->
             </div>
         </section>
 
@@ -115,7 +110,6 @@
                 </div>
             </div>
         </section>
-    </main>
 </div>
 
     <!-- Load Local DB -->

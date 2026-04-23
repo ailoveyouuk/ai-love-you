@@ -1,4 +1,128 @@
 window.journalData = [
+    // EDITION 07 (SYNTHETIC NATURE)
+    {
+        id: "ed7-movies",
+        category: "movies",
+        title: "THE SIMULATED SOUL: REFINING CONSCIOUSNESS",
+        subtitle: "Why contemporary cinema is treating human trauma as the ultimate data set for artificial intelligence.",
+        duration: "10-Minute Read",
+        image: "assets/journals/edition-07/the_great_flood.jpg",
+        link: "journal-edition-07.html#movies",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["TheGreatFlood", "AI", "Simulation theory", "ConsciousnessHorror", "GoreVerbinski", "Trauma", "SyntheticNature"]
+    },
+    {
+        id: "ed7-music",
+        category: "music",
+        title: "SONIC ECOSYSTEMS: SPAWNING THE AI TWIN",
+        subtitle: "From the choral experiments of Holly Herndon to the spatial techno of Max Cooper, sound is no longer composed—it is grown.",
+        duration: "12-Minute Read",
+        image: "assets/journals/edition-07/starmirror.webp",
+        link: "journal-edition-07.html#music",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["HollyHerndon", "MaxCooper", "NeuralGardener", "Spawning", "AIChoir", "BioDigital", "SpatialTechno"]
+    },
+    {
+        id: "ed7-architecture",
+        category: "architecture",
+        title: "THE ALGORITHMIC FOREST: ERA OF GROWTH",
+        subtitle: "Why the buildings of 2026 are not constructed, but 'grown' from algae biopolymers and mycelium networks.",
+        duration: "10-Minute Read",
+        image: "assets/journals/edition-07/tree_one.jpg",
+        link: "journal-edition-07.html#architecture",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["ecoLogicStudio", "TreeOne", "BioDigital", "Mycelium", "Algae", "AlgorithmicOrganicism", "Sustainable"]
+    },
+    {
+        id: "ed7-products",
+        category: "products",
+        title: "THE PROFESSIONAL TOY: HAPTIC REVOLUTION",
+        subtitle: "Why the Swedish design house's OP–XY and Riddim Supertone are the definitive tools for the bio-digital age.",
+        duration: "8-Minute Read",
+        image: "assets/journals/edition-07/op_xy.webp",
+        link: "journal-edition-07.html#products",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["TeenageEngineering", "OPXY", "Haptic", "Tactile", "Synthesizer", "Sequencer", "Hardware"]
+    },
+    {
+        id: "ed7-style",
+        category: "style",
+        title: "THE BIO-DIGITAL WARDROBE: BIOMATERIALS",
+        subtitle: "How the 2026 fashion industry is utilising spider silk, algae, and 3D printing to create garments that breathe.",
+        duration: "10-Minute Read",
+        image: "assets/journals/edition-07/nature_x_humanity.jpg",
+        link: "journal-edition-07.html#style",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["NeriOxman", "IrisVanHerpen", "Biomaterials", "3DPrinting", "SpiderSilk", "MaterialEcology"]
+    },
+    {
+        id: "ed7-innovation",
+        category: "innovation",
+        title: "INTERFACE OF THE FLESH: E-SKIN",
+        subtitle: "Why the most important 'product' of 2026 is the one you can't even see: the biomimetic sensor skin.",
+        duration: "5-Minute Read",
+        image: "assets/journals/edition-07/e_skin.jpg",
+        link: "journal-edition-07.html#e-skin",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["ESkin", "Biosensors", "SoftSensorSkin", "Wearables", "Biomimetic", "HealthTech"]
+    },
+    // EDITION 07 - GLOBAL FIVE
+    {
+        category: "global-five",
+        city: "LONDON, UK",
+        event: "DAVID BOWIE – YOU'RE NOT ALONE",
+        dateTime: "27 APR – 28 JUN 2026 // 10:00 AM",
+        link: "journal-edition-07.html#global-five",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["London", "UK", "DavidBowie", "Lightroom", "Immersive", "Event"]
+    },
+    {
+        category: "global-five",
+        city: "TOKYO, JP",
+        event: "RON MUECK RETROSPECTIVE",
+        dateTime: "29 APR – 23 SEP 2026 // 10:00 AM",
+        link: "journal-edition-07.html#global-five",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["Tokyo", "JP", "RonMueck", "MoriArtMuseum", "Sculpture", "Event"]
+    },
+    {
+        category: "global-five",
+        city: "PARIS, FR",
+        event: "THE PRINTING FASHION FESTIVAL",
+        dateTime: "25–26 APR 2026 // 11:00 AM",
+        link: "journal-edition-07.html#global-five",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["Paris", "FR", "Fashion", "Festival", "Event"]
+    },
+    {
+        category: "global-five",
+        city: "NEW YORK, US",
+        event: "THE WHITNEY BIENNIAL 2026",
+        dateTime: "APR 2026 // 10:30 AM",
+        link: "journal-edition-07.html#global-five",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["New York", "US", "WhitneyBiennial", "Art", "Event"]
+    },
+    {
+        category: "global-five",
+        city: "BERLIN, DE",
+        event: "TRANSTRADITIONALE – GLOBAL PRESENT",
+        dateTime: "24–26 APR 2026 // 5:30 PM",
+        link: "journal-edition-07.html#global-five",
+        edition: "Edition 07",
+        publishDate: "27 April 2026",
+        keywords: ["Berlin", "DE", "Music", "Festival", "Event"]
+    },
     // EDITION 06 (TOMORROW'S TEXTURES)
     {
         id: "ed6-movies",
