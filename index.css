@@ -257,13 +257,50 @@ h1, h2, h3, h4 {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center;
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--spacing-xl); /* Matching site-wide edge padding */
   background: rgba(235, 234, 229, 0.85) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 4000;
   border-bottom: 1px solid var(--border-color) !important;
   transition: all 0.3s ease;
+}
+
+.nav-brand-mobile {
+  z-index: 2;
+}
+
+.nav-breadcrumb-mobile {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-gray);
+  white-space: nowrap;
+  font-weight: 600;
+  opacity: 0.8;
+  display: block;
+  z-index: 10;
+}
+
+.nav-breadcrumb-mobile a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-breadcrumb-mobile a:hover {
+  opacity: 0.6;
+}
+
+.nav-actions-mobile {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  z-index: 2;
 }
 
 @media (min-width: 1025px) {
@@ -2807,16 +2844,7 @@ body:has(.pdp-container),
 }
 @media (max-width: 1024px) {
   .sticky-breadcrumb-header {
-    top: var(--nav-height);
-    margin-left: calc(-1 * var(--spacing-xl));
-    margin-right: calc(-1 * var(--spacing-xl));
-    padding-left: var(--spacing-md); /* Hits 20px mark relative to viewport */
-    padding-right: var(--spacing-xl);
-    padding-top: 1.2rem;
-    padding-bottom: 0.2rem; /* Tighter gap to roller */
-    margin-bottom: 0;
-    width: calc(100% + (2 * var(--spacing-xl)));
-    border-bottom: none;
+    display: none !important;
   }
 }
 .card-desc {
@@ -2964,10 +2992,10 @@ body:has(.pdp-container),
     .edition-nav-mobile {
         display: flex;
         position: sticky;
-        top: calc(var(--nav-height) + 2rem); /* Adjusted for better clearance */
+        top: var(--nav-height); /* Flush with header now breadcrumb is moved */
         background: #ffffff;
         z-index: 2000;
-        height: 3rem; 
+        height: 3.5rem; /* Slightly taller for more breathing room */
         padding: 0;
         margin-left: calc(var(--spacing-xl) * -1);
         margin-right: calc(var(--spacing-xl) * -1);
@@ -2982,17 +3010,21 @@ body:has(.pdp-container),
     }
 
     .roller-indicator {
-        position: absolute;
-        left: 0.5rem; 
-        width: 1rem;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3px;
-        opacity: 0.2; /* Slightly more visible */
-        pointer-events: none;
+        display: none; /* Removed legacy dots per user request for surgical look */
+    }
+
+    .scroll-roll-indicator {
+        order: 3; /* Move to far right */
+        margin-left: auto;
+        margin-right: var(--spacing-xl);
+        color: var(--ink-gray);
+        opacity: 0.5;
+        transition: all 0.3s ease;
+    }
+
+    .scroll-roll-indicator svg {
+        width: 1.2rem;
+        height: 1.2rem;
     }
 
     .roller-indicator span {
@@ -3003,6 +3035,7 @@ body:has(.pdp-container),
     }
 
     .roller-container {
+        order: 2; /* Center list */
         flex: 1;
         height: 100%;
         position: relative;
@@ -3157,6 +3190,63 @@ body:has(.pdp-container),
     flex-wrap: wrap;
     gap: 0.75rem;
     padding: 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    .archival-tags {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 0.5rem !important;
+        padding: 0.5rem 0 !important;
+        padding-right: 60px !important; /* Increased for better "Peek" visibility */
+        scrollbar-width: none;
+        
+        /* Visual cue: Right-side fade out */
+        mask-image: linear-gradient(to right, 
+            black 80%, 
+            transparent 98%
+        );
+        -webkit-mask-image: linear-gradient(to right, 
+            black 80%, 
+            transparent 98%
+        );
+    }
+
+    .archival-tags::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tag-btn {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        padding: 0.6rem 1.4rem !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+.archival-sub-tags {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .archival-sub-tags {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        padding-right: 60px !important;
+        scrollbar-width: none;
+        mask-image: linear-gradient(to right, black 80%, transparent 98%);
+        -webkit-mask-image: linear-gradient(to right, black 80%, transparent 98%);
+    }
+    .archival-sub-tags::-webkit-scrollbar { display: none; }
 }
 
 /* Tag Buttons — Matches journal's exact editorial pill style */
@@ -3502,6 +3592,20 @@ body:has(.pdp-container),
     flex-wrap: wrap;
 }
 
+@media (max-width: 1024px) {
+    .search-suggestions {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+        padding-right: 40px;
+        mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    }
+    .search-suggestions::-webkit-scrollbar { display: none; }
+    .suggest-tag { flex: 0 0 auto; }
+}
+
 .suggest-tag {
     font-family: var(--font-display);
     font-size: 0.65rem;
@@ -3545,107 +3649,4 @@ body:has(.pdp-container),
     border-top: 1px solid var(--border-color);
 }
 
-@media (max-width: 1024px) {
-    .pdp-mobile-commerce {
-        display: block;
-    }
-}
-
-/* ---- Mobile Edition Roller (Journal Pages) ---- */
-.edition-nav-mobile {
-    display: none;
-}
-
-@media (max-width: 1024px) {
-    .edition-nav-mobile {
-        display: flex;
-        position: sticky;
-        top: calc(var(--nav-height) + 2rem);
-        background: #ffffff;
-        z-index: 2000;
-        height: 3rem;
-        padding: 0;
-        margin-left: calc(var(--spacing-xl) * -1);
-        margin-right: calc(var(--spacing-xl) * -1);
-        margin-bottom: var(--spacing-md);
-        overflow: hidden;
-        border-bottom: 1px solid var(--border-color);
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        width: calc(100% + (2 * var(--spacing-xl)));
-        padding-left: var(--spacing-md);
-    }
-
-    .roller-indicator {
-        position: absolute;
-        left: 0.5rem;
-        width: 1rem;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3px;
-        opacity: 0.2;
-        pointer-events: none;
-    }
-
-    .roller-indicator span {
-        width: 2px;
-        height: 2px;
-        border-radius: 50%;
-        background: var(--text-color);
-    }
-
-    .roller-container {
-        flex: 1;
-        height: 100%;
-        position: relative;
-        overflow-y: scroll;
-        scroll-snap-type: y mandatory;
-        scrollbar-width: none;
-        user-select: none;
-        -webkit-user-select: none;
-        mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
-        -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
-    }
-    .roller-container::-webkit-scrollbar { display: none; }
-
-    .roller-list {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-        padding: 1.25rem 0;
-        padding-left: 1.5rem;
-    }
-
-    .edition-nav-mobile .nav-link {
-        font-family: var(--font-display);
-        font-size: 0.7rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--text-color);
-        opacity: 0.45;
-        text-decoration: none;
-        transition: all 0.4s ease;
-        height: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        filter: none;
-        transform-origin: left center;
-        white-space: nowrap;
-        scroll-snap-align: center;
-    }
-
-    .edition-nav-mobile .nav-link.active {
-        opacity: 1;
-        font-weight: 800;
-        color: #FF4D00;
-        filter: none;
-        z-index: 2;
-        transform: scale(1.05);
-    }
-}
+/* ---- Final Polish — End of Stylesheet ---- */

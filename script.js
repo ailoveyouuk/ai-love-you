@@ -639,14 +639,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileNavWrapper = document.createElement('nav');
         mobileNavWrapper.className = 'edition-nav-mobile';
         
-        // [MOBILE REFINEMENT] Scroll Indicator
+        // [MOBILE REFINEMENT] Scroll Indicator (Surgical Arrows Only)
         const scrollIndicator = document.createElement('div');
         scrollIndicator.className = 'scroll-roll-indicator';
         scrollIndicator.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M7 15l5 5 5-5M7 9l5-5 5 5"/>
             </svg>
-            <span>Roll</span>
         `;
         mobileNavWrapper.appendChild(scrollIndicator);
         
