@@ -3014,7 +3014,7 @@ body:has(.pdp-container),
 
     .scroll-roll-indicator {
         position: absolute;
-        left: 0.5rem; /* Anchored closer to the categories to relate them */
+        right: 2rem; /* Moved back to right with generous surgical padding */
         top: 50%;
         transform: translateY(-50%);
         color: var(--ink-gray);
