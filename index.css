@@ -2992,10 +2992,10 @@ body:has(.pdp-container),
     .edition-nav-mobile {
         display: flex;
         position: sticky;
-        top: var(--nav-height); /* Flush with header now breadcrumb is moved */
+        top: var(--nav-height);
         background: #ffffff;
         z-index: 2000;
-        height: 3.5rem; /* Slightly taller for more breathing room */
+        height: 4.5rem; /* Increased for better "Peek" of other categories */
         padding: 0;
         margin-left: calc(var(--spacing-xl) * -1);
         margin-right: calc(var(--spacing-xl) * -1);
@@ -3006,7 +3006,6 @@ body:has(.pdp-container),
         align-items: center;
         justify-content: flex-start;
         width: calc(100% + (2 * var(--spacing-xl)));
-        padding-left: var(--spacing-md); 
     }
 
     .roller-indicator {
@@ -3014,12 +3013,15 @@ body:has(.pdp-container),
     }
 
     .scroll-roll-indicator {
-        order: 3; /* Move to far right */
-        margin-left: auto;
-        margin-right: var(--spacing-xl);
+        position: absolute;
+        left: 0.5rem; /* Anchored closer to the categories to relate them */
+        top: 50%;
+        transform: translateY(-50%);
         color: var(--ink-gray);
-        opacity: 0.5;
+        opacity: 0.4;
         transition: all 0.3s ease;
+        z-index: 10;
+        pointer-events: none;
     }
 
     .scroll-roll-indicator svg {
@@ -3035,7 +3037,6 @@ body:has(.pdp-container),
     }
 
     .roller-container {
-        order: 2; /* Center list */
         flex: 1;
         height: 100%;
         position: relative;
@@ -3044,8 +3045,8 @@ body:has(.pdp-container),
         scrollbar-width: none;
         user-select: none; 
         -webkit-user-select: none;
-        mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
-        -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+        mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
     }
     .roller-container::-webkit-scrollbar { display: none; }
 
