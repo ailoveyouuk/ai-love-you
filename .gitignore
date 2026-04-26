@@ -5,3 +5,4 @@ node_modules/
 *.log
 aily-website-backup.zip
 mobilebasic/
+.env
