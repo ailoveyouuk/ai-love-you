@@ -1,4 +1,128 @@
 window.journalData = [
+    // EDITION 08 (ANALOG AUTHENTICITY)
+    {
+        id: "ed8-travel",
+        category: "travel",
+        title: "THE ASCENDANCE OF SARDINIA: THE RETURN TO ELEMENTAL REALITY",
+        subtitle: "Why the Italian island has emerged as the premier European destination for discerning travellers seeking geological drama and low-density tourism.",
+        duration: "6-Minute Read",
+        image: "assets/journals/edition-08/sevenpines.jpg",
+        link: "journal-edition-08.html#travel",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Travel", "Sardinia", "Italy", "AnalogAuthenticity", "PhysicalFriction"]
+    },
+    {
+        id: "ed8-vehicles",
+        category: "vehicles",
+        title: "MOTORCYCLE RENAISSANCE: THE DUCATI HYPERMOTARD V2 SP",
+        subtitle: "A sharp pivot toward highly specialised, emotionally resonant machinery in an era of utilitarian electric platforms.",
+        duration: "6-Minute Read",
+        image: "assets/journals/edition-08/ducati.jpg",
+        link: "journal-edition-08.html#vehicles",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Vehicles", "Motorcycle", "Ducati", "Hypermotard", "AnalogAuthenticity", "MechanicalRomance"]
+    },
+    {
+        id: "ed8-food-drink",
+        category: "food-drink",
+        title: "HONEST GASTRONOMY: THE RETURN TO ACCESSIBLE DINING",
+        subtitle: "A profound shift towards the Bib Gourmand ethos, alongside the highly anticipated openings of legacy chefs globally.",
+        duration: "5-Minute Read",
+        image: "assets/journals/edition-08/michelin.jpg",
+        link: "journal-edition-08.html#food-drink",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Food", "Drink", "Gastronomy", "Michelin", "BibGourmand", "HonestGastronomy"]
+    },
+    {
+        id: "ed8-watches",
+        category: "watches",
+        title: "PLAYFUL HOROLOGY: THE STREAMLINER PUMP",
+        subtitle: "H. Moser & Cie. x Reebok create a mechanical timepiece wound by a physical 'pump,' blending high-end Swiss craftsmanship with 1990s sneaker culture.",
+        duration: "6-Minute Read",
+        image: "assets/journals/edition-08/moser.jpg",
+        link: "journal-edition-08.html#watches",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Watches", "Horology", "HMoser", "Reebok", "Streamliner", "MechanicalRomance"]
+    },
+    {
+        id: "ed8-technology",
+        category: "technology",
+        title: "ANALOG REVIVAL: THE FRICTION OF REALITY",
+        subtitle: "Analysing the dual lenses of Apple’s disruptive new A18 Pro-powered MacBook Neo and the explosive Gen-Z obsession with vintage, tape-based camcorders.",
+        duration: "5-Minute Read",
+        image: "assets/journals/edition-08/macbook-neo.jpg",
+        link: "journal-edition-08.html#technology",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Technology", "Apple", "MacBookNeo", "Vintage", "Camcorder", "PhysicalFriction"]
+    },
+    {
+        id: "ed8-art-photography",
+        category: "art-photography",
+        title: "REJECTION OF THE CAMERA: MEMORY AND THE MEDIUM",
+        subtitle: "How true contemporary artists are pushing back against generative AI by emphasizing the physical, the chemical, and the deeply personal heritage that machines cannot replicate.",
+        duration: "4-Minute Read",
+        image: "assets/journals/edition-08/nhu-xuan.jpg",
+        link: "journal-edition-08.html#art-photography",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Art", "Photography", "Analog", "Memory", "Medium", "AnalogAuthenticity"]
+    },
+    // EDITION 08 - GLOBAL FIVE
+    {
+        category: "global-five",
+        city: "LONDON, UK",
+        event: "ANYA HINDMARCH X BOOTS",
+        dateTime: "Closes March",
+        link: "journal-edition-08.html#global-five",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["London", "UK", "Retail", "Installation", "AnyaHindmarch", "Boots"]
+    },
+    {
+        category: "global-five",
+        city: "NEW YORK CITY, USA",
+        event: "GLOSSIER SOHO FLAGSHIP",
+        dateTime: "Permanent Location",
+        link: "journal-edition-08.html#global-five",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["New York", "USA", "Glossier", "SoHo", "Flagship"]
+    },
+    {
+        category: "global-five",
+        city: "SENDAGAYA, TOKYO, JAPAN",
+        event: "4BFC",
+        dateTime: "Ongoing",
+        link: "journal-edition-08.html#global-five",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Tokyo", "Japan", "4BFC", "CommunityHub", "Football"]
+    },
+    {
+        category: "global-five",
+        city: "SHIBUYA, TOKYO, JAPAN",
+        event: "GOYEMON",
+        dateTime: "Ongoing",
+        link: "journal-edition-08.html#global-five",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Tokyo", "Japan", "Goyemon", "FlagshipStore", "TraditionalHybrid"]
+    },
+    {
+        category: "global-five",
+        city: "HASAMI, NAGASAKI, JAPAN",
+        event: "SOTOGAWA TO NAKAMI / BOX LAB",
+        dateTime: "Ongoing",
+        link: "journal-edition-08.html#global-five",
+        edition: "Edition 08",
+        publishDate: "26 April 2026",
+        keywords: ["Hasami", "Nagasaki", "Japan", "SotogawaToNakami", "BoxLab", "MicroComplex"]
+    },
     // EDITION 07 (SYNTHETIC NATURE)
     {
         id: "ed7-movies",
@@ -244,7 +368,7 @@ window.journalData = [
         dateTime: "18–21 April 2026 // 9:00 AM",
         link: "journal-edition-06.html#shortlist",
         edition: "Edition 06",
-        publishDate: "April 2026",
+        publishDate: "24 April 2026",
         keywords: ["Tokyo", "JP", "Japan", "Hanami", "Brutalism", "Event", "Architecture", "Biophilic"]
     },
     // EDITION 05 (AESTHETICS OF IMPERMANENCE)
@@ -258,7 +382,7 @@ window.journalData = [
         image: "assets/journals/edition-05/stalker_poster_new.jpg",
         link: "journal-edition-05.html#movies",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["WabiSabi", "AnalogueDecay", "TactileLiving", "Patina", "AdaptiveReuse", "RawDenim", "VinylCrackle", "TapeDegradation", "HeritageDesign", "MechanicalRomance", "BladeRunner", "Stalker", "Cinematography"]
     },
     {
@@ -270,7 +394,7 @@ window.journalData = [
         image: "assets/journals/edition-05/disintegration_loops.jpg",
         link: "journal-edition-05.html#music",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["WabiSabi", "AnalogueDecay", "TactileLiving", "Patina", "AdaptiveReuse", "RawDenim", "VinylCrackle", "TapeDegradation", "HeritageDesign", "MechanicalRomance", "WilliamBasinski", "Burial", "AudioPatina"]
     },
     {
@@ -282,7 +406,7 @@ window.journalData = [
         image: "assets/journals/edition-05/faema_e61.jpg",
         link: "journal-edition-05.html#products",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["WabiSabi", "AnalogueDecay", "TactileLiving", "Patina", "AdaptiveReuse", "RawDenim", "VinylCrackle", "TapeDegradation", "HeritageDesign", "MechanicalRomance", "Faema", "Coffee", "Espresso"]
     },
     {
@@ -294,7 +418,7 @@ window.journalData = [
         image: "assets/journals/edition-05/nakashima_bench.jpg",
         link: "journal-edition-05.html#design",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["WabiSabi", "AnalogueDecay", "TactileLiving", "Patina", "AdaptiveReuse", "RawDenim", "VinylCrackle", "TapeDegradation", "HeritageDesign", "MechanicalRomance", "Nakashima", "Woodworking", "Haptics"]
     },
     {
@@ -306,7 +430,7 @@ window.journalData = [
         image: "assets/journals/edition-05/zeitz_mocaa.jpg",
         link: "journal-edition-05.html#architecture",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["WabiSabi", "AnalogueDecay", "TactileLiving", "Patina", "AdaptiveReuse", "RawDenim", "VinylCrackle", "TapeDegradation", "HeritageDesign", "MechanicalRomance", "Heatherwick", "CapeTown", "Architecture"]
     },
     {
@@ -318,7 +442,7 @@ window.journalData = [
         image: "assets/journals/edition-05/selvage_denim.png",
         link: "journal-edition-05.html#style",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["WabiSabi", "AnalogueDecay", "TactileLiving", "Patina", "AdaptiveReuse", "RawDenim", "VinylCrackle", "TapeDegradation", "HeritageDesign", "MechanicalRomance", "Indigo", "Selvedge", "Style"]
     },
     // EDITION 05 - GLOBAL FIVE
@@ -329,7 +453,7 @@ window.journalData = [
         dateTime: "21 APR – 15 MAY 2026 // 10:00 AM",
         link: "journal-edition-05.html#shortlist",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["London", "UK", "Design Museum", "Archive", "Event", "WabiSabi", "HeritageDesign"]
     },
     {
@@ -339,7 +463,7 @@ window.journalData = [
         dateTime: "22–28 APR 2026 // 9:00 AM",
         link: "journal-edition-05.html#shortlist",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["Kyoto", "JP", "Japan", "WabiSabi", "Craft", "Biennale", "Event", "Patina"]
     },
     {
@@ -349,7 +473,7 @@ window.journalData = [
         dateTime: "21–26 APR 2026 // 9:30 AM",
         link: "journal-edition-05.html#shortlist",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["Milan", "IT", "Italy", "Salone del Mobile", "AdaptiveReuse", "Event", "HeritageDesign"]
     },
     {
@@ -359,7 +483,7 @@ window.journalData = [
         dateTime: "23 APR 2026 // 8:00 PM",
         link: "journal-edition-05.html#shortlist",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["New York", "US", "USA", "Pioneer Works", "Basinski", "Audio Decay", "Event", "TapeDegradation", "VinylCrackle"]
     },
     {
@@ -369,7 +493,7 @@ window.journalData = [
         dateTime: "24 APR 2026 // 1:00 PM",
         link: "journal-edition-05.html#shortlist",
         edition: "Edition 05",
-        publishDate: "April 2026",
+        publishDate: "21 April 2026",
         keywords: ["Berlin", "DE", "Germany", "Architecture", "Concrete", "AdaptiveReuse", "Event"]
     },
     // EDITION 04 (ARCHITECTURE OF LIGHT)
@@ -382,7 +506,7 @@ window.journalData = [
         image: "assets/journals/edition-04/blade_runner_2049_orig.jpg",
         link: "journal-edition-04.html#movies",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["LightingDesign", "Cinematography", "BladeRunner2049", "DaftPunk", "TadaoAndo", "Neon", "Akari", "Cyberpunk", "RogerDeakins", "Brutalism", "LightLogic", "Sightlines"]
     },
     {
@@ -394,7 +518,7 @@ window.journalData = [
         image: "assets/journals/edition-04/daft_punk_alive_orig.jpg",
         link: "journal-edition-04.html#music",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["LightingDesign", "Cinematography", "BladeRunner2049", "DaftPunk", "TadaoAndo", "Neon", "Akari", "Cyberpunk", "RogerDeakins", "Brutalism", "LightLogic", "Sightlines"]
     },
     {
@@ -406,7 +530,7 @@ window.journalData = [
         image: "assets/journals/edition-04/noguchi_akari_orig.png",
         link: "journal-edition-04.html#products",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["LightingDesign", "Cinematography", "BladeRunner2049", "DaftPunk", "TadaoAndo", "Neon", "Akari", "Cyberpunk", "RogerDeakins", "Brutalism", "LightLogic", "Sightlines"]
     },
     {
@@ -418,7 +542,7 @@ window.journalData = [
         image: "assets/journals/edition-04/neon_archive_orig.jpg",
         link: "journal-edition-04.html#design",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["LightingDesign", "Cinematography", "BladeRunner2049", "DaftPunk", "TadaoAndo", "Neon", "Akari", "Cyberpunk", "RogerDeakins", "Brutalism", "LightLogic", "Sightlines"]
     },
     {
@@ -430,7 +554,7 @@ window.journalData = [
         image: "assets/journals/edition-04/church_light_orig.jpg",
         link: "journal-edition-04.html#architecture",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["LightingDesign", "Cinematography", "BladeRunner2049", "DaftPunk", "TadaoAndo", "Neon", "Akari", "Cyberpunk", "RogerDeakins", "Brutalism", "LightLogic", "Sightlines"]
     },
     {
@@ -442,7 +566,7 @@ window.journalData = [
         image: "assets/journals/edition-04/reflective_jacket_orig.jpg",
         link: "journal-edition-04.html#style",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["LightingDesign", "Cinematography", "BladeRunner2049", "DaftPunk", "TadaoAndo", "Neon", "Akari", "Cyberpunk", "RogerDeakins", "Brutalism"]
     },
 
@@ -454,7 +578,7 @@ window.journalData = [
         dateTime: "18 APR – 30 MAY 2026 // 10:00 AM",
         link: "journal-edition-04.html#shortlist",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["London", "UK", "Olafur Eliasson", "Tate Modern", "Weather Project", "Light Art", "Event", "April", "2026"]
     },
     {
@@ -464,7 +588,7 @@ window.journalData = [
         dateTime: "ONGOING // 10:00 AM",
         link: "journal-edition-04.html#shortlist",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["Tokyo", "JP", "Japan", "teamLab", "Borderless", "Digital Art", "LED", "Event", "April", "2026"]
     },
     {
@@ -474,7 +598,7 @@ window.journalData = [
         dateTime: "19 APR 2026 // 8:00 PM",
         link: "journal-edition-04.html#shortlist",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["Paris", "FR", "France", "Light Festival", "Neon", "Centre Pompidou", "Event", "April", "2026"]
     },
     {
@@ -484,7 +608,7 @@ window.journalData = [
         dateTime: "18 APR – 25 MAY 2026 // 12:00 PM",
         link: "journal-edition-04.html#shortlist",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["New York", "US", "USA", "James Turrell", "Skyspace", "MoMA PS1", "Light Art", "Event", "April", "2026"]
     },
     {
@@ -494,7 +618,7 @@ window.journalData = [
         dateTime: "20–21 APR 2026 // 5:00 PM",
         link: "journal-edition-04.html#shortlist",
         edition: "Edition 04",
-        publishDate: "April 2026",
+        publishDate: "18 April 2026",
         keywords: ["Hobart", "AU", "Australia", "Dark Mofo", "MONA", "Nocturnal", "Fire", "Event", "April", "2026"]
     },
 
@@ -508,7 +632,7 @@ window.journalData = [
         image: "assets/journals/edition-03/the_witch_hd.jpg",
         link: "journal-edition-03.html#movies",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Craftsmanship", "FolkHorror", "Jazz", "Horology", "Zumthor", "FellowCoffee", "MechanicalMovement", "SteveMcQueen", "Alchemy", "Makers", "InkReverie", "CarbonLine"]
     },
     {
@@ -520,7 +644,7 @@ window.journalData = [
         image: "assets/journals/edition-03/kamasi_hd.jpg",
         link: "journal-edition-03.html#music",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Craftsmanship", "FolkHorror", "Jazz", "Horology", "Zumthor", "FellowCoffee", "MechanicalMovement", "SteveMcQueen", "Alchemy", "Makers", "InkReverie", "CarbonLine"]
     },
     {
@@ -532,7 +656,7 @@ window.journalData = [
         image: "assets/journals/edition-03/stagg_ekg_hd.webp",
         link: "journal-edition-03.html#products",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Craftsmanship", "FolkHorror", "Jazz", "Horology", "Zumthor", "FellowCoffee", "MechanicalMovement", "SteveMcQueen", "Alchemy", "Makers", "InkReverie", "CarbonLine"]
     },
     {
@@ -544,7 +668,7 @@ window.journalData = [
         image: "assets/journals/edition-03/watch_movement_hd.jpg",
         link: "journal-edition-03.html#design",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Craftsmanship", "FolkHorror", "Jazz", "Horology", "Zumthor", "FellowCoffee", "MechanicalMovement", "SteveMcQueen", "Alchemy", "Makers", "InkReverie", "CarbonLine"]
     },
     {
@@ -556,7 +680,7 @@ window.journalData = [
         image: "assets/journals/edition-03/therme_vals_hd.jpg",
         link: "journal-edition-03.html#architecture",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Craftsmanship", "FolkHorror", "Jazz", "Horology", "Zumthor", "FellowCoffee", "MechanicalMovement", "SteveMcQueen", "Alchemy", "Makers", "InkReverie", "CarbonLine"]
     },
     {
@@ -568,7 +692,7 @@ window.journalData = [
         image: "assets/journals/edition-03/mcqueen_hd.jpg",
         link: "journal-edition-03.html#style",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Craftsmanship", "FolkHorror", "Jazz", "Horology", "Zumthor", "FellowCoffee", "MechanicalMovement", "SteveMcQueen", "Alchemy", "Makers"]
     },
 
@@ -580,7 +704,7 @@ window.journalData = [
         dateTime: "15 APR – 30 APR 2026 // 10:00 AM",
         link: "journal-edition-03.html#shortlist",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Edinburgh", "UK", "Scotland", "Grain", "Craft", "Event", "April", "2026"]
     },
     {
@@ -590,7 +714,7 @@ window.journalData = [
         dateTime: "16 APR 2026 // 2:00 PM",
         link: "journal-edition-03.html#shortlist",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Basel", "CH", "Switzerland", "Horological", "Journey", "Event", "Watch", "April", "2026"]
     },
     {
@@ -600,7 +724,7 @@ window.journalData = [
         dateTime: "16–19 APR 2026 // ALL DAY",
         link: "journal-edition-03.html#shortlist",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["New Orleans", "US", "USA", "French Quarter", "Festival", "Jazz", "Event", "April", "2026"]
     },
     {
@@ -610,7 +734,7 @@ window.journalData = [
         dateTime: "17 APR 2026 // 10:00 AM",
         link: "journal-edition-03.html#shortlist",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Copenhagen", "DK", "Denmark", "Hygge", "Coffee", "Event", "April", "2026"]
     },
     {
@@ -620,7 +744,7 @@ window.journalData = [
         dateTime: "18 APR 2026 // 1:00 PM",
         link: "journal-edition-03.html#shortlist",
         edition: "Edition 03",
-        publishDate: "April 2026",
+        publishDate: "15 April 2026",
         keywords: ["Reykjavík", "IS", "Iceland", "Brutalism", "Landscape", "Architecture", "Event", "April", "2026"]
     },
 
@@ -634,7 +758,7 @@ window.journalData = [
         image: "assets/journals/edition-02/zone_of_interest_new.jpg",
         link: "journal-edition-02.html#movies",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence", "Tessellate", "Unexplained"]
     },
     {
@@ -646,7 +770,7 @@ window.journalData = [
         image: "assets/journals/edition-02/dummy_new.jpg",
         link: "journal-edition-02.html#music",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence", "Tessellate", "Unexplained"]
     },
     {
@@ -658,7 +782,7 @@ window.journalData = [
         image: "assets/journals/edition-02/braun_sk4_new.jpg",
         link: "journal-edition-02.html#products",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence", "Tessellate", "Unexplained"]
     },
     {
@@ -670,7 +794,7 @@ window.journalData = [
         image: "assets/journals/edition-02/snow_peak.jpg",
         link: "journal-edition-02.html#design",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence", "Tessellate", "Unexplained"]
     },
     {
@@ -682,7 +806,7 @@ window.journalData = [
         image: "assets/journals/edition-02/casa_barragan_new.jpg",
         link: "journal-edition-02.html#architecture",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence", "Tessellate", "Unexplained"]
     },
     {
@@ -694,7 +818,7 @@ window.journalData = [
         image: "assets/journals/edition-02/itmfl_new.jpg",
         link: "journal-edition-02.html#style",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Minimalism", "DieterRams", "Barragán", "Silence", "JonathanGlazer", "Functionalism", "ZoneOfInterest", "SnowPeak", "WongKarWai", "AcousticAbsence"]
     },
 
@@ -706,7 +830,7 @@ window.journalData = [
         dateTime: "12–20 APR 2026 // 7:00 PM",
         link: "journal-edition-02.html#shortlist",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["London", "UK", "Barbican", "Sound", "Architecture", "Event", "April", "2026"]
     },
     {
@@ -716,7 +840,7 @@ window.journalData = [
         dateTime: "13 APR 2026 // 10:00 AM",
         link: "journal-edition-02.html#shortlist",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Mexico City", "MX", "Mexico", "Barragán", "Stillness", "Event", "Architecture", "April", "2026"]
     },
     {
@@ -726,7 +850,7 @@ window.journalData = [
         dateTime: "14 APR 2026 // ALL DAY",
         link: "journal-edition-02.html#shortlist",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Tokyo", "JP", "Japan", "Snow Peak", "Kitsune", "Camp", "Event", "April", "2026"]
     },
     {
@@ -736,7 +860,7 @@ window.journalData = [
         dateTime: "14 APR 2026 // 2:00 PM",
         link: "journal-edition-02.html#shortlist",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Berlin", "DE", "Germany", "Minimalist", "Kitchen", "Rams", "A24", "Event", "April", "2026"]
     },
     {
@@ -746,7 +870,7 @@ window.journalData = [
         dateTime: "15 APR 2026 // 11:00 AM",
         link: "journal-edition-02.html#shortlist",
         edition: "Edition 02",
-        publishDate: "April 2026",
+        publishDate: "12 April 2026",
         keywords: ["Kyoto", "JP", "Japan", "Indigo", "Journey", "Event", "April", "2026"]
     },
 
@@ -760,7 +884,7 @@ window.journalData = [
         image: "assets/journals/edition-01/image_hq_1.jpg",
         link: "journal-edition-01.html#movies",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Analogue", "Haptics", "WimWenders", "RoomSound", "SpecialtyCoffee", "JapaneseDesign", "TropicalBrutalism", "Workwear", "TactileLiving", "SlowLiving", "Cinematography", "ItsHere"]
     },
     {
@@ -772,7 +896,7 @@ window.journalData = [
         image: "assets/journals/edition-01/image_hq_16.jpg",
         link: "journal-edition-01.html#music",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Analogue", "Haptics", "WimWenders", "RoomSound", "SpecialtyCoffee", "JapaneseDesign", "TropicalBrutalism", "Workwear", "TactileLiving", "SlowLiving", "Cinematography", "ItsHere"]
     },
     {
@@ -784,7 +908,7 @@ window.journalData = [
         image: "assets/journals/edition-01/image_hq_30.jpg",
         link: "journal-edition-01.html#products",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Analogue", "Haptics", "WimWenders", "RoomSound", "SpecialtyCoffee", "JapaneseDesign", "TropicalBrutalism", "Workwear", "TactileLiving", "SlowLiving", "Cinematography", "ItsHere"]
     },
     {
@@ -796,7 +920,7 @@ window.journalData = [
         image: "assets/journals/edition-01/leica_dials_orig.jpg",
         link: "journal-edition-01.html#design",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Analogue", "Haptics", "WimWenders", "RoomSound", "SpecialtyCoffee", "JapaneseDesign", "TropicalBrutalism", "Workwear", "TactileLiving", "SlowLiving", "Cinematography", "ItsHere"]
     },
     {
@@ -808,7 +932,7 @@ window.journalData = [
         image: "assets/journals/edition-01/image_hq_64.jpg",
         link: "journal-edition-01.html#architecture",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Analogue", "Haptics", "WimWenders", "RoomSound", "SpecialtyCoffee", "JapaneseDesign", "TropicalBrutalism", "Workwear", "TactileLiving", "SlowLiving", "Cinematography", "ItsHere"]
     },
     {
@@ -820,7 +944,7 @@ window.journalData = [
         image: "assets/journals/edition-01/journal-chore-jacket.jpg",
         link: "journal-edition-01.html#style",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Analogue", "Haptics", "WimWenders", "RoomSound", "SpecialtyCoffee", "JapaneseDesign", "TropicalBrutalism", "Workwear", "TactileLiving", "SlowLiving", "Cinematography", "ItsHere"]
     },
 
@@ -832,7 +956,7 @@ window.journalData = [
         dateTime: "APR 18, 2026 // 10:00 AM",
         link: "journal-edition-01.html#shortlist",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["London", "UK", "V&A", "Music", "Event", "April", "2026"]
     },
     {
@@ -842,7 +966,7 @@ window.journalData = [
         dateTime: "APR 09, 2026 // 11:00 AM",
         link: "journal-edition-01.html#shortlist",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Paris", "FR", "France", "Art", "Event", "April", "2026"]
     },
     {
@@ -852,7 +976,7 @@ window.journalData = [
         dateTime: "APR 17, 2026 // 12:00 PM",
         link: "journal-edition-01.html#shortlist",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Tokyo", "JP", "Japan", "Sake", "Craft", "Event", "April", "2026"]
     },
     {
@@ -862,7 +986,7 @@ window.journalData = [
         dateTime: "ONGOING // 11:00 AM",
         link: "journal-edition-01.html#shortlist",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["New York", "US", "USA", "Guggenheim", "Art", "Event", "April", "2026"]
     },
     {
@@ -872,7 +996,7 @@ window.journalData = [
         dateTime: "APR 10, 2026 // 2:00 PM",
         link: "journal-edition-01.html#shortlist",
         edition: "Edition 01",
-        publishDate: "April 2026",
+        publishDate: "9 April 2026",
         keywords: ["Berlin", "DE", "Germany", "Film", "Event", "April", "2026"]
     }
 ];

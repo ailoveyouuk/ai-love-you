@@ -78,18 +78,6 @@
             padding-top: 1.5rem;
         }
 
-        .meta-primary {
-            display: flex;
-            gap: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .meta-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
 
         .meta-tags span {
             opacity: 0.6;
@@ -102,10 +90,6 @@
             color: var(--accent-color);
         }
 
-        .section-container {
-            margin-bottom: 12rem;
-            scroll-margin-top: 5rem;
-        }
 
         .dept-label {
             font-family: var(--font-display);
@@ -248,6 +232,7 @@
         <a href="index.html" class="nav-brand-mobile">
             <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
         </a>
+        <div class="nav-breadcrumb-mobile"><a href="journal.html">JOURNAL</a> // EDITION 06</div>
         <div class="nav-actions-mobile">
             <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag" style="color: var(--text-color); position: relative;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -348,13 +333,154 @@
                 <span class="edition-label">THE JOURNAL ARCHIVE // 06</span>
                 <h1>Tomorrow's<br>Textures</h1>
                 <div class="edition-meta">
-                    <div class="meta-primary">
-                        <span>Published: 24 April 2026</span>
-                        <span>45 Min Read</span>
+                    <div class="meta-primary" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <span style="opacity: 0.6;">Published: 24 April 2026</span>
+                        <div style="display: flex; align-items: center; gap: 1.5rem;">
+                            <span>45 Min Read</span>
+                            
+                            <!-- Integrated Audio Control -->
+                            <div class="audio-companion" id="aily-audio-companion" style="border: none; padding: 0; background: none; box-shadow: none; margin: 0; min-width: auto; flex-direction: row; align-items: center; gap: 0.8rem;">
+                                <audio id="aily-audio-element" src="assets/audio/Journal 06 Audio.m4a" preload="metadata"></audio>
+                                
+                                <div class="audio-player-minimal" id="audio-minimal" style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer;">
+                                    <button class="play-pause-btn" aria-label="Play Edition 06 Audio" style="width: 24px; height: 24px;">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
+                                    <span class="audio-duration" style="font-size: 0.65rem; color: var(--ink-gray);">Listen // 40:41</span>
+                                </div>
+
+                                <!-- Expanded (Progress) -->
+                                <div class="audio-player-expanded" id="audio-expanded" style="display: none; align-items: center; gap: 1rem; flex-grow: 1;">
+                                    <button class="play-pause-btn" id="audio-toggle-btn" aria-label="Pause" style="width: 24px; height: 24px;">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                    </button>
+                                    <div class="audio-progress-container" id="progress-container" style="width: 100px; height: 2px;">
+                                        <div class="audio-progress-bar" id="progress-bar"></div>
+                                    </div>
+                                    <span id="current-time" style="font-size: 0.6rem; min-width: 30px;">0:00</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="meta-tags">
                         <span>#RetroFuturism</span><span>#Brutalism</span><span>#BiophilicDesign</span><span>#AnalogAcoustics</span><span>#JapaneseKogu</span><span>#SoftArmor</span><span>#Dune2</span><span>#TactileLiving</span><span>#ModernBrutalism</span><span>#NeoNoir</span>
                     </div>
+                    
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const audio = document.getElementById('aily-audio-element');
+                            const companion = document.getElementById('aily-audio-companion');
+                            if (!audio || !companion) return;
+                            const minimal = document.getElementById('audio-minimal');
+                            const toggleBtn = document.getElementById('audio-toggle-btn');
+                            const progressBar = document.getElementById('progress-bar');
+                            const progressContainer = document.getElementById('progress-container');
+                            const currentTimeEl = document.getElementById('current-time');
+                            const speedBtn = document.getElementById('audio-speed-btn');
+                            const expanded = document.getElementById('audio-expanded');
+
+                            function formatTime(seconds) {
+                                if (!isFinite(seconds)) return "0:00";
+                                const h = Math.floor(seconds / 3600);
+                                const m = Math.floor((seconds % 3600) / 60);
+                                const sec = Math.floor(seconds % 60);
+                                return h > 0 
+                                    ? `${h}:${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
+                                    : `${m}:${sec.toString().padStart(2, '0')}`;
+                            }
+
+                            if (minimal) {
+                                minimal.addEventListener('click', (e) => {
+                                    e.preventDefault(); e.stopPropagation();
+                                    document.querySelectorAll('audio').forEach(a => {
+                                        if (a !== audio) a.pause();
+                                    });
+                                    const playPromise = audio.play();
+                                    if (playPromise !== undefined) {
+                                        playPromise.catch(error => console.log('Playback prevented', error));
+                                    }
+                                    companion.classList.add('is-playing');
+                                    minimal.style.display = 'none';
+                                    if (expanded) expanded.style.display = 'flex';
+                                });
+                            }
+
+                            if (toggleBtn) {
+                                toggleBtn.addEventListener('click', (e) => {
+                                    e.preventDefault(); e.stopPropagation();
+                                    if (audio.paused) {
+                                        audio.play();
+                                        toggleBtn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+                                    } else {
+                                        audio.pause();
+                                        toggleBtn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+                                    }
+                                });
+                            }
+
+                            audio.addEventListener('timeupdate', () => {
+                                if (isFinite(audio.duration) && audio.duration > 0) {
+                                    const remaining = audio.duration - audio.currentTime;
+                                    const percent = (audio.currentTime / audio.duration) * 100;
+                                    if (progressBar) progressBar.style.width = `${percent}%`;
+                                    if (currentTimeEl) currentTimeEl.textContent = "-" + formatTime(remaining);
+                                }
+                            });
+
+                            if (speedBtn) {
+                                const speeds = [1, 1.5, 2];
+                                let speedIdx = 0;
+                                speedBtn.addEventListener('click', (e) => {
+                                    e.preventDefault(); e.stopPropagation();
+                                    speedIdx = (speedIdx + 1) % speeds.length;
+                                    audio.playbackRate = speeds[speedIdx];
+                                    speedBtn.textContent = speeds[speedIdx] + 'x';
+                                });
+                            }
+                            
+                            let isDragging = false;
+                            
+                            if (progressContainer) {
+                                const updateProgress = (e) => {
+                                    const rect = progressContainer.getBoundingClientRect();
+                                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                                    let pos = (clientX - rect.left) / rect.width;
+                                    pos = Math.max(0, Math.min(1, pos));
+                                    if (isFinite(audio.duration) && audio.duration > 0) {
+                                        audio.currentTime = pos * audio.duration;
+                                    }
+                                };
+
+                                progressContainer.addEventListener('mousedown', (e) => {
+                                    isDragging = true;
+                                    updateProgress(e);
+                                });
+                                document.addEventListener('mousemove', (e) => {
+                                    if (isDragging) updateProgress(e);
+                                });
+                                document.addEventListener('mouseup', () => {
+                                    isDragging = false;
+                                });
+                                progressContainer.addEventListener('touchstart', (e) => {
+                                    isDragging = true;
+                                    updateProgress(e);
+                                }, {passive: true});
+                                document.addEventListener('touchmove', (e) => {
+                                    if (isDragging) updateProgress(e);
+                                }, {passive: true});
+                                document.addEventListener('touchend', () => {
+                                    isDragging = false;
+                                });
+                            }
+
+                            audio.addEventListener('ended', () => {
+                                companion.classList.remove('is-playing');
+                                if (minimal) minimal.style.display = 'flex';
+                                if (expanded) expanded.style.display = 'none';
+                                if (toggleBtn) toggleBtn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+                            });
+                        });
+                    </script>
                 </div>
             </header>
 
@@ -589,12 +715,19 @@
                     </div>
                 </div>
             </section>
+            </article>
 
-            <footer style="margin-top: 10rem; border-top: 1px solid var(--border-color); padding-top: 4rem; text-align: center;">
-                <p style="font-family: var(--font-display); font-size: 0.7rem; color: var(--ink-gray); letter-spacing: 0.2em;">THE LAST WORD: THE NEXT EDITION OF THE AI LOVE YOU JOURNAL WILL BE PUBLISHED IN THREE DAYS.</p>
-            </footer>
-            <div class="editorial-disclaimer" style="margin-top: 8rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.05); opacity: 0.5; font-size: 0.7rem; font-family: var(--font-display); letter-spacing: 0.05em; line-height: 1.6;">
-                AILY Editorial is independent. We received no products or financial affiliation for the items featured in this archive unless explicitly specified.
+            <div class="edition-nav-footer">
+        <div class="nav-next">
+            <span class="nav-label">NEXT EDITION</span>
+            <a href="journal-edition-07.html" class="nav-link">EDITION 07 // Synthetic Nature</a>
+            <span class="nav-date">27 April 2026</span>
+        </div>
+        <div class="nav-prev">
+            <span class="nav-label">PREVIOUS EDITION</span>
+            <a href="journal-edition-05.html" class="nav-link">EDITION 05 // The Aesthetics of Impermanence</a>
+            <span class="nav-date">21 April 2026</span>
+        </div>
             </div>
         </main>
     </div>

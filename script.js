@@ -31,22 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (storeGrid && typeof products !== 'undefined') {
             const activeProducts = products.filter(p => p.category.toLowerCase() === 'art prints');
-            const topProducts = activeProducts.slice(0, 3); // [RECTANGULAR STABILITY] Compact 3-Column Focus
+            const topProducts = activeProducts.slice(0, 3);
             
             storeGrid.innerHTML = topProducts.map(p => `
-                <a href="product.html?id=${p.id}" class="pdp-related-card" style="text-decoration: none; border-radius: 0; background: white; border: 1px solid var(--border-color);">
-                    <div class="pdp-related-image-container" style="border-radius: 0; aspect-ratio: 1/1;">
-                        <img src="${p.images ? p.images[0] : p.image}" alt="${p.title}" class="pdp-related-image" loading="lazy">
-                    </div>
-                    <div class="card-content-wrapper" style="padding: 1.5rem;">
-                        <div class="card-pill-orange" style="background: var(--color-communicator); color: white; font-size: 0.6rem; letter-spacing: 0.2em;">${p.category}</div>
-                        <div class="card-title" style="font-size: 1rem; margin-top: 0.5rem; font-weight: 700;">${p.title}</div>
-                        <div class="card-footer" style="border-top: none; padding-top: 0;">
-                            <span class="card-price" style="font-weight: 500;">£${Object.values(p.priceVariants || {"Base": "TBD"})[0]}</span>
-                            <span class="card-link" style="color: var(--color-action);">MORE &rarr;</span>
+                <div class="home-journal-card">
+                    <a href="product.html?id=${p.id}" class="image-container">
+                        <img src="${(p.images ? p.images[0] : p.image).replace(/ /g, '%20')}" alt="${p.title}" loading="lazy">
+                    </a>
+                    <div class="edition-label">STORE // ${p.category.toUpperCase()}</div>
+                    <a href="product.html?id=${p.id}" class="headline" style="text-decoration: none; color: inherit;">${p.title}</a>
+                    
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">SERIES: ${p.series ? p.series.toUpperCase() : '01'}</div>
+                        <div class="meta-listen-row">
+                            <span>FROM £${p.priceVariants ? Math.min(...Object.values(p.priceVariants)) : 'TBD'}</span>
+                            <a href="product.html?id=${p.id}" style="color: var(--color-action); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;">PRODUCT DETAILS &rarr;</a>
                         </div>
                     </div>
-                </a>
+                    
+                    <div class="home-journal-tags">
+                        ${(p.archiveTags || ['ARTPRINT', 'ARCHIVE', 'STUDIO']).slice(0, 5).map(tag => `<span>#${tag.toUpperCase()}</span>`).join('')}
+                    </div>
+                </div>
             `).join('');
         }
 
@@ -60,29 +66,195 @@ document.addEventListener('DOMContentLoaded', () => {
                         const parts = post.link.split('#');
                         const url = parts.length > 0 ? parts[0] : post.link;
                         topJournals.push({ ...post, link: url });
-                        if (topJournals.length === 6) break;
+                        if (topJournals.length === 3) break; // Limit to 3 for clean grid
                     }
                 }
             }
             
-            // [GEOMETRIC REDUCTION] Journal cards as Visual Exclamation Marks
-            journalGrid.innerHTML = topJournals.map(j => `
-                <a href="${j.link}" class="pdp-related-card is-archive" style="text-decoration: none; border-radius: 0; background: transparent; border: none; padding: 0;">
-                    <div class="pdp-related-image-container" style="border-radius: 0; aspect-ratio: 1.414/1; overflow: hidden; border: 1px solid var(--border-color);">
-                        <img src="${j.image}" alt="${j.title}" class="pdp-related-image" loading="lazy" style="opacity: 0.9; filter: grayscale(1); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
-                    </div>
-                    <div class="card-content-wrapper" style="padding: 1.5rem 0;">
-                        <div style="font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-action); margin-bottom: 0.5rem;">${j.edition || 'JOURNAL'}</div>
-                        <div class="card-title" style="font-size: 1.25rem; font-weight: 700; line-height: 1.1;">${j.title}</div>
-                        <div class="card-footer" style="border: none; padding-top: 0.5rem;">
-                            <span class="card-price" style="color: var(--color-anchor); font-size: 0.7rem;">${j.publishDate || ''}</span>
-                            <span class="card-link" style="font-size: 0.7rem;">Read Context &rarr;</span>
+            journalGrid.innerHTML = topJournals.map(j => {
+                const editionNum = j.edition.split(' ')[1] || '00';
+                const audioFile = `assets/audio/Journal ${editionNum} Audio.m4a`;
+                return `
+                <div class="home-journal-card">
+                    <a href="${j.link}" class="image-container">
+                        <img src="${j.image}" alt="${j.title}" loading="lazy">
+                    </a>
+                    <div class="edition-label">JOURNAL // EDITION ${editionNum}</div>
+                    <a href="${j.link}" class="headline" style="text-decoration: none;">${j.title}</a>
+                    
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: ${j.publishDate.toUpperCase()}</div>
+                        <div class="meta-listen-row">
+                            <span>${j.readDuration || '35 MIN READ'}</span>
+                            
+                            <!-- Integrated Audio Control -->
+                            <div class="audio-companion" id="aily-audio-companion-${editionNum}" style="border: none; padding: 0; background: none; box-shadow: none; margin: 0; min-width: auto; flex-direction: row; align-items: center; gap: 0.8rem; flex-grow: 1;">
+                                <audio id="aily-audio-element-${editionNum}" src="${audioFile}" preload="metadata"></audio>
+                                
+                                <div class="audio-player-minimal" id="audio-minimal-${editionNum}" style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; margin-left: auto;">
+                                    <button class="play-pause-btn" aria-label="Play Edition Audio" style="width: 24px; height: 24px; background: none; border: none; cursor: pointer;">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
+                                    <span class="audio-duration" style="font-size: 0.65rem; color: var(--ink-gray);">LISTEN // ${j.audioDuration || '34:30'}</span>
+                                </div>
+
+                                <!-- Expanded (Progress) -->
+                                <div class="audio-player-expanded" id="audio-expanded-${editionNum}" style="display: none; align-items: center; gap: 0.8rem; flex-grow: 1;">
+                                    <button class="play-pause-btn" id="audio-toggle-btn-${editionNum}" aria-label="Pause" style="width: 20px; height: 20px; background: none; border: none; cursor: pointer;">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                    </button>
+                                    <div class="audio-progress-container" id="progress-container-${editionNum}" style="flex-grow: 1; min-width: 40px; height: 2px; position: relative; cursor: pointer; height: 20px; display: flex; align-items: center;">
+                                        <div class="audio-progress-bar" id="progress-bar-${editionNum}" style="position: relative; width: 0%; height: 2px; background: var(--accent-color);">
+                                            <div style="position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-color);"></div>
+                                        </div>
+                                    </div>
+                                    <span id="current-time-${editionNum}" style="font-size: 0.55rem; min-width: 25px;">0:00</span>
+                                    <button id="audio-speed-btn-${editionNum}" style="font-size: 0.55rem; font-family: var(--font-display); font-weight: 700; background: none; border: none; cursor: pointer; color: var(--ink-gray); padding: 0;">1x</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </a>
-            `).join('');
+                    
+                    <div class="home-journal-tags">
+                        ${(j.keywords || ['SYNTHETICNATURE', 'BIODIGITAL', 'ARCHIVE']).slice(0, 6).map(tag => `<span>#${tag.toUpperCase()}</span>`).join('')}
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            initHomeAudio();
         }
     };
+
+    function initHomeAudio() {
+        const companions = document.querySelectorAll('.audio-companion');
+
+        function formatTime(seconds) {
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = Math.floor(seconds % 60);
+            return h > 0 
+                ? `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+                : `${m}:${s.toString().padStart(2, '0')}`;
+        }
+
+                
+        companions.forEach(companion => {
+            const idParts = companion.id.split('-');
+            const editionNum = idParts[idParts.length - 1];
+            
+            const audio = document.getElementById(`aily-audio-element-${editionNum}`);
+            if (!audio) return;
+            const minimal = document.getElementById(`audio-minimal-${editionNum}`);
+            const toggleBtn = document.getElementById(`audio-toggle-btn-${editionNum}`);
+            const progressBar = document.getElementById(`progress-bar-${editionNum}`);
+            const progressContainer = document.getElementById(`progress-container-${editionNum}`);
+            const currentTimeEl = document.getElementById(`current-time-${editionNum}`);
+            const speedBtn = document.getElementById(`audio-speed-btn-${editionNum}`);
+            const expanded = document.getElementById(`audio-expanded-${editionNum}`);
+
+            function formatTime(seconds) {
+                if (!isFinite(seconds)) return "0:00";
+                const h = Math.floor(seconds / 3600);
+                const m = Math.floor((seconds % 3600) / 60);
+                const sec = Math.floor(seconds % 60);
+                return h > 0 
+                    ? `${h}:${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
+                    : `${m}:${sec.toString().padStart(2, '0')}`;
+            }
+
+            if (minimal) {
+                minimal.addEventListener('click', (e) => {
+                    e.preventDefault(); e.stopPropagation();
+                    document.querySelectorAll('audio').forEach(a => {
+                        if (a !== audio) a.pause();
+                    });
+                    const playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => console.log('Playback prevented', error));
+                    }
+                    companion.classList.add('is-playing');
+                    minimal.style.display = 'none';
+                    if (expanded) expanded.style.display = 'flex';
+                });
+            }
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); e.stopPropagation();
+                    if (audio.paused) {
+                        audio.play();
+                        toggleBtn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+                    } else {
+                        audio.pause();
+                        toggleBtn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+                    }
+                });
+            }
+
+            audio.addEventListener('timeupdate', () => {
+                if (isFinite(audio.duration) && audio.duration > 0) {
+                    const remaining = audio.duration - audio.currentTime;
+                    const percent = (audio.currentTime / audio.duration) * 100;
+                    if (progressBar) progressBar.style.width = `${percent}%`;
+                    if (currentTimeEl) currentTimeEl.textContent = "-" + formatTime(remaining);
+                }
+            });
+
+            if (speedBtn) {
+                const speeds = [1, 1.5, 2];
+                let speedIdx = 0;
+                speedBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); e.stopPropagation();
+                    speedIdx = (speedIdx + 1) % speeds.length;
+                    audio.playbackRate = speeds[speedIdx];
+                    speedBtn.textContent = speeds[speedIdx] + 'x';
+                });
+            }
+            
+            let isDragging = false;
+            
+            if (progressContainer) {
+                const updateProgress = (e) => {
+                    const rect = progressContainer.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    let pos = (clientX - rect.left) / rect.width;
+                    pos = Math.max(0, Math.min(1, pos));
+                    if (isFinite(audio.duration) && audio.duration > 0) {
+                        audio.currentTime = pos * audio.duration;
+                    }
+                };
+
+                progressContainer.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    updateProgress(e);
+                });
+                document.addEventListener('mousemove', (e) => {
+                    if (isDragging) updateProgress(e);
+                });
+                document.addEventListener('mouseup', () => {
+                    isDragging = false;
+                });
+                progressContainer.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    updateProgress(e);
+                }, {passive: true});
+                document.addEventListener('touchmove', (e) => {
+                    if (isDragging) updateProgress(e);
+                }, {passive: true});
+                document.addEventListener('touchend', () => {
+                    isDragging = false;
+                });
+            }
+
+            audio.addEventListener('ended', () => {
+                companion.classList.remove('is-playing');
+                if (minimal) minimal.style.display = 'flex';
+                if (expanded) expanded.style.display = 'none';
+                if (toggleBtn) toggleBtn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+            });
+        });
+    }
     
     renderHomeGrids();
     // ---- Native Scrolling Priority ----
@@ -257,9 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Category Navigation (Top Tier)
         function renderCategoryNav() {
             if (!categoryNav) return;
-            // HIDDEN per user request: Only showing 'all' and 'art prints' categories
-            const rawCategories = ['all', ...new Set(products.map(p => p.category))];
-            const categories = rawCategories.filter(cat => cat.toLowerCase() === 'all' || cat.toLowerCase() === 'art prints');
+            const categories = ['all', ...new Set(products.map(p => p.category))];
             
             categoryNav.innerHTML = categories.map(cat => `
                 <button class="tag-btn ${currentCategory === cat ? 'active' : ''}" data-category="${cat}">
@@ -346,7 +516,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             filtered.forEach((product, index) => {
                 const prices = Object.entries(product.priceVariants || { "Standard": 45 });
-                const [firstSize, firstPrice] = prices[0];
+                const minPrice = prices.length > 0 ? Math.min(...prices.map(p => p[1])) : 'TBD';
+                const [firstSize, firstPrice] = prices[0]; // Kept for default selection
                 const card = document.createElement('article');
                 card.className = 'product-card';
                 card.style.opacity = '0';
@@ -364,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="product.html?id=${product.id}" style="color:inherit; text-decoration:none;"><h3 class="product-title">${product.title}</h3></a>
                         
                         <div class="product-commerce-row">
-                            <span class="product-price">from £${firstPrice}.00</span>
+                            <span class="product-price">from £${minPrice}.00</span>
                             <div class="product-grid-actions">
                                 <select class="grid-size-selector" data-id="${product.id}">
                                     ${prices.map(([size, price]) => `<option value="${size}" data-price="${price}">${size}</option>`).join('')}
@@ -647,8 +818,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <path d="M7 15l5 5 5-5M7 9l5-5 5 5"/>
             </svg>
         `;
-        mobileNavWrapper.appendChild(scrollIndicator);
-        
+
         const indicator = document.createElement('div');
         indicator.className = 'roller-indicator';
         indicator.innerHTML = '<span></span><span></span><span></span>';
@@ -681,6 +851,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         rollerContainer.appendChild(rollerList);
         mobileNavWrapper.appendChild(rollerContainer);
+        
+        // Appended AFTER rollerContainer to ensure it stays on the right visually in the stack
+        mobileNavWrapper.appendChild(scrollIndicator);
         
         const breadcrumbHeader = document.querySelector('.sticky-breadcrumb-header');
         if (breadcrumbHeader) {

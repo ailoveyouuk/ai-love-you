@@ -37,6 +37,55 @@
             margin-bottom: var(--spacing-lg);
         }
 
+        .editors-note {
+            margin: var(--spacing-xl) 0;
+            padding: var(--spacing-lg);
+            border-left: 2px solid var(--text-color);
+            background: rgba(14, 14, 16, 0.02);
+        }
+
+        .editors-note h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .editors-note p {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            font-style: italic;
+            color: var(--text-color);
+            max-width: 900px;
+        }
+
+        .journal-curation {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--text-color);
+        }
+
+        .curation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .curation-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .curation-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--ink-gray);
+        }
+
         .about-signoff {
             margin-top: var(--spacing-lg);
             font-family: var(--font-display);
@@ -63,10 +112,17 @@
             .about-image {
                 mix-blend-mode: screen;
             }
+            .editors-note {
+                background: rgba(252, 252, 253, 0.02);
+            }
         }
 
         @media (max-width: 1024px) {
             .about-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .curation-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -115,6 +171,7 @@
         <a href="index.html" class="nav-brand-mobile">
             <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
         </a>
+        <div class="nav-breadcrumb-mobile">ABOUT</div>
         <div class="nav-actions-mobile">
             <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag" style="color: var(--text-color); position: relative;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -140,25 +197,37 @@
 
 <main class="studio-main">
         <header class="studio-header">
-            <h1 class="headline">MAN, DAUGHTER & MACHINE.</h1>
+            <h1 class="headline">Man, Daughter & Machine.</h1>
         </header>
 
         <section class="about-layout">
             <div class="about-text">
-                <p class="lead">At AI Love You, we blend the precision of digital technologies with the warmth of human
-                    creativity to create art prints and small-batch physical products with character, permanence, and
-                    purpose.</p>
+                <p class="lead">AI Love You is an archival studio and editorial platform exploring the intersection of digital precision and human character.</p>
 
-                <h2>Digital Design. Physical Creation.</h2>
-                <p>We are a small, independent father-and-daughter studio exploring how AI-assisted design, digital
-                    tools, and traditional finishing can come together to create distinctive art prints and thoughtfully
-                    made physical goods.</p>
-                <p>From our origins in Lincolnshire, our studio is now at home in Denton, Northamptonshire. We believe
-                    it is possible to embrace technological innovation while still creating tactile, lasting objects
-                    with real character — from art prints to small-batch goods designed to be used, kept, and
-                    appreciated over time.</p>
-                <p>From generative design to handcrafted finishing, every piece we create is personal, meaningful, and
-                    made to last.</p>
+                <div class="editors-note">
+                    <h2>Site-Wide Editor's Note</h2>
+                    <p>"We believe that the bridge between the digital and the physical is where the most compelling stories are told. Whether through a weekly journal entry exploring the ethics of AI or a museum-grade art print produced in our Northamptonshire studio, our mission is to create works that feel thoughtful, permanent, and inherently personal."</p>
+                </div>
+
+                <h2>Man, Daughter & Machine.</h2>
+                <p>We are a small, independent father-and-daughter studio. Our work is a continuous dialogue between the calculated possibilities of machine intelligence and the tactile, often imperfect nature of physical creation.</p>
+                <p>Originally rooted in Lincolnshire and now operating from Denton, Northamptonshire, we leverage advanced digital tools—from generative algorithms to laser profiling—to produce art prints and small-batch goods designed to be kept, used, and appreciated over time.</p>
+
+                <div class="journal-curation">
+                    <h2>The Journal</h2>
+                    <p>Our Journal is the editorial heart of the studio. It serves as a weekly archive of our research, experiments, and reflections on the evolving role of technology in creative practice.</p>
+                    
+                    <div class="curation-grid">
+                        <div class="curation-item">
+                            <h3>Curation & Topics</h3>
+                            <p>We curate across four primary pillars: Artificial Intelligence & Ethics, Digital Fabrication, Generative Art, and the Philosophy of the Physical Object. Each edition is a deep-dive into a specific subject, blending technical analysis with editorial narrative.</p>
+                        </div>
+                        <div class="curation-item">
+                            <h3>Frequency</h3>
+                            <p>New Journal editions are published every Saturday evening. These entries form a growing chronological record of the studio's evolution and the broader technological landscape.</p>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="about-signoff">
                     Lewis & Eleonora McKinnon | Founders
@@ -219,18 +288,16 @@
 
         <section class="about-footer">
             <div class="marquee">
-                <span>// STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL
-                    //</span>
-                <span>// STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL
-                    //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior
-                    written
-                    permission.</span>
+                <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior written permission.</span>
                 <div class="footer-links">
-                    <a href="contact.html">Contact</a>
-                    <a href="support.html">Support & Legal</a>
+                    <a href="contact.html">Contact & Partner</a>
+                    <a href="support.html">Studio & Legal Support</a>
                 </div>
             </div>
         </section>

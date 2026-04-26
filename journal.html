@@ -7,7 +7,7 @@
     <title>Journal & Archive — AI Love You</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=La+Belle+Aurore&family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <style>
@@ -129,33 +129,6 @@
 </head>
 
 <body>
-    <!-- Mobile Navigation Fixed Top Bar -->
-    <nav class="studio-nav">
-        <a href="index.html" class="nav-brand-mobile">
-            <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
-        </a>
-        <div class="nav-actions-mobile">
-            <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag" style="color: var(--text-color); position: relative;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-                <span class="bag-count-badge">0</span>
-            </a>
-            <button class="menu-toggle" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-        
-        <!-- Full Screen Mobile Overlay -->
-        <div class="nav-links">
-            <a href="shop.html">Store</a>
-            <a href="journal.html">Journal</a>
-            <a href="about.html">About</a>
-        </div>
-    </nav>
 
     <div class="studio-layout">
         <!-- New Standard Sidebar Navigation -->
@@ -193,6 +166,7 @@
         <a href="index.html" class="nav-brand-mobile">
             <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
         </a>
+        <div class="nav-breadcrumb-mobile">JOURNAL</div>
         <div class="nav-actions-mobile">
             <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag" style="color: var(--text-color); position: relative;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -218,7 +192,7 @@
 
 <main class="studio-main">
         <header class="studio-header">
-            <h1 class="headline">JOURNAL.</h1>
+            <h1 class="headline">Journal.</h1>
         </header>
 
         <!-- Archival Controls -->
@@ -249,12 +223,42 @@
                 <button class="tag-btn" data-filter="design">Design</button>
                 <button class="tag-btn" data-filter="architecture">Architecture</button>
                 <button class="tag-btn" data-filter="style">Style & Fashion</button>
+                <button class="tag-btn" data-filter="travel">Travel</button>
+                <button class="tag-btn" data-filter="vehicles">Vehicles</button>
+                <button class="tag-btn" data-filter="food-drink">Food & Drink</button>
+                <button class="tag-btn" data-filter="watches">Watches</button>
+                <button class="tag-btn" data-filter="technology">Technology</button>
+                <button class="tag-btn" data-filter="art-photography">Art & Photography</button>
                 <button class="tag-btn" data-filter="global-five">The Global Five</button>
             </div>
         </section>
 
         <!-- Journal Feed Grid -->
         <section class="journal-grid" id="journal-feed">
+            <!-- Edition 08: Analog Authenticity -->
+            <a href="journal-edition-08.html" class="journal-card" data-tags="AnalogAuthenticity, PhysicalFriction, MechanicalRomance, Sardinia, HonestGastronomy"
+                data-title="edition 08: analog authenticity">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-08/sardinia.jpg" alt="Analog Authenticity">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 08</span>
+                    <h3>Analog Authenticity</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 26 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>32 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 08 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 40:32</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#AnalogAuthenticity</span><span>#PhysicalFriction</span><span>#MechanicalRomance</span><span>#Sardinia</span><span>#HonestGastronomy</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
             <!-- Edition 07: Synthetic Nature -->
             <a href="journal-edition-07.html" class="journal-card" data-tags="SyntheticNature, BioDigital, MaterialEcology, MyceliumArchitecture, FutureHaptics, AlgorithmicOrganicism, Symbiocene"
                 data-title="edition 07: synthetic nature">
@@ -262,13 +266,21 @@
                     <img src="assets/journals/edition-07/tree_one.jpg" alt="Synthetic Nature">
                 </div>
                 <div>
-                    <span class="edition-pill">Edition 07</span>
+                    <span class="edition-pill">JOURNAL // EDITION 07</span>
                     <h3>Synthetic Nature</h3>
-                    <div class="meta"><span>27 Apr 2026</span><span>90 Min Read</span></div>
-                    <p>The Biological Imperative: Exploring the dawn of the Symbiocene, from living architectural machines to the simulated soul.</p>
-                </div>
-                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
-                    <span>#SyntheticNature</span><span>#BioDigital</span><span>#MaterialEcology</span><span>#MyceliumArchitecture</span><span>#FutureHaptics</span><span>#Symbiocene</span>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 27 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>35 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 07 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 34:30</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#SyntheticNature</span><span>#BioDigital</span><span>#MaterialEcology</span><span>#MyceliumArchitecture</span><span>#FutureHaptics</span><span>#Symbiocene</span>
+                        </div>
+                    </div>
                 </div>
             </a>
 
@@ -279,13 +291,21 @@
                     <img src="https://static.dezeen.com/uploads/2022/05/house-of-concrete-experiments-samira-rathod-design-atelier-india-residential_dezeen_2364_hero2.jpg" alt="Tomorrow's Textures">
                 </div>
                 <div>
-                    <span class="edition-pill">Edition 06</span>
+                    <span class="edition-pill">JOURNAL // EDITION 06</span>
                     <h3>Tomorrow's Textures</h3>
-                    <div class="meta"><span>24 Apr 2026</span><span>45 Min Read</span></div>
-                    <p>The Pull of the Tactile: Exploring the resurgence of the physical, from the brutalist sanctuaries of Samira Rathod to the 'Soft Armour' of neo-noir fashion.</p>
-                </div>
-                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
-                    <span>#RetroFuturism</span><span>#Brutalism</span><span>#BiophilicDesign</span><span>#AnalogAcoustics</span><span>#JapaneseKogu</span><span>#SoftArmor</span>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 24 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>45 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 06 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 40:41</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#RetroFuturism</span><span>#Brutalism</span><span>#BiophilicDesign</span><span>#AnalogAcoustics</span><span>#JapaneseKogu</span><span>#SoftArmor</span>
+                        </div>
+                    </div>
                 </div>
             </a>
 
@@ -296,13 +316,21 @@
                     <img src="assets/journals/edition-05/zeitz_mocaa.jpg" alt="The Aesthetics of Impermanence">
                 </div>
                 <div>
-                    <span class="edition-pill">Edition 05</span>
+                    <span class="edition-pill">JOURNAL // EDITION 05</span>
                     <h3>The Aesthetics of Impermanence</h3>
-                    <div class="meta"><span>21 Apr 2026</span><span>30 Min Read</span></div>
-                    <p>Evidence of Time: Exploring the beauty of decay, from the lived-in futures of Tarkovsky to the mechanical romance of the E61.</p>
-                </div>
-                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
-                    <span>#WabiSabi</span><span>#AnalogueDecay</span><span>#Architecture</span><span>#RawDenim</span><span>#Cinematography</span><span>#Espresso</span>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 21 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>30 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 05 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 50:18</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#WabiSabi</span><span>#AnalogueDecay</span><span>#Architecture</span><span>#RawDenim</span><span>#Cinematography</span><span>#Espresso</span>
+                        </div>
+                    </div>
                 </div>
             </a>
 
@@ -313,13 +341,21 @@
                     <img src="assets/journals/edition-04/blade_runner_2049_orig.jpg" alt="The Architecture of Light">
                 </div>
                 <div>
-                    <span class="edition-pill">Edition 04</span>
+                    <span class="edition-pill">JOURNAL // EDITION 04</span>
                     <h3>The Architecture of Light</h3>
-                    <div class="meta"><span>18 Apr 2026</span><span>30 Min Read</span></div>
-                    <p>Sculpting with Photons: Exploring the atmospheric power of light in cinema, architecture, and technology.</p>
-                </div>
-                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
-                    <span>#LightingDesign</span><span>#Cinematography</span><span>#BladeRunner2049</span><span>#DaftPunk</span><span>#TadaoAndo</span><span>#Neon</span><span>#Akari</span><span>#Cyberpunk</span><span>#RogerDeakins</span><span>#Brutalism</span>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 18 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>30 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 04 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 45:23</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#LightingDesign</span><span>#Cinematography</span><span>#BladeRunner2049</span><span>#DaftPunk</span><span>#TadaoAndo</span><span>#Neon</span><span>#Akari</span><span>#Cyberpunk</span><span>#RogerDeakins</span><span>#Brutalism</span>
+                        </div>
+                    </div>
                 </div>
             </a>
 
@@ -330,13 +366,21 @@
                     <img src="assets/journals/edition-03/the_witch_hd.jpg" alt="The Alchemy of Craft">
                 </div>
                 <div>
-                    <span class="edition-pill">Edition 03</span>
+                    <span class="edition-pill">JOURNAL // EDITION 03</span>
                     <h3>The Alchemy of Craft</h3>
-                    <div class="meta"><span>15 Apr 2026</span><span>30 Min Read</span></div>
-                    <p>Celebration of the 'makers': From Folk Horror's tactile terror to the improvisational mastery of Jazz and Peter Zumthor's sensory stone.</p>
-                </div>
-                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
-                    <span>#Craftsmanship</span><span>#FolkHorror</span><span>#Jazz</span><span>#Horology</span><span>#Zumthor</span><span>#FellowCoffee</span><span>#MechanicalMovement</span><span>#SteveMcQueen</span><span>#Alchemy</span><span>#Makers</span>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 15 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>30 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 03 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 44:30</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#Craftsmanship</span><span>#FolkHorror</span><span>#Jazz</span><span>#Horology</span><span>#Zumthor</span><span>#FellowCoffee</span><span>#MechanicalMovement</span><span>#SteveMcQueen</span><span>#Alchemy</span><span>#Makers</span>
+                        </div>
+                    </div>
                 </div>
             </a>
 
@@ -347,13 +391,21 @@
                     <img src="assets/journals/edition-02/zone_of_interest_new.jpg" alt="The Geometry of Silence">
                 </div>
                 <div>
-                    <span class="edition-pill">Edition 02</span>
+                    <span class="edition-pill">JOURNAL // EDITION 02</span>
                     <h3>The Geometry of Silence</h3>
-                    <div class="meta"><span>12 Apr 2026</span><span>30 Min Read</span></div>
-                    <p>Reduction to reveal essence: Exploring Jonathan Glazer’s cinematic walls, Dieter Rams’ legacy, and the spiritual stillness of Barragán.</p>
-                </div>
-                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
-                    <span>#Minimalism</span><span>#DieterRams</span><span>#Barragán</span><span>#Silence</span><span>#JonathanGlazer</span><span>#Functionalism</span><span>#ZoneOfInterest</span><span>#SnowPeak</span><span>#WongKarWai</span><span>#AcousticAbsence</span>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 12 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>30 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 02 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 51:01</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#Minimalism</span><span>#DieterRams</span><span>#Barragán</span><span>#Silence</span><span>#JonathanGlazer</span><span>#Functionalism</span><span>#ZoneOfInterest</span><span>#SnowPeak</span><span>#WongKarWai</span><span>#AcousticAbsence</span>
+                        </div>
+                    </div>
                 </div>
             </a>
 
@@ -364,35 +416,37 @@
                     <img src="assets/journals/edition-01/studio_header_orig.jpg" alt="Analogue Precision">
                 </div>
                 <div>
-                    <span class="edition-pill">Edition 01</span>
+                    <span class="edition-pill">JOURNAL // EDITION 01</span>
                     <h3>Analogue Precision & Tactile Living</h3>
-                    <div class="meta"><span>09 Apr 2026</span><span>30 Min Read</span></div>
-                    <p>Why we choose the difficult path: Exploring tactile haptics, room sound acoustics, and brutalist sanctuaries.</p>
-                </div>
-                <div class="article-tags" style="justify-content: flex-start; margin-top: -10px;">
-                    <span>#Analogue</span><span>#Haptics</span><span>#WimWenders</span><span>#RoomSound</span><span>#SpecialtyCoffee</span><span>#JapaneseDesign</span><span>#TropicalBrutalism</span><span>#Workwear</span><span>#TactileLiving</span><span>#SlowLiving</span>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 09 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>30 MIN READ</span>
+                            <div class="card-audio-trigger" data-audio="assets/audio/Journal 01 Audio.m4a">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <span>Listen // 39:59</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">
+                            <span>#Analogue</span><span>#Haptics</span><span>#WimWenders</span><span>#RoomSound</span><span>#SpecialtyCoffee</span><span>#JapaneseDesign</span><span>#TropicalBrutalism</span><span>#Workwear</span><span>#TactileLiving</span><span>#SlowLiving</span>
+                        </div>
+                    </div>
                 </div>
             </a>
         </section>
 
-        <section class="about-footer" style="margin-top: 6rem;">
+        <section class="about-footer">
             <div class="marquee">
-                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
-                        SUPPORT</a> //</span>
-                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
-                        SUPPORT</a> //</span>
-                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
-                        SUPPORT</a> //</span>
-                <span>// <a href="contact.html">CONTACT & PARTNER</a> // <a href="support.html">STUDIO & LEGAL
-                        SUPPORT</a> //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+                <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior
-                    written
-                    permission.</span>
+                <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior written permission.</span>
                 <div class="footer-links">
-                    <a href="contact.html">Contact</a>
-                    <a href="support.html">Support & Legal</a>
+                    <a href="contact.html">Contact & Partner</a>
+                    <a href="support.html">Studio & Legal Support</a>
                 </div>
             </div>
         </section>
@@ -414,7 +468,26 @@
             // Populate Period Select Dynamically
             function populatePeriods() {
                 if (!window.journalData) return;
-                const periods = [...new Set(window.journalData.map(s => s.publishDate))];
+                
+                // Helper to extract Month Year from "27 April 2026" or "April 2026"
+                function getMonthYear(dateStr) {
+                    if (!dateStr) return '';
+                    const parts = dateStr.split(' ');
+                    // If it's "27 April 2026", take last two parts. If "April 2026", take both.
+                    if (parts.length >= 3) return `${parts[1]} ${parts[2]}`;
+                    if (parts.length === 2) return dateStr;
+                    return dateStr;
+                }
+
+                const periods = [...new Set(window.journalData.map(s => getMonthYear(s.publishDate)))]
+                    .filter(p => p)
+                    .sort((a, b) => {
+                        // Sort by date descending (approximate)
+                        const da = new Date(a);
+                        const db = new Date(b);
+                        return db - da;
+                    });
+
                 periods.forEach(p => {
                     const opt = document.createElement('option');
                     opt.value = p;
@@ -443,9 +516,13 @@
                 const filteredStories = window.journalData.filter(story => {
                     const matchesTag = filter === 'all' || story.category === filter;
                     
-                    // Period Filter Check
+                    // Period Filter Check (Monthly)
                     const selectedPeriod = periodSelect.value;
-                    const matchesPeriod = selectedPeriod === 'all' || story.publishDate === selectedPeriod;
+                    let matchesPeriod = true;
+                    if (selectedPeriod !== 'all') {
+                        const storyDate = story.publishDate || '';
+                        matchesPeriod = storyDate.includes(selectedPeriod);
+                    }
 
                     if (!searchTerm) return matchesTag && matchesPeriod;
 
@@ -512,10 +589,15 @@
                                     style="width: 100%; height: 100%; object-fit: cover; opacity: 1;">
                             </div>
                             ` : '<div style="margin-bottom: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;"></div>'}
-                            <div>
-                                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; line-height: 1.2;">${highlightText(story.title || story.event, searchTerm)}</h3>
-                                <div class="meta" style="margin-bottom: 1rem;"><span>${highlightText(story.duration || story.dateTime, searchTerm)}</span></div>
-                                <p style="font-size: 0.9rem; color: var(--ink-gray); line-height: 1.5;">${highlightText(story.subtitle || story.city, searchTerm)}</p>
+                            <div style="padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.1);">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; line-height: 1.2; text-transform: uppercase;">${highlightText(story.title || story.event, searchTerm)}</h3>
+                                <div class="edition-meta-stacked" style="border: none; padding-top: 0; margin-top: 0; gap: 0.8rem;">
+                                    <div class="meta-date">PUBLISHED: ${highlightText((story.publishDate || "").toUpperCase(), searchTerm)}</div>
+                                    <div class="meta-listen-row">
+                                        <span>${highlightText((story.duration || story.dateTime || "").toUpperCase(), searchTerm)}</span>
+                                    </div>
+                                </div>
+                                <p style="font-size: 0.9rem; color: var(--ink-gray); line-height: 1.5; margin-top: 1rem;">${highlightText(story.subtitle || story.city, searchTerm)}</p>
                             </div>
                         `;
                         feedContainer.appendChild(card);
@@ -563,6 +645,84 @@
                     filterBtns.forEach(b => b.classList.remove('active'));
                     e.currentTarget.classList.add('active');
                     applyFilters();
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioTriggers = document.querySelectorAll('.card-audio-trigger');
+            let currentAudio = null;
+            let currentTrigger = null;
+
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            audioTriggers.forEach(trigger => {
+                const label = trigger.querySelector('span');
+                const originalText = label.innerText;
+
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const audioSrc = trigger.getAttribute('data-audio');
+                    
+                    // Toggle if clicking the same trigger
+                    if (currentTrigger === trigger) {
+                        if (currentAudio.paused) {
+                            currentAudio.play();
+                        } else {
+                            currentAudio.pause();
+                        }
+                        return;
+                    }
+
+                    // Reset previous if any
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                        if (currentTrigger) {
+                            currentTrigger.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
+                            currentTrigger.querySelector('span').innerText = currentTrigger.getAttribute('data-original-text') || currentTrigger.querySelector('span').innerText;
+                        }
+                    }
+
+                    // Setup new audio
+                    currentAudio = new Audio(audioSrc);
+                    currentTrigger = trigger;
+                    
+                    // Store original text if not already stored
+                    if (!trigger.hasAttribute('data-original-text')) {
+                        trigger.setAttribute('data-original-text', originalText);
+                    }
+
+                    currentAudio.play();
+
+                    currentAudio.addEventListener('play', () => {
+                        trigger.querySelector('svg').innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+                    });
+
+                    currentAudio.addEventListener('pause', () => {
+                        trigger.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
+                    });
+
+                    currentAudio.addEventListener('timeupdate', () => {
+                        const remaining = currentAudio.duration - currentAudio.currentTime;
+                        if (!isNaN(remaining)) {
+                            label.innerText = `Listen // -${formatTime(remaining)}`;
+                        }
+                    });
+
+                    currentAudio.addEventListener('ended', () => {
+                        trigger.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
+                        label.innerText = trigger.getAttribute('data-original-text');
+                        currentAudio = null;
+                        currentTrigger = null;
+                    });
                 });
             });
         });

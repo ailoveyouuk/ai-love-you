@@ -17,6 +17,7 @@
         <a href="index.html" class="nav-brand-mobile">
             <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
         </a>
+        <div class="nav-breadcrumb-mobile"></div>
         <div class="nav-actions-mobile">
             <a href="cart.html" class="bag-icon-trigger" aria-label="View Bag" style="color: var(--text-color); position: relative;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -71,21 +72,56 @@
         <header class="studio-header akaru-section-full" style="padding-top: var(--spacing-xl);">
             <div class="akaru-block">
                 <div class="akaru-content" style="max-width: 800px;">
-                    <span class="badge" style="border-color: var(--color-action); color: var(--color-action);">Live Now // Edition 07</span>
+                    <span class="badge" style="border-color: var(--color-action); color: var(--color-action);">Live Now // Edition 08</span>
                     <div class="compressed-stack">
                         <h1 class="headline-massive reveal-text">
-                        <span>Synthetic</span><br>
-                        <span style="color: var(--color-action);">Nature.</span>
+                        <span>Analog</span><br>
+                        <span style="color: var(--color-action);">Authenticity.</span>
                     </h1>
                     <p class="sub-headline reveal-text" style="color: var(--text-color);">
-                        <span>The Biological Imperative: Exploring the dawn of the Symbiocene and living architectural machines.</span>
+                        <span>The Search for Friction: The modern consumer's active rejection of frictionless artificial living.</span>
                     </p>
                 </div>
                 <div class="isolated-focal">
-                    <button class="red-dot-cta" onclick="window.location.href='journal-edition-07.html'">
-                        Read Entire Edition <span class="flow-arrow"></span>
-                    </button>
-                    <p style="margin-top: var(--spacing-sm); font-size: 0.65rem; color: var(--color-anchor); text-transform: uppercase; letter-spacing: var(--kerning-meta);">
+                    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md);">
+                        <button class="red-dot-cta" onclick="window.location.href='journal-edition-08.html'">
+                            Read Edition
+                        </button>
+                        
+                        <div class="edition-meta-stacked" style="border: none; padding-top: 0; margin-top: 0;">
+                            <div class="meta-listen-row" style="gap: 2rem;">
+                                <div class="meta-date" style="color: var(--text-color); font-weight: 700; margin-bottom: 0;">32 MIN READ</div>
+                                <!-- Integrated Audio Control -->
+                                <div class="audio-companion" id="aily-audio-companion-hero" style="border: none; padding: 0; background: none; box-shadow: none; margin: 0; min-width: auto; flex-direction: row; align-items: center; gap: 0.8rem;">
+                                    <audio id="aily-audio-element-hero" src="assets/audio/Journal 08 Audio.m4a" preload="metadata"></audio>
+                                    
+                                    <div class="audio-player-minimal" id="audio-minimal-hero" style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer;">
+                                        <button class="play-pause-btn" aria-label="Play Edition 08 Audio" style="width: 24px; height: 24px; background: none; border: none; cursor: pointer;">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                        </button>
+                                        <span class="audio-duration" style="font-size: 0.65rem; color: var(--ink-gray);">LISTEN // 40:32</span>
+                                    </div>
+
+                                    <!-- Expanded (Progress) -->
+                                    <div class="audio-player-expanded" id="audio-expanded-hero" style="display: none; align-items: center; gap: 1rem; flex-grow: 1;">
+                                        <button class="play-pause-btn" id="audio-toggle-btn-hero" aria-label="Pause" style="width: 24px; height: 24px; background: none; border: none; cursor: pointer;">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+                                        <div class="audio-progress-container" id="progress-container-hero" style="width: 100px; height: 2px; position: relative; height: 20px; display: flex; align-items: center;">
+                                            <div class="audio-progress-bar" id="progress-bar-hero" style="position: relative; height: 2px; width: 0%; background: var(--accent-color);">
+                                                <div style="position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-color);"></div>
+                                            </div>
+                                        </div>
+                                        <span id="current-time-hero" style="font-size: 0.6rem; min-width: 30px;">0:00</span>
+                                        <button id="audio-speed-btn-hero" style="font-size: 0.6rem; font-family: var(--font-display); font-weight: 700; background: none; border: none; cursor: pointer; color: var(--ink-gray); padding: 0;">1x</button>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.65rem; color: var(--color-anchor); text-transform: uppercase; letter-spacing: var(--kerning-meta);">
                         Feature: Bio-Digital Growth & The Simulated Soul
                     </p>
                 </div>
@@ -103,7 +139,7 @@
             <a href="journal.html" style="font-family: var(--font-display); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-gray); text-decoration: none;">Explore Full History &rarr;</a>
         </div>
         <div class="home-grid" id="home-journal-grid">
-            <!-- Dynamically Populated by script.js with Geometric Reduction logic -->
+            <!-- Dynamically Populated by script.js -->
         </div>
     </section>
 
@@ -113,21 +149,23 @@
             <h3 style="font-size: 0.85rem; color: var(--text-color); letter-spacing: 0.2em; margin-bottom: 0;">[II. Objects] Curated Goods</h3>
             <a href="shop.html" style="font-family: var(--font-display); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-gray); text-decoration: none;">View Shop Editions &rarr;</a>
         </div>
-        <div class="home-grid" id="home-store-grid" style="grid-template-columns: repeat(3, 1fr);">
-            <!-- Dynamically Populated by script.js with compact 3-column logic -->
+        <div class="home-grid" id="home-store-grid">
+            <!-- Dynamically Populated by script.js -->
         </div>
     </section>
 
     <section class="about-footer">
-        <div class="marquee" style="opacity: 0.1;">
-            <span>// EDITORIAL FIRST // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY //</span>
-            <span>// EDITORIAL FIRST // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY //</span>
+        <div class="marquee">
+            <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+            <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+            <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
+            <span>// ARCHIVAL STUDIO // STUDIO VERMILION // CARBON BLACK // STUDIO WHITE // INK GRAY // HIGH WEIGHT // MINIMAL //</span>
         </div>
         <div class="footer-bottom">
-            <span>&copy; 2026 AI Love You.</span>
+            <span>&copy; 2026 AI Love You. Archival Studio. All rights reserved. No reproduction without prior written permission.</span>
             <div class="footer-links">
-                <a href="contact.html">Contact</a>
-                <a href="support.html">Support & Legal</a>
+                <a href="contact.html">Contact & Partner</a>
+                <a href="support.html">Studio & Legal Support</a>
             </div>
         </div>
     </section>
