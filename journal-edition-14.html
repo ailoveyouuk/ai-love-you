@@ -5,6 +5,21 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Edition 14: The Modern Classic — AI Love You Journal</title>
+<link rel="icon" href="assets/Icons/favicon.ico" sizes="any">
+<link rel="icon" href="assets/Icons/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/Icons/apple-icon.png">
+<meta name="description" content="Brady Corbet&#x27;s The Brutalist tells the story of a fictional emigre architect using a film format the industry spent seventy years trying to retire. Edition 14: The Modern Classic explores restomods, heritage, and quiet luxury.">
+<link rel="canonical" href="https://ailoveyou.uk/journal-edition-14.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AI Love You">
+<meta property="og:title" content="Edition 14: The Modern Classic — AI Love You Journal">
+<meta property="og:description" content="Brady Corbet&#x27;s The Brutalist tells the story of a fictional emigre architect using a film format the industry spent seventy years trying to retire. Edition 14: The Modern Classic explores restomods, heritage, and quiet luxury.">
+<meta property="og:image" content="https://ailoveyou.uk/assets/journals/edition-14/porsche-997-1.webp">
+<meta property="og:url" content="https://ailoveyou.uk/journal-edition-14.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Edition 14: The Modern Classic — AI Love You Journal">
+<meta name="twitter:description" content="Brady Corbet&#x27;s The Brutalist tells the story of a fictional emigre architect using a film format the industry spent seventy years trying to retire. Edition 14: The Modern Classic explores restomods, heritage, and quiet luxury.">
+<meta name="twitter:image" content="https://ailoveyou.uk/assets/journals/edition-14/porsche-997-1.webp">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;family=La+Belle+Aurore&amp;family=Inter+Tight:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
@@ -150,6 +165,19 @@
 <nav class="pdp-breadcrumbs" style="width: 100%; display: flex; align-items: center;">
 <a href="index.html" style="color: inherit; text-decoration: none; transition: opacity 0.2s;">JOURNAL</a> <span style="opacity: 1;">//</span>
 <span style="color: var(--text-color); opacity: 1; white-space: nowrap;">EDITION 14</span>
+<!-- Expanded (Progress) -->
+<div class="audio-player-expanded header-integrated" id="audio-expanded" style="display: flex; flex-grow: 1; margin-left: 2rem; align-items: center; gap: 1.5rem;">
+<button aria-label="Pause" class="play-pause-btn" id="audio-toggle-btn" style="background: none; border: none; cursor: pointer; color: var(--text-color); display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<div class="audio-progress-container" id="progress-container" style="flex-grow: 1; height: 20px; position: relative; cursor: pointer; display: flex; align-items: center; ">
+<div style="width: 100%; height: 2px; background: var(--border-color); position: absolute; left: 0; top: 9px;"></div><div class="audio-progress-bar" id="progress-bar" style="position: relative; height: 2px; background: var(--accent-color); width: 0%;; z-index: 2;">
+<div class="audio-progress-dot" style="position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%;"></div>
+</div>
+</div>
+<span id="current-time" style="font-size: 0.65rem; font-family: var(--font-display); letter-spacing: 0.05em; min-width: 35px;">0:00</span>
+<button id="audio-speed-btn" style="background: none; border: 1px solid var(--border-color); font-size: 0.55rem; padding: 2px 6px; cursor: pointer; color: var(--text-color);">1x</button>
+</div>
 </nav>
 </header>
 <header class="edition-header">
@@ -161,9 +189,19 @@
 </div>
 <div class="edition-meta">
 <div class="meta-primary">
-<span style="opacity: 0.6;">PUBLISHED: 24 MAY 2026</span>
+<span style="opacity: 0.6;">PUBLISHED: 20 AUGUST 2026</span>
 <div class="meta-stats-row">
 <span>48 MIN READ</span>
+<!-- Integrated Audio Control -->
+<div class="audio-companion" id="aily-audio-companion-14">
+<audio id="aily-audio-element-14" preload="metadata" src="assets/audio/edition-14.m4a"></audio>
+<div class="audio-player-minimal" id="audio-minimal">
+<button aria-label="Play Edition 14 Audio" class="play-pause-btn">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<span class="audio-duration">LISTEN // 35:04</span>
+</div>
+</div>
 </div>
 </div>
 <div class="meta-tags">
@@ -181,7 +219,7 @@
 <p>None of these are nostalgia objects. Nostalgia looks backward. What interests us is the opposite gesture: taking something whole and correct from an earlier era and asking the minimum necessary of the present to keep it useful. It is a compromise, and like all good compromises, both sides have to give something up. That tension — between the object's original discipline and its modern accommodation — is, we think, the whole story of what makes something a modern classic rather than simply an old one.</p>
 <div class="editor-signature-block">
 <span class="signature-name">Lewis McKinnon</span>
-<span class="signature-title">// Founder</span>
+<span class="signature-title">// Editor</span>
 </div>
 </div>
 </section>
