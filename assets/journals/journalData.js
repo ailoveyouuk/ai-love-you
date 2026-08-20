@@ -1,5 +1,17 @@
 window.journalData = [
     {
+        id: "edition-14",
+        title: "The Modern Classic",
+        category: "THE JOURNAL ARCHIVE",
+        edition: "14",
+        published: "24 MAY 2026",
+        image: "assets/journals/edition-14/porsche-997-1.webp",
+        audioSrc: "",
+        audioDuration: "",
+        url: "journal-edition-14.html",
+        keywords: ["ModernClassic", "Analogue", "Restomod", "QuietLuxury", "Heritage", "Restoration"]
+    },
+    {
         id: "edition-13",
         title: "The Kinetic Threshold",
         category: "THE JOURNAL ARCHIVE",

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edition 14: The Modern Classic — AI Love You Journal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;family=La+Belle+Aurore&amp;family=Inter+Tight:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="index.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+<style>
+        :root {
+            --journal-bg: #ffffff;
+            --journal-text: #000000;
+            --accent-color: #ff5e00;
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--journal-text);
+            overflow-x: clip;
+        }
+
+        .edition-header {
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        /* Works Cited Collapsible */
+        .works-cited-section {
+            margin-top: 8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 4rem;
+        }
+
+        .works-cited-details summary {
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .works-cited-details summary::after {
+            content: '+';
+            font-weight: 300;
+        }
+
+        .works-cited-details[open] summary::after {
+            content: '−';
+        }
+
+        .works-cited-content {
+            padding: 2rem 0;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--ink-gray);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body class="journal-edition-page">
+<!-- Mobile Navigation Fixed Top Bar -->
+<nav class="studio-nav">
+<a class="nav-brand-mobile" href="index.html">
+<img alt="AILY Logo" src="assets/Logo%20Signature%20fill.svg"/>
+</a>
+<div class="nav-breadcrumb-mobile"><a href="index.html">JOURNAL</a> // EDITION 14</div>
+<div class="nav-actions-mobile">
+<button aria-label="Toggle Menu" class="menu-toggle">
+<span></span>
+<span></span>
+</button>
+</div>
+<!-- Full Screen Mobile Overlay -->
+<div class="nav-links">
+<a href="index.html">Journal</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+<div class="studio-layout">
+<!-- Sidebar Navigation -->
+<aside class="studio-sidebar">
+<div class="sidebar-logo-container">
+<a class="sidebar-logo-link aily-brand-logo" href="index.html" onmouseout="this.style.opacity='0.8'" onmouseover="this.style.opacity='1'" style="display: block; transition: opacity 0.3s; opacity: 0.8;">
+<img alt="AILY Signature" src="assets/Logo%20Signature%20fill.svg" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);"/>
+</a>
+</div>
+<nav class="studio-sidebar-nav" style="margin-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.25rem;">
+<a class="sidebar-link active" href="index.html">Journal</a>
+<a class="sidebar-link" href="about.html">About</a>
+</nav>
+<div class="journal-edition-context">
+<nav class="edition-nav">
+<ul class="nav-list" style="list-style: none; padding: 0;">
+<li class="nav-item">
+<a class="nav-link active" href="#editor-note">Editor's Note</a>
+<span class="nav-subtitle">The Analogue Compromise</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#movies">I. Movies</a>
+<span class="nav-subtitle">Concrete and Celluloid</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#music">II. Music</a>
+<span class="nav-subtitle">Eighty Years of Cone</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#products">III. Products</a>
+<span class="nav-subtitle">The Brass and the Byte</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#vehicles">IV. Vehicles</a>
+<span class="nav-subtitle">The Last Hydraulic Line</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#architecture">V. Architecture</a>
+<span class="nav-subtitle">The Surgical Restoration</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#style-fashion">VI. Style &amp; Fashion</a>
+<span class="nav-subtitle">The Return of the Cut</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#global-five">VII. Global Five</a>
+<span class="nav-subtitle">Events 06–24 May</span>
+</li><li class="nav-item sidebar-prev-next" style="position: relative; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+<a class="sidebar-prev-link" href="journal-edition-13.html" style="font-size: 0.75rem; text-decoration: none;">← PREV<div style="font-size: 0.65rem; line-height: 1.4; margin-top: 0.2rem; opacity: 0.7; font-family: var(--font-body); text-transform: none; letter-spacing: 0;">Edition 13<br/>The Kinetic Threshold</div></a>
+<span></span>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="studio-main">
+<article class="journal-content">
+<header class="sticky-breadcrumb-header" style="z-index: 100;">
+<nav class="pdp-breadcrumbs" style="width: 100%; display: flex; align-items: center;">
+<a href="index.html" style="color: inherit; text-decoration: none; transition: opacity 0.2s;">JOURNAL</a> <span style="opacity: 1;">//</span>
+<span style="color: var(--text-color); opacity: 1; white-space: nowrap;">EDITION 14</span>
+</nav>
+</header>
+<header class="edition-header">
+<span class="edition-label">THE JOURNAL ARCHIVE // 14</span>
+<h1>The Modern<br/>Classic</h1>
+<div class="media-container">
+<img alt="The Modern Classic — Porsche 911 (997) Carrera 4S" src="assets/journals/edition-14/porsche-997-1.webp"/>
+<span class="caption">The Porsche 911 (997) Carrera 4S — widely regarded as the last analogue 911. <span style="color: var(--accent-color);">Source: Porsche AG.</span></span>
+</div>
+<div class="edition-meta">
+<div class="meta-primary">
+<span style="opacity: 0.6;">PUBLISHED: 24 MAY 2026</span>
+<div class="meta-stats-row">
+<span>48 MIN READ</span>
+</div>
+</div>
+<div class="meta-tags">
+<span>#ModernClassic</span><span>#Analogue</span><span>#Restomod</span><span>#QuietLuxury</span><span>#Heritage</span><span>#Restoration</span>
+</div>
+</div>
+</header>
+<!-- Editor's Note -->
+<section class="section-container" id="editor-note">
+<span class="dept-label">EDITOR’S NOTE // THE ANALOGUE COMPROMISE</span>
+<h2 class="section-title">The Analogue Compromise</h2>
+<div class="body-text">
+<p>In Edition 13, "The Kinetic Threshold," we lingered on the mechanical bridge between intent and result — the click of a switch, the sweep of a second hand. Buried inside that edition, almost as an aside, was a single story about a Porsche Classic head unit: a device built to smuggle Apple CarPlay into a car that predates the smartphone, without disturbing a single switch on the dashboard. It turned out to be the seed of this entire edition.</p>
+<p>For Edition 14, "The Modern Classic," we have pulled that thread. Every object here is defined by the same negotiation: something built to a pre-digital standard of craft, that has been allowed — carefully, sometimes reluctantly — to acquire a modern convenience without losing the thing that made it worth keeping in the first place. A camera with a brass top-plate and no autofocus. A speaker cabinet unchanged since 1970. A car with hydraulic steering built the year before the industry moved to electric assistance for good. A gallery building treated less like a museum piece and more like "a beloved patient," as its restoring architect put it, "returned seemingly untouched except for it running more smoothly."</p>
+<p>None of these are nostalgia objects. Nostalgia looks backward. What interests us is the opposite gesture: taking something whole and correct from an earlier era and asking the minimum necessary of the present to keep it useful. It is a compromise, and like all good compromises, both sides have to give something up. That tension — between the object's original discipline and its modern accommodation — is, we think, the whole story of what makes something a modern classic rather than simply an old one.</p>
+<div class="editor-signature-block">
+<span class="signature-name">Lewis McKinnon</span>
+<span class="signature-title">// Founder</span>
+</div>
+</div>
+</section>
+<!-- I. Movies -->
+<section class="section-container" id="movies">
+<span class="dept-label">[I. MOVIES] CONCRETE AND CELLULOID</span>
+<h2 class="section-title">The Brutalist and the Case for Old Film</h2>
+<p class="lead-text">Brady Corbet's <em>The Brutalist</em> is a 2024 film about a fictional émigré architect told, almost perversely, using a camera format the industry had spent seventy years trying to retire.</p>
+<div class="media-container">
+<img alt="The Brutalist (2024) film still" src="assets/journals/edition-14/brutalist-1.webp"/>
+<span class="caption">A24's <em>The Brutalist</em> (2024), shot by Lol Crawley BSC on 8-perf VistaVision — a widescreen format largely dormant since the 1950s. <span style="color: var(--accent-color);">Source: A24.</span></span>
+</div>
+<div class="body-text">
+<p>Cinematographer <a href="https://thefilmstage.com/the-brutalist-cinematographer-lol-crawley-on-vistavision-the-70mm-experience-and-brady-corbets-flexibility/" target="_blank">Lol Crawley</a> shot <em>The Brutalist</em> on VistaVision, an 8-perforation 35mm format Paramount developed in 1954 and the film industry largely abandoned once anamorphic lenses made widescreen cheaper to produce. The cameras themselves are museum pieces. "The VistaVision camera is an unergonomic camera," Crawley has said of working with 1970s bodies whose "optics tended to vignette a little bit on the viewfinder" — a format chosen not despite its inconvenience, but because of the texture only that inconvenience could deliver.</p>
+<p>The choice was a statement of intent as much as an aesthetic one. "Long may FotoKem and all of these labs and Kodak reign," Crawley told <em><a href="https://thefilmstage.com" target="_blank">The Film Stage</a></em>. "We will not be beaten into submission and told that digital is the way forward." At three and a half hours, with an intermission, the film also revives a theatrical convention most modern releases avoid entirely. "Why are we constantly apologising for a film being the length that it is?" Crawley asked. "Why not make it a theatrical experience again?"</p>
+<div class="media-container">
+<img alt="The Brutalist (2024) film still" src="assets/journals/edition-14/brutalist-2.webp"/>
+<span class="caption">The film's own subject — a Brutalist architect rebuilding his career in postwar Pennsylvania — mirrors its production: a mid-century discipline, revived intact, for a contemporary audience. <span style="color: var(--accent-color);">Source: A24.</span></span>
+</div>
+<p>It is a neat piece of formal symmetry: a film about an architect who refuses to soften Brutalism's rawest instincts for a modern client, shot on a format that refused to soften itself for a modern industry. "I was inspired by movies that were examinations of humans, not spectacle," Crawley said. "I really hope that when this film is released, people are sort of hungry for a movie of this type." Judging by the format's revival in prestige cinema since, they were.</p>
+</div>
+</section>
+<!-- II. Music -->
+<section class="section-container" id="music">
+<span class="dept-label">[II. MUSIC] EIGHTY YEARS OF CONE</span>
+<h2 class="section-title">The JBL L100, Unchanged on Purpose</h2>
+<p class="lead-text">JBL's L100 Classic 80 is a reissue of a reissue — proof that sometimes the correct way to modernise a design is to leave it almost entirely alone.</p>
+<div class="media-container">
+<img alt="JBL L100 Classic 80 loudspeaker" src="assets/journals/edition-14/jbl-l100-classic-80-1.webp"/>
+<span class="caption">The JBL L100 Classic 80: a limited 800-pair anniversary run of the three-way bookshelf speaker JBL first launched in 1970. <span style="color: var(--accent-color);">Source: JBL / Harman International.</span></span>
+</div>
+<div class="body-text">
+<p>The original L100 was, by some estimates, the best-selling loudspeaker in American history — a fixture of 1970s living rooms in its distinctive Quadrex foam grille. JBL revived the design faithfully in 2018 as the L100 Classic, refined it acoustically with the 2023 MKII, and for the company's 80th anniversary has now released the <a href="https://www.gearpatrol.com/audio/jbl-l100-classic-80-loudspeakers/" target="_blank">L100 Classic 80</a> — a version that is, deliberately, acoustically identical to the MKII it's built on.</p>
+<p>Inside, nothing has moved: the same 1-inch titanium-dome tweeter, 5.25-inch midrange, and 12-inch woofer in the same three-way bass-reflex cabinet. What marks this edition out is entirely on the surface — a vintage-inspired brown Quadrex grille coordinated with the natural wood veneer, and gold-and-black commemorative badging. Production is capped at exactly 800 matched pairs, each numbered, each accompanied by a plaque signed by principal system engineer Chris Hagen.</p>
+<div class="media-container">
+<img alt="JBL L100 Classic 80 loudspeaker detail" src="assets/journals/edition-14/jbl-l100-classic-80-2.webp"/>
+<span class="caption">The three-way driver configuration — titanium tweeter, midrange, and 12-inch woofer — is carried over unchanged from the L100 Classic MKII. <span style="color: var(--accent-color);">Source: JBL / Harman International.</span></span>
+</div>
+<p>At $7,499 a pair — roughly $2,300 more than the standard MKII — the L100 Classic 80 is not a hi-fi upgrade so much as a piece of collectible restraint: a manufacturer with every capability to change a fifty-year-old design choosing, on its most self-congratulatory anniversary, not to.</p>
+</div>
+</section>
+<!-- III. Products -->
+<section class="section-container" id="products">
+<span class="dept-label">[III. PRODUCTS] THE BRASS AND THE BYTE</span>
+<h2 class="section-title">Leica Brings Back the M6</h2>
+<p class="lead-text">In 2022, Leica did something no serious camera manufacturer had done in decades: it put a fully manual, meterless-feeling film rangefinder back into production.</p>
+<div class="media-container">
+<img alt="Leica M6 rangefinder camera" src="assets/journals/edition-14/leica-m6.webp"/>
+<span class="caption">The 2022 Leica M6 — a solid brass top-plate replacing the original's die-cast zinc, otherwise a faithful continuation of the camera Leica sold from 1984 to 2002. <span style="color: var(--accent-color);">Source: Leica Camera AG.</span></span>
+</div>
+<div class="body-text">
+<p>The original M6 was, in its day, simply Leica's mainstream rangefinder: roughly 175,000 handmade units sold between 1984 and 2002, no autofocus, no motor drive as standard, a built-in light meter its only real concession to convenience. Leica discontinued it as digital took hold, then — to the surprise of much of the trade — brought it back unchanged in essentials for 2022.</p>
+<p><a href="https://www.digitalcameraworld.com/news/an-icon-reborn-leica-m6-returns-for-film-photographers" target="_blank">Stefan Daniel</a>, Leica's Executive Vice President for Technology and Operations, framed the decision as a response to a genuine shift in how people wanted to make pictures. "Conscious analog photography as an antithesis to the flood of digital images is enjoying great popularity," Daniel said, pointing to a generation of photographers for whom the friction of a fully manual camera — no autofocus to trust, no burst mode to hide behind — is the entire appeal rather than an inconvenience to be engineered away.</p>
+<p>The changes Leica did make are almost invisible: a solid brass top cover in place of the original's die-cast zinc, better anti-reflective coatings on the optics, a refined rangefinder patch. At $5,295, the reissue costs considerably more than a clean secondhand original — a premium, effectively, for buying the discipline new rather than inheriting it worn in.</p>
+</div>
+</section>
+<!-- IV. Vehicles -->
+<section class="section-container" id="vehicles">
+<span class="dept-label">[IV. VEHICLES] THE LAST HYDRAULIC LINE</span>
+<h2 class="section-title">The Porsche 997: The Last Analogue 911</h2>
+<p class="lead-text">Built between 2004 and 2013, the 997-generation 911 is the last to use a hydraulic steering rack before Porsche, like the rest of the industry, moved to electric assistance — and enthusiasts have never quite forgiven the switch.</p>
+<div class="media-container">
+<img alt="Porsche 911 (997) Carrera 4S" src="assets/journals/edition-14/porsche-997-1.webp"/>
+<span class="caption">The Porsche 911 (997) Carrera 4S: all-wheel drive, a 3.8-litre flat-six producing 355hp, and — critically — a steering rack assisted hydraulically rather than electrically. <span style="color: var(--accent-color);">Source: Porsche AG.</span></span>
+</div>
+<div class="body-text">
+<p>When Porsche replaced the 997 with the 991 in 2011–12, the headline change wasn't the bigger body or the longer wheelbase — it was the steering. The 997's hydraulic system, in which "the steering rack is assisted by a hydraulic pump driven off the engine," gives the driver a direct mechanical read of what the front tyres are doing: road surface, tyre load, camber change, all transmitted up through the wheel. The 991's electric system is, by most measures, more efficient and just as accurate. It is also, by near-universal enthusiast consensus, quieter in the hands — accurate about what the front tyres are doing, but no longer particularly interested in telling you about it.</p>
+<p>I should disclose an obvious conflict of interest here: I own a 997.1 Carrera 4S, and every word of the above is, in part, a case I have been making to my own bank manager for several years. It has not once broken down in a way I'd call romantic, and the heated seats take a genuinely unreasonable amount of time to warm up. But it is, without question, the last 911 that talks back — which is either the most persuasive argument for keeping it forever, or the most predictable thing a biased owner could possibly write in his own magazine.</p>
+<div class="media-container">
+<img alt="Porsche 911 (997) Carrera 4S detail" src="assets/journals/edition-14/porsche-997-2.webp"/>
+<span class="caption">Porsche Classic's PCCM Plus retrofit unit brings Apple CarPlay and Android Auto to 997- and 987-generation cars without altering a single visible dashboard control. <span style="color: var(--accent-color);">Source: Porsche AG.</span></span>
+</div>
+<p>Which is precisely the gap Porsche Classic's <a href="https://newsroom.porsche.com/en/2023/products/porsche-classic-communication-management-plus-for-retrofitting-30885.html" target="_blank">PCCM Plus</a> retrofit unit is built to close. Available for the 997, the 987 Boxster and Cayman, and the first-generation Cayenne, it swaps in a 7-inch touchscreen with CarPlay, Android Auto and navigation behind period-correct switchgear, using the car's existing amplifier, speakers and antenna rather than replacing them. "There is huge demand for contemporary networking of our timeless classics," says <a href="https://newsroom.porsche.com" target="_blank">Ulrike Lutz</a>, Director of Porsche Classic — a demand this edition's entire premise is built on.</p>
+</div>
+</section>
+<!-- V. Architecture -->
+<section class="section-container" id="architecture">
+<span class="dept-label">[V. ARCHITECTURE] THE SURGICAL RESTORATION</span>
+<h2 class="section-title">Chipperfield's Restoration of the Neue Nationalgalerie</h2>
+<p class="lead-text">David Chipperfield's five-year restoration of Mies van der Rohe's Neue Nationalgalerie in Berlin is, by his own description, less an architectural project than a piece of surgery.</p>
+<div class="media-container">
+<img alt="Neue Nationalgalerie, Berlin, after restoration by David Chipperfield Architects" src="assets/journals/edition-14/neue-nationalgalerie.webp"/>
+<span class="caption">Mies van der Rohe's Neue Nationalgalerie, Berlin, following David Chipperfield Architects' restoration. <span style="color: var(--accent-color);">Photo: Simon Menges / Arup.</span></span>
+</div>
+<div class="body-text">
+<p>Mies van der Rohe's 1968 gallery — a single vast glass box suspended beneath a flat steel roof — is one of the most revered buildings of the twentieth century, and one of the least forgiving to work on. <a href="https://www.dezeen.com/2021/04/29/neue-nationalgalerie-overhaul-david-chipperfield-mies-van-der-rohe/" target="_blank">David Chipperfield</a>, who led its restoration to reopening in 2021, has called it "a touchstone for myself and many other architects" — and admitted that "taking apart a building of such unquestionable authority has been a strange experience but a privilege."</p>
+<p>The brief was deliberately narrow: fix what needed fixing, and leave the rest indistinguishable from how Mies left it. The team refurbished the ageing concrete structure and steel frame, replaced the glazing, upgraded air-conditioning and lighting for modern energy performance, and modernised the visitor facilities — while preserving the original stone cladding, the steel-and-glass exterior, and the building's overall proportions untouched. "Our work was therefore surgical in nature," Chipperfield said, "addressing technical issues to protect this vision... we hope to have returned this beloved patient seemingly untouched except for it running more smoothly."</p>
+<p>It is, in built form, the same discipline running through every object in this edition: restraint as the highest form of respect, and the modern intervention judged a success only insofar as nobody notices it happened.</p>
+</div>
+</section>
+<!-- VI. Style & Fashion -->
+<section class="section-container" id="style-fashion">
+<span class="dept-label">[VI. STYLE &amp; FASHION] THE RETURN OF THE CUT</span>
+<h2 class="section-title">The Row Rediscovers Tailoring</h2>
+<p class="lead-text">For a house built on the slouchy, engineered ease of American minimalism, The Row's Fall/Winter 2026 collection was a deliberate act of tightening up.</p>
+<div class="media-container">
+<img alt="The Row, Fall/Winter 2026 Ready-to-Wear" src="assets/journals/edition-14/the-row-1.webp"/>
+<span class="caption">A look from The Row's Fall/Winter 2026 Ready-to-Wear collection, Paris. <span style="color: var(--accent-color);">Source: The Row.</span></span>
+</div>
+<div class="body-text">
+<p>Sisters Mary-Kate and Ashley Olsen's <a href="https://www.whowhatwear.com/fashion/runway/the-row-paris-fashion-week-fall-winter-2026" target="_blank">Fall/Winter 2026</a> show marked a visible shift away from the brand's signature relaxed drape toward fitted, almost severe tailoring: cigarette trousers, shrunken jackets and curved boat necklines that recalled late-1990s precision cutting more than the brand's own recent past. It is the fashion equivalent of the brass top-plate on the new Leica M6 — a house returning to an older, stricter discipline rather than continuing to soften one.</p>
+<p>The layering told the same story from a different angle: sheer turtlenecks worn over visible pearls, organza laid across poplin, "stealthy texture" delivered through fur-trimmed pencil skirts and sparse feather collars rather than anything louder. The effect, as reviewers noted, was a collection where "workhorse staples and couture-esque craftsmanship lived side-by-side" — pieces built to be worn constantly, cut with a precision that assumed they'd also be studied closely.</p>
+<div class="media-container">
+<img alt="The Row, Fall/Winter 2026 Ready-to-Wear" src="assets/journals/edition-14/the-row-2.webp"/>
+<span class="caption">Fitted tailoring and sheer layering defined the collection — a tightening-up from the brand's usual engineered ease. <span style="color: var(--accent-color);">Source: The Row.</span></span>
+</div>
+<p>It is, in other words, minimalism's own version of a restomod: the vocabulary of quiet luxury left intact, the silhouette underneath quietly re-engineered.</p>
+</div>
+</section>
+<!-- VII. Global Five -->
+<section class="section-container" id="global-five"><span class="dept-label">[VII. GLOBAL FIVE] CURATED EVENTS</span><h2 class="section-title">06–24 May 2026</h2><div class="global-five-list">
+<div class="global-five-item"><div class="event-rank">01</div><div class="event-details"><h3>REYKJAVÍK, ICELAND: DESIGNMARCH</h3><h4><a href="https://www.dezeen.com/2026/05/01/seven-architecture-design-events-may-dezeen-events-guide-2026/" target="_blank">Various venues, Reykjavík</a></h4><div class="event-meta">06–10 May 2026</div><p>Iceland's annual design festival returns under the theme "Connections," staging exhibitions, talks, tours and workshops across the capital's design and architecture studios.</p></div></div>
+<div class="global-five-item"><div class="event-rank">02</div><div class="event-details"><h3>LONDON, UK: LONDON CRAFT WEEK</h3><h4><a href="https://www.dezeen.com/2026/05/01/seven-architecture-design-events-may-dezeen-events-guide-2026/" target="_blank">Venues across London</a></h4><div class="event-meta">11–17 May 2026</div><p>Around 1,000 makers and designers present work spanning sculpture, glass, jewellery and ceramics — a citywide celebration of hand-craft in an increasingly machine-made world.</p></div></div>
+<div class="global-five-item"><div class="event-rank">03</div><div class="event-details"><h3>ISTANBUL, TURKEY: GLOBAL DESIGN FORUM</h3><h4><a href="https://www.dezeen.com/2026/05/01/seven-architecture-design-events-may-dezeen-events-guide-2026/" target="_blank">Istanbul, citywide</a></h4><div class="event-meta">13–16 May 2026</div><p>The inaugural edition of Istanbul's citywide design programme, staged under the theme "Worlds in Contact," with panels and installations bridging European and Middle Eastern design communities.</p></div></div>
+<div class="global-five-item"><div class="event-rank">04</div><div class="event-details"><h3>NEW YORK, USA: FRIEZE NEW YORK</h3><h4><a href="https://www.dezeen.com/2026/05/01/seven-architecture-design-events-may-dezeen-events-guide-2026/" target="_blank">The Shed, Manhattan</a></h4><div class="event-meta">13–17 May 2026</div><p>Frieze's New York fair marks its 14th anniversary at The Shed, bringing major international galleries together with emerging exhibitors for one of the art calendar's key spring fixtures.</p></div></div>
+<div class="global-five-item"><div class="event-rank">05</div><div class="event-details"><h3>MELBOURNE, AUSTRALIA: MELBOURNE DESIGN WEEK</h3><h4><a href="https://www.dezeen.com/2026/05/01/seven-architecture-design-events-may-dezeen-events-guide-2026/" target="_blank">Venues across Melbourne</a></h4><div class="event-meta">14–24 May 2026</div><p>Now in its tenth year, Melbourne's design week runs under the banner "Design the world you want," with a programme leaning heavily into sustainability and local design heritage.</p></div></div>
+</div></section>
+<!-- Discrete References Link -->
+<div class="references-discrete-container">
+<a class="references-discrete-link" onclick="document.getElementById('works-cited-expanded').toggleAttribute('open')">[ REFERENCES ]</a>
+</div>
+<!-- Works Cited -->
+<section class="section-container" id="works-cited" style="padding-top: 0;">
+<details class="works-cited-details" id="works-cited-expanded">
+<summary>Works Cited &amp; References</summary>
+<div class="works-cited-content">
+<ol>
+<li>Crawley, L. (2024). *On Shooting The Brutalist in VistaVision*. The Film Stage.</li>
+<li>Kodak Motion Picture. (2024). *Lol Crawley BSC on The Brutalist*. Kodak.com.</li>
+<li>Gear Patrol. (2026). *JBL Reimagines the L100 Classic for its 80th Anniversary*. Gear Patrol.</li>
+<li>Audioholics. (2026). *JBL L100 Classic 80: 80 Years of an Icon*. Audioholics.</li>
+<li>Daniel, S. (2022). *Leica M6 Press Statement*. Leica Camera AG.</li>
+<li>Digital Camera World. (2022). *An Icon Reborn: Leica M6 Returns for Film Photographers*. Digital Camera World.</li>
+<li>Porsche Newsroom. (2023). *Porsche Classic Communication Management Plus for Retrofitting*. Porsche AG.</li>
+<li>Renndriver. (2026). *Porsche 997 vs 991: Which 911 Generation Should You Buy?*. Renndriver.com.</li>
+<li>Chipperfield, D. (2021). *On the Restoration of the Neue Nationalgalerie*. Dezeen.</li>
+<li>Menges, S. (2021). *Neue Nationalgalerie, Berlin — Photography*. Arup.</li>
+<li>Who What Wear. (2026). *The Row Fall/Winter 2026: Sheer Layers, Slim Suits, and Texture*. Who What Wear.</li>
+<li>Dezeen Events Guide. (2026). *Seven Architecture and Design Events in May*. Dezeen.</li>
+</ol>
+</div>
+</details>
+</section>
+<div class="edition-nav-footer">
+<div class="nav-next">
+<span class="nav-label">NEXT EDITION</span>
+<a class="nav-link" href="#">EDITION 15 // COMING SOON</a>
+<span class="nav-date">Coming Soon</span>
+</div>
+<div class="nav-prev">
+<span class="nav-label">PREVIOUS EDITION</span>
+<a class="nav-link" href="journal-edition-13.html">EDITION 13 // THE KINETIC THRESHOLD</a>
+<span class="nav-date">10 May 2026</span>
+</div>
+</div>
+</article>
+<section class="about-footer" style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+<div class="footer-bottom">
+<span>© 2026 AI Love You. All rights reserved. No reproduction without prior written permission.</span>
+<div class="footer-links">
+<a href="contact.html">Contact</a>
+<a href="support.html">Legal Support</a>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>
