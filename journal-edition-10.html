@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edition 10: Sensory Friction — AI Love You Journal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;family=La+Belle+Aurore&amp;family=Inter+Tight:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="index.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+<style>
+        :root {
+            --journal-bg: #ffffff;
+            --journal-text: #000000;
+            --accent-color: #ff5e00;
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--journal-text);
+            overflow-x: clip;
+        }
+
+        .edition-header {
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        .technical-table-container {
+            margin: 4rem 0;
+            overflow-x: auto;
+        }
+
+        .technical-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+        }
+
+        .technical-data-table th, .technical-data-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .technical-data-table th {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-color);
+        }
+
+        /* Works Cited Collapsible */
+        .works-cited-section {
+            margin-top: 8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 4rem;
+        }
+
+        .works-cited-details summary {
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .works-cited-details summary::after {
+            content: '+';
+            font-weight: 300;
+        }
+
+        .works-cited-details[open] summary::after {
+            content: '−';
+        }
+
+        .works-cited-content {
+            padding: 2rem 0;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--ink-gray);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body class="journal-edition-page">
+<!-- Mobile Navigation Fixed Top Bar -->
+<nav class="studio-nav">
+<a class="nav-brand-mobile" href="index.html">
+<img alt="AILY Logo" src="assets/Logo%20Signature%20fill.svg"/>
+</a>
+<div class="nav-breadcrumb-mobile"><a href="index.html">JOURNAL</a> // EDITION 10</div>
+<div class="nav-actions-mobile">
+<button aria-label="Toggle Menu" class="menu-toggle">
+<span></span>
+<span></span>
+</button>
+</div>
+<!-- Full Screen Mobile Overlay -->
+<div class="nav-links">
+<a href="index.html">Journal</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+<div class="studio-layout">
+<!-- Sidebar Navigation -->
+<aside class="studio-sidebar">
+<div class="sidebar-logo-container">
+<a class="sidebar-logo-link aily-brand-logo" href="index.html" onmouseout="this.style.opacity='0.8'" onmouseover="this.style.opacity='1'" style="display: block; transition: opacity 0.3s; opacity: 0.8;">
+<img alt="AILY Signature" src="assets/Logo%20Signature%20fill.svg" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);"/>
+</a>
+</div>
+<nav class="studio-sidebar-nav" style="margin-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.25rem;">
+<a class="sidebar-link active" href="index.html">Journal</a>
+<a class="sidebar-link" href="about.html">About</a>
+</nav>
+<div class="journal-edition-context">
+<nav class="edition-nav">
+<ul class="nav-list" style="list-style: none; padding: 0;">
+<li class="nav-item">
+<a class="nav-link active" href="#editor-note">Editor's Note</a>
+<span class="nav-subtitle">Sensory Friction</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#travel">I. Travel</a>
+<span class="nav-subtitle">The High-Altitude Serenity</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#vehicles">II. Vehicles</a>
+<span class="nav-subtitle">Aston Martin Vanquish</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#food-drink">III. Food &amp; Drink</a>
+<span class="nav-subtitle">Ingredient Transparency</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#watches">IV. Watches</a>
+<span class="nav-subtitle">The Green Dial Renaissance</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#technology">V. Technology</a>
+<span class="nav-subtitle">Ambient Hardware</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#art-photography">VI. Art &amp; Photography</a>
+<span class="nav-subtitle">The Physical Negative</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#global-five">VII. Global Five</a>
+<span class="nav-subtitle">Curated Events</span>
+</li><li class="nav-item sidebar-prev-next" style="position: relative; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+<a class="sidebar-prev-link" href="journal-edition-09.html" style="font-size: 0.75rem; text-decoration: none;">← PREV<div style="font-size: 0.65rem; line-height: 1.4; margin-top: 0.2rem; opacity: 0.7; font-family: var(--font-body); text-transform: none; letter-spacing: 0;">Edition 09<br/>The Calculus of Precision</div></a>
+<a class="sidebar-next-link" href="journal-edition-11.html" style="font-size: 0.75rem; text-decoration: none; text-align: right;">NEXT →<div style="font-size: 0.65rem; line-height: 1.4; margin-top: 0.2rem; opacity: 0.7; font-family: var(--font-body); text-transform: none; letter-spacing: 0;">Edition 11<br/>The Syntax of Symmetry</div></a>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="studio-main">
+<article class="journal-content">
+<header class="sticky-breadcrumb-header" style="z-index: 100;">
+<nav class="pdp-breadcrumbs" style="width: 100%; display: flex; align-items: center;">
+<a href="index.html" style="color: inherit; text-decoration: none; transition: opacity 0.2s;">JOURNAL</a> <span style="opacity: 1;">//</span>
+<span style="color: var(--text-color); opacity: 1; white-space: nowrap;">EDITION 10</span>
+<!-- Expanded (Progress) -->
+<div class="audio-player-expanded header-integrated" id="audio-expanded" style="display: flex; flex-grow: 1; margin-left: 2rem; align-items: center; gap: 1.5rem;">
+<button aria-label="Pause" class="play-pause-btn" id="audio-toggle-btn" style="background: none; border: none; cursor: pointer; color: var(--text-color); display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<div class="audio-progress-container" id="progress-container" style="flex-grow: 1; height: 20px; position: relative; cursor: pointer; display: flex; align-items: center; ">
+<div style="width: 100%; height: 2px; background: var(--border-color); position: absolute; left: 0; top: 9px;"></div><div class="audio-progress-bar" id="progress-bar" style="position: relative; height: 2px; background: var(--accent-color); width: 0%;; z-index: 2;">
+<div class="audio-progress-dot" style="position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%;"></div>
+</div>
+</div>
+<span id="current-time" style="font-size: 0.65rem; font-family: var(--font-display); letter-spacing: 0.05em; min-width: 35px;">0:00</span>
+<button id="audio-speed-btn" style="background: none; border: 1px solid var(--border-color); font-size: 0.55rem; padding: 2px 6px; cursor: pointer; color: var(--text-color);">1x</button>
+</div>
+</nav>
+</header>
+<header class="edition-header">
+<span class="edition-label">THE JOURNAL ARCHIVE // 10</span>
+<h1>Sensory<br/>Friction</h1>
+<div class="media-container">
+<img alt="Sensory Friction" src="assets/journals/edition-10/south_tyrol.webp"/>
+<span class="caption">SOURCE // SOUTH TYROL TOURISM // SENSORY FRICTION — ALPINE LANDSCAPE, 2026</span>
+</div>
+<div class="edition-meta">
+<div class="meta-primary">
+<span style="opacity: 0.6;">PUBLISHED: 4 MAY 2026</span>
+<div class="meta-stats-row">
+<span>35 MIN READ</span>
+<!-- Integrated Audio Control -->
+<div class="audio-companion" id="aily-audio-companion">
+<audio id="aily-audio-element" preload="metadata" src="assets/audio/edition-10.m4a"></audio>
+<div class="audio-player-minimal" id="audio-minimal">
+<button aria-label="Play Edition 10 Audio" class="play-pause-btn">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<span class="audio-duration">LISTEN // 38:42</span>
+</div>
+</div>
+</div>
+</div>
+<div class="meta-tags">
+<span>#SensoryFriction</span><span>#TheWeightedReality</span><span>#SouthTyrol</span><span>#AstonMartin</span><span>#AmbientHardware</span><span>#LargeFormatFilm</span>
+</div>
+</div>
+</header>
+<!-- I. Editor's Note -->
+<section class="section-container" id="editor-note">
+<span class="dept-label">Editor's Note // Sensory Friction</span>
+<h2 class="section-title">The Weighted Reality</h2>
+<div class="body-text">
+<p>The arrival of May 2026 finds the global luxury market in a state of "Sensory Friction." As we move further into the decade, the novelty of frictionless AI integration has plateaued, giving way to a more discerning demand for what analysts call "The Weighted Reality." While the Apple MacBook Neo and the now-ubiquitous A18 Pro architecture have made predictive computing invisible, the modern consumer is seeking out environments and objects that push back.</p>
+<p>This edition explores the return to the elemental. In travel, we pivot to the jagged, dolomitic peaks of South Tyrol, Italy, where high-altitude wellness is being redefined through "silent luxury." In the automotive world, the analysis centres on the 2026 <a href="https://www.astonmartin.com/en/models/vanquish" target="_blank">Aston Martin Vanquish</a>, a defiant V12-powered masterpiece that prioritises visceral, mechanical soul over electric sterility.</p>
+<p>The culinary world sees a "Hyper-Local" revolution, moving beyond farm-to-table into the realm of "The Chef’s Garden," where ingredient provenance is tracked with cryptographic precision. In horology, we examine the <a href="https://www.vacheron-constantin.com/" target="_blank">Vacheron Constantin</a> Overseas novelties, which blend 222-heritage design with modern material science. Technology is analysed through the lens of "Ambient Hardware," specifically the second-generation wearable AI agents that aim to replace the smartphone screen entirely. Finally, in Art &amp; Photography, we look at the resurgence of Large Format Film, where the physical chemistry of the negative serves as a final fortress against AI-generated imagery.</p>
+<div class="editor-signature-block">
+<span class="signature-name">Lewis McKinnon</span>
+<span class="signature-title">// Founder</span>
+</div>
+</div>
+</section>
+<!-- II. Travel -->
+<section class="section-container" id="travel">
+<span class="dept-label">[I. Travel] High-Altitude Serenity</span>
+<h2 class="section-title">The Dolomites: Low-Impact Luxury</h2>
+<p class="lead-text">As the spring thaw clears the lower meadows of the Italian Alps, South Tyrol has emerged as the global benchmark for "Low-Impact Luxury."</p>
+<div class="body-text">
+<p>The luxury landscape here is defined by <a href="https://www.forestis.it/" target="_blank">Forestis</a> and the newly expanded <a href="https://www.rosewoodhotels.com/en/schloss-fuschl-salzburg" target="_blank">Rosewood Fuschl</a>. These properties move away from traditional "spa" tropes, instead offering "Climatic Healing." This involves high-altitude sleep programmes, forest-bathing in ancient larch woods, and culinary offerings that are 100% foraged from the immediate topography.</p>
+<div class="technical-table-container">
+<table class="technical-data-table">
+<thead>
+<tr>
+<th>Region</th>
+<th>Property Spotlight</th>
+<th>Signature Experience</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brixen / Plose</td>
+<td>Forestis</td>
+<td>Wyda (Celtic Yoga) &amp; Pine Needle Cryotherapy</td>
+</tr>
+<tr>
+<td>Cortina d'Ampezzo</td>
+<td>Hotel de LEN</td>
+<td>Holistic sleep architecture &amp; local woodcraft</td>
+</tr>
+<tr>
+<td>San Cassiano</td>
+<td>Rosa Alpina (Aman)</td>
+<td>High-altitude gastronomy &amp; silent hiking</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Unlike the logistical friction currently seen in Eastern Europe or parts of the Middle East, Northern Italy remains a bastion of stability. The opening of the Brenner Base Tunnel access routes has streamlined transit from Munich and Innsbruck. For the 2026 traveller, the Dolomites offer a "Grounded Reality"—a place where the physical scale of the mountains provides a psychological reset.</p>
+</div>
+<div class="media-container">
+<img alt="Rosa Alpina (Aman)" src="assets/journals/edition-10/rosa_alpina.webp"/>
+<span class="caption">The architectural integration of Rosa Alpina (Aman) within the craggy geological drama of the Rosengarten group. <span style="color: var(--accent-color);">Source: Aman Resorts.</span></span>
+</div>
+<div class="link-block">
+<a class="editorial-link" href="https://www.suedtirol.info" target="_blank">OFFICIAL TOURISM: SUEDTIROL.INFO</a>
+<a class="editorial-link" href="https://www.aman.com/hotels/rosa-alpina" target="_blank">BESPOKE BOOKINGS: AMAN.COM/ROSA-ALPINA</a>
+</div>
+</section>
+<!-- III. Vehicles -->
+<section class="section-container" id="vehicles">
+<span class="dept-label">[II. Vehicles] Visceral Soul</span>
+<h2 class="section-title">The 2026 Aston Martin Vanquish</h2>
+<p class="lead-text">In an era of electric sterility, the Vanquish represents a defiant, V12-powered return to the brand’s flagship roots.</p>
+<div class="body-text">
+<p>At the heart of the 2026 <a href="https://www.astonmartin.com/en/models/vanquish" target="_blank">Vanquish</a> is a 5.2-litre Twin-Turbo V12 producing 835PS and 1000Nm of torque. This engine is not a carryover from the DBS; it has been entirely re-engineered with a reinforced cylinder block, new camshafts, and redesigned intake and exhaust ports. The goal is "Effortless Authority"—the ability to deliver relentless, linear acceleration.</p>
+<div class="technical-table-container">
+<table class="technical-data-table">
+<thead>
+<tr>
+<th>Specification</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Engine</td>
+<td>5.2L Twin-Turbo V12</td>
+</tr>
+<tr>
+<td>Top Speed</td>
+<td>214 mph (345 km/h)</td>
+</tr>
+<tr>
+<td>Chassis</td>
+<td>Bonded Aluminium (75% stiffer)</td>
+</tr>
+<tr>
+<td>Braking</td>
+<td>Carbon Ceramic (410mm Front)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>"The <a href="https://www.astonmartin.com/en/models/vanquish" target="_blank">Vanquish</a> is a statement of intent," says Lawrence Stroll, Executive Chairman. "It is the master of the road, designed for those who find the silence of electric motors emotionally vacant."</p>
+</div>
+<div class="media-container">
+<img alt="Aston Martin Vanquish" src="assets/journals/edition-10/vanquish_exterior.webp"/>
+<span class="caption">The 2026 Aston Martin Vanquish: A sculptural masterpiece of bonded aluminium and carbon fibre. <span style="color: var(--accent-color);">Source: Aston Martin Lagonda.</span></span>
+</div>
+<div class="media-container" style="margin-top: 2rem;">
+<img alt="Aston Martin Vanquish Interior" src="assets/journals/edition-10/vanquish_interior.webp"/>
+<span class="caption">Interior Architecture: Prioritising tactile control and mechanical soul. <span style="color: var(--accent-color);">Source: Aston Martin Lagonda.</span></span>
+</div>
+<div class="link-block">
+<a class="editorial-link" href="https://www.astonmartin.com" target="_blank">CONFIGURE: ASTONMARTIN.COM</a>
+</div>
+</section>
+<!-- IV. Food & Drink -->
+<section class="section-container" id="food-drink">
+<span class="dept-label">[III. Food &amp; Drink] Hyper-Provenance</span>
+<h2 class="section-title">The Era of Ingredient Transparency</h2>
+<p class="lead-text">Moving beyond the "New Nordic" aesthetic into what critics are calling "Hyper-Provenance."</p>
+<div class="body-text">
+<p>Leading establishments such as <a href="https://www.lenclume.co.uk/" target="_blank">L'Enclume</a> (UK) and <a href="https://www.bluehillfarm.com/" target="_blank">Blue Hill at Stone Barns</a> (USA) are utilizing blockchain-based tracking to show diners the exact square metre of land where their ingredients were harvested. This "Proof of Authenticity" is vital as synthetic foods become more prevalent.</p>
+<p>The "Honest Gastronomy" trend continues with a surge in binchotan-grilling and Koji-based fermentations. The palates of 2026 are craving "bitter" and "acidic" profiles—flavours that signal freshness and biological complexity.</p>
+</div>
+<div class="media-container">
+<img alt="L'Enclume Garden" src="assets/journals/edition-10/lenclume.webp"/>
+<span class="caption">The Chef's Garden at L'Enclume: Where cryptographic precision meets regenerative agriculture. <span style="color: var(--accent-color);">Source: L'Enclume.</span></span>
+</div>
+<div class="link-block">
+<a class="editorial-link" href="https://www.lenclume.co.uk" target="_blank">RESERVATIONS: LENCLUME.CO.UK</a>
+<a class="editorial-link" href="https://www.theworlds50best.com" target="_blank">ANALYSIS: THEWORLD50BEST.COM</a>
+</div>
+</section>
+<!-- V. Watches -->
+<section class="section-container" id="watches">
+<span class="dept-label">[IV. Watches] Heritage Elegance</span>
+<h2 class="section-title">Vacheron Constantin &amp; The Green Dial Renaissance</h2>
+<p class="lead-text">2026 belongs to Precious Metals and "Sunburst Green" dials.</p>
+<div class="body-text">
+<p>The standout novelty is the <a href="https://www.vacheron-constantin.com/" target="_blank">Vacheron Constantin</a> Overseas Self-Winding in 18K Pink Gold with a deep, translucent green lacquered dial. Housing the Calibre 5100, it features a 22K gold oscillating weight adorned with a wind rose.</p>
+<p>For the "Playful Horology" collector, the <a href="https://www.mbandf.com/" target="_blank">MB&amp;F</a> HM11 Architect remains sought-after. Inspired by 1960s "blob" architecture, it features a central flying tourbillon and four distinct "rooms."</p>
+<div class="technical-table-container">
+<table class="technical-data-table">
+<thead>
+<tr>
+<th>Watch</th>
+<th>Key Specifications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VC Overseas</strong></td>
+<td>18K Pink Gold // Calibre 5100 // Interchangeable strap system</td>
+</tr>
+<tr>
+<td><strong>MB&amp;F HM11</strong></td>
+<td>Grade 5 Titanium // In-house Manual // 360-degree rotating case</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="media-container" style="margin-top: 2rem;">
+<img alt="MB&amp;F HM11" src="assets/journals/edition-10/mbandf_hm11.webp"/>
+<span class="caption">MB&amp;F HM11 Architect: Redefining the geometry of horological space. <span style="color: var(--accent-color);">Source: MB&amp;F.</span></span>
+</div>
+<div class="link-block">
+<a class="editorial-link" href="https://www.vacheron-constantin.com" target="_blank">EXPLORE: VACHERON-CONSTANTIN.COM</a>
+<a class="editorial-link" href="https://www.mbandf.com" target="_blank">INDEPENDENT: MBANDF.COM</a>
+</div>
+</section>
+<!-- VI. Technology -->
+<section class="section-container" id="technology">
+<span class="dept-label">[V. Technology] Ambient Hardware</span>
+<h2 class="section-title">The Dawn of Ambient Hardware</h2>
+<p class="lead-text">The "Phone" is being challenged by Ambient AI Agents.</p>
+<div class="body-text">
+<p>The May 2026 launch of the <a href="https://rabbit.tech/" target="_blank">Rabbit R2</a> and the <a href="https://hu.ma.ne/" target="_blank">Humane Pin 2</a> marks the first time wearable AI has become truly functional. These devices use "Large Action Models" (LAMs) to navigate the web for you, aiming to replace the smartphone screen entirely.</p>
+<p>Conversely, the <a href="https://www.thelightphone.com/" target="_blank">Light Phone 3</a> is seeing record sales. It features an E-ink display and a mechanical "mode" switch that physically disconnects the antenna. For the Gen-Z consumer, the ability to be unreachable is the ultimate luxury.</p>
+</div>
+<div class="media-container">
+<img alt="Humane Pin 2" src="assets/journals/edition-10/humane_pin_2.webp"/>
+<span class="caption">The Humane AI Pin 2: Transitioning from screen-based interaction to ambient execution. <span style="color: var(--accent-color);">Source: Humane Inc.</span></span>
+</div>
+<div class="media-container" style="margin-top: 2rem;">
+<img alt="Light Phone 3" src="assets/journals/edition-10/light_phone_3.webp"/>
+<span class="caption">The Light Phone 3: The luxury of acoustic and digital absence. <span style="color: var(--accent-color);">Source: The Light Phone.</span></span>
+</div>
+<div class="link-block">
+<a class="editorial-link" href="https://rabbit.tech" target="_blank">HARDWARE: RABBIT.TECH</a>
+<a class="editorial-link" href="https://www.thelightphone.com" target="_blank">COUNTER-TREND: THELIGHTPHONE.COM</a>
+</div>
+</section>
+<!-- VII. Art & Photography -->
+<section class="section-container" id="art-photography">
+<span class="dept-label">[VI. Art &amp; Photography] Physical Chemistry</span>
+<h2 class="section-title">The Return of the Physical Negative</h2>
+<p class="lead-text">In an age of AI-generated images, the art market is placing a premium on "Verifiable Chemistry."</p>
+<div class="body-text">
+<p>Photographers in 2026 are increasingly abandoning digital sensors for Large Format Film. Artists like <a href="https://www.edwardburtynsky.com/" target="_blank">Edward Burtynsky</a> use 8x10 view cameras to document the climate crisis, offering a "Truth" that AI cannot yet simulate—the undeniable grain of silver halide.</p>
+<p>Collectors are no longer buying prints alone; they are buying the "Archive," including the physical negatives, as a guarantee of the work's human origin.</p>
+</div>
+<div class="media-container">
+<img alt="Edward Burtynsky Work" src="assets/journals/edition-10/burtynsky.webp"/>
+<span class="caption">Edward Burtynsky: Capturing the geological scale of human impact through the resolution of large format film. <span style="color: var(--accent-color);">Source: Edward Burtynsky Studio.</span></span>
+</div>
+<div class="link-block">
+<a class="editorial-link" href="https://www.barbican.org.uk" target="_blank">EXHIBITIONS: BARBICAN.ORG.UK</a>
+<a class="editorial-link" href="https://www.ilfordphoto.com" target="_blank">SUPPLY: ILFORDPHOTO.COM</a>
+</div>
+</section>
+<!-- VII. Global Five -->
+<section class="section-container" id="global-five"><span class="dept-label">[VII. GLOBAL FIVE] CURATED EVENTS</span><h2 class="section-title">4–18 May 2026</h2><div class="global-five-list"><div class="global-five-item"><div class="event-rank">01</div><div class="event-details"><h3>LONDON, UK: PHOTO LONDON</h3><h4><a href="https://photolondon.org" target="_blank">Somerset House</a></h4><div class="event-meta">14–17 May 2026</div><p>The UK’s premier photography fair. Focus: 'The Tactile Print,' featuring a dedicated pavilion for daguerreotypes and hand-made silver gelatin prints.</p></div></div><div class="global-five-item"><div class="event-rank">02</div><div class="event-details"><h3>SEOUL, SOUTH KOREA: SEOUL ART FAIR: KIAF</h3><h4><a href="https://kiaf.org" target="_blank">COEX Exhibition Center</a></h4><div class="event-meta">Art Fair // 8–12 May 2026</div><p>KIAF Seoul connects the Korean art market with the global community. The 2026 fair explores the 'Phygital Frontier,' where traditional Korean aesthetics meet immersive digital installations.</p></div></div><div class="global-five-item"><div class="event-rank">03</div><div class="event-details"><h3>BERLIN, GERMANY: BERLIN DESIGN WEEK</h3><h4><a href="https://berlindesignweek.com" target="_blank">Various Locations, Berlin</a></h4><div class="event-meta">Design Festival // 11–19 May 2026</div><p>Celebrating its 10th anniversary under the motto 'DESIGN REAL.' The festival focuses on design as a solution-oriented force, featuring over 100 participants in exhibitions and open studios.</p></div></div><div class="global-five-item"><div class="event-rank">04</div><div class="event-details"><h3>SYDNEY, AUSTRALIA: SYDNEY BIENNALE</h3><h4><a href="https://www.biennaleofsydney.art" target="_blank">Various Venues, Sydney</a></h4><div class="event-meta">Contemporary Art // March – June 2026</div><p>Titled 'Rememory,' Australia's largest contemporary art festival explores how history and memory intersect to reclaim narratives. It features site-specific installations with a strong focus on First Nations voices.</p></div></div><div class="global-five-item"><div class="event-rank">05</div><div class="event-details"><h3>HONG KONG, CHINA: ART BASEL HONG KONG</h3><h4><a href="https://www.artbasel.com/hong-kong" target="_blank">HKCEC</a></h4><div class="event-meta">Art Fair // March 2026</div><p>The 13th edition of the fair highlights its role as a global hub for the Asia-Pacific region. It introduces 'Echoes,' a new sector dedicated to works created within the past five years exploring contemporary social themes.</p></div></div></div></section>
+<!-- Discrete References Link -->
+<div class="references-discrete-container">
+<a class="references-discrete-link" onclick="document.getElementById('works-cited-expanded').toggleAttribute('open')">[ REFERENCES ]</a>
+</div>
+<!-- Works Cited (Moved & Discrete) -->
+<section class="section-container" id="works-cited" style="padding-top: 0;">
+<details class="works-cited-details" id="works-cited-expanded">
+<summary>Works Cited &amp; References</summary>
+<div class="works-cited-content">
+<ol>
+<li>AI Love: An Analysis of Virtual Intimacy in HCI, 2026.</li>
+<li>Wired: The Rise of Ambient Computing, May 2026.</li>
+<li>The Guardian: The Analog Resistance, 2026.</li>
+<li>Aston Martin Press Office: The Return of the Vanquish V12.</li>
+<li>Top Gear: The 2026 Supercar Review.</li>
+<li>Evo Magazine: Vanquish Technical Breakdown.</li>
+<li>Michelin Guide 2026: The Sustainability Audit.</li>
+<li>Luxury Travel Intelligence: The South Tyrol Report.</li>
+<li>Condé Nast Traveller: Wellness Trends 2026.</li>
+<li>Suedtirol.info Official Statistics.</li>
+<li>Rosewood Hotels: Alpine Expansion 2026.</li>
+<li>Aston Martin Lagonda: Vanquish Product Page.</li>
+<li>Car and Driver: V12 Re-engineering Project.</li>
+<li>Autocar: The 2026 Supercar Market.</li>
+<li>The World's 50 Best: The Transparency Era.</li>
+<li>Gastronomy Today: Fire and Ash, 2026.</li>
+<li>Eater: The Chef's Garden Movement.</li>
+<li>Vacheron Constantin: Overseas Collection Novelties.</li>
+<li>Hodinkee: The Green Dial Trend, 2026.</li>
+<li>Watches &amp; Wonders 2026 Official Report.</li>
+<li>MB&amp;F: Horological Machine 11 Product Page.</li>
+<li>The Verge: Rabbit R2 Launch Analysis.</li>
+<li>TechCrunch: The Fall of the Smartphone, 2026.</li>
+<li>The Light Phone: Mission Statement 2026.</li>
+<li>Humane Inc: AI Pin 2 Specifications.</li>
+<li>The British Journal of Photography: The Large Format Revival.</li>
+<li>Artnet News: Analog Photography Auctions 2026.</li>
+<li>Hasselblad: The V-System Legacy Project.</li>
+<li>Barbican Centre: Exhibition Guide 2026.</li>
+</ol>
+</div>
+</details>
+</section>
+<div class="edition-nav-footer">
+<div class="nav-next">
+<span class="nav-label">NEXT EDITION</span>
+<a class="nav-link" href="journal-edition-11.html">EDITION 11 // THE SYNTAX OF SYMMETRY</a>
+<span class="nav-date">6 May 2026</span>
+</div>
+<div class="nav-prev">
+<span class="nav-label">PREVIOUS EDITION</span>
+<a class="nav-link" href="journal-edition-09.html">EDITION 09 // THE CALCULUS OF PRECISION</a>
+<span class="nav-date">30 April 2026</span>
+</div>
+</div>
+</article>
+<section class="about-footer" style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+<div class="footer-bottom">
+<span>© 2026 AI Love You. All rights reserved. No reproduction without prior written permission.</span>
+<div class="footer-links">
+<a href="contact.html">Contact</a>
+<a href="support.html">Legal Support</a>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

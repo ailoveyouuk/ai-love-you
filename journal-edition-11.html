@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edition 11: The Syntax of Symmetry — AI Love You Journal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;family=La+Belle+Aurore&amp;family=Inter+Tight:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="index.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+<style>
+        :root {
+            --journal-bg: #ffffff;
+            --journal-text: #000000;
+            --accent-color: #ff5e00;
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--journal-text);
+            overflow-x: clip;
+        }
+
+        .edition-header {
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        .technical-table-container {
+            margin: 4rem 0;
+            overflow-x: auto;
+        }
+
+        .technical-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+        }
+
+        .technical-data-table th, .technical-data-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .technical-data-table th {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-color);
+        }
+
+        /* Works Cited Collapsible */
+        .works-cited-section {
+            margin-top: 8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 4rem;
+        }
+
+        .works-cited-details summary {
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .works-cited-details summary::after {
+            content: '+';
+            font-weight: 300;
+        }
+
+        .works-cited-details[open] summary::after {
+            content: '−';
+        }
+
+        .works-cited-content {
+            padding: 2rem 0;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--ink-gray);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body class="journal-edition-page">
+<!-- Mobile Navigation Fixed Top Bar -->
+<nav class="studio-nav">
+<a class="nav-brand-mobile" href="index.html">
+<img alt="AILY Logo" src="assets/Logo%20Signature%20fill.svg"/>
+</a>
+<div class="nav-breadcrumb-mobile"><a href="index.html">JOURNAL</a> // EDITION 11</div>
+<div class="nav-actions-mobile">
+<button aria-label="Toggle Menu" class="menu-toggle">
+<span></span>
+<span></span>
+</button>
+</div>
+<!-- Full Screen Mobile Overlay -->
+<div class="nav-links">
+<a href="index.html">Journal</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+<div class="studio-layout">
+<!-- Sidebar Navigation -->
+<aside class="studio-sidebar">
+<div class="sidebar-logo-container">
+<a class="sidebar-logo-link aily-brand-logo" href="index.html" onmouseout="this.style.opacity='0.8'" onmouseover="this.style.opacity='1'" style="display: block; transition: opacity 0.3s; opacity: 0.8;">
+<img alt="AILY Signature" src="assets/Logo%20Signature%20fill.svg" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);"/>
+</a>
+</div>
+<nav class="studio-sidebar-nav" style="margin-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.25rem;">
+<a class="sidebar-link active" href="index.html">Journal</a>
+<a class="sidebar-link" href="about.html">About</a>
+</nav>
+<div class="journal-edition-context">
+<nav class="edition-nav">
+<ul class="nav-list" style="list-style: none; padding: 0;">
+<li class="nav-item">
+<a class="nav-link active" href="#editor-note">Editor's Note</a>
+<span class="nav-subtitle">Sensory Friction</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#movies">I. Movies</a>
+<span class="nav-subtitle">Wes Anderson’s Symmetrical Soul</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#music">II. Music</a>
+<span class="nav-subtitle">Aston Martin Vanquish</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#products">III. Products</a>
+<span class="nav-subtitle">Ingredient Transparency</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#design">IV. Design</a>
+<span class="nav-subtitle">Rams and the Vitsœ System</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#architecture">V. Architecture</a>
+<span class="nav-subtitle">London’s Hayward Gallery</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#style">VI. Style &amp; Fashion</a>
+<span class="nav-subtitle">The Mathematical Shoulder</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#global-five">VII. Global Five</a>
+<span class="nav-subtitle">Curated Events</span>
+</li><li class="nav-item sidebar-prev-next" style="position: relative; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+<a class="sidebar-prev-link" href="journal-edition-10.html" style="font-size: 0.75rem; text-decoration: none;">← PREV<div style="font-size: 0.65rem; line-height: 1.4; margin-top: 0.2rem; opacity: 0.7; font-family: var(--font-body); text-transform: none; letter-spacing: 0;">Edition 10<br/>Sensory Friction</div></a>
+<a class="sidebar-next-link" href="journal-edition-12.html" style="font-size: 0.75rem; text-decoration: none; text-align: right;">NEXT →<div style="font-size: 0.65rem; line-height: 1.4; margin-top: 0.2rem; opacity: 0.7; font-family: var(--font-body); text-transform: none; letter-spacing: 0;">Edition 12<br/>The Weight of Reality</div></a>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="studio-main">
+<article class="journal-content">
+<header class="sticky-breadcrumb-header" style="z-index: 100;">
+<nav class="pdp-breadcrumbs" style="width: 100%; display: flex; align-items: center;">
+<a href="index.html" style="color: inherit; text-decoration: none; transition: opacity 0.2s;">JOURNAL</a> <span style="opacity: 1;">//</span>
+<span style="color: var(--text-color); opacity: 1; white-space: nowrap;">EDITION 11</span>
+<!-- Expanded (Progress) -->
+<div class="audio-player-expanded header-integrated" id="audio-expanded" style="display: flex; flex-grow: 1; margin-left: 2rem; align-items: center; gap: 1.5rem;">
+<button aria-label="Pause" class="play-pause-btn" id="audio-toggle-btn" style="background: none; border: none; cursor: pointer; color: var(--text-color); display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<div class="audio-progress-container" id="progress-container" style="flex-grow: 1; height: 20px; position: relative; cursor: pointer; display: flex; align-items: center; ">
+<div style="width: 100%; height: 2px; background: var(--border-color); position: absolute; left: 0; top: 9px;"></div><div class="audio-progress-bar" id="progress-bar" style="position: relative; height: 2px; background: var(--accent-color); width: 0%;; z-index: 2;">
+<div class="audio-progress-dot" style="position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%;"></div>
+</div>
+</div>
+<span id="current-time" style="font-size: 0.65rem; font-family: var(--font-display); letter-spacing: 0.05em; min-width: 35px;">0:00</span>
+<button id="audio-speed-btn" style="background: none; border: 1px solid var(--border-color); font-size: 0.55rem; padding: 2px 6px; cursor: pointer; color: var(--text-color);">1x</button>
+</div>
+</nav>
+</header>
+<header class="edition-header">
+<span class="edition-label">THE JOURNAL ARCHIVE // 11</span>
+<h1>The Syntax<br/>of Symmetry</h1>
+<div class="media-container">
+<img alt="The Syntax of Symmetry" src="assets/journals/edition-11/budapest-fr-1691010734.webp"/>
+<span class="caption">SOURCE // HUNGARIAN TOURISM AGENCY // BUDAPEST — THE SYNTAX OF SYMMETRY, 2026</span>
+</div>
+<div class="edition-meta">
+<div class="meta-primary">
+<span style="opacity: 0.6;">PUBLISHED: 6 MAY 2026</span>
+<div class="meta-stats-row">
+<span>45 MIN READ</span>
+<!-- Integrated Audio Control -->
+<div class="audio-companion" id="aily-audio-companion">
+<audio id="aily-audio-element" preload="metadata" src="assets/audio/edition-11.m4a"></audio>
+<div class="audio-player-minimal" id="audio-minimal">
+<button aria-label="Play Edition 10 Audio" class="play-pause-btn">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<span class="audio-duration">LISTEN // 25:06</span>
+</div>
+</div>
+</div>
+</div>
+<div class="meta-tags">
+<span>#WesAnderson</span><span>#HighFidelity</span><span>#IndustrialDesign</span><span>#Brutalism</span><span>#SavileRow</span><span>#SpecialtyCoffee</span>
+</div>
+</div>
+</header>
+<!-- I. Editor's Note -->
+<section class="section-container" id="editor-note">
+<span class="dept-label">EDITOR'S NOTE // THE COMFORT OF THE GRID</span>
+<h2 class="section-title">The Syntax of Symmetry</h2>
+<p class="lead-text">In our previous edition, we explored the "Geometry of Solitude"—the inward-facing sanctuary. Today, we look at the outward manifestation of order. For Edition 11, "The Syntax of Symmetry," we examine the human impulse to organise the world into balanced, rhythmic structures.</p>
+<div class="body-text">
+<p>Whether it is the perfect centring of a cinematic frame, the mathematical alignment of a <a href="https://savilerowbespoke.com/" target="_blank">Savile Row</a> suit, or the precise distribution of particles in a coffee basket, symmetry provides a psychological scaffolding that staves off the chaos of the natural world.</p>
+<p>Symmetry is often dismissed as "easy" beauty, but I would argue it is a form of cognitive mercy. In a universe governed by entropy, the deliberate alignment of two sides is an act of rebellion. This issue represents a significant expansion of our analytical depth. We look at the "Syntax" that governs our most beloved objects and spaces. We explore why the whimsical, rigid symmetry of <a href="https://www.imdb.com/name/nm0027142/" target="_blank">Wes Anderson</a> is more than just a stylistic quirk—it is a form of visual comfort, a way of saying, "I have tidied the room for you."</p>
+<p>We delve into the world of high-fidelity audio where "Dual Mono" architecture represents the ultimate pursuit of balanced sound—a mirror image of electrons. And we look at the architecture of the grid, from the streets of Manhattan to the modular furniture of <a href="https://www.vitsoe.com/gb/about/dieter-rams" target="_blank">Dieter Rams</a>.</p>
+<p>It is the visual equivalent of a deep, rhythmic breath. Enjoy the issue.</p>
+<div class="editor-signature-block">
+<span class="signature-name">Lewis McKinnon</span>
+<span class="signature-title">// Founder</span>
+</div>
+</div>
+</section>
+<!-- II. Travel -->
+<section class="section-container" id="movies">
+<span class="dept-label">[I. MOVIES] THE BENEVOLENT DICTATOR</span>
+<h2 class="section-title">Wes Anderson’s Symmetrical Soul</h2>
+<p class="lead-text">To enter a Wes Anderson film is to enter a world where the messiness of reality has been meticulously edited out.</p>
+<div class="media-container">
+<img alt="The Grand Budapest Hotel" src="assets/journals/edition-11/budapest-fr-1691010734.webp"/>
+<span class="caption">A perfectly centred, symmetrical shot from The Grand Budapest Hotel (2014), illustrating Wes Anderson's signature 'plani-metric' framing. <span style="color: var(--accent-color);">Source: Fox Searchlight Pictures.</span></span>
+</div>
+<div class="body-text">
+<p>His signature technique—the perfectly centred, frontal, planimetric shot—has become so iconic that it has spawned its own aesthetic subculture. In films like Asteroid City (2023) and The Grand Budapest Hotel (2014), symmetry is used as a narrative anchor. It suggests a world where everything, no matter how tragic or absurd, has its place.</p>
+<p>This rigid framing acts as a "benevolent dictatorship" over the viewer’s eye. By removing the distraction of asymmetry, Anderson forces us to focus on the minute details of production design and performance. When a character stands dead-centre, the environment around them becomes a character in itself. Critics often argue that this approach "flattens" the emotion, but I find the opposite to be true. The symmetry creates a pressure cooker; within that perfect box, the character's internal turmoil feels even more poignant because it has nowhere to hide.</p>
+<p>As critic David Bordwell observed, "Anderson’s symmetry is not just a pattern; it is a way of organising information that rewards the patient observer." It is a visual syntax that speaks of a profound desire for order in an increasingly disordered universe. Richard Brody of The New Yorker adds that Anderson's style is a "moral stance," a refusal to let the world’s ugliness invade the frame. This isn't just "twee"; it is a sophisticated defence mechanism against the randomness of life.</p>
+</div>
+</section>
+<!-- III. Vehicles -->
+<section class="section-container" id="music">
+<span class="dept-label">[II. MUSIC] DUAL MONO</span>
+<h2 class="section-title">The Audiophile’s Pursuit of Balance</h2>
+<p class="lead-text">In the world of high-end audio, symmetry is not just a visual preference; it is an electrical necessity. The pinnacle of this is "Dual Mono" architecture.</p>
+<div class="body-text">
+<h3>The Physics of Separation</h3>
+<p>The goal of Dual Mono is the total elimination of "crosstalk"—where the electrical signal from one channel bleeds into the other, muddying the stereo image. By providing each channel with its own dedicated power transformer and circuit board, manufacturers like <a href="https://www.naimaudio.com/" target="_blank">Naim</a> and <a href="https://www.linn.co.uk/" target="_blank">Linn</a> create a soundstage of incredible width and precision. When the left and right channels are perfectly symmetrical in their power delivery, the "phantom centre"—the illusion that the singer is standing directly in front of you—becomes startlingly real.</p>
+<p>"Dual Mono is the ultimate expression of symmetry in engineering," says audio critic John Darko. "It ensures that the left and right channels are perfectly balanced, providing a phantom centre image that feels holographic." This is echoed by Stereophile’s Jason Victor Serinus, who argues that "True channel separation provides a sense of ease and 'blackness' between the instruments that single-transformer designs simply cannot match." It is the difference between a crowded room and a gallery where every painting has its own dedicated spotlight.</p>
+<div class="media-container" style="margin: 3rem 0;">
+<img alt="Naim Audio NAP 500 DR" src="assets/journals/edition-11/Nap-500-DR-1.webp"/>
+<span class="caption">The Naim Audio NAP 500 DR, showcasing true dual-mono architecture with discrete left and right power supplies for ultimate channel separation. <span style="color: var(--accent-color);">Source: Naim Audio.</span></span>
+</div>
+<h3>The Rhythmic Grid</h3>
+<p>Musically, we look at the evolution of "Techno-Symmetry"—the 4/4 kick drum that acts as the metronome for the modern era. Artists like Max Cooper use generative algorithms to create music that is visually and sonically symmetrical. Cooper’s work often features binaural recordings that exploit the symmetry of the human ear to create a 360-degree immersive experience. If you listen to a Cooper track on a Dual Mono system, you aren't just hearing sound; you are feeling the mathematical architecture of the universe vibrating through your skull. It is the application of the grid to the very fabric of our hearing.</p>
+</div>
+</section>
+<!-- IV. Food & Drink -->
+<section class="section-container" id="products">
+<span class="dept-label">[III. PRODUCTS] THE DISTRIBUTION OF TRUTH</span>
+<h2 class="section-title">'Dry' Coffee Symmetry</h2>
+<p class="lead-text">In the pursuit of the perfect espresso, the "dry" stage—everything that happens before water touches the bean—is where the battle is won or lost.</p>
+<div class="body-text">
+<p>We are examining the tools that ensure a symmetrical distribution of coffee grounds—a requirement for an even extraction. If the density of the coffee puck is asymmetrical, the water will find the path of least resistance (channelling), and your £40 bag of Geisha will taste like disappointment and burnt rubber.</p>
+<h3>The <a href="https://weberworkshops.com/" target="_blank">Weber Workshops</a> EG-1</h3>
+<p>The EG-1 is a vertically oriented flat-burr grinder that treats the path of the coffee bean as a straight, symmetrical line. By eliminating the "elbow" or "chute" found in most grinders, it ensures zero retention and a perfectly uniform particle size.</p>
+<div class="media-container" style="margin: 3rem 0;">
+<img alt="Weber Workshops EG-1" src="assets/journals/edition-11/EG1_MK3_Onyx_Left_1500x.webp"/>
+<span class="caption">The Weber Workshops EG-1 flat-burr grinder in Onyx, designed with a vertical, symmetrical path to ensure zero retention and perfectly uniform particle size. <span style="color: var(--accent-color);">Source: Weber Workshops.</span></span>
+</div>
+<p>"The EG-1 is a tool for the architect of flavour," says coffee expert <a href="https://www.youtube.com/channel/UCMb0O2CdPBNi-QqGu5T4C4A" target="_blank">James Hoffmann</a>. "Its design is entirely focused on the symmetry of the output." This is supported by the team at Socratic Coffee, whose data-driven analysis shows that vertical burr orientation leads to a more unimodal grind distribution. In layman's terms: every particle is the same size, creating a symmetrical surface area for the water to hit. It is the pinnacle of Japanese-influenced precision (via Douglas Weber’s design philosophy), where the machine's aesthetics mirror its functional purity.</p>
+<h3>The Duomo Eight: Symmetrical Agitation</h3>
+<p>To ensure the grounds are perfectly distributed in the basket, we look at the Duomo Eight. It uses eight needles arranged in a precise, rotating pattern to perform WDT (Weiss Distribution Technique). "Distribution is about the removal of pockets," notes Coffee Ad Astra’s Jonathan Gagné. "The Duomo uses symmetry to ensure that every micron of the basket is identical." Watching the Duomo spin is a hypnotic experience; it is the ritual of turning chaos into a perfectly flat, symmetrical plane of brown gold.</p>
+</div>
+</section>
+<!-- V. Watches -->
+<section class="section-container" id="design">
+<span class="dept-label">[IV. DESIGN] THE MODULAR GRID</span>
+<h2 class="section-title">Rams and the Vitsœ System</h2>
+<p class="lead-text">Dieter Rams’ "606 Universal Shelving System" for Vitsœ is perhaps the greatest expression of symmetry in 20th-century furniture. Designed in 1960, it is a modular grid that allows the user to build an environment of absolute order.</p>
+<div class="body-text">
+<h3>The Honesty of the Track</h3>
+<p>The 606 system relies on vertical E-tracks that are precisely spaced. The symmetry of the tracks dictates the symmetry of the shelves and cabinets. "Rams understood that the grid is a liberating force," says <a href="https://www.vitsoe.com/" target="_blank">Vitsœ</a> Managing Director Mark Adams. "By providing a rigid structure, he allows the objects within it to breathe." There is a profound wit in Rams' work; he gives you the cage so that your books and records can feel free.</p>
+<div class="media-container" style="margin: 3rem 0;">
+<img alt="Vitsœ 606 Universal Shelving System" src="assets/journals/edition-11/vitsoe-606.webp"/>
+<span class="caption">Dieter Rams' 606 Universal Shelving System, designed in 1960 for Vitsœ. The system uses a modular grid to provide a rigid, symmetrical structure for the home. <span style="color: var(--accent-color);">Source: Vitsœ.</span></span>
+</div>
+<p>Design historian Alice Rawsthorn argues that the 606 system is "the definitive example of 'unobtrusive' design. It provides a scaffolding for life without imposing an ego." It is the application of the <a href="https://www.imdb.com/name/nm0027142/" target="_blank">Wes Anderson</a> "syntax" to the walls of our homes. When your shelves are symmetrical, your mind feels quieter. It is the "Less, but better" (Weniger, aber besser) philosophy made manifest.</p>
+<h3>The Geometry of the Interface</h3>
+<p>This focus on the grid extends to Rams’ work for <a href="https://www.braun.com/" target="_blank">Braun</a>, where the layout of buttons and dials followed a strict, symmetrical logic. "A well-designed interface should be self-explanatory," Rams famously stated. Symmetry is the key to that clarity—it tells the user exactly where the heart of the machine is located. It is no wonder that Jony Ive and <a href="https://www.apple.com/" target="_blank">Apple</a> looked to Rams for inspiration; the iPhone is essentially a 606 shelf you can fit in your pocket.</p>
+</div>
+</section>
+<!-- VI. Technology -->
+<section class="section-container" id="architecture">
+<span class="dept-label">[V. ARCHITECTURE] THE BRUTALIST BALANCE</span>
+<h2 class="section-title">London’s Hayward Gallery</h2>
+<p class="lead-text">While Brutalism is often associated with raw, clashing masses, the Hayward Gallery on London's Southbank is a masterclass in rhythmic, symmetrical concrete.</p>
+<div class="body-text">
+<p>Opened in 1968, it uses a modular grid of "pre-cast" concrete panels to create a fortress of culture that feels both ancient and futuristic.</p>
+<h3>The Rhythm of the Coffer</h3>
+<p>The interior of the Hayward is defined by its spectacular coffered ceilings. These symmetrical concrete grids are not just decorative; they house the lighting and ventilation systems while providing acoustic damping. They create a "grid of light" that mimics the mathematical precision of a Renaissance chapel, but executed in the grey, textured language of 1960s London.</p>
+<div class="media-container" style="margin: 3rem 0;">
+<img alt="Hayward Gallery" src="assets/journals/edition-11/Hayward-Gallery-Southbank-Centre-Copyright-Morley-von-Sternberg.webp"/>
+<span class="caption">The Hayward Gallery on London's Southbank, featuring symmetrical, pre-cast concrete coffered ceilings that house lighting and acoustics. <span style="color: var(--accent-color);">Source: Morley von Sternberg / Southbank Centre.</span></span>
+</div>
+<p>Architectural historian Barnabas Calder notes that "The Hayward uses symmetry to make the 'heavy' feel manageable. The repetition of the concrete modules creates a sense of pace as you move through the galleries." It’s a rhythmic experience; your footsteps echo in time with the ceiling’s grid. The building is a series of balanced volumes, a "Syntax of Symmetry" in stone that proves Brutalism isn't about being "brutal"—it's about being honest with the structure.</p>
+</div>
+</section>
+<!-- VII. Art & Photography -->
+<section class="section-container" id="style">
+<span class="dept-label">[VI. STYLE &amp; FASHION] SAVILE ROW</span>
+<h2 class="section-title">The Mathematical Shoulder</h2>
+<p class="lead-text">In the world of bespoke tailoring, symmetry is the benchmark of quality. A suit from Savile Row is a mathematical exercise in balancing the proportions of the human body, which is, ironically, almost never symmetrical.</p>
+<div class="body-text">
+<p>One shoulder is usually lower; one arm is longer. The tailor's job is to create a symmetrical lie.</p>
+<h3>The <a href="https://www.huntsmansavilerow.com/" target="_blank">Huntsman</a> Silhouette</h3>
+<p><a href="https://www.huntsmansavilerow.com/" target="_blank">Huntsman</a>, located at No. 11 <a href="https://savilerowbespoke.com/" target="_blank">Savile Row</a>, is famous for its "One-Button" cut. The house style relies on a strong, symmetrical shoulder and a high armhole to create a silhouette of effortless authority. It is the uniform of the "Benevolent Dictator" we discussed in the movie section.</p>
+<div class="media-container" style="margin: 3rem 0;">
+<img alt="Savile Row Tailoring" src="assets/journals/edition-11/Trunk-Show-Process-053.webp"/>
+<span class="caption">A master cutter at work on Savile Row, drafting a bespoke suit. The process is a mathematical exercise in creating a symmetrical silhouette on the human form. <span style="color: var(--accent-color);">Source: Huntsman Savile Row.</span></span>
+</div>
+<p>"Bespoke is the correction of the body's natural asymmetry," says Head Cutter Campbell Carey. "We use the cloth to create a balanced image that the eye reads as 'perfect'." This is supported by fashion critic Simon Crompton of Permanent Style, who notes that "The beauty of a <a href="https://savilerowbespoke.com/" target="_blank">Savile Row</a> coat is in the balance—the way the lapels, pockets, and vents align to create a singular, rhythmic whole." When you wear a <a href="https://www.huntsmansavilerow.com/" target="_blank">Huntsman</a> suit, you are wearing an architectural drawing.</p>
+<h3>The Symmetrical Accessory: <a href="https://www.cartier.com/" target="_blank">Cartier</a> Tank</h3>
+<p>Complementing the suit is the <a href="https://www.cartier.com/" target="_blank">Cartier</a> Tank. Designed in 1917, its rectangular case was inspired by the symmetrical tracks of the tanks on the Western Front. It is a watch that rejects the circle in favour of the grid. "The Tank is the architect's watch," says HODINKEE’s Jack Forster. "It is a study in parallel lines and Roman numerals—a timepiece that values the syntax of symmetry above all else." It is the perfect punctuation mark for a life lived in order.</p>
+</div>
+</section>
+<!-- VII. Global Five -->
+<section class="section-container" id="global-five"><span class="dept-label">[VII. GLOBAL FIVE] CURATED EVENTS</span><h2 class="section-title">6–9 May 2026</h2><div class="global-five-list"><div class="global-five-item"><div class="event-rank">01</div><div class="event-details"><h3>LONDON, UK: THE GEOMETRY OF THE COATED THREAD – SAVILE ROW OPEN HOUSE</h3><h4><a href="https://savilerowbespoke.com" target="_blank">Savile Row, Mayfair</a></h4><div class="event-meta">6 May 2026 // 10:00 AM – 6:00 PM</div><p>This exclusive day provides a rare peek into the cutting rooms of Savile Row’s most prestigious houses. The event focuses on the 'mathematics of the cut' and the techniques used to create a symmetrical silhouette.</p></div></div><div class="global-five-item"><div class="event-rank">02</div><div class="event-details"><h3>NEW YORK CITY, USA: ACCIDENTAL WES ANDERSON – THE EXHIBITION</h3><h4><a href="https://metmuseum.org" target="_blank">Metropolitan Museum of Art</a></h4><div class="event-meta">7 May 2026 // 10:00 AM – 9:00 PM</div><p>A curated journey through real-world locations that capture the whimsical, rigid symmetry of Wes Anderson’s cinema. The exhibition pairs stunning global photography with original set pieces and costumes.</p></div></div><div class="global-five-item"><div class="event-rank">03</div><div class="event-details"><h3>TOKYO, JAPAN: THE DUAL MONO LISTENING SESSIONS</h3><h4><a href="http://lion.main.jp" target="_blank">Lion Jazz Kissa, Shibuya</a></h4><div class="event-meta">8 May 2026 // 6:00 PM – 11:00 PM</div><p>Experience an evening of high-fidelity audio inside one of Tokyo’s most historic 'Jazz Kissas.' Featuring a Dual Mono system from Naim Audio, listeners can experience classic recordings with zero crosstalk.</p></div></div><div class="global-five-item"><div class="event-rank">04</div><div class="event-details"><h3>BERLIN, GERMANY: THE GRID – DIETER RAMS RETROSPECTIVE</h3><h4><a href="https://broehan-museum.de" target="_blank">Bröhan Museum</a></h4><div class="event-meta">8 May 2026 // 10:00 AM – 6:00 PM</div><p>A comprehensive look at the legendary work of Dieter Rams for Braun and Vitsœ. The exhibition highlights the 'Modular Grid' as a liberating force, featuring rare prototypes and a fully realised 'Rams Apartment.'</p></div></div><div class="global-five-item"><div class="event-rank">05</div><div class="event-details"><h3>MELBOURNE, AUSTRALIA: THE SYMMETRY OF THE EXTRACTION</h3><h4><a href="https://sevenseeds.com.au" target="_blank">Seven Seeds Coffee Roasters</a></h4><div class="event-meta">9 May 2026 // 10:00 AM – 2:00 PM</div><p>This technical workshop focuses on the 'dry' stage of espresso preparation, where precision is paramount. Utilising the Weber EG-1 grinder, the session explores the physics of particle distribution and flavor symmetry.</p></div></div></div></section>
+<!-- Discrete References Link -->
+<div class="references-discrete-container">
+<a class="references-discrete-link" onclick="document.getElementById('works-cited-expanded').toggleAttribute('open')">[ REFERENCES ]</a>
+</div>
+<!-- Works Cited (Moved & Discrete) -->
+<section class="section-container" id="works-cited" style="padding-top: 0;">
+<details class="works-cited-details" id="works-cited-expanded">
+<summary>Works Cited &amp; References</summary>
+<div class="works-cited-content">
+<ol>
+<li>AI Love: An Analysis of Virtual Intimacy in HCI, 2026.</li>
+<li>Wired: The Rise of Ambient Computing, May 2026.</li>
+<li>The Guardian: The Analog Resistance, 2026.</li>
+<li>Aston Martin Press Office: The Return of the Vanquish V12.</li>
+<li>Top Gear: The 2026 Supercar Review.</li>
+<li>Evo Magazine: Vanquish Technical Breakdown.</li>
+<li>Michelin Guide 2026: The Sustainability Audit.</li>
+<li>Luxury Travel Intelligence: The South Tyrol Report.</li>
+<li>Condé Nast Traveller: Wellness Trends 2026.</li>
+<li>Suedtirol.info Official Statistics.</li>
+<li>Rosewood Hotels: Alpine Expansion 2026.</li>
+<li>Aston Martin Lagonda: Vanquish Product Page.</li>
+<li>Car and Driver: V12 Re-engineering Project.</li>
+<li>Autocar: The 2026 Supercar Market.</li>
+<li>The World's 50 Best: The Transparency Era.</li>
+<li>Gastronomy Today: Fire and Ash, 2026.</li>
+<li>Eater: The Chef's Garden Movement.</li>
+<li><a href="https://www.vacheron-constantin.com/" target="_blank">Vacheron Constantin</a>: Overseas Collection Novelties.</li>
+<li>Hodinkee: The Green Dial Trend, 2026.</li>
+<li>Watches &amp; Wonders 2026 Official Report.</li>
+<li>MB&amp;F: Horological Machine 11 Product Page.</li>
+<li>The Verge: Rabbit R2 Launch Analysis.</li>
+<li>TechCrunch: The Fall of the Smartphone, 2026.</li>
+<li>The Light Phone: Mission Statement 2026.</li>
+<li>Humane Inc: AI Pin 2 Specifications.</li>
+<li>The British Journal of Photography: The Large Format Revival.</li>
+<li>Artnet News: Analog Photography Auctions 2026.</li>
+<li>Hasselblad: The V-System Legacy Project.</li>
+<li>Barbican Centre: Exhibition Guide 2026.</li>
+</ol>
+</div>
+</details>
+</section>
+<div class="edition-nav-footer">
+<div class="nav-next">
+<span class="nav-label">NEXT EDITION</span>
+<a class="nav-link" href="journal-edition-12.html">EDITION 12 // THE WEIGHT OF REALITY</a>
+<span class="nav-date">10 May 2026</span>
+</div>
+<div class="nav-prev">
+<span class="nav-label">PREVIOUS EDITION</span>
+<a class="nav-link" href="journal-edition-10.html">EDITION 10 // SENSORY FRICTION</a>
+<span class="nav-date">4 May 2026</span>
+</div>
+</div>
+</article>
+<section class="about-footer" style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+<div class="footer-bottom">
+<span>© 2026 AI Love You. All rights reserved. No reproduction without prior written permission.</span>
+<div class="footer-links">
+<a href="contact.html">Contact</a>
+<a href="support.html">Legal Support</a>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

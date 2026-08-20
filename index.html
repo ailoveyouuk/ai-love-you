@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Love You — The Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=La+Belle+Aurore&family=Inter+Tight:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+
+<body>
+
+        <!-- Mobile Navigation Fixed Top Bar (Moved outside studio-layout or handled by script) -->
+        <nav class="studio-nav">
+            <a href="index.html" class="nav-brand-mobile">
+                <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Logo">
+            </a>
+            <div class="nav-breadcrumb-mobile">JOURNAL</div>
+            <div class="nav-actions-mobile">
+                
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Full Screen Mobile Overlay -->
+            <div class="nav-links">
+                
+                <a href="index.html">Journal</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+
+    <div class="studio-layout">
+        <!-- New Standard Sidebar Navigation -->
+        <aside class="studio-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo-container">
+                    <a href="index.html" class="sidebar-logo-link" style="display: block; transition: opacity 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                        <img src="assets/Logo%20Signature%20fill.svg" alt="AILY Signature" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);">
+                    </a>
+                </div>
+                <nav class="studio-sidebar-nav">
+                    
+                    <a href="index.html" class="sidebar-link active">Journal</a>
+                    <a href="about.html" class="sidebar-link">About</a>
+                </nav>
+
+                <!-- Archival Controls (Desktop Sidebar) -->
+                <section class="archival-controls-sidebar desktop-only">
+                    <div class="search-bar">
+                        <input type="text" id="journal-search" class="search-input" placeholder="SEARCH THE ARCHIVE..."
+                            autocomplete="off">
+                        <div class="search-suggestions" id="search-suggestions">
+                            <span class="suggest-label">TRENDING:</span>
+                            <span class="suggest-tag">#Craftsmanship</span>
+                            <span class="suggest-tag">#Japan</span>
+                            <span class="suggest-tag">#Minimalism</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <span class="filter-label">PERIOD:</span>
+                        <select id="period-select" class="period-select">
+                            <option value="all">ALL TIME</option>
+                        </select>
+                    </div>
+
+                    <div class="archival-tags" id="journal-tags-container">
+                        <span class="filter-label">DEPARTMENTS:</span>
+                        <button class="tag-btn active" data-filter="all">All Entries</button>
+                        <button class="tag-btn" data-filter="design">Design</button>
+                        <button class="tag-btn" data-filter="architecture">Architecture</button>
+                        <button class="tag-btn" data-filter="style">Style & Fashion</button>
+                        <button class="tag-btn" data-filter="travel">Travel</button>
+                        <button class="tag-btn" data-filter="watches">Watches</button>
+                        <button class="tag-btn" data-filter="movies">Movies</button>
+                        <button class="tag-btn" data-filter="music">Music</button>
+                        <button class="tag-btn" data-filter="products">Products</button>
+                        <button class="tag-btn" data-filter="vehicles">Vehicles</button>
+                        <button class="tag-btn" data-filter="food-drink">Food & Drink</button>
+                        <button class="tag-btn" data-filter="technology">Technology</button>
+                        <button class="tag-btn" data-filter="art-photography">Art & Photography</button>
+                        <button class="tag-btn" data-filter="global-five">The Global Five</button>
+                    </div>
+                </section>
+            </div>
+            <div class="sidebar-footer"></div>
+        </aside>
+
+<main class="studio-main">
+        <header class="studio-header">
+            <h1 class="headline">Journal.</h1>
+        </header>
+        <!-- Archival Controls (Mobile Only - Top of Main) -->
+        <section class="archival-controls-mobile mobile-only">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="SEARCH THE ARCHIVE..."
+                    autocomplete="off">
+                <div class="search-suggestions">
+                    <span class="suggest-label">TRENDING:</span>
+                    <span class="suggest-tag">#Craftsmanship</span>
+                    <span class="suggest-tag">#Japan</span>
+                    <span class="suggest-tag">#Minimalism</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="edition-nav-mobile" id="journal-category-roller">
+            <div class="scroll-roll-indicator">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+            </div>
+            <div class="roller-container">
+                <div class="roller-list">
+                    <button class="nav-link tag-btn active" data-filter="all" data-index="0">All Entries</button>
+                    <button class="nav-link tag-btn" data-filter="design" data-index="1">Design</button>
+                    <button class="nav-link tag-btn" data-filter="architecture" data-index="2">Architecture</button>
+                    <button class="nav-link tag-btn" data-filter="style" data-index="3">Style & Fashion</button>
+                    <button class="nav-link tag-btn" data-filter="travel" data-index="4">Travel</button>
+                    <button class="nav-link tag-btn" data-filter="watches" data-index="5">Watches</button>
+                    <button class="nav-link tag-btn" data-filter="movies" data-index="6">Movies</button>
+                    <button class="nav-link tag-btn" data-filter="music" data-index="7">Music</button>
+                    <button class="nav-link tag-btn" data-filter="products" data-index="8">Products</button>
+                    <button class="nav-link tag-btn" data-filter="vehicles" data-index="9">Vehicles</button>
+                    <button class="nav-link tag-btn" data-filter="food-drink" data-index="10">Food & Drink</button>
+                    <button class="nav-link tag-btn" data-filter="technology" data-index="11">Technology</button>
+                    <button class="nav-link tag-btn" data-filter="art-photography" data-index="12">Art & Photography</button>
+                    <button class="nav-link tag-btn" data-filter="global-five" data-index="13">The Global Five</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Journal Feed Grid -->
+        <section class="journal-grid" id="journal-feed">
+            <!-- Edition 13: The Kinetic Threshold (Featured) -->
+            <a href="journal-edition-13.html" class="journal-card featured-edition" data-tags="KineticDesign, Horology, Brutalism, HighFidelity, CoffeeEngineering, Futurism"
+                data-title="edition 13: the kinetic threshold">
+                <div class="featured-image-wrapper">
+                    <div class="latest-flag">LATEST EDITION</div>
+                    <img src="assets/journals/edition-13/mcqueen-no13.webp" alt="The Kinetic Threshold">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 13</span>
+                    <h3>The Kinetic Threshold</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 10 MAY 2026</div>
+                        <div class="meta-listen-row">
+                            <span>65 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#KineticDesign</span><span>#Horology</span><span>#Brutalism</span><span>#HighFidelity</span><span>#CoffeeEngineering</span><span>#Futurism</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Edition 12: The Weight of Reality -->
+            <a href="journal-edition-12.html" class="journal-card" data-tags="Alentejo, BMWM5, SlowLuxury, PatekPhilippe, StevenMeisel, OnDeviceAI"
+                data-title="edition 12: the weight of reality">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-12/alentejo-monsaraz.webp" alt="The Weight of Reality">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 12</span>
+                    <h3>The Weight of Reality</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 10 MAY 2026</div>
+                        <div class="meta-listen-row">
+                            <span>45 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#Alentejo</span><span>#BMWM5</span><span>#SlowLuxury</span><span>#PatekPhilippe</span><span>#StevenMeisel</span><span>#OnDeviceAI</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Edition 11: The Syntax of Symmetry -->
+            <a href="journal-edition-11.html" class="journal-card" data-tags="WesAnderson, HighFidelity, IndustrialDesign, Brutalism, SavileRow, SpecialtyCoffee"
+                data-title="edition 11: the syntax of symmetry">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-11/budapest-fr-1691010734.webp" alt="The Syntax of Symmetry">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 11</span>
+                    <h3>The Syntax of Symmetry</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 6 MAY 2026</div>
+                        <div class="meta-listen-row">
+                            <span>45 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#WesAnderson</span><span>#HighFidelity</span><span>#IndustrialDesign</span><span>#Brutalism</span><span>#SavileRow</span><span>#SpecialtyCoffee</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Edition 10: Sensory Friction -->
+            <a href="journal-edition-10.html" class="journal-card" data-tags="SensoryFriction, TheWeightedReality, SouthTyrol, AstonMartin, AmbientHardware, LargeFormatFilm"
+                data-title="edition 10: sensory friction">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-10/south_tyrol.webp" alt="Sensory Friction">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 10</span>
+                    <h3>Sensory Friction</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 4 MAY 2026</div>
+                        <div class="meta-listen-row">
+                            <span>35 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#SensoryFriction</span><span>#TheWeightedReality</span><span>#SouthTyrol</span><span>#AstonMartin</span><span>#AmbientHardware</span><span>#LargeFormatFilm</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Edition 09: The Calculus of Precision -->
+            <a href="journal-edition-09.html" class="journal-card" data-tags="CalculusOfPrecision, Modernism, HighFidelity, JapaneseDesign, StructuralHonesty"
+                data-title="edition 09: the calculus of precision">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-09/barcelona_pavilion.webp" alt="The Calculus of Precision">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 09</span>
+                    <h3>The Calculus of Precision</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 30 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>45 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#CalculusOfPrecision</span><span>#Modernism</span><span>#HighFidelity</span><span>#JapaneseDesign</span><span>#StructuralHonesty</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- Edition 08: Analogue Authenticity -->
+            <a href="journal-edition-08.html" class="journal-card" data-tags="AnalogueAuthenticity, PhysicalFriction, MechanicalRomance, Sardinia, HonestGastronomy"
+                data-title="edition 08: analogue authenticity">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-08/sardinia.webp" alt="Analogue Authenticity">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 08</span>
+                    <h3>Analogue Authenticity</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 26 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>32 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#AnalogueAuthenticity</span><span>#PhysicalFriction</span><span>#MechanicalRomance</span><span>#Sardinia</span><span>#HonestGastronomy</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- Edition 07: Synthetic Nature -->
+            <a href="journal-edition-07.html" class="journal-card" data-tags="SyntheticNature, BioDigital, MaterialEcology, MyceliumArchitecture, FutureHaptics, AlgorithmicOrganicism, Symbiocene"
+                data-title="edition 07: synthetic nature">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-07/tree_one.webp" alt="Synthetic Nature">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 07</span>
+                    <h3>Synthetic Nature</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 27 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>35 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#SyntheticNature</span><span>#BioDigital</span><span>#MaterialEcology</span><span>#MyceliumArchitecture</span><span>#FutureHaptics</span><span>#Symbiocene</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- Edition 06: Retro-Futurism -->
+            <a href="journal-edition-06.html" class="journal-card" data-tags="RetroFuturism, Brutalism, BiophilicDesign, AnalogueAcoustics, JapaneseKogu, SoftArmor"
+                data-title="edition 06: the aesthetics of retro-futurism">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-06/biophilic_home.webp" alt="Retro-Futurism">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 06</span>
+                    <h3>The Aesthetics of Retro-Futurism</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 24 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>45 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#RetroFuturism</span><span>#Brutalism</span><span>#BiophilicDesign</span><span>#AnalogueAcoustics</span><span>#JapaneseKogu</span><span>#SoftArmor</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Edition 05: The Aesthetics of Impermanence -->
+            <a href="journal-edition-05.html" class="journal-card" data-tags="WabiSabi, AnalogueDecay, Architecture, RawDenim, Cinematography, Espresso"
+                data-title="edition 05: the aesthetics of impermanence">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-05/zeitz_mocaa.webp" alt="The Aesthetics of Impermanence">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 05</span>
+                    <h3>The Aesthetics of Impermanence</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 21 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>50 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#WabiSabi</span><span>#AnalogueDecay</span><span>#Architecture</span><span>#RawDenim</span><span>#Cinematography</span><span>#Espresso</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Edition 04: The Architecture of Light -->
+            <a href="journal-edition-04.html" class="journal-card" data-tags="LightingDesign, Cinematography, BladeRunner2049, DaftPunk, TadaoAndo, Neon, Akari, Cyberpunk, RogerDeakins, Brutalism"
+                data-title="edition 04: the architecture of light">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-04/blade_runner_2049_orig.webp" alt="The Architecture of Light">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 04</span>
+                    <h3>The Architecture of Light</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 18 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>35 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#LightingDesign</span><span>#Cinematography</span><span>#BladeRunner2049</span><span>#DaftPunk</span><span>#TadaoAndo</span><span>#Neon</span><span>#Akari</span><span>#Cyberpunk</span><span>#RogerDeakins</span><span>#Brutalism</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Edition 03: The Alchemy of Craft -->
+            <a href="journal-edition-03.html" class="journal-card" data-tags="Craftsmanship, FolkHorror, Jazz, Horology, Zumthor, FellowCoffee, MechanicalMovement, SteveMcQueen, Alchemy, Makers"
+                data-title="edition 03: the alchemy of craft">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-03/the_witch_hd.webp" alt="The Alchemy of Craft">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 03</span>
+                    <h3>The Alchemy of Craft</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 15 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>35 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#Craftsmanship</span><span>#FolkHorror</span><span>#Jazz</span><span>#Horology</span><span>#Zumthor</span><span>#FellowCoffee</span><span>#MechanicalMovement</span><span>#SteveMcQueen</span><span>#Alchemy</span><span>#Makers</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- New Journal Edition 02 Card -->
+            <a href="journal-edition-02.html" class="journal-card" data-tags="Minimalism, DieterRams, Barragán, Silence, JonathanGlazer, Functionalism, ZoneOfInterest, SnowPeak, WongKarWai, AcousticAbsence"
+                data-title="edition 02: the geometry of silence">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-02/zone_of_interest_new.webp" alt="The Geometry of Silence">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 02</span>
+                    <h3>The Geometry of Silence</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 12 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>30 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#Minimalism</span><span>#DieterRams</span><span>#Barragán</span><span>#Silence</span><span>#JonathanGlazer</span><span>#Functionalism</span><span>#ZoneOfInterest</span><span>#SnowPeak</span><span>#WongKarWai</span><span>#AcousticAbsence</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- New Journal Edition 01 Card -->
+            <a href="journal-edition-01.html" class="journal-card" data-tags="Analogue, Haptics, WimWenders, RoomSound, SpecialtyCoffee, JapaneseDesign, TropicalBrutalism, Workwear, TactileLiving, SlowLiving"
+                data-title="edition 01: analogue precision & tactile living">
+                <div style="width: 100%; aspect-ratio: 4/3; overflow: hidden;">
+                    <img src="assets/journals/edition-01/studio_header_orig.webp" alt="Analogue Precision">
+                </div>
+                <div>
+                    <span class="edition-pill">JOURNAL // EDITION 01</span>
+                    <h3>Analogue Precision & Tactile Living</h3>
+                    <div class="edition-meta-stacked">
+                        <div class="meta-date">PUBLISHED: 09 APRIL 2026</div>
+                        <div class="meta-listen-row">
+                            <span>30 MIN READ</span>
+
+                        </div>
+                        <div class="card-tags">
+                            <span>#Analogue</span><span>#Haptics</span><span>#WimWenders</span><span>#RoomSound</span><span>#SpecialtyCoffee</span><span>#JapaneseDesign</span><span>#TropicalBrutalism</span><span>#Workwear</span><span>#TactileLiving</span><span>#SlowLiving</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        
+    
+        <section class="about-footer" style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+            <div class="footer-bottom">
+                <span>&copy; 2026 AI Love You. All rights reserved. No reproduction without prior written permission.</span>
+                <div class="footer-links">
+                    <a href="contact.html">Contact</a>
+                    <a href="support.html">Legal Support</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+    <script src="assets/journals/journalData.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInputs = document.querySelectorAll('.search-input');
+            const filterBtns = document.querySelectorAll('.tag-btn');
+            const feedContainer = document.getElementById('journal-feed');
+            const periodSelects = document.querySelectorAll('.period-select');
+            
+            // Sync Search Inputs
+            searchInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    searchInputs.forEach(i => { if(i !== e.target) i.value = val; });
+                    applyFilters();
+                });
+            });
+
+            // Sync Period Selects
+            periodSelects.forEach(select => {
+                select.addEventListener('change', (e) => {
+                    const val = e.target.value;
+                    periodSelects.forEach(s => { if(s !== e.target) s.value = val; });
+                    applyFilters();
+                });
+            });
+            
+            // Cache the hardcoded Edition Cards
+            const editionCardsHTML = feedContainer.innerHTML;
+
+            // Populate Period Select Dynamically
+            function populatePeriods() {
+                if (!window.journalData) return;
+                
+                // Helper to extract Month Year from "27 April 2026" or "April 2026"
+                function getMonthYear(dateStr) {
+                    if (!dateStr) return '';
+                    const parts = dateStr.split(' ');
+                    // If it's "27 April 2026", take last two parts. If "April 2026", take both.
+                    if (parts.length >= 3) return `${parts[1]} ${parts[2]}`;
+                    if (parts.length === 2) return dateStr;
+                    return dateStr;
+                }
+
+                const periods = [...new Set(window.journalData.map(s => getMonthYear(s.publishDate)))]
+                    .filter(p => p)
+                    .sort((a, b) => {
+                        // Sort by date descending (approximate)
+                        const da = new Date(a);
+                        const db = new Date(b);
+                        return db - da;
+                    });
+
+                periods.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p;
+                    opt.innerText = p.toUpperCase();
+                    periodSelects.forEach(s => s.appendChild(opt.cloneNode(true)));
+                });
+            }
+            populatePeriods();
+
+            function highlightText(text, term) {
+                if (!text || typeof text !== 'string') return '';
+                if (!term) return text;
+                const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                return text.replace(regex, '<span class="highlight">$1</span>');
+            }
+
+            function renderStories(filter, searchTerm) {
+                if (!window.journalData) {
+                    console.error("AI Love You: Journal Data not found.");
+                    feedContainer.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 4rem;">Archive data is currently loading...</p>';
+                    return;
+                }
+
+                feedContainer.innerHTML = '';
+                
+                const filteredStories = window.journalData.filter(story => {
+                    const matchesTag = filter === 'all' || story.category === filter;
+                    
+                    // Period Filter Check (Monthly) - Use value from any select
+                    const activePeriodSelect = Array.from(periodSelects).find(s => s.offsetParent !== null) || periodSelects[0];
+                    const selectedPeriod = activePeriodSelect ? activePeriodSelect.value : 'all';
+                    
+                    let matchesPeriod = true;
+                    if (selectedPeriod !== 'all') {
+                        const storyDate = story.publishDate || '';
+                        matchesPeriod = storyDate.includes(selectedPeriod);
+                    }
+
+                    if (!searchTerm) return matchesTag && matchesPeriod;
+
+                    // Deep Search Logic (Case-Insensitive & Null-Safe)
+                    const s = searchTerm.toLowerCase();
+                    
+                    const inTitle = (story.title || "").toLowerCase().includes(s);
+                    const inSubtitle = (story.subtitle || "").toLowerCase().includes(s);
+                    const inEvent = (story.event || "").toLowerCase().includes(s);
+                    const inCity = (story.city || "").toLowerCase().includes(s);
+                    const inEdition = (story.edition || "").toLowerCase().includes(s);
+                    const inDate = (story.publishDate || "").toLowerCase().includes(s);
+                    const inKeywords = story.keywords && story.keywords.some(k => k.toLowerCase().includes(s));
+                    const inCategory = (story.category || "").toLowerCase().includes(s);
+
+                    const matchesSearch = (inTitle || inSubtitle || inEvent || inCity || inEdition || inDate || inKeywords || inCategory);
+                    
+                    return matchesTag && matchesSearch && matchesPeriod;
+                });
+
+                if (filter === 'global-five') {
+                    const listContainer = document.createElement('div');
+                    listContainer.className = 'global-five-list';
+                    
+                    // Header for the list
+                    const header = document.createElement('div');
+                    header.className = 'global-five-row';
+                    header.style.borderTop = '1px solid var(--border-color)';
+                    header.style.opacity = '0.4';
+                    header.style.pointerEvents = 'none';
+                    header.innerHTML = `
+                        <div class="city">LOCATION</div>
+                        <div class="activity">CURATED ACTIVITY</div>
+                        <div class="timeline">TIMELINE</div>
+                        <div class="edition-label">SOURCE</div>
+                    `;
+                    listContainer.appendChild(header);
+
+                    filteredStories.forEach(story => {
+                        const row = document.createElement('a');
+                        row.href = story.link;
+                        row.className = 'global-five-row';
+                        row.innerHTML = `
+                            <div class="city">${highlightText(story.city, searchTerm)}</div>
+                            <div class="activity">${highlightText(story.event, searchTerm)}</div>
+                            <div class="timeline">${highlightText(story.dateTime, searchTerm)}</div>
+                            <div class="edition-label">${highlightText(story.edition, searchTerm)}</div>
+                        `;
+                        listContainer.appendChild(row);
+                    });
+                    feedContainer.appendChild(listContainer);
+                } else {
+                    filteredStories.forEach(story => {
+                        const card = document.createElement('a');
+                        const edNum = story.edition.split(' ')[1] || '01';
+                        const audioFile = `assets/audio/Journal ${edNum} Audio.m4a`;
+                        
+                        card.href = story.link;
+                        card.className = 'journal-card story-mode-card';
+                        card.innerHTML = `
+                            <div class="category-badge" style="font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--accent-color); margin-bottom: 0.5rem; text-transform: uppercase;">
+                                ${highlightText(story.category, searchTerm)} // ${highlightText(story.edition, searchTerm)}
+                            </div>
+                            ${story.image ? `
+                            <div style="width: 100%; aspect-ratio: 16/9; background: #eee; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                                <img src="${story.image}" alt="${story.title || 'Journal Archive'}"
+                                    style="width: 100%; height: 100%; object-fit: cover; opacity: 1;">
+                            </div>
+                            ` : '<div style="margin-bottom: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;"></div>'}
+                            <div style="padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.1);">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; line-height: 1.2; text-transform: uppercase;">${highlightText(story.title || story.event, searchTerm)}</h3>
+                                <div class="edition-meta-stacked" style="border: none; padding-top: 0; margin-top: 0; gap: 0.8rem;">
+                                    <div class="meta-date">PUBLISHED: ${highlightText((story.publishDate || "").toUpperCase(), searchTerm)}</div>
+                                    <div class="meta-listen-row">
+                                        <span>${highlightText((story.readDuration || story.duration || "5 MIN READ").toUpperCase(), searchTerm)}</span>
+
+                                    </div>
+                                </div>
+                                <p style="font-size: 0.9rem; color: var(--ink-gray); line-height: 1.5; margin-top: 1rem;">${highlightText(story.subtitle || story.city, searchTerm)}</p>
+                            </div>
+                        `;
+                        feedContainer.appendChild(card);
+                    });
+                }
+
+                // Empty State Handler
+                if (filteredStories.length === 0) {
+                    feedContainer.innerHTML = `<p style="text-align: center; grid-column: 1/-1; padding: 6rem 0; color: var(--ink-gray);">No archival matches found for "${searchTerm}". Try searching by department, brand, or location.</p>`;
+                }
+            }
+
+            // Bind Search Suggestions
+            document.querySelectorAll('.suggest-tag').forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const query = tag.innerText.replace('#', '').trim();
+                    searchInputs.forEach(i => i.value = query);
+                    applyFilters();
+                });
+            });
+
+            function applyFilters() {
+                // Get search term from any active input
+                const activeSearchInput = Array.from(searchInputs).find(i => i.offsetParent !== null) || searchInputs[0];
+                const searchTerm = activeSearchInput ? activeSearchInput.value.toLowerCase().trim() : '';
+                
+                const activeBtn = document.querySelector('.tag-btn.active');
+                const activeTag = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
+
+                if (activeTag === 'all' && !searchTerm) {
+                    // Show standard Edition Cards
+                    feedContainer.innerHTML = editionCardsHTML;
+                } else {
+                    // Show Collated Story Cards
+                    renderStories(activeTag, searchTerm);
+                }
+                
+                // Re-init audio for any new elements
+                if (typeof initCardAudio === 'function') initCardAudio();
+            }
+
+            // Bind Tag Buttons
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Highlight both mobile and desktop buttons with the same filter
+                    const filter = e.currentTarget.getAttribute('data-filter');
+                    filterBtns.forEach(b => {
+                        if (b.getAttribute('data-filter') === filter) b.classList.add('active');
+                    });
+                    
+                    // If it's a mobile roller click, center it
+                    if (e.currentTarget.classList.contains('nav-link')) {
+                        const roller = document.querySelector('.roller-container');
+                        const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                        const itemHeight = e.currentTarget.offsetHeight || 28;
+                        if (roller) {
+                            roller.scrollTo({ top: index * itemHeight, behavior: 'smooth' });
+                        }
+                    }
+                    
+                    applyFilters();
+                });
+            });
+
+            // Roller Scroll Snap Sync
+            const roller = document.querySelector('.roller-container');
+            if (roller) {
+                let rollerDebounce;
+                roller.addEventListener('scroll', () => {
+                    clearTimeout(rollerDebounce);
+                    rollerDebounce = setTimeout(() => {
+                        const item = roller.querySelector('.nav-link');
+                        const itemHeight = item ? item.offsetHeight : 28;
+                        const index = Math.round(roller.scrollTop / itemHeight);
+                        const target = roller.querySelector(`[data-index="${index}"]`);
+                        
+                        if (target && !target.classList.contains('active')) {
+                            target.click(); // Trigger filtering and sync
+                        }
+                    }, 150);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

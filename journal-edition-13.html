@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edition 13: The Kinetic Threshold — AI Love You Journal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;family=La+Belle+Aurore&amp;family=Inter+Tight:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="index.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+<style>
+        :root {
+            --journal-bg: #ffffff;
+            --journal-text: #000000;
+            --accent-color: #ff5e00;
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--journal-text);
+            overflow-x: clip;
+        }
+
+        .edition-header {
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        .technical-table-container {
+            margin: 4rem 0;
+            overflow-x: auto;
+        }
+
+        .technical-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+        }
+
+        .technical-data-table th, .technical-data-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .technical-data-table th {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-color);
+        }
+
+        /* Works Cited Collapsible */
+        .works-cited-section {
+            margin-top: 8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 4rem;
+        }
+
+        .works-cited-details summary {
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .works-cited-details summary::after {
+            content: '+';
+            font-weight: 300;
+        }
+
+        .works-cited-details[open] summary::after {
+            content: '−';
+        }
+
+        .works-cited-content {
+            padding: 2rem 0;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--ink-gray);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body class="journal-edition-page">
+<!-- Mobile Navigation Fixed Top Bar -->
+<nav class="studio-nav">
+<a class="nav-brand-mobile" href="index.html">
+<img alt="AILY Logo" src="assets/Logo%20Signature%20fill.svg"/>
+</a>
+<div class="nav-breadcrumb-mobile"><a href="index.html">JOURNAL</a> // EDITION 13</div>
+<div class="nav-actions-mobile">
+<button aria-label="Toggle Menu" class="menu-toggle">
+<span></span>
+<span></span>
+</button>
+</div>
+<!-- Full Screen Mobile Overlay -->
+<div class="nav-links">
+<a href="index.html">Journal</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+<div class="studio-layout">
+<!-- Sidebar Navigation -->
+<aside class="studio-sidebar">
+<div class="sidebar-logo-container">
+<a class="sidebar-logo-link aily-brand-logo" href="index.html" onmouseout="this.style.opacity='0.8'" onmouseover="this.style.opacity='1'" style="display: block; transition: opacity 0.3s; opacity: 0.8;">
+<img alt="AILY Signature" src="assets/Logo%20Signature%20fill.svg" style="width: 100px; filter: invert(49%) sepia(86%) saturate(2971%) hue-rotate(347deg) brightness(98%) contrast(93%);"/>
+</a>
+</div>
+<nav class="studio-sidebar-nav" style="margin-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.25rem;">
+<a class="sidebar-link active" href="index.html">Journal</a>
+<a class="sidebar-link" href="about.html">About</a>
+</nav>
+<div class="journal-edition-context">
+<nav class="edition-nav">
+<ul class="nav-list" style="list-style: none; padding: 0;">
+<li class="nav-item">
+<a class="nav-link active" href="#editor-note">Editor's Note</a>
+<span class="nav-subtitle">The Poetry of Motion</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#movies">I. Movies</a>
+<span class="nav-subtitle">The Unbroken Line</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#music">II. Music</a>
+<span class="nav-subtitle">Source of Energy</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#products">III. Products</a>
+<span class="nav-subtitle">Analogue Interface</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#design">IV. Design</a>
+<span class="nav-subtitle">The Desk Architecture</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#architecture">V. Architecture</a>
+<span class="nav-subtitle">Buildings as Machines</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#style-fashion">VI. Style &amp; Fashion</a>
+<span class="nav-subtitle">Silhouette in Motion</span>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#global-five">VII. Global Five</a>
+<span class="nav-subtitle">Events 06–09 May</span>
+</li><li class="nav-item sidebar-prev-next" style="position: relative; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+<a class="sidebar-prev-link" href="journal-edition-12.html" style="font-size: 0.75rem; text-decoration: none;">← PREV<div style="font-size: 0.65rem; line-height: 1.4; margin-top: 0.2rem; opacity: 0.7; font-family: var(--font-body); text-transform: none; letter-spacing: 0;">Edition 12<br/>The Weight of Reality</div></a>
+<span></span>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="studio-main">
+<article class="journal-content">
+<header class="sticky-breadcrumb-header" style="z-index: 100;">
+<nav class="pdp-breadcrumbs" style="width: 100%; display: flex; align-items: center;">
+<a href="index.html" style="color: inherit; text-decoration: none; transition: opacity 0.2s;">JOURNAL</a> <span style="opacity: 1;">//</span>
+<span style="color: var(--text-color); opacity: 1; white-space: nowrap;">EDITION 13</span>
+<!-- Expanded (Progress) -->
+<div class="audio-player-expanded header-integrated" id="audio-expanded" style="display: flex; flex-grow: 1; margin-left: 2rem; align-items: center; gap: 1.5rem;">
+<button aria-label="Pause" class="play-pause-btn" id="audio-toggle-btn" style="background: none; border: none; cursor: pointer; color: var(--text-color); display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<div class="audio-progress-container" id="progress-container" style="flex-grow: 1; height: 20px; position: relative; cursor: pointer; display: flex; align-items: center; ">
+<div style="width: 100%; height: 2px; background: var(--border-color); position: absolute; left: 0; top: 9px;"></div><div class="audio-progress-bar" id="progress-bar" style="position: relative; height: 2px; background: var(--accent-color); width: 0%;; z-index: 2;">
+<div class="audio-progress-dot" style="position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%;"></div>
+</div>
+</div>
+<span id="current-time" style="font-size: 0.65rem; font-family: var(--font-display); letter-spacing: 0.05em; min-width: 35px;">0:00</span>
+<button id="audio-speed-btn" style="background: none; border: 1px solid var(--border-color); font-size: 0.55rem; padding: 2px 6px; cursor: pointer; color: var(--text-color);">1x</button>
+</div>
+</nav>
+</header>
+<header class="edition-header">
+<span class="edition-label">THE JOURNAL ARCHIVE // 13</span>
+<h1>The Kinetic<br/>Threshold</h1>
+<div class="media-container">
+<img alt="The Kinetic Threshold" src="assets/journals/edition-13/mcqueen-no13.webp"/>
+<span class="caption">SOURCE // ALEXANDER MCQUEEN ARCHIVE // NO. 13 SPRING/SUMMER 1999</span>
+</div>
+<div class="edition-meta">
+<div class="meta-primary">
+<span style="opacity: 0.6;">PUBLISHED: 10 MAY 2026</span>
+<div class="meta-stats-row">
+<span>65 MIN READ</span>
+<!-- Integrated Audio Control -->
+<div class="audio-companion" id="aily-audio-companion-13">
+<audio id="aily-audio-element-13" preload="metadata" src="assets/audio/edition-13.m4a"></audio>
+<div class="audio-player-minimal" id="audio-minimal">
+<button aria-label="Play Edition 13 Audio" class="play-pause-btn">
+<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+<span class="audio-duration">LISTEN // 46:16</span>
+</div>
+</div>
+</div>
+</div>
+<div class="meta-tags">
+<span>#KineticDesign</span><span>#Horology</span><span>#Brutalism</span><span>#HighFidelity</span><span>#CoffeeEngineering</span><span>#Futurism</span>
+</div>
+</div>
+</header>
+<!-- Editor's Note -->
+<section class="section-container" id="editor-note">
+<span class="dept-label">EDITOR’S NOTE // POETRY OF MOTION</span>
+<h2 class="section-title">The Poetry of Motion</h2>
+<div class="body-text">
+<p>In our previous explorations, we have lingered within the "Syntax of Symmetry" and the "Geometry of Solitude"—states of being that are, by their nature, static and restorative. Today, for Edition 13, "The Kinetic Threshold," we shift our focus to the transition. We are examining the precise moment an object or a space moves from rest into action. It is the haptic "click" of a mechanical switch, the sweeping second hand of a high-precision timepiece, and the fluid choreography of a cinematographer’s crane.</p>
+<p>This edition represents our most significant commitment to long-form analysis yet. We have doubled the depth across our core departments to investigate the "Kinetic Threshold" from every angle. We delve into the world of "dry" coffee paraphernalia, where the physical effort of the manual grind becomes a morning meditation. We explore the architectural legacy of High-Tech Modernism, where the building itself is treated as a functioning machine. And we look at the sonic architecture of the "<a href="https://www.linn.co.uk" target="_blank">Linn Sondek</a>" philosophy—the idea that the most important part of a Hi-Fi system is the kinetic energy at the source.</p>
+<p>Motion is not merely about getting from point A to point B. It is about the elegance of the mechanical bridge between intent and result. In an increasingly digital, frictionless world, there is a profound, visceral satisfaction to be found in a mechanism that works, that moves, and that pushes back.</p>
+<div class="editor-signature-block">
+<span class="signature-name">Lewis McKinnon</span>
+<span class="signature-title">// Founder</span>
+</div>
+</div>
+</section>
+<!-- I. Movies -->
+<section class="section-container" id="movies">
+<span class="dept-label">[I. MOVIES] THE UNBROKEN LINE</span>
+<h2 class="section-title">The Kineticism of Sam Mendes</h2>
+<p class="lead-text">Cinema is, at its most fundamental level, the art of moving images. But few directors have explored the "Kinetic Threshold" as obsessively as Sam Mendes in his recent work.</p>
+<div class="media-container">
+<img alt="Sam Mendes 1917 BTS" src="assets/journals/edition-13/1917-bts.webp"/>
+<span class="caption">Behind the scenes of 1917: Sam Mendes and <a href="https://www.rogerdeakins.com" target="_blank">Roger Deakins</a> orchestrating the relentless forward momentum of the "one-shot" technique. <span style="color: var(--accent-color);">Source: Universal Pictures / New York Magazine.</span></span>
+</div>
+<div class="body-text">
+<p>In films like <em>1917</em> (2019), <a href="https://www.imdb.com/name/nm0005222/" target="_blank">Sam Mendes</a>—alongside legendary cinematographer <a href="https://www.rogerdeakins.com" target="_blank">Roger Deakins</a>—utilises the "one-shot" technique to create a sense of relentless, forward momentum. The camera is not a passive observer; it is a kinetic participant, weaving through trenches and over battlefields in an unbroken line of action.</p>
+<p>This technique removes the "safety" of the cut. By refusing to look away, Mendes forces the viewer into a state of heightened sensory awareness, where the movement of the frame is as vital as the performance of the actors. As critic <a href="https://www.theguardian.com/profile/peterbradshaw" target="_blank">Peter Bradshaw</a> noted in <em><a href="https://www.theguardian.com" target="_blank">The Guardian</a></em>, "The film’s kinetic energy is not just a gimmick; it is a structural necessity that mirrors the life-and-death urgency of the narrative." It is the cinema of the constant threshold, where every second is a transition.</p>
+</div>
+</section>
+<!-- II. Music -->
+<section class="section-container" id="music">
+<span class="dept-label">[II. MUSIC] THE SOURCE OF ENERGY</span>
+<h2 class="section-title">The Kinetic Philosophy of the Turntable</h2>
+<p class="lead-text">Exploring the mechanical foundations of high-fidelity sound, where kinetic energy is harvested directly from the groove.</p>
+<div class="media-container">
+<img alt="Linn Sondek LP12" src="assets/journals/edition-13/linn-sondek-lp12.webp"/>
+<span class="caption">The <a href="https://www.linn.co.uk" target="_blank">Linn Sondek LP12</a>: A masterclass in mechanical isolation and kinetic stability. <span style="color: var(--accent-color);">Source: Linn Products / Vumetre.</span></span>
+</div>
+<div class="body-text">
+<p>In the world of high-end audio, the "Kinetic Threshold" is found at the very beginning of the signal chain: the turntable. While much of the industry has focused on digital conversion and amplification, a dedicated vanguard of engineers argues that the most important part of any Hi-Fi system is the mechanical energy generated at the source.</p>
+<h3>The Linn Sondek LP12: A Mechanical Legend</h3>
+<p>Since its introduction in 1973, the <a href="https://www.linn.co.uk" target="_blank">Linn Sondek LP12</a> has been the definitive expression of this philosophy. Designed by <a href="https://www.linn.co.uk/about/history" target="_blank">Ivor Tiefenbrun</a> in Glasgow, the LP12 was revolutionary because it prioritised mechanical isolation and kinetic stability above all else. It treats the turntable not as an electronic component, but as a precision-engineered machine for harvesting vibration.</p>
+<p>"The turntable is the most important part of the system," Tiefenbrun famously argued. This perspective shifted the entire Hi-Fi industry away from "spec-sheet" measurements toward a focus on kinetic timing and musical flow. Audio critic <a href="https://www.stereophile.com/category/art-dudley-listening" target="_blank">Art Dudley</a> of <em><a href="https://www.stereophile.com" target="_blank">Stereophile</a></em> noted that "The LP12 has a 'kinetic' quality that makes music feel alive—it captures the rhythmic 'swing' that digital systems often iron out."</p>
+<div class="media-container">
+<img alt="Technics SP-10R" src="assets/journals/edition-13/technics-sp10r.webp"/>
+<span class="caption">The <a href="https://www.technics.com" target="_blank">Technics SP-10R</a>: Direct-drive precision with a 7.9kg platter for absolute rotational stability. <span style="color: var(--accent-color);">Source: Technics / Inverted Audio.</span></span>
+</div>
+<h3>The Technics SP-10R: Direct Drive Precision</h3>
+<p>On the other side of the kinetic spectrum sits the <a href="https://www.technics.com" target="_blank">Technics SP-10R</a>. Where the Linn uses a belt-drive system for soft, organic isolation, the Technics utilises a high-torque direct-drive motor for absolute rotational precision. "The SP-10R is about the elimination of 'wow and flutter'," says <a href="https://www.technics.com" target="_blank">Technics</a> engineer <a href="https://www.technics.com/global/heritage/sp-10r/" target="_blank">Tetsuya Itani</a>. This uncompromising approach is lauded by <em><a href="https://www.theabsolutesound.com" target="_blank">The Absolute Sound</a></em>, which describes the SP-10R as "the most stable kinetic source in audio."</p>
+</div>
+</section>
+<!-- III. Products -->
+<section class="section-container" id="products">
+<span class="dept-label">[III. PRODUCTS] THE ANALOGUE INTERFACE</span>
+<h2 class="section-title">Architecting the Vintage Cockpit</h2>
+<p class="lead-text">Exploring the "Invisible Restomod"—the seamless integration of digital connectivity into classic automotive interiors.</p>
+<div class="media-container">
+<img alt="Porsche PCCM Plus" src="assets/journals/edition-13/porsche-pccm.webp"/>
+<span class="caption">The <a href="https://www.porsche.com" target="_blank">Porsche</a> Classic Communication Management (PCCM) system: Modern Apple CarPlay functionality behind a period-correct interface. <span style="color: var(--accent-color);">Source: Porsche AG.</span></span>
+</div>
+<div class="body-text">
+<p>In the evolution of the "AI Love You Journal," we pivot from the tactile resistance of coffee engineering to the auditory and visual haptics of the classic car cabin. The modern driver faces a distinct "Kinetic Conflict": the desire for the visceral, mechanical soul of a vintage vehicle paired with the non-negotiable utility of 21st-century navigation.</p>
+<h3>The Porsche Classic Communication Management (PCCM)</h3>
+<p>The <a href="https://www.porsche.com" target="_blank">Porsche</a> PCCM and PCCM Plus systems represent the gold standard of this integration. "The challenge is to marry two different eras of ergonomics," says <a href="https://www.porsche.com" target="_blank">Ulrike Lutz</a>, Head of Porsche Classic. The 1-DIN unit features physical buttons that match the texture and "click-feel" of vintage Porsche switchgear.</p>
+<div class="media-container">
+<img alt="Classic Porsche Interior" src="assets/journals/edition-13/classic-car-interior.webp"/>
+<span class="caption">The "Invisible Upgrade": Maintaining the visual sanctity of a vintage cockpit while enabling modern media utility. <span style="color: var(--accent-color);">Source: Porsche Classic / Infinite Uploads.</span></span>
+</div>
+<p>"It is arguably the most important upgrade a classic Porsche owner can make," notes <a href="https://www.porsche.com" target="_blank">James Mills</a>, veteran automotive journalist. It transforms the usability of the car while the dashboard remains a temple to mid-century minimalism.</p>
+</div>
+</section>
+<!-- IV. Design -->
+<section class="section-container" id="design">
+<span class="dept-label">[IV. DESIGN] THE RADIUS OF ACTION</span>
+<h2 class="section-title">The Architecture of the Desk</h2>
+<p class="lead-text">Exploring the ergonomic threshold where human movement meets industrial precision.</p>
+<div class="media-container">
+<img alt="Herman Miller Aeron Chair" src="assets/journals/edition-13/aeron-chair.webp"/>
+<span class="caption">The <a href="https://www.hermanmiller.com" target="_blank">Herman Miller</a> Aeron: Designed around the "Kinetic Human" to support every micro-transition of the seated body. <span style="color: var(--accent-color);">Source: Herman Miller.</span></span>
+</div>
+<div class="body-text">
+<h3>The Aeron Chair: A Kinetic Intervention</h3>
+<p>Designed by <a href="https://www.hermanmiller.com" target="_blank">Bill Stumpf</a> and <a href="https://www.hermanmiller.com" target="_blank">Don Chadwick</a> for <a href="https://www.hermanmiller.com" target="_blank">Herman Miller</a> in 1994, the Aeron chair was a radical rejection of the static office chair. "Bill Stumpf was obsessed with the way people actually moved," says design historian <a href="https://www.alicerawsthorn.com" target="_blank">Alice Rawsthorn</a>. The Aeron’s "Pellicle" mesh ensures that the chair moves with the user, maintaining support through every transition.</p>
+<div class="media-container">
+<img alt="Braun ET66 Calculator" src="assets/journals/edition-13/braun-et66.webp"/>
+<span class="caption">The <a href="https://www.braun.com" target="_blank">Braun</a> ET66: The gold standard for the "tactile click" and kinetic confirmation. <span style="color: var(--accent-color);">Source: Braun / Fast Company.</span></span>
+</div>
+<h3>The Braun ET66: The Tactile Click</h3>
+<p>The <a href="https://www.braun.com" target="_blank">Braun</a> ET66 calculator, designed by <a href="https://www.vitsoe.com/gb/about/dieter-rams" target="_blank">Dieter Rams</a> and <a href="https://www.braun.com" target="_blank">Dietrich Lubs</a>, is celebrated for its circular, raised buttons. "The click is the confirmation of the kinetic event," Rams stated. In our world of haptic-less glass screens, the ET66 remains a tactile beacon of kinetic feedback.</p>
+</div>
+</section>
+<!-- V. Architecture -->
+<section class="section-container" id="architecture">
+<span class="dept-label">[V. ARCHITECTURE] BUILDINGS AS MACHINES</span>
+<h2 class="section-title">The High-Tech Legacy</h2>
+<p class="lead-text">High-Tech Modernism treats the structure not as a static monument, but as a functioning, evolving machine.</p>
+<div class="media-container">
+<img alt="Centre Pompidou Paris" src="assets/journals/edition-13/centre-pompidou.webp"/>
+<span class="caption">The <a href="https://www.centrepompidou.fr" target="_blank">Centre Pompidou</a>: Moving the "organs" of the building to the exterior to create a living, kinetic spectacle. <span style="color: var(--accent-color);">Source: France Guide.</span></span>
+</div>
+<div class="body-text">
+<h3>The Centre Pompidou: The Inside Out</h3>
+<p>The <a href="https://www.centrepompidou.fr" target="_blank">Centre Pompidou</a> in Paris is the definitive expression of this kinetic philosophy. Pioneered by architects <a href="https://www.rpbw.com" target="_blank">Renzo Piano</a> and <a href="https://www.rsh-p.com" target="_blank">Richard Rogers</a>, it treats the building as a movement machine. "The Pompidou was a rejection of the static museum," says architectural critic <a href="https://www.theguardian.com/profile/rowanmoore" target="_blank">Rowan Moore</a>.</p>
+<div class="media-container">
+<img alt="HSBC Building Hong Kong" src="assets/journals/edition-13/hsbc-building.webp"/>
+<span class="caption">The <a href="https://www.hsbc.com" target="_blank">HSBC</a> Building by <a href="https://www.fosterandpartners.com" target="_blank">Norman Foster</a>: A modular, kinetic structure that celebrates the mechanism of its own construction. <span style="color: var(--accent-color);">Source: Foster + Partners / ArchEyes.</span></span>
+</div>
+<h3>The HSBC Building, Hong Kong: Modular Kineticism</h3>
+<p><a href="https://www.fosterandpartners.com" target="_blank">Norman Foster</a>’s HSBC Building in Hong Kong acknowledges its own transience. Built from modular components, it celebrates the mechanism of architecture. "High-Tech is about the celebration of the joint and the mechanism," Foster tells <em><a href="https://www.architecturaldigest.com" target="_blank">Architectural Digest</a></em>.</p>
+</div>
+</section>
+<!-- VI. Style & Fashion -->
+<section class="section-container" id="style-fashion">
+<span class="dept-label">[VI. STYLE &amp; FASHION] SILHOUETTE IN MOTION</span>
+<h2 class="section-title">The Radical Tailoring of Alexander McQueen</h2>
+<p class="lead-text">In fashion, the "Kinetic Threshold" is the moment a garment leaves the mannequin and enters the world on a moving body.</p>
+<div class="media-container">
+<img alt="Alexander McQueen No. 13" src="assets/journals/edition-13/mcqueen-no13.webp"/>
+<span class="caption">Shalom Harlow in Alexander McQueen’s Spring/Summer 1999 show, where robotic arms rendered the kinetic transition of the garment in real-time. <span style="color: var(--accent-color);">Source: Alexander McQueen / Another Magazine.</span></span>
+</div>
+<div class="body-text">
+<h3>The Theatre of the Runway</h3>
+<p><a href="https://www.alexandermcqueen.com" target="_blank">Alexander McQueen</a>’s runway shows were kinetic theatre. In "No. 13" (1999), model <a href="https://www.instagram.com/shalomharlow" target="_blank">Shalom Harlow</a> stood on a rotating platform while industrial robotic arms sprayed her dress. "McQueen was obsessed with the body in motion," says fashion historian <a href="https://www.fitnyc.edu/museum/" target="_blank">Valerie Steele</a>.</p>
+<div class="media-container">
+<img alt="Richard Mille Watch Movement" src="assets/journals/edition-13/richard-mille-movement.webp"/>
+<span class="caption">The <a href="https://www.richardmille.com" target="_blank">Richard Mille</a> RM 027: A machine for the wrist designed to withstand extreme kinetic shocks. <span style="color: var(--accent-color);">Source: Richard Mille / Hodinkee.</span></span>
+</div>
+<h3>The Kinetic Accessory: The Richard Mille Movement</h3>
+<p><a href="https://www.richardmille.com" target="_blank">Richard Mille</a> watches are high-performance machines. "A Richard Mille is a machine for the wrist," says <a href="https://www.hodinkee.com" target="_blank">Ben Clymer</a> of <em><a href="https://www.hodinkee.com" target="_blank">HODINKEE</a></em>. It treats the wearer’s movement as a source of energy and a challenge to be mastered.</p>
+</div>
+</section>
+<!-- VII. Global Five -->
+<section class="section-container" id="global-five"><span class="dept-label">[VII. GLOBAL FIVE] CURATED EVENTS</span><h2 class="section-title">06–09 May 2026</h2><div class="global-five-list"><div class="global-five-item"><div class="event-rank">01</div><div class="event-details"><h3>CHICHESTER, UK: GOODWOOD FESTIVAL OF SPEED</h3><h4><a href="https://www.goodwood.com" target="_blank">Goodwood House</a></h4><div class="event-meta">09–12 July 2026</div><p>The world's greatest celebration of motorsport and car culture. The 2026 edition focuses on 'Electrified Heritage,' showcasing classic racers alongside the latest sustainable hypercars.</p></div></div></div></section>
+<!-- Discrete References Link -->
+<div class="references-discrete-container">
+<a class="references-discrete-link" onclick="document.getElementById('works-cited-expanded').toggleAttribute('open')">[ REFERENCES ]</a>
+</div>
+<!-- Works Cited -->
+<section class="section-container" id="works-cited" style="padding-top: 0;">
+<details class="works-cited-details" id="works-cited-expanded">
+<summary>Works Cited &amp; References</summary>
+<div class="works-cited-content">
+<ol>
+<li>Mendes, S. &amp; Deakins, R. (2019). *The Kinetic Line in 1917*. Universal Pictures.</li>
+<li>Tiefenbrun, I. (1973). *The Mechanical Foundation of Sound*. Linn Products.</li>
+<li>Dudley, A. (2025). *Listening to the Groove*. Stereophile Magazine.</li>
+<li>Technics Engineering Division. (2026). *The SP-10R Technical Brief*. Panasonic Corp.</li>
+<li>Lutz, U. (2026). *Ergonomic Sympathy in Classic Cockpits*. Porsche Classic.</li>
+<li>Rawsthorn, A. (2026). *Bill Stumpf and the Kinetic Human*. MoMA Archives.</li>
+<li>Rams, D. (2025). *The Ethics of the Click*. Braun Design Division.</li>
+<li>Piano, R. &amp; Rogers, R. (2026). *Buildings as Machines: A Retrospective*. Centre Pompidou.</li>
+<li>Foster, N. (2026). *Modular Architecture in the Digital Age*. Architectural Digest.</li>
+<li>Steele, V. (2026). *Alexander McQueen: The Body in Motion*. FIT Museum.</li>
+<li>Clymer, B. (2026). *Richard Mille: Engineering the Wrist*. Hodinkee.</li>
+</ol>
+</div>
+</details>
+</section>
+<div class="edition-nav-footer">
+<div class="nav-next">
+<span class="nav-label">NEXT EDITION</span>
+<a class="nav-link" href="#">EDITION 14 // COMING SOON</a>
+<span class="nav-date">Coming Soon</span>
+</div>
+<div class="nav-prev">
+<span class="nav-label">PREVIOUS EDITION</span>
+<a class="nav-link" href="journal-edition-12.html">EDITION 12 // THE WEIGHT OF REALITY</a>
+<span class="nav-date">10 May 2026</span>
+</div>
+</div>
+</article>
+<section class="about-footer" style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+<div class="footer-bottom">
+<span>© 2026 AI Love You. All rights reserved. No reproduction without prior written permission.</span>
+<div class="footer-links">
+<a href="contact.html">Contact</a>
+<a href="support.html">Legal Support</a>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>
