@@ -1118,13 +1118,37 @@ window.initMobileEditionNav = function() {
 
     let currentActiveLinkId = null;
 
+    // [FIX] The sticky header stack (studio-nav + edition-nav-mobile roller +
+    // persistent-audio-mobile bar, when shown) varies in height by breakpoint
+    // and by whether audio is playing. A hardcoded "-200" offset drifted from
+    // the real stack height (often only ~150-160px with the audio bar hidden),
+    // which made the roller highlight the next category before it had
+    // actually scrolled into view. Measure the real stack height instead.
+    function getStickyStackHeight() {
+        let height = 0;
+        const nav = document.querySelector('.studio-nav');
+        const roller = document.querySelector('.edition-nav-mobile');
+        const audioBar = document.getElementById('persistent-audio-mobile');
+        [nav, roller, audioBar].forEach(el => {
+            if (el && getComputedStyle(el).display !== 'none') {
+                height += el.getBoundingClientRect().height;
+            }
+        });
+        return height;
+    }
+
     window.addEventListener('scroll', () => {
         if (window.isScrollingByNav) return;
         window.isScrollingByPage = true;
 
+        // Small extra buffer so a section is only marked "active" once it has
+        // genuinely cleared the sticky stack, not the instant it touches it.
+        const stickyOffset = getStickyStackHeight() + 16;
+
         let currentSectionId = "";
         sections.forEach(section => {
-            if (window.pageYOffset >= section.offsetTop - 200) {
+            const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+            if (window.pageYOffset >= sectionTop - stickyOffset) {
                 currentSectionId = section.getAttribute('id');
             }
         });
