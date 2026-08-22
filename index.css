@@ -1050,7 +1050,7 @@ a.editorial-link:hover::after, .body-text a:hover::after, .technical-data-table 
    JOURNAL & EDITORIAL COMPONENTS (Phase 6)
    ========================================================================== */
 
-/* Journal Filtering & Search — see .search-bar / .search-input below */
+/* Journal Filtering & Search — see .search-bar / .search-input further down */
 
 
 
@@ -2820,17 +2820,34 @@ a.editorial-link:hover::after, .body-text a:hover::after, .technical-data-table 
 }
 
 /* [REFINEMENT] Persistent Audio Controls (Sticky Top) */
-
+.persistent-audio-mobile {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.8rem 1.5rem;
+    display: none; /* Revealed via JS when active */
+    align-items: center;
+    gap: 1.2rem;
+    position: sticky;
+    top: var(--nav-height); /* Directly under studio-nav */
+    z-index: 3500;
+    height: 48px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
 
 @media (max-width: 1024px) {.persistent-audio-mobile.is-active {
         display: flex !important;
     }body:has(.edition-nav-mobile) .persistent-audio-mobile {
         top: calc(var(--nav-height) + 5rem);
-    }.studio-nav { z-index: 4000; }.edition-nav-mobile { z-index: 3000; }.sticky-breadcrumb-header {
+    }.studio-nav { z-index: 4000; }.persistent-audio-mobile { z-index: 3500; }.edition-nav-mobile { z-index: 3000; }.sticky-breadcrumb-header {
         display: none !important;
     }}
 
-@media (min-width: 1025px) {.sticky-breadcrumb-header {
+@media (min-width: 1025px) {.persistent-audio-mobile {
+        display: none !important;
+    }.sticky-breadcrumb-header {
         position: sticky;
         top: 0;
         z-index: 3800; /* High enough to stay above content but below nav if any */
